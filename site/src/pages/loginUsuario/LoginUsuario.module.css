@@ -7,6 +7,7 @@ html {
     background-color: #fff;
 }
 
+
 .background-image {
     background-image: url("../../assets/ImgFundo.svg");
     background-size: cover;
@@ -18,10 +19,20 @@ html {
     overflow: hidden;
     position: relative;
     align-items: center;
+    justify-content: center;
 }
 
-.content-loginUsuario {
-    background-color: #FFFDF2;
-    height: 10vh;
-    width: 15vw;
+
+.containerLoginUsuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 50%;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
 }
