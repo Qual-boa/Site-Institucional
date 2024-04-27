@@ -9,7 +9,8 @@ import { CardLogin } from "../../components/cardLogin/CardLogin";
 function LoginUsuario(){
     return(
         <div className={styles["background-image"]}>
-        <div className={styles["containerLoginUsuario"]}>
+            <NavBar logoInicio = {logo}/>
+            <div className={styles["containerLoginUsuario"]}>
                 <CardLogin />
             </div>
         </div>
