@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Estabelecimento from "./pages/estabelecimento/Estabelecimento";
-import Dono from "./pages/dono/Dono";
+import Dono from "./pages/dono/DonoDeslogado";
 import LoginUsuario from "./pages/loginUsuario/LoginUsuario"
 
 

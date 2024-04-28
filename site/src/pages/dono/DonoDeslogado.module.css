@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.container {
+    background-image: url("../../assets/ImgFundo.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top left;
+    width: 100%;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.pesquisa {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pesquisa-titulo, .pesquisa-interrogacao{
+    font-size: 80pt;
+    font-family: 'Modak', sans-serif;
+}
+
+.pesquisa-interrogacao{
+    font-size: 100pt;
+}
+
+.cervejinha{
+    width: 20%;
+}
+
+.pesquisa-cervejinha{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.pesquisa-configure{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 700;
+}
+
+.pesquisa-form {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+
+}
+
+.pesquisa-input {
+    width: 70%;
+    outline: none;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+.pesquisa-button {
+    width: 30%;
+    outline: none;
+    padding: 10px;
+    border-radius: 30px;
+}
