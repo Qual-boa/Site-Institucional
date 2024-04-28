@@ -17,7 +17,7 @@
     height: 20%;
     padding: 0.5rem;
     border: 1px solid #ccc;
-    font-size: 1rem;
+    font-size: 0.8rem;
     border: none;
     /* Remove a borda padrão */
     border-bottom: 1px solid #000;
@@ -28,6 +28,23 @@
     /* Adiciona um pouco de padding vertical */
     background-color: transparent;
     /* Adiciona um fundo transparente */
+}
+
+.icon-user {
+    height: 30vh;
+    position: absolute;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control::placeholder{
+    font-size: 0.6rem;
+}
+
+.card{
+    height: fit-content;
+    width: fit-content;
 }
 
 .botao-entrar-usuario {
