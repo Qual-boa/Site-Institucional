@@ -1,0 +1,65 @@
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+
+}
+
+.form-group {
+    margin-bottom: 1rem;
+
+}
+
+.form-control {
+    width: 90%;
+    height: 20%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 0.8rem;
+    border: none;
+    /* Remove a borda padrão */
+    border-bottom: 1px solid #000;
+    /* Adiciona uma borda inferior */
+    outline: none;
+    /* Remove o contorno ao focar */
+    padding: 5px 0;
+    /* Adiciona um pouco de padding vertical */
+    background-color: transparent;
+    /* Adiciona um fundo transparente */
+}
+
+.icon-user {
+    height: 25vh;
+    position: absolute;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control::placeholder{
+    font-size: 0.6rem;
+}
+
+.card{
+    height: fit-content;
+    width: fit-content;
+}
+
+.botao-entrar-usuario {
+    width: 40%;
+    height: 30px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}
