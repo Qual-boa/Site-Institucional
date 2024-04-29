@@ -32,10 +32,13 @@
 
 .icon-user {
     height: 25vh;
-    position: absolute;
-    padding-bottom: 40px;
     display: flex;
     flex-direction: column;
+    padding-left: 2.5vw;
+}
+
+.card-body{
+    margin-bottom: 10vh;
 }
 
 .form-control::placeholder{

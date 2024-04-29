@@ -10,7 +10,7 @@ const NavBar = ({ logoInicio }) => {
             <span><b>QUAL A SUA BOA?</b></span>
             <span><b>CONTATOS</b></span>
             <span><b>QUEM SOMOS</b></span>
-            <input type="text" placeholder="Escreva aqui" />
+            <input type="text" placeholder="Escreva aqui"/>
             <img src={perfil} className={styles["perfil-user"]} alt="Usuário" />
         </nav>
     );

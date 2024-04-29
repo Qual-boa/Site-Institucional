@@ -13,7 +13,6 @@ function LoginUsuario(){
                         <div className={styles["containerLoginUsuario"]}>
                     <CardLogin />
                     </div> 
-                    <Footer />   
                 </div>
             <Footer />     
         </>

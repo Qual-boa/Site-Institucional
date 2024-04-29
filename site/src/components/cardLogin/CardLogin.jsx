@@ -1,6 +1,6 @@
 import styles from "./CardLogin.module.css";
 import "../../global.css";
-import icone from "../../assets/Crop_imagem-icone-user.svg"
+import icone from "../../assets/icon-user.svg"
 
 export function CardLogin() {
 
