@@ -1,13 +1,13 @@
 import styles from "./LoginEmpresa.module.css";
 import "../../global.css";
-import NavBar from "../../components/navbar/NavBar";
+import NavbarEmpresa from "../../components/navbarEmpresa/NavbarEmpresa";
 import logo from "../../assets/logo.svg";
 import { CardLoginEmpresa } from "../../components/cardLoginEmpresa/CardLoginEmpresa";
 
 function LoginEmpresa(){
     return(
         <>
-        <NavBar logoInicio = {logo}/>
+        <NavbarEmpresa logoInicio = {logo}/>
             <div className={styles["background-image"]}>
                     <div className={styles["containerLoginEmpresa"]}>
                 <CardLoginEmpresa />
