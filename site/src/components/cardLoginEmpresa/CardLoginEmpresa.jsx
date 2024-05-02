@@ -1,8 +1,8 @@
-import styles from "./CardLogin.module.css";
+import styles from "./CardLoginEmpresa.module.css";
 import "../../global.css";
 import icone from "../../assets/icon-user.svg"
 
-export function CardLogin() {
+export function CardLoginEmpresa() {
 
     return (
         <div className={styles["card"]}>
@@ -10,6 +10,10 @@ export function CardLogin() {
             <div className={styles["card-body"]}>
                 <h1 className={styles["card-title"]}>Login</h1>
                 <form>
+                <div className={styles["form-group"]}>
+                        <label htmlFor="email">CNPJ</label>
+                        <input type="email" className={styles["form-control"]} id="cnpj" placeholder="Digite seu CNPJ"/>
+                    </div>
                     <div className={styles["form-group"]}>
                         <label htmlFor="email">E-mail</label>
                         <input type="email" className={styles["form-control"]} id="email" aria-describedby="emailHelp" placeholder="Digite o seu e-mail"/>
