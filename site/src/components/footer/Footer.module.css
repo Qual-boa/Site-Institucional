@@ -30,6 +30,7 @@
 
 .logo {
     margin-left: 64px; 
+    cursor: pointer;
 }
 
 .options{
@@ -56,10 +57,13 @@
     cursor: pointer;
 }
 
-.imag{
+.copyright{
     padding-top: 2rem;
     display: flex;
     justify-content: space-between;
     padding-right: 6rem;
 }
 
+.copyright img{
+    cursor: pointer;
+}

@@ -18,6 +18,7 @@
     font-size: 13px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .navbar input {
@@ -31,4 +32,9 @@
 
 .perfil-user{
     margin-right: 5px;
+    cursor: pointer;
+}
+
+.logo-inicio{
+    cursor: pointer;
 }

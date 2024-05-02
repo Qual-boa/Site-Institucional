@@ -38,7 +38,7 @@ function Footer() {
                 </div>
             </div>
             <div className={"footer_copyright_container"} >
-                <div className={styles.imag}>
+                <div className={styles.copyright}>
                     <img src={LogoFooter2024} alt="Qual a Boa 2024" className={styles.logo}/>
                     <span>Todos os direitos reservados</span>
                 </div>
