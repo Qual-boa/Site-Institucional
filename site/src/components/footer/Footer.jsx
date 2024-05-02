@@ -13,7 +13,9 @@ function Footer() {
             </div>
             <div className={styles.menuContainer}>
                 <div className={styles.menu}><span>MENU</span>
-
+                    <span>
+                        
+                    </span>
                 </div>
                 <div className={styles.menu}><span>ENDEREÇO</span>
 
