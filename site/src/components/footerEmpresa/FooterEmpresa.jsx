@@ -1,4 +1,4 @@
-import styles from "./Footer.module.css";
+import styles from "./FooterEmpresa.module.css";
 import LogoFooter from '../../assets/footerIcon.svg'
 import {FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import LogoFooter2024 from "../../assets/footer2024.svg"
@@ -17,8 +17,8 @@ function Footer() {
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
                     <a className={styles.options} onClick={""}>QUAL A BOA?</a>
-                    <a className={styles.options} onClick={""}>MELHORES DO MÊS</a>
-                    <a className={styles.options} onClick={""}>QUAL A SUA BOA?</a>
+                    <a className={styles.options} onClick={""}>VANTAGENS</a>
+                    <a className={styles.options} onClick={""}>DESTAQUE DO MÊS</a>
                     <a className={styles.options} onClick={""}>CONTATOS</a>                    
                     <a className={styles.options} onClick={""}>QUEM SOMOS</a>
                 </div>

@@ -19,8 +19,9 @@
     border: 1px solid #ccc;
     font-size: 0.8rem;
     border: none;
-    /* Remove a borda padrão */
-    border-bottom: 1px solid #000;
+    border-bottom: 1.5px solid transparent; 
+    border-image: linear-gradient(to right, #dc670c, #fddb27);
+     border-image-slice: 1;
     /* Adiciona uma borda inferior */
     outline: none;
     /* Remove o contorno ao focar */

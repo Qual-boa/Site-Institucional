@@ -19,15 +19,12 @@
     border: 1px solid #ccc;
     font-size: 0.8rem;
     border: none;
-    /* Remove a borda padrão */
-    border-bottom: 1px solid #000;
-    /* Adiciona uma borda inferior */
+    border-bottom: 1.5px solid transparent; 
+    border-image: linear-gradient(to right, #dc670c, #fddb27);
+    border-image-slice: 1;
     outline: none;
-    /* Remove o contorno ao focar */
     padding: 5px 0;
-    /* Adiciona um pouco de padding vertical */
     background-color: transparent;
-    /* Adiciona um fundo transparente */
 }
 
 .icon-user {

@@ -32,35 +32,3 @@
 .perfil-user{
     margin-right: 5px;
 }
-
-.logo-inicio,
-.logo-fim {
-    outline: none;
-    display: flex;
-    margin: 0rem;
-    max-height: 80%;
-    align-items: center;
-}
-
-.logo-inicio {
-    cursor: pointer;
-}
-
-.active {
-    background-color: #E3073C !important;
-}
-
-.navbar button {
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 0.8rem 3.6rem;
-    border-radius: 5px;
-    background-color: #dfa053;
-    transition: background-color 0.3s ease;
-}
-
-.navbar button:hover {
-    background-color: #a77940;
-}
