@@ -3,16 +3,21 @@ import "../../global.css";
 import { CardLogin } from "../../components/cardLogin/CardLogin";
 import NavBar from "../../components/navbar/NavBar";
 import logo from "../../assets/QualABoa.svg";
+import Footer from "../../components/footer/Footer";
+
 
 function LoginUsuario(){
     return(
         <>
         <NavBar logoInicio = {logo}/>
-            <div className={styles["background-image"]}>
-                    <div className={styles["containerLoginUsuario"]}>
-                <CardLogin />
+            <div className={styles["container"]}>
+                <div className={styles["background-image"]}>
+                        <div className={styles["containerLoginUsuario"]}>
+                    <CardLogin />
+                    </div> 
                 </div> 
-            </div>    
+            </div> 
+        <Footer />       
         </>
     );
 }
