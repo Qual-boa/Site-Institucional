@@ -8,11 +8,11 @@ export function CardLoginEmpresa() {
         <div className={styles["card"]}>
             <img src={icone}alt="icone do usuário" className={styles["icon-user"]} />
             <div className={styles["card-body"]}>
-                <h1 className={styles["card-title"]}>Login</h1>
+                <h1 className={styles["card-title"]}><b>LOGIN</b></h1>
                 <form>
                 <div className={styles["form-group"]}>
-                        <label htmlFor="email">CNPJ</label>
-                        <input type="email" className={styles["form-control"]} id="cnpj" placeholder="Digite seu CNPJ"/>
+                        <label htmlFor="text">CNPJ</label>
+                        <input type="text" className={styles["form-control"]} id="cnpj" placeholder="Digite seu CNPJ"/>
                     </div>
                     <div className={styles["form-group"]}>
                         <label htmlFor="email">E-mail</label>
@@ -22,7 +22,7 @@ export function CardLoginEmpresa() {
                         <label htmlFor="senha">Senha</label>
                         <input type="password" className={styles["form-control"]} id="senha" placeholder="Digite a sua senha"/>
                     </div>
-                    <button type="submit" className={styles["botao-entrar-usuario"]}>Entrar</button>
+                    <button type="submit" className={styles["botao-entrar-usuario"]}>ENTRAR</button>
                 </form>
             </div>
         </div>

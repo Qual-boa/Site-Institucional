@@ -48,8 +48,8 @@
 }
 
 .botao-entrar-usuario {
-    width: 40%;
-    height: 30px;
+    width: 50%;
+    height: 33px;
     background-color: #000;
     color: #fff;
     border: none;
@@ -62,5 +62,5 @@
     margin-right: auto;
     margin-bottom: 5rem;
     display: block;
-
+    font-weight: bold;
 }
