@@ -1,25 +1,21 @@
 import styles from "./CadastroUsuario.module.css";
-import imgEspuma from "../../assets/asset-cadastro-usuario/Blob16.svg"
-import imgCopo from "../../assets/asset-cadastro-usuario/Cilindros.svg"
+import "../../global.css";
+import logo from "../../assets/logo.svg";
+import NavBar from "../../components/navbar/NavBar";
+import CardCadastro from "../../components/cardCadastro/CardCadastro";
+import Footer from "../../components/footer/Footer";
 const CadastroUsuario = () => {
     
-    return (
-        // Fragmento React para agrupar múltiplos elementos sem adicionar um nó extra ao DOM
-        <>
-            {/* Renderiza o componente NavBar, passando o logotipo importado como propriedade */}
-            {/*<NavBar logoInicio={logo} />*/}
-            {/* Contêiner para a imagem de fundo e o título da página */}
-            <div className={styles["background-image"]}>
-                {/* Imagem de fundo principal */}
-                <img src={imgEspuma} alt="Imagem de fundo espuma de cerveja escorrendo" />
+    return(
+        <div>
+            <NavBar logoInicio = {logo}/>
+            <div className={styles["background-imageCadastro"]}>
+                <div className={styles["containerCadastroUsuario"]}>
+                <CardCadastro />
                 </div>
-                <div className={styles["background-imageCopo"]}>
-                <img src={imgCopo} alt="Imagem de cilindros do copo" />
-                </div>
-                
-
-            
-        </>
+            </div>
+            <Footer/>
+    </div>
     );
 };
 // Exporta o componente Home para que possa ser usado em outras partes da aplicação

@@ -1,0 +1,68 @@
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+
+}
+
+.form-group {
+    margin-bottom: 1rem;
+
+}
+
+.form-control {
+    width: 90%;
+    height: 20%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    border: none;
+    /* Remove a borda padrão */
+    border-bottom: 1px solid #000;
+    /* Adiciona uma borda inferior */
+    outline: none;
+    /* Remove o contorno ao focar */
+    padding: 5px 0;
+    /* Adiciona um pouco de padding vertical */
+    background-color: transparent;
+    /* Adiciona um fundo transparente */
+}
+
+.botao-entrar-usuario {
+    width: 40%;
+    height: 30px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}
+.avatar {
+    position: absolute;
+    top: -100px; /* Ajuste conforme necessário */
+    left: 50%; /* Ajuste conforme necessário */
+    transform: translateX(-50%);
+    z-index: 1; /* Certifique-se de que o avatar está sobre o card */
+}
+.loginExistente{
+    text-align: center;
+    font-size: 10px;
+    color: #7C778F;
+}
+.entrar{
+    color: #7C778F;
+    cursor: pointer; 
+}
+.entrar:hover{
+    color: #000;
+}
