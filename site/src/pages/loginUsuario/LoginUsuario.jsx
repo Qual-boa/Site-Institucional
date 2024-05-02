@@ -5,7 +5,6 @@ import NavBar from "../../components/navbar/NavBar";
 import logo from "../../assets/QualABoa.svg";
 import Footer from "../../components/footer/Footer";
 
-
 function LoginUsuario(){
     return(
         <>
