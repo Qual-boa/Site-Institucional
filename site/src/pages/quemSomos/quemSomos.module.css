@@ -4,10 +4,11 @@ html{
     padding: 0;
     height: 100%;
     background-color: #fff;
+    
 }
 
 
-.background-imageCadastro {
+.background-imageQuemSomos {
     background-image: url("../../assets/QuemSomos.svg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -18,4 +19,56 @@ html{
     position: relative;
     align-items: center;
     justify-content: center;
+}
+.containerQS {
+    display: flex;
+    flex-direction: column;
+    
+    width: 1197px;
+    height: 800px;
+    background-color: #f5f5f5;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 100px;
+}
+.titulo{
+    font-weight: bold;
+    font-size: 32px;
+    margin-top: 32px;
+    margin-left: 159px;
+}
+.texto{
+    font-weight: normal;
+    font-size: 22px;
+    margin-left: 159px;
+    text-align: left;
+    margin-right: 159px;
+    margin-top: 32px;
+}
+.modak-words {
+    font-family: 'Modak', sans-serif;
+}
+.nomes{
+    font-weight: bold;
+    font-size: 20px;
+}
+.conheca{
+    font-weight: 600;
+    font-size: 20px;
+    margin-left: 159px;
+    margin-top: 40px;
+}
+.avatares{
+    margin-left: 159px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 159px;
+    margin-top: 32px;
+}
+.avatares-nomes{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 159px;
+    margin-left: 159px;
 }
