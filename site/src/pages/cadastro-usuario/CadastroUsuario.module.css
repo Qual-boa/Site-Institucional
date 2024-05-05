@@ -8,7 +8,7 @@ html{
 
 
 .background-imageCadastro {
-    background-image: url("../../assets/ImgFundo.svg");
+    background-image: url("../../assets/LoginFundo.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top left;

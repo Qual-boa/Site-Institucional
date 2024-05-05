@@ -1,13 +1,13 @@
 import NavBar from "../../components/navbar/NavBar";
 import styles from "./DonoDeslogado.module.css";
-import logo from "../../assets/logo.svg";
 import cervejinha from "../../assets/cervejinha.png";
 import iconeLocal from "../../assets/local-icon.svg"
+import logo from "../../assets/QualABoa.svg";
 
 function Dono() {
     return (
         <>
-            <NavBar logoInicio={logo} />
+            <NavBar logoInicio={logo}/>
             <div className={styles["container"]}>
                 <div className={styles["pesquisa"]}>
                     <div className={styles["pesquisa-titulo"]}>Qual a Boa <span className={styles["pesquisa-interrogacao"]}>?</span></div>
