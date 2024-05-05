@@ -4,20 +4,19 @@ import avatar from "../../assets/asset-cadastro-usuario/avatar.svg"; // Importe 
 import { Link } from 'react-router-dom';
 import api from "../../api";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';
 
 function CardCadastro() {
     const navigate = useNavigate();
     const [nome,setNome] = useState("");
     const [email,setEmail] = useState("");
     const [senha,setSenha] = useState("");
-    const [senhaConfirmacao] = useState("");
+    const [senhaConfirmacao,setSenhaConfirmacao] = useState("");
     const salvarUsuario =()=>{
 
         if (senha !== senhaConfirmacao) {
-            alert("Senhas não coincidem. Tente novamente");toast.error("As senhas não coincidem.");
+            alert("Senhas não coincidem.");toast.error("As senhas não coincidem.");
             return; 
         }
 
@@ -28,7 +27,7 @@ function CardCadastro() {
             userTypeEnum: "COMMON",
             roleEnum: "USER"
         }).then(()=>{alert("Usuário Cadastrado com sucesso!");toast.success("Novo Usuário cadastrado com sucesso!");
-            navigate("/UsuarioFinal")
+            navigate("/login");
         }).catch(()=>{alert("Erro ao efetuar o cadastro, tente novamente");toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.")})
     }
 
@@ -59,7 +58,7 @@ function CardCadastro() {
                         </div>
                         <div className={styles["form-group"]}>
                             <label htmlFor="senhaConfirmacao"><b>CONFIRME A SENHA:</b></label>
-                            <input type="password" className={styles["form-control"]} id="senhaConfirmacao" placeholder="Digite sua senha novamente" />
+                            <input type="password" className={styles["form-control"]} id="senhaConfirmacao" placeholder="Digite sua senha novamente" onChange={(e) => setarValoresInput(e, setSenhaConfirmacao)} />
                         </div>
                         <button type="submit" className={styles["botao-entrar-usuario"]} onClick={salvarUsuario}>CADASTRAR</button>
                         <div className={styles["loginExistente"]}>

@@ -5,6 +5,7 @@ import CadastroUsuario from "./pages/cadastro-usuario/CadastroUsuario";
 import LoginUsuario from "./pages/loginUsuario/LoginUsuario"
 import LoginEmpresa from "./pages/loginEmpresa/LoginEmpresa"
 import QuemSomos from  "./pages/quemSomos/quemSomos"
+
 function Rotas() {
     return (
         <>
