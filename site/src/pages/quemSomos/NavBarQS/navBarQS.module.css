@@ -1,0 +1,44 @@
+.navbarQS {
+    top: 0;
+    left: 0;
+    margin-top: 2vh;
+    margin-left: 1.3vh;
+    height: 6vh;
+    width: 96vw;
+    z-index: 999;
+    display: flex;
+    max-height: 8vh;
+    min-height: 6vh;
+    padding: 0.6rem;
+    align-items: center;    
+    justify-content: space-between;
+    background-color: black;
+    position: fixed;
+    color: white;
+    border-radius: 4vh;
+}
+
+.navbarQS span {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbarQS input {
+    height: 4vh;
+    width: 35vw;
+    border: none;
+    border-radius: 20px;
+    text-indent: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-userQS{
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.logoQS{
+    cursor: pointer;
+}
