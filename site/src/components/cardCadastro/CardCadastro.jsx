@@ -7,6 +7,7 @@ import { useState } from "react";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
+
 function CardCadastro() {
     const navigate = useNavigate();
     const [nome,setNome] = useState("");
@@ -24,8 +25,8 @@ function CardCadastro() {
             name: nome,
             email,
             password: senha,
-            userTypeEnum: "COMMON",
-            roleEnum: "USER"
+            userTypeEnum: "EMPLOYEE",
+            roleEnum: "ADMIN"
         }).then(()=>{alert("Usuário Cadastrado com sucesso!");toast.success("Novo Usuário cadastrado com sucesso!");
             navigate("/login");
         }).catch(()=>{alert("Erro ao efetuar o cadastro, tente novamente");toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.")})
@@ -60,7 +61,7 @@ function CardCadastro() {
                             <label htmlFor="senhaConfirmacao"><b>CONFIRME A SENHA:</b></label>
                             <input type="password" className={styles["form-control"]} id="senhaConfirmacao" placeholder="Digite sua senha novamente" onChange={(e) => setarValoresInput(e, setSenhaConfirmacao)} />
                         </div>
-                        <button type="submit" className={styles["botao-entrar-usuario"]} onClick={salvarUsuario}>CADASTRAR</button>
+                        <button type="button" className={styles["botao-entrar-usuario"]} onClick={salvarUsuario}>CADASTRAR</button>
                         <div className={styles["loginExistente"]}>
                             Já possui Login?<Link to="/login" className={styles.entrar}>Entrar</Link>
                         </div>
