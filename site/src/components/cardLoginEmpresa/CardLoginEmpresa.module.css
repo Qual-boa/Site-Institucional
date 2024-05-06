@@ -31,7 +31,7 @@
     height: 25vh;
     display: flex;
     flex-direction: column;
-    padding-left: 2.5vw;
+    padding-left: 1.8vw;
 }
 
 .card-body{
@@ -63,4 +63,16 @@
     margin-bottom: 5rem;
     display: block;
     font-weight: bold;
+}
+
+.botao-entrar-usuario:hover {
+    background-color: #333;
+
+}
+
+.loginExistente{
+    text-align: center;
+    font-size: 10px;
+    color: #7C778F;
+    margin-top: -11vh;
 }

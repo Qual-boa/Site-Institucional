@@ -9,7 +9,7 @@ export function CardLoginEmpresa() {
         <div className={styles["card"]}>
             <img src={icone}alt="icone do usuário" className={styles["icon-user"]} />
             <div className={styles["card-body"]}>
-                <h1 className={styles["card-title"]}><b>LOGIN</b></h1>
+                <h1 className={styles["card-title"]}><b>CADASTRE-SE</b></h1>
                 <form>
                 <div className={styles["form-group"]}>
                         <label htmlFor="text">CNPJ</label>

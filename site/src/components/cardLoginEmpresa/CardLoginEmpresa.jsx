@@ -1,6 +1,7 @@
 import styles from "./CardLoginEmpresa.module.css";
 import "../../global.css";
 import icone from "../../assets/icon-user.svg"
+import { Link } from 'react-router-dom';
 
 export function CardLoginEmpresa() {
 
@@ -23,6 +24,9 @@ export function CardLoginEmpresa() {
                         <input type="password" className={styles["form-control"]} id="senha" placeholder="Digite a sua senha"/>
                     </div>
                     <button type="submit" className={styles["botao-entrar-usuario"]}>ENTRAR</button>
+                    <div className={styles["loginExistente"]}>
+                            Não possui Login?<Link to="/cadastroEmpresa" className={styles.entrar}>Cadastrar</Link>
+                        </div>
                 </form>
             </div>
         </div>
