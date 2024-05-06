@@ -12,6 +12,8 @@ function Footer() {
                 <img src={LogoFooter} alt="logo" className={styles.logo} />
                 <img src={LogoFooter} alt="logo" className={styles.logo} />
                 <img src={LogoFooter} alt="logo" className={styles.logo} />
+                <img src={LogoFooter} alt="logo" className={styles.logo} />
+
             </div>
             <div className={styles.menuContainer}>
                 <div className={styles.menu}>

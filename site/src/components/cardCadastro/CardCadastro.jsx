@@ -46,19 +46,19 @@ function CardCadastro() {
                     <h1 className={styles["card-title"]}><b>CADASTRE-SE</b></h1>
                     <form>
                         <div className={styles["form-group"]}>
-                            <label htmlFor="email"><b>E-MAIL:</b></label>
+                            <label htmlFor="email">E-mail:</label>
                             <input type="email" className={styles["form-control"]} id="email" aria-describedby="emailHelp" placeholder="Digite seu e-mail" onChange={(e) => setarValoresInput(e, setEmail)}/>
                         </div>
                         <div className={styles["form-group"]}>
-                            <label htmlFor="nome"><b>NOME COMPLETO:</b></label>
+                            <label htmlFor="nome">Nome Completo:</label>
                             <input type="text" className={styles["form-control"]} id="nome" aria-describedby="nomeHelp" placeholder="Digite seu nome completo" onChange={(e) => setarValoresInput(e, setNome)}/>
                         </div>
                         <div className={styles["form-group"]}>
-                            <label htmlFor="senha"><b>SENHA:</b></label>
+                            <label htmlFor="senha">Senha:</label>
                             <input type="password" className={styles["form-control"]} id="senha" placeholder="Digite sua senha" onChange={(e) => setarValoresInput(e, setSenha)}/>
                         </div>
                         <div className={styles["form-group"]}>
-                            <label htmlFor="senhaConfirmacao"><b>CONFIRME A SENHA:</b></label>
+                            <label htmlFor="senhaConfirmacao">Confirme a Senha:</label>
                             <input type="password" className={styles["form-control"]} id="senhaConfirmacao" placeholder="Digite sua senha novamente" onChange={(e) => setarValoresInput(e, setSenhaConfirmacao)} />
                         </div>
                         <button type="button" className={styles["botao-entrar-usuario"]} onClick={salvarUsuario}>CADASTRAR</button>
