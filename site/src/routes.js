@@ -8,6 +8,7 @@ import LoginEmpresa from "./pages/loginEmpresa/LoginEmpresa"
 import UsuarioFinal from "./pages/usuarioFinal/UsuarioFinal"
 import QuemSomos from  "./pages/quemSomos/quemSomos"
 import CadastroEmpresa from "./pages/cadastroEmpresa/CadastroEmpresa"
+import NotFound from "./pages/notfound/notfound";
 function Rotas() {
     return (
         <>
@@ -20,7 +21,7 @@ function Rotas() {
                     <Route path="/loginEmpresa" element={<LoginEmpresa/>}/>
                     <Route path="/UsuarioFinal" element={<UsuarioFinal/>}/>
                     <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
-
+                    <Route path="*" element={<NotFound />} />
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
                 </Routes>
             </BrowserRouter> 
