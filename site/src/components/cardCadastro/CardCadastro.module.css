@@ -2,7 +2,8 @@
     font-size: 1.5rem;
     font-weight: 500;
     color: #333;
-    margin-bottom: 1rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
     text-align: center;
 
 }
@@ -23,56 +24,48 @@
     border-image: linear-gradient(to right, #dc670c, #fddb27);
     border-image-slice: 1;
     outline: none;
-    padding: 5px 0;
+    padding: 6px 0;
     background-color: transparent;
 }
 
-.icon-user {
-    height: 25vh;
-    display: flex;
-    flex-direction: column;
-    padding-left: 1.8vw;
-}
-
-.card-body{
-    margin-bottom: 10vh;
-}
-
-.form-control::placeholder{
-    font-size: 0.6rem;
-}
-
-.card{
-    height: fit-content;
-    width: fit-content;
-}
 
 .botao-entrar-usuario {
-    width: 50%;
-    height: 33px;
+    width: 40%;
+    height: 30px;
     background-color: #000;
     color: #fff;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5rem;
     display: block;
-    font-weight: bold;
+
 }
 
-.botao-entrar-usuario:hover {
-    background-color: #333;
-
+.avatar {
+    position: absolute;
+    top: -100px; /* Ajuste conforme necessário */
+    left: 50%; /* Ajuste conforme necessário */
+    transform: translateX(-50%);
+    z-index: 1; /* Certifique-se de que o avatar está sobre o card */
 }
 
 .loginExistente{
     text-align: center;
     font-size: 10px;
     color: #7C778F;
-    margin-top: -11vh;
+    margin-top: 6px;
+}
+
+.entrar{
+    color: #7C778F;
+    cursor: pointer; 
+}
+
+.entrar:hover{
+    color: #000;
 }

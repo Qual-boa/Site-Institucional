@@ -23,7 +23,7 @@
     border-image: linear-gradient(to right, #dc670c, #fddb27);
     border-image-slice: 1;
     outline: none;
-    padding: 5px 0;
+    padding: 6px 0;
     background-color: transparent;
 }
 
@@ -31,7 +31,7 @@
     height: 25vh;
     display: flex;
     flex-direction: column;
-    padding-left: 1.8vw;
+    padding-left: 6.5vw;
 }
 
 .card-body{
@@ -48,21 +48,21 @@
 }
 
 .botao-entrar-usuario {
-    width: 50%;
-    height: 33px;
+    width: 40%;
+    height: 30px;
     background-color: #000;
     color: #fff;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5rem;
     display: block;
-    font-weight: bold;
+
 }
 
 .botao-entrar-usuario:hover {
