@@ -25,7 +25,7 @@ function QuemSomos(){
                         <span className={styles["texto"]}>Nos somos a empresa QUAL A BOA?, do ramo de tecnologia e formada por seis desenvolvedores e analistas responsáveis pela criação, idealização e desenvolvimento do  <span className={styles["modak-words"]}>Qual a boa?</span>, projeto que leva o nome da empresa.</span>
                         <span className={styles["conheca"]}>CONHEÇA NOSSOS INTEGRANTES!</span>
                         <div className={styles["avatares"]}><img src={Carlos} alt="avatar Carlos" /><img src={Danielle} alt="avatar Danielle" /><img src={Nicolas} alt="avatar Nicolas" /></div>
-                        <div className={styles["avatares-nomes"]}><span className={styles["nomes"]}>CARLOS BENECKE</span><span className={styles["nomes"]}>DANIELLE ROMANO</span><span className={styles["nomes"]}>NICOLES PRATES&nbsp;&nbsp;</span></div>
+                        <div className={styles["avatares-nomes"]}><span className={styles["nomes"]}>CARLOS BENECKE</span><span className={styles["nomes"]}>DANIELLE ROMANO</span><span className={styles["nomes"]}>NICOLAS PRATES&nbsp;&nbsp;</span></div>
                         <div className={styles["avatares"]}><img src={Pedro} alt="avatar Pedro" /><img src={Samuel} alt="avatar Samuel" /><img src={Vinicius} alt="avatar Vinicius" /></div>
                         <div className={styles["avatares-nomes"]}><span className={styles["nomes"]}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PEDRO PRADO</span><span className={styles["nomes"]}>SAMUEL LUCENA</span><span className={styles["nomes"]}>VINICIUS COSTA&nbsp;&nbsp;&nbsp;</span></div>
                     </div> 
