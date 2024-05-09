@@ -16,7 +16,7 @@ const NavBarQS = ({ logoQS }) => {
             <span><b>MELHORES DO MÊS</b></span>
             <span><b>VANTAGENS</b></span>
             <span><b>CONTATOS</b></span>
-            <span><b>QUEM SOMOS</b></span>
+            <span onClick={() => navigate("/quem-somos")}><b>QUEM SOMOS</b></span>
             <input type="text" placeholder="Escreva aqui"/>
             <img onClick={logOff} src={perfil} className={styles["perfil-userQS"]} alt="Usuário" />
         </nav>
