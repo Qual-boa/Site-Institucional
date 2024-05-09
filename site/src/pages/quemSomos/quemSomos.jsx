@@ -20,14 +20,14 @@ function QuemSomos(){
         <NavBarQS logoQS = {logoQS} />
             <div className={styles["container"]}>
                 <div className={styles["background-imageQuemSomos"]}>
-                        <div className={styles["containerQS"]}>
+                    <div className={styles["containerQS"]}>
                         <span className={styles["titulo"]}>QUEM SOMOS?</span>
                         <span className={styles["texto"]}>Nos somos a empresa QUAL A BOA?, do ramo de tecnologia e formada por seis desenvolvedores e analistas responsáveis pela criação, idealização e desenvolvimento do  <span className={styles["modak-words"]}>Qual a boa?</span>, projeto que leva o nome da empresa.</span>
                         <span className={styles["conheca"]}>CONHEÇA NOSSOS INTEGRANTES!</span>
-                        <div className={styles["avatares"]}><img src={Carlos} alt="avatar Carlos" /><img src={Danielle} alt="avatar Danielle" /><img src={Nicolas} alt="avatar Nicolas" /></div>
+                        <div className={styles["avatares"]}><a href="https://github.com/CarlosHBenecke" target="_blank"><img src={Carlos} alt="avatar Carlos" /></a><a href="https://github.com/DanielleRomano" target="_blank"><img src={Danielle} alt="avatar Danielle" /></a><a href="https://github.com/nicolas-prates" target="_blank"><img src={Nicolas} alt="avatar Nicolas" /></a></div>
                         <div className={styles["avatares-nomes"]}><span className={styles["nomes"]}>CARLOS BENECKE</span><span className={styles["nomes"]}>DANIELLE ROMANO</span><span className={styles["nomes"]}>NICOLAS PRATES&nbsp;&nbsp;</span></div>
-                        <div className={styles["avatares"]}><img src={Pedro} alt="avatar Pedro" /><img src={Samuel} alt="avatar Samuel" /><img src={Vinicius} alt="avatar Vinicius" /></div>
-                        <div className={styles["avatares-nomes"]}><span className={styles["nomes"]}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PEDRO PRADO</span><span className={styles["nomes"]}>SAMUEL LUCENA</span><span className={styles["nomes"]}>VINICIUS COSTA&nbsp;&nbsp;&nbsp;</span></div>
+                        <div className={styles["avatares"]}><a href="https://github.com/PedroPradoCho" target="_blank"><img src={Pedro} alt="avatar Pedro" /></a><a href="https://github.com/samlucena" target="_blank"><img src={Samuel} alt="avatar Samuel" /></a><a href="https://github.com/Vinicius-Costa23" target="_blank"><img src={Vinicius} alt="avatar Vinicius" /></a></div>
+                        <div className={styles["avatares-nomes"]}><span className={styles["nomes"]}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PEDRO PRADO</span><span className={styles["nomes"]}>SAMUEL LUCENA</span><span className={styles["nomes"]}>VINICIUS COSTA&nbsp;&nbsp;&nbsp;</span></div>                    
                     </div> 
                 </div> 
             </div> 
