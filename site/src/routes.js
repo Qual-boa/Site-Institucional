@@ -15,15 +15,14 @@ function Rotas() {
                 <Routes>
                     <Route path="/estabelecimento" element={<Estabelecimento />} />
                     <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
-                    <Route path="/cadastrar-estabelecimento" element={<Dono />} />
+                    <Route path="/cadastrar-estabelecimento" element={<Dono/>} />
                     <Route path="/login" element={<LoginUsuario/>}/>
                     <Route path="/loginEmpresa" element={<LoginEmpresa/>}/>
-                    <Route path="/UsuarioFinal" element={<UsuarioFinal/>}/>
+                    <Route path="/usuario-final" element={<UsuarioFinal/>}/>
                     <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
-
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
                 </Routes>
-            </BrowserRouter> 
+            </BrowserRouter>
         </>
     )
 }

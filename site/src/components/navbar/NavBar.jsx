@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styles from './NavBar.module.css';
 import perfil from '../../assets/perfilUser.svg';
 
 const NavBar = ({ logoInicio }) => {
+    function logOff() {
+        sessionStorage.removeItem("qabToken");
+    }
+
     return (
         <nav className={styles["navbar"]}>
             <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" />
@@ -11,7 +15,7 @@ const NavBar = ({ logoInicio }) => {
             <span><b>CONTATOS</b></span>
             <span><b>QUEM SOMOS</b></span>
             <input type="text" placeholder="Escreva aqui"/>
-            <img src={perfil} className={styles["perfil-user"]} alt="Usuário" />
+            <div onClick={logOff}><img src={perfil} className={styles["perfil-user"]} alt="Usuário"/></div>
         </nav>
     );
 };
