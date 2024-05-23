@@ -1,4 +1,3 @@
-import React, { useCallback } from 'react';
 import styles from './NavBar.module.css';
 import perfil from '../../assets/perfilUser.svg';
 import { useNavigate } from 'react-router-dom';
