@@ -23,12 +23,17 @@ jobs:
 
       - name: npm install, build, and test
         run: |
+          cd site
           npm install
           npm run build --if-present
           npm run test --if-present
+          cd ..
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: |
+          cd site
+          zip release.zip ./* -r
+          cd ..
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
