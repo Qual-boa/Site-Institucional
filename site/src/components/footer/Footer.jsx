@@ -2,6 +2,7 @@ import styles from "./Footer.module.css";
 import LogoFooter from '../../assets/footerIcon.svg'
 import {FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import LogoFooter2024 from "../../assets/footer2024.svg"
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
@@ -18,11 +19,11 @@ function Footer() {
             <div className={styles.menuContainer}>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <a className={styles.options} onClick={""}>QUAL A BOA?</a>
-                    <a className={styles.options} onClick={""}>MELHORES DO MÊS</a>
-                    <a className={styles.options} onClick={""}>QUAL A SUA BOA?</a>
-                    <a className={styles.options} onClick={""}>CONTATOS</a>                    
-                    <a className={styles.options} onClick={""}>QUEM SOMOS</a>
+                    <Link to={"/quem-somos"}>QUAL A BOA?</Link>
+                    <Link to={"/quem-somos"}>MELHORES DO MÊS</Link>
+                    <Link to={"/quem-somos"}>QUAL A SUA BOA?</Link>
+                    <Link to={"/quem-somos"}>CONTATOS</Link>                    
+                    <Link to={"/quem-somos"}>QUEM SOMOS</Link>
                 </div>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>ENDEREÇO</h3>
