@@ -17,7 +17,7 @@ function CardCadastro() {
     const salvarUsuario =()=>{
 
         if (senha !== senhaConfirmacao) {
-            alert("Senhas não coincidem.");toast.error("As senhas não coincidem.");
+            toast.error("As senhas não coincidem.");
             return; 
         }
 
@@ -27,9 +27,9 @@ function CardCadastro() {
             password: senha,
             userTypeEnum: "EMPLOYEE",
             roleEnum: "ADMIN"
-        }).then(()=>{alert("Usuário Cadastrado com sucesso!");toast.success("Novo Usuário cadastrado com sucesso!");
+        }).then(()=>{toast.success("Novo Usuário cadastrado com sucesso!");
             navigate("/login");
-        }).catch(()=>{alert("Erro ao efetuar o cadastro, tente novamente");toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.")})
+        }).catch(()=>{toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.")})
     }
 
     const setarValoresInput=(evento, setState)=>{

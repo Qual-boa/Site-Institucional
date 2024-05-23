@@ -31,6 +31,4 @@ export function CardLoginEmpresa() {
             </div>
         </div>
     );
-
-
 }

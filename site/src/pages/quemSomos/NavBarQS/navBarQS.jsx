@@ -5,6 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 const NavBarQS = ({ logoQS }) => {
     const navigate = useNavigate();
+    function logOff() {
+        sessionStorage.removeItem("qabToken");
+        navigate("/login")
+    }
+
     return (
         <nav className={styles["navbarQS"]}>
             <img src={logoQS} className={styles["logoQS"]} alt="Logo Início" />
@@ -13,7 +18,7 @@ const NavBarQS = ({ logoQS }) => {
             <span><b>CONTATOS</b></span>
             <span onClick={() => navigate("/quem-somos")}><b>QUEM SOMOS</b></span>
             <input type="text" placeholder="Escreva aqui"/>
-            <img src={perfil} className={styles["perfil-userQS"]} alt="Usuário" />
+            <img onClick={logOff} src={perfil} className={styles["perfil-userQS"]} alt="Usuário" />
         </nav>
     );
 };
