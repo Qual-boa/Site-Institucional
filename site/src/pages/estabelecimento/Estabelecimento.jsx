@@ -1,6 +1,7 @@
 import "./Estabelecimento.module.css";
 import "../../global.css";
-import { Link } from 'react-router-dom';
+import { Card } from 'react-router-dom';
+
 
 function Estabelecimento() {
 
