@@ -275,7 +275,6 @@ function EstabelecimentoUsuario() {
                                 </a> */}
                             </div>
                             <p><strong>FUNCIONAMENTO:</strong> {/* {dadosEstabelecimento.horarioFuncionamento} */}</p>
-                            <p><strong>CLIQUE PARA ACESSAR O MENU:</strong> {/* <a href={dadosEstabelecimento.menuLink} target="_blank" rel="noopener noreferrer">Menu</a> */}</p>
                             <p><strong>CONTATO:</strong> {/* {dadosEstabelecimento.telefone} */}</p>
                         </div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
@@ -284,6 +283,23 @@ function EstabelecimentoUsuario() {
                             <div className={styles.secoes}>HISTÓRIA</div>
                         </div>
                         <div className={styles.historia}>Somos um bar criado para inovar, com atualizações diárias e cervejas artesanais inspirando e transformando vidas e pessoas.</div>
+                        <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
+                        <div className={styles.divisor2}>__________</div>
+                        <div className={styles.flexContainer2}>
+                            <div className={styles.secoes}>MENU</div>
+                        </div>
+                        <div className={styles.galleryContainer}>
+                            {imageUrls.map((url, index) => (
+                                <div key={index} className={styles.imageWrapper}>
+                                    <ModalImage
+                                        small={url}
+                                        large={url}
+                                        alt={`Imagem ${index + 1}`}
+                                        className={styles.roundedImage}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>
                         <div className={styles.flexContainer2}>
