@@ -1,0 +1,31 @@
+.avaliacaoCard {
+    width: 284px;
+    height: 361px;
+    margin: 0 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: white;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+   
+  .avaliacaoCard .details h3 {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 0;
+  }
+  
+  .avaliacaoCard .details p {
+    font-size: 16px;
+    color: #555;
+    font-weight: normal;
+  }
+  .foto {
+    width: 100%; /* Ajuste para preencher a largura do cartão */
+    height: 180px; /* Ajuste para corresponder à altura desejada */
+    padding: 0; /* Remove padding */
+    object-fit: cover; /* Garante que a imagem se ajusta ao contêiner */
+  }
+ 
