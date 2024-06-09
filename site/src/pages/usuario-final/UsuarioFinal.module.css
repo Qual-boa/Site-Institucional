@@ -5,12 +5,12 @@ html {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
     background-color: #fff;
 }
 
 .container-fullpage {
-    background-image: url("../../assets/fundoGrande.svg");
+    background-image: url("../../assets/fundo3.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top left;
@@ -170,23 +170,28 @@ html {
     width: 6vw;
     height: 12vh;
     border-radius: 100%;
+    margin-bottom: 6vw;
 }
 
 
-.vantagens-containers{
-    display: flex;
+.cidades-containers{
+    display: grid;
+    grid-template-columns: 0.95fr 1fr;
+    grid-template-rows: 1.3fr 1fr;
     flex-direction: row;
-    width: 100%;
+    width: 86%;
     justify-content: space-evenly;
-    margin-top: 12vh;
+    margin-top: 7vh;
+    padding-left: 10vw;
+    margin-bottom: 7vw;
 }
 
-.vantagens{
-    margin-top: 13vh;
+.cidades-procuradas{
+    margin-top: 10vh;
     width: 100%;
 }
 
-.vantagens h1{
+.cidades-procuradas h1{
     margin-left: 20vh;
 }
 
@@ -336,29 +341,317 @@ html {
     margin-right: 25vw;
 }
 
-.vantagens-box{
+.cidades-box{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 50vh;
-    width: 20vw;
-    background-color: #FFFDF2;
-    border-radius: 30px;
+    flex-direction: row;
+    height: 33vh;
+    width: 37vw;
     font-size: 3vh;
+    border-bottom: 4px solid #FEF1CE;
 }
 
-.vantagens-box span{
+.cidades-infos{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 2vw;
+    margin-bottom: 9vw;
+}
+
+.cidades-img{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cidades-img img{
+    height: 25vh;
+}
+
+.botao-vermais{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    border:none;
+    padding: 5px 10px;
+    border-radius: 30px;
+    width: 15vw;
+    padding-left: 10px;
+    font-size: 1.2vw;
+    margin-top: 3vh;
+}
+
+.cidades-box span{
     margin-left: 3vh;
     margin-right: 3vh;
 }
 
-.vantagens-box h3{
+.cidades-box h3{
     margin-top: 20vh;
 }
 
-.vantagens-box img{
+
+.pesquisa-filtros{
+    margin-bottom: 5vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pesquisa-filtros h3{
+    font-size: 1.7vw;
+}
+
+.input-secundaria{
+    height: 6vh;
+    width: 30vw;
+    font-size: 20px;
+    padding-left: 2vh;
+    padding-right: 5vh;
+    border: none;
+    border-radius: 30px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    text-indent: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center; 
+}
+
+.botao-secundario{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    border:none;
+    float:right;
+    padding: 5px 10px;
+    margin-right: 20px;
+    position: absolute;
+    left: 96%;
+    border-radius: 30px;
+    height: 6.4vh;
+    width: 13vw;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.container-inpu-filtro{
+    display: inline-block;
+    position: absolute;
+    margin-top: 23vh;
+    right: 38%;
+}
+
+.container-button{
+    display: flex;
+    width: 75%;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-top: 4vh;
+    margin-bottom: 7vh;
+}
+
+.button-filter{
+    background-color: transparent;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 2vh;
+    height: 5vh;
+    width: 8vw;
+    border-color: #000;
+    border-style: double;
+}
+
+.button-filter:hover{
+    border: 1px solid #fff;
+    background-color: #000;
+    color: #fff;
+    transition: ease-in-out 0.3s;
+}
+
+.bares-containers{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-evenly;
+    margin-top: 12vh;
+    margin-left: 5vw;
+    margin-bottom: 3vw;
+}
+
+.bares{
+    width: 100%;
+}
+
+.bares h1{
+    margin-left: 20vh;
+}
+
+.bares-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 55vh;
+    width: 21vw;
+    background-color: #FFFDF2;
+    border-radius: 30px;
+    font-size: 3vh;
+    padding-bottom: 2vw;
+}
+.bares-box button{
+    margin-left: 3vw;
+}
+
+.bares-box span{
+    margin-left: 3vw;
+}
+
+.bares-img{
+    width: 100%;
+    height: 100%;
+}
+
+.bares-info{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2vh;
+    height: 60%;
+}
+
+.bares-info h3{
+    margin-left: 1vw;
+}
+
+.bares-info span{
+    margin-left: 1vw;
+}
+
+.bares-box span{
+    margin-left: 3vh;
+    margin-right: 3vh;
+}
+
+.boa-containers{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: space-evenly;
+    margin-top: 12vh;
+    margin-left: 10vw;
+}
+
+.boa{
+    width: 100%;
+}
+
+.boa h1{
+    margin-left: 20vh;
+}
+
+.boa-box{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 56vw;
+    background-color: #FFFDF2;
+    border-radius: 30px;
+    font-size: 3vh;
+    padding-left: 3vw;
+}
+
+.boa-box img{
+    width: 5vw;
+    margin-left: 1vw;
+}
+
+.boa-foto1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+    width: 25vw;
+    background-color: #FFFDF2;
+    border-radius: 30px;
+    font-size: 3vh;
+    background-image: url("../../assets/DonoEstab2.svg");
+}
+
+.boa-foto2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+    width: 25vw;
+    background-color: #FFFDF2;
+    border-radius: 30px;
+    font-size: 3vh;
+    background-image: url("../../assets/rolezeiro.svg");
+}
+
+.boa-box span{
+    margin-left: 3vh;
+    margin-right: 3vh;
+}
+
+.boa-box h3{
+    margin-top: 20vh;
+}
+
+.boa-box img{
     width: 18vw;
     position: absolute;
     margin-bottom: 20px;
     bottom: 58%;
+}
+
+.boa-bloco{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4vw;
+    gap: 3vw;
+}
+
+.sugestoes-box{
+    display: flex;
+    flex-direction: row;
+    height: 34.4vh;
+    width: 37vw;
+    font-size: 3vh;
+    background-color: #FEF1CE;
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.sugestoes-img{
+    width: 60%;
+    margin-left: -0.3vw;
+}
+
+.sugestoes-info{
+    display: flex;
+    flex-direction: column;
+    padding-left: 2vw;
+}
+
+.botao-visitar{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    border:none;
+    padding: 5px 10px;
+    border-radius: 30px;
+    width: 13vw;
+    padding-left: 10px;
+    font-size: 1.2vw;
+    margin-top: 6vh;
+    margin-left: 2vw;
 }
