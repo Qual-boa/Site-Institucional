@@ -163,9 +163,13 @@ function Usuario() {
                                 <img src={Entradas} alt="" />
                             </div>
                             <div className={styles["sugestoes-info"]}>
-                                <h3>ENTRADINHAS</h3>
-                                <span>Comece a noite com aperitivos incríveis.</span>
-                                <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                <div className={styles["sugestoes-info-txt"]}>
+                                    <h3>ENTRADINHAS</h3>
+                                    <span>Comece a noite com aperitivos incríveis.</span>
+                                </div>
+                                <div className={styles["sugestoes-info-btn"]}>
+                                    <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                </div>
                             </div>
                         </div>
                         <div className={styles["sugestoes-box"]}>
@@ -173,9 +177,13 @@ function Usuario() {
                                 <img src={Bolinho} alt="" />
                             </div>
                             <div className={styles["sugestoes-info"]}>
-                                <h3>BOLINHO DE FEIJOADA</h3>
-                                <span>Bolinhos caseiros fetos com a feijoada mais famosa de SP.</span>
-                                <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                <div className={styles["sugestoes-info-txt"]}>
+                                    <h3>BOLINHO DE FEIJOADA</h3>
+                                    <span>Bolinhos caseiros fetos com a feijoada mais famosa de SP.</span>
+                                </div>
+                                <div className={styles["sugestoes-info-btn"]}>
+                                    <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                </div>
                             </div>
                         </div>
                         <div className={styles["sugestoes-box"]}>
@@ -183,9 +191,13 @@ function Usuario() {
                                 <img src={Drinks} alt="" />
                             </div>
                             <div className={styles["sugestoes-info"]}>
-                                <h3>DRINKS SAZONAIS</h3>
-                                <span>Drinks feitos com as melhores frutas da estação.</span>
-                                <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                <div className={styles["sugestoes-info-txt"]}>
+                                    <h3>DRINKS SAZONAIS</h3>
+                                    <span>Drinks feitos com as melhores frutas da estação.</span>
+                                </div>
+                                <div className={styles["sugestoes-info-btn"]}>
+                                    <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                </div>
                             </div>
                         </div>
                         <div className={styles["sugestoes-box"]}>
@@ -193,9 +205,13 @@ function Usuario() {
                                 <img src={TonsCerveja} alt="" />
                             </div>
                             <div className={styles["sugestoes-info"]}>
-                                <h3>4 TONS DE CERVEJA</h3>
-                                <span>Degustação de todas as cervejas da casa.</span>
-                                <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                <div className={styles["sugestoes-info-txt"]}>
+                                    <h3>4 TONS DE CERVEJA</h3>
+                                    <span>Degustação de todas as cervejas da casa.</span>
+                                </div>
+                                <div className={styles["sugestoes-info-btn"]}>
+                                    <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -208,26 +224,31 @@ function Usuario() {
                             <div className={styles["boa-foto1"]}>
                             </div>
                             <div className={styles["boa-box"]}>
-                                <h3>DONO DO ESTABELECIMENTO</h3>
-                                <h6>$$ GRATUITO</h6>
+                                <div className={styles["boa-txt1"]}>
+                                    <h3>DONO DO ESTABELECIMENTO</h3>
+                                    <h6>$$ GRATUITO</h6>
 
-                                <span>
-                                    Com o <img src={logo}/> você pode cadastrar seu estabelecimento,
-                                     ser avaliado, impulsionar seu negócio e deixa-lo com a sua cara!
-                                </span>
-                                <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                    <span>
+                                        Com o você pode cadastrar seu estabelecimento,
+                                         ser avaliado, impulsionar seu negócio e deixa-lo com a sua cara!
+                                    </span>
+                                    <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                </div>
+
                             </div>
                         </div>
                         <div className={styles["boa-bloco"]}>
                             <div className={styles["boa-box"]}> 
-                                <h3>ROLEZEIRO ATUALIZADO</h3>
-                                <h6>$$ GRATUITO</h6>
+                                <div className={styles["boa-txt2"]}>
+                                    <h3>ROLEZEIRO ATUALIZADO</h3>
+                                    <h6>$$ GRATUITO</h6>
 
-                                <span>
-                                    E você que busca um rolê inesquecível pode procurar o melhor lugar através
-                                    do nosso app, basta filtrar de acordo com a sua preferência
-                                </span>
-                                <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                    <span>
+                                        E você que busca um rolê inesquecível pode procurar o melhor lugar através
+                                        do nosso app, basta filtrar de acordo com a sua preferência
+                                    </span>
+                                    <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                </div>
                             </div>
                             <div className={styles["boa-foto2"]}>
                             </div>
