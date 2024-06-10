@@ -45,7 +45,7 @@ function Usuario() {
                 <div className={styles["pesquisa-filtros"]}>
                     <h3>PROCURE SEU ROLÊ</h3>
                     <div className={styles["container-inpu-filtro"]}>
-                        <input className={styles["input-secundaria"]} type="text" placeholder="Escreva o seu endereço"/>
+                        <input className={styles["input-secundaria"]} type="text" placeholder="Pesquise a sua boa"/>
                         <button className={styles["botao-secundario"]} type="cadastrar">PESQUISAR</button>
                     </div>
                 </div>

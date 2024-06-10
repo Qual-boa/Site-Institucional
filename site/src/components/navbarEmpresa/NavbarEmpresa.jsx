@@ -7,8 +7,8 @@ const NavBar = ({ logoInicio }) => {
         <nav className={styles["navbar"]}>
             <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" />
             <span><b>VANTAGENS</b></span>
-            <span><b>DESTAQUE DO MÊS</b></span>
-            <span><b>CONTATOS</b></span>
+            <span><b>BAR DESTAQUE DO MÊS</b></span>
+            <span><b>DICA DO CHOPPER</b></span>
             <span><b>QUEM SOMOS</b></span>
             <input type="text" placeholder="Escreva aqui"/>
             <img src={perfil} className={styles["perfil-user"]} alt="Usuário" />

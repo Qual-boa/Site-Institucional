@@ -18,10 +18,10 @@ function Footer() {
             <div className={styles.menuContainer}>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <a className={styles.options} onClick={""}>QUAL A BOA?</a>
-                    <a className={styles.options} onClick={""}>MELHORES DO MÊS</a>
-                    <a className={styles.options} onClick={""}>QUAL A SUA BOA?</a>
-                    <a className={styles.options} onClick={""}>CONTATOS</a>                    
+                    <a className={styles.options} onClick={""}>CIDADES MAIS PROCURADAS</a>
+                    <a className={styles.options} onClick={""}>BARES MAIS VISTOS</a>
+                    <a className={styles.options} onClick={""}>SUGESTÔES DO MÊS</a>
+                    <a className={styles.options} onClick={""}>QUAL A SUA BOA?</a>                    
                     <a className={styles.options} onClick={""}>QUEM SOMOS</a>
                 </div>
                 <div className={styles.menu}>

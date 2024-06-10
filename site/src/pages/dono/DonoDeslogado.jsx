@@ -1,4 +1,4 @@
-import NavBar from "../../components/navbar/NavBar";
+import NavBar from "../../components/navbarEmpresa/NavbarEmpresa";
 import styles from "./DonoDeslogado.module.css";
 import cervejinha from "../../assets/breja-removebg-preview.png";
 import iconeLocal from "../../assets/local-icon.svg"
@@ -38,7 +38,7 @@ function Dono() {
                     <div className={styles["logos"]}></div>
                     <div className={styles["logos"]}></div>
                 </div>
-                <div className={styles["vantagens"]}>
+                <div className={styles["vantagens"]} id="vantagens">
                     <div className={styles["linha"]}></div>
                     <h1>VANTAGENS</h1>
                     <div className={styles["vantagens-containers"]}>
@@ -95,7 +95,7 @@ function Dono() {
                         </span>
                         <img src={RetanguloDica} className={styles["retangulo-dica"]} alt="retangulo do fundo" />
                         <img src={ChopperDanca} className={styles["chopper-dica"]} alt="Chopper" />
-                        <button className={styles["botao-dica"]} type="cadastrar">VISITAR</button>
+                        <button className={styles["botao-dica"]} type="cadastrar">CADASTRAR</button>
                     </div>
                 </div>
             </div>

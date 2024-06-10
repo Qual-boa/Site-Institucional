@@ -156,6 +156,7 @@ html {
     width: 23vw;
     padding-left: 10px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .display-logos{
@@ -250,6 +251,7 @@ html {
     font-size: 15px;
     margin-left: 10vw;
     margin-top: 10vh;
+    cursor: pointer;
 }
 
 .destaques-containers{
@@ -339,6 +341,7 @@ html {
     position: absolute;
     top: 93%;
     margin-right: 25vw;
+    cursor: pointer;
 }
 
 .cidades-box{
@@ -382,6 +385,7 @@ html {
     padding-left: 10px;
     font-size: 1.2vw;
     margin-top: 3vh;
+    cursor: pointer;
 }
 
 .cidades-box span{
@@ -439,6 +443,7 @@ html {
     width: 13vw;
     padding-left: 10px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .container-inpu-filtro{
@@ -466,6 +471,7 @@ html {
     width: 8vw;
     border-color: #000;
     border-style: double;
+    cursor: pointer;
 }
 
 .button-filter:hover{
@@ -667,6 +673,7 @@ html {
     font-size: 1.2vw;
     margin-top: 6vh;
     margin-left: 2vw;
+    cursor: pointer;
 }
 
 .boa-txt1{

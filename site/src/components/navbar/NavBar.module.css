@@ -15,7 +15,7 @@
 }
 
 .navbar span {
-    font-size: 16px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -25,7 +25,9 @@
     background-color: #000;
     color: white;
     border-radius: 30px;
-    width: 12vw;
+    width: auto;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +35,7 @@
 
 .navbar input {
     height: 4vh;
-    width: 30vw;
+    width: 25vw;
     border: none;
     border-radius: 20px;
     text-indent: 10px;
@@ -42,7 +44,7 @@
 }
 
 .perfil-user{
-    margin-right: 5px;
+    margin-right: 1vw;
     cursor: pointer;
 }
 
