@@ -10,6 +10,7 @@ import QuemSomos from  "./pages/quemSomos/quemSomos"
 import CadastroEmpresa from "./pages/cadastroEmpresa/CadastroEmpresa"
 import NotFound from "./pages/notfound/notfound";
 import EstabelecimentoUsuario from "./pages/estabelecimento-usuario/estabelecimentoUsuario";
+import EdicaoEmpresa from "./pages/edicaoEmpresa/edicaoEmpresa";
 function Rotas() {
     return (
         <>
@@ -25,6 +26,7 @@ function Rotas() {
                     <Route path="*" element={<NotFound />} />
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
                     <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>
+                    <Route path="/edicao-empresa" element={<EdicaoEmpresa/>}/>
                 </Routes>
             </BrowserRouter>
         </>
