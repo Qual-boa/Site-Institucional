@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import "../../global.css";
 import styles from "./estabelecimentoUsuario.module.css";
 import NavBarQS from "../quemSomos/NavBarQS/navBarQS";
@@ -17,17 +18,81 @@ import Modal from '../../components/modalAvaliacao/modalAvaliacao';
 import api from "../../api";
 import apiBlob from "../../api-blob";
 
+const containerStyle = {
+    width: '100%',
+    height: '400px'
+  };
+
+  function MapComponent({ postalCode, number }) {
+    const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
+  
+    useEffect(() => {
+      const fetchCoordinates = async () => {
+        try {
+          const address = `${postalCode}, ${number}`;
+          const response = await axios.get(
+            `https://maps.googleapis.com/maps/api/geocode/json`,
+            {
+              params: {
+                address,
+                key: 'YOUR_GOOGLE_MAPS_API_KEY' // Substitua pela sua chave de API do Google Maps
+              }
+            }
+          );
+          const { results } = response.data;
+          if (results.length > 0) {
+            const { lat, lng } = results[0].geometry.location;
+            setCoordinates({ lat, lng });
+          } else {
+            console.error('Endereço não encontrado');
+          }
+        } catch (error) {
+          console.error('Erro ao buscar coordenadas:', error);
+        }
+      };
+  
+      if (postalCode && number) {
+        fetchCoordinates();
+      }
+    }, [postalCode, number]);
+  
+    const openGoogleMaps = () => {
+      if (coordinates.lat && coordinates.lng) {
+        const url = `https://www.google.com/maps/search/?api=1&query=${coordinates.lat},${coordinates.lng}`;
+        window.open(url, '_blank');
+      }
+    };
+  
+    return (
+      <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+        {coordinates.lat && coordinates.lng ? (
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={coordinates}
+            zoom={15}
+          >
+            <Marker position={coordinates} onClick={openGoogleMaps} />
+          </GoogleMap>
+        ) : (
+          <p>Carregando mapa...</p>
+        )}
+      </LoadScript>
+    );
+  }
+
 function EstabelecimentoUsuario() {
     const navigate = useNavigate();
     const { id } = useParams();
+    const { userId } = useParams();
     const [fantasyName, setFantasyName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");
     const [phone, setPhone] = useState("");
     const [facebookUrl, setFacebookUrl] = useState("");
     const [instagramUrl, setInstagramUrl] = useState("");
-    const [wwwUrl, setwwwUrl] = useState("");
+    const [setTelegramUrl, setsetTelegramUrl] = useState("");
     const [postalCode, setPostalCode] = useState("");
+    const [userPostalCode, setUserPostalCode] = useState("");
     const [street, setStreet] = useState("");
     const [number, setNumber] = useState("");
     const [neighborhood, setNeighborhood] = useState("");
@@ -59,7 +124,35 @@ function EstabelecimentoUsuario() {
             setFantasyName(fantasyName);
     }) 
     .catch((error) => {
-        console.log("Erro ao buscar os detalhes do estabelecimento:", error);
+        console.log("Erro ao buscar nome fantasia do estabelecimento:", error);
+    });
+        api.get(`/information/establishment/${id}`).then((response) => {
+            const { data } = response;
+            const {
+                phone,
+                facebookUrl,
+                instagramUrl,
+                setTelegramUrl,
+                tv,
+                wifi,
+                acessibilidade,
+                estacionamento,
+                openAt,
+                closeAt
+            } = data;
+            setPhone(phone);
+            setFacebookUrl(facebookUrl);
+            setInstagramUrl(instagramUrl);
+            setsetTelegramUrl(setTelegramUrl);
+            setTv(tv);
+            setWifi(wifi);
+            setAcessibilidade(acessibilidade);
+            setEstacionamento(estacionamento);
+            setOpenAt(openAt);
+            setCloseAt(closeAt);
+    }) 
+    .catch((error) => {
+        console.log("Erro ao buscar informações gerais do estabelecimento:", error);
     });
     api.get(`/address/establishment/${id}`).then((response) => {
         const { data } = response;
@@ -81,8 +174,20 @@ function EstabelecimentoUsuario() {
             setState(state);;
 }) 
 .catch((error) => {
-    console.log("Erro ao buscar os detalhes do estabelecimento:", error);
+    console.log("Erro ao buscar endereço do estabelecimento:", error);
 });
+    api.get(`address/user/${userId}`).then((response) => {
+        const { data } = response;
+        const {userPostalCode
+            
+    } = data;
+        setUserPostalCode(userPostalCode);
+               
+    }) 
+    .catch((error) => {
+    console.log("Erro ao buscar nome fantasia do estabelecimento:", error);
+    });       
+      
         
         apiBlob.get(`/blob/establishments/${id}`).then((response) => {
             const { data } = response;
@@ -110,6 +215,14 @@ function EstabelecimentoUsuario() {
 }, [id]);
     const formatAddress = () => {
         return `${street}, ${number}${complement ? `, ${complement}` : ''}, ${neighborhood} - ${city} - ${state}`;
+    };
+    const renderFacilities = () => {
+        const facilities = [];
+        if (estacionamento) facilities.push('Estacionamento');
+        if (wifi) facilities.push('Wi-Fi');
+        if (tv) facilities.push('TV');
+        if (acessibilidade) facilities.push('Acessibilidade');
+        return facilities.join(' - ');
     };
 
     const Avaliacao = () => {
@@ -216,7 +329,7 @@ function EstabelecimentoUsuario() {
             </div>
         );
     };
-
+    
     // const [imageUrl, setImageUrl] = useState('');
     // const navigate = useNavigate();
 
@@ -280,9 +393,9 @@ function EstabelecimentoUsuario() {
                         <div className={styles.header}>
                             <div className={styles.nomeEstab}>{fantasyName}</div>
                             <div className={styles.menu}>
-                                <FaFacebook className={styles.midias} />
-                                <FaInstagram className={styles.midias} />
-                                <TbWorldWww className={styles.midias} />
+                            {facebookUrl && <a href={facebookUrl}><FaFacebook className={styles.midias} /></a>}
+                            {instagramUrl && <a href={instagramUrl}><FaInstagram className={styles.midias} /></a>}
+                            {setTelegramUrl && <a href={setTelegramUrl}><TbWorldWww className={styles.midias} /></a>}
                             </div>
                             {/* <div className={styles.container}>
 
@@ -316,7 +429,7 @@ function EstabelecimentoUsuario() {
                             </div>
                         </div>
                         <div className={styles.locationDistance}>
-                            <p>Brasil, São Paulo, 100m</p> {/* Ajuste a localização e distância conforme necessário */}
+                            <p>{neighborhood}, {city}, 100m</p> {/* Ajuste a localização e distância conforme necessário */}
                         </div>
                         <div className={styles.flexContainer}>
                             <div className={styles.favoritar}>
@@ -325,8 +438,8 @@ function EstabelecimentoUsuario() {
                                 </div>
                             </div>
                             <div className={styles.facilidades}>
-                                Estacionamento - Wi-Fi - TV - Pet Friendly
-                            </div>
+                            {renderFacilities()}
+                        </div>
                         </div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>
@@ -363,12 +476,10 @@ function EstabelecimentoUsuario() {
                         <div className={styles.saibaMais}>
                         <p><strong>ENDEREÇO:</strong> {formatAddress()}</p>
                             <div className={styles.mapa}>
-                                {/* <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dadosEstabelecimento.endereco)}`} target="_blank" rel="noopener noreferrer">
-                                    <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(dadosEstabelecimento.endereco)}&zoom=15&size=600x300&key=YOUR_GOOGLE_MAPS_API_KEY`} alt="Google Map" />
-                                </a> */}
+                            <MapComponent postalCode={postalCode} number={number} />
                             </div>
-                            <p><strong>FUNCIONAMENTO:</strong> {/* {dadosEstabelecimento.horarioFuncionamento} */}</p>
-                            <p><strong>CONTATO:</strong> {/* {dadosEstabelecimento.telefone} */}</p>
+                            <p><strong>FUNCIONAMENTO:</strong>  {`${openAt} - ${closeAt}`}</p>
+                            <p><strong>CONTATO:</strong>{phone}</p>
                         </div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>

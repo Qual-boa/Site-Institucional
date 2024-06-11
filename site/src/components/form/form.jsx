@@ -23,7 +23,7 @@ function Editar() {
     const [phone, setPhone] = useState("");
     const [facebookUrl, setFacebookUrl] = useState("");
     const [instagramUrl, setInstagramUrl] = useState("");
-    const [wwwUrl, setwwwUrl] = useState("");
+    const [setTelegramUrl, setsetTelegramUrl] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [street, setStreet] = useState("");
     const [number, setNumber] = useState("");
@@ -48,7 +48,7 @@ function Editar() {
                 phone,
                 facebookUrl,
                 instagramUrl,
-                wwwUrl,
+                setTelegramUrl,
                 postalCode,
                 street,
                 number,
@@ -67,7 +67,7 @@ function Editar() {
             setPhone(phone);
             setFacebookUrl(facebookUrl);
             setInstagramUrl(instagramUrl);
-            setwwwUrl(wwwUrl);
+            setsetTelegramUrl(setTelegramUrl);
             setPostalCode(postalCode);
             setStreet(street);
             setNumber(number);
@@ -178,7 +178,7 @@ function Editar() {
 
     const handleSave = async () => {
         try {
-            await api.post(`/establishments`,{})
+            
             await api.put(`/address/${id}`, {
                 postalCode,
                 street,
@@ -198,7 +198,7 @@ function Editar() {
                 phone,
                 facebookUrl,
                 instagramUrl,
-                wwwUrl
+                setTelegramUrl
             });
             toast.success('Dados editados com sucesso!');
             navigate("/estabelecimento")
@@ -317,9 +317,9 @@ function Editar() {
                         />
                          <input
                             type="text"
-                            value={wwwUrl}
+                            value={setTelegramUrl}
                             placeholder="Site Oficial"
-                            onChange={(e) => handleInputChange(e, setwwwUrl)}
+                            onChange={(e) => handleInputChange(e, setsetTelegramUrl)}
                         />
                         <input
                             type="text"
