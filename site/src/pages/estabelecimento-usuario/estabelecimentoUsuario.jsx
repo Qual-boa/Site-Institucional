@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import "../../global.css";
 import styles from "./estabelecimentoUsuario.module.css";
 import NavBarQS from "../quemSomos/NavBarQS/navBarQS";
@@ -12,8 +14,34 @@ import CardAvaliacao from '../../components/cardAvaliacao/CardAvaliacao';
 import CardAtracao from '../../components/cardAtracao/CardAtracao';
 import ModalImage from "react-modal-image";
 import Modal from '../../components/modalAvaliacao/modalAvaliacao'; 
+import api from "../../api";
+import apiBlob from "../../api-blob";
 
 function EstabelecimentoUsuario() {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const [fantasyName, setFantasyName] = useState("");
+    const [profileImage, setProfileImage] = useState("");
+    const [backgroundImage, setBackgroundImage] = useState("");
+    const [phone, setPhone] = useState("");
+    const [facebookUrl, setFacebookUrl] = useState("");
+    const [instagramUrl, setInstagramUrl] = useState("");
+    const [wwwUrl, setwwwUrl] = useState("");
+    const [postalCode, setPostalCode] = useState("");
+    const [street, setStreet] = useState("");
+    const [number, setNumber] = useState("");
+    const [neighborhood, setNeighborhood] = useState("");
+    const [complement, setComplement] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [openAt, setOpenAt] = useState({ hour: 0, minute: 0 });
+    const [closeAt, setCloseAt] = useState({ hour: 0, minute: 0 });
+    
+    // Novos estados para informações adicionais
+    const [tv, setTv] = useState(false);
+    const [wifi, setWifi] = useState(false);
+    const [acessibilidade, setAcessibilidade] = useState(false);
+    const [estacionamento, setEstacionamento] = useState(false);
     const [imageUrls, setImageUrls] = useState([
         "https://via.placeholder.com/300.png?text=Image+1",
         "https://via.placeholder.com/300.png?text=Image+2",
@@ -22,6 +50,68 @@ function EstabelecimentoUsuario() {
         "https://via.placeholder.com/300.png?text=Image+5"
     ]);
 
+    useEffect(()=>{
+        api.get(`establishments/${id}`).then((response) => {
+            const { data } = response;
+            const {
+                fantasyName
+            } = data;
+            setFantasyName(fantasyName);
+    }) 
+    .catch((error) => {
+        console.log("Erro ao buscar os detalhes do estabelecimento:", error);
+    });
+    api.get(`/address/establishment/${id}`).then((response) => {
+        const { data } = response;
+        const {
+                postalCode,
+                street,
+                number,
+                neighborhood,
+                complement,
+                city,
+                state
+        } = data;
+            setPostalCode(postalCode);
+            setStreet(street);
+            setNumber(number);
+            setNeighborhood(neighborhood);
+            setComplement(complement);
+            setCity(city);
+            setState(state);;
+}) 
+.catch((error) => {
+    console.log("Erro ao buscar os detalhes do estabelecimento:", error);
+});
+        
+        apiBlob.get(`/blob/establishments/${id}`).then((response) => {
+            const { data } = response;
+
+            const backgroundImage = data.find(image => image.establishmentCategory === 'BACKGROUND');
+            const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
+
+            if (backgroundImage) {
+                setBackgroundImage(backgroundImage.imgUrl);
+            } else {
+                setBackgroundImage('defaultBackgroundImage.jpg'); // Use uma imagem padrão se não encontrar a imagem de fundo
+            }
+
+            if (profileImage) {
+                setProfileImage(profileImage.imgUrl);
+            } else {
+                setProfileImage('defaultLogoImage.jpg'); // Use uma imagem padrão se não encontrar a imagem de logo
+            }
+        })
+        .catch((error) => {
+            console.log("Erro ao buscar as imagens do estabelecimento:", error);
+            setBackgroundImage('defaultBackgroundImage.jpg'); // Use uma imagem padrão em caso de erro
+            setProfileImage('defaultLogoImage.jpg'); // Use uma imagem padrão em caso de erro
+        });
+}, [id]);
+    const formatAddress = () => {
+        return `${street}, ${number}${complement ? `, ${complement}` : ''}, ${neighborhood} - ${city} - ${state}`;
+    };
+
     const Avaliacao = () => {
         const navigate = useNavigate();
         const [id, getId] = useState("");
@@ -29,9 +119,9 @@ function EstabelecimentoUsuario() {
         const [selectedRating, setSelectedRating] = useState(0);
         const [comment, setComment] = useState('');
         const [avaliacoes, setAvaliacoes] = useState([
-            { nome: 'Marcos', comentario: 'Booommm!!!', data: '20/02/2024', rating: 5 },
-            { nome: 'Cláudia', comentario: 'Muito bom!!!!', data: '20/02/2024', rating: 5 },
-            { nome: 'Rodrigo', comentario: 'Bom demais!', data: '20/02/2024', rating: 5 },
+            { nome: 'Marcos', comentario: 'Booommm!!!', data: '20/05/2024', rating: 5 },
+            { nome: 'Cláudia', comentario: 'Muito bom!!!!', data: '12/05/2024', rating: 5 },
+            { nome: 'Rodrigo', comentario: 'Bom demais!', data: '21/02/2024', rating: 5 },
         ]);
         const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -78,6 +168,7 @@ function EstabelecimentoUsuario() {
                 setCurrentIndex(currentIndex + 1);
             }
         };
+        
 
         return (
             <div className={styles.avaliacao}>
@@ -177,15 +268,17 @@ function EstabelecimentoUsuario() {
             <div className={styles.container}>
                 <NavBarQS logoQS={logoQS} />
                 <div className={styles['background-image']}>
-                    <img src="https://bebaindependente.com.br/wp-content/uploads/2020/04/F96260EA-85C4-4C69-A31F-05825AB12679-768x758.jpeg" alt="image beer4u" className={styles.responsiveImage} />
-                </div>
+                <img src={backgroundImage} alt={`Foto do estabelecimento`} className={styles.responsiveImage} />
+                    {/* <img src="https://bebaindependente.com.br/wp-content/uploads/2020/04/F96260EA-85C4-4C69-A31F-05825AB12679-768x758.jpeg" alt="image beer4u" className={styles.responsiveImage} />
+ */}                </div>                
                 <div className={styles.logoContainer}>
-                    <img src="https://static.goomer.app/stores/4501/products/mobile-menu/templates/8761/logo.png?w=1920" alt="Cliente Logo" className={styles.clientLogo} />
+                <img src={profileImage} alt="Cliente Logo" className={styles.clientLogo} />
+                    {/* <img src="https://static.goomer.app/stores/4501/products/mobile-menu/templates/8761/logo.png?w=1920" alt="Cliente Logo" className={styles.clientLogo} /> */}
                 </div>
                 <div className={styles["background-imageEstab"]}>
                     <div className={styles["container1"]}>
                         <div className={styles.header}>
-                            <div className={styles.nomeEstab}>BEER4U</div>
+                            <div className={styles.nomeEstab}>{fantasyName}</div>
                             <div className={styles.menu}>
                                 <FaFacebook className={styles.midias} />
                                 <FaInstagram className={styles.midias} />
@@ -208,10 +301,10 @@ function EstabelecimentoUsuario() {
                             <div className="rating">
                                 <input type="radio" name="rating-9" className="rating-hidden" />
                                 <input type="radio" name="rating-9" className="mask mask-star-2" />
-                                <input type="radio" name="rating-9" className="mask mask-star-2" checked />
                                 <input type="radio" name="rating-9" className="mask mask-star-2" />
                                 <input type="radio" name="rating-9" className="mask mask-star-2" />
                                 <input type="radio" name="rating-9" className="mask mask-star-2" />
+                                <input type="radio" name="rating-9" className="mask mask-star-2" checked/>
                             </div>
                         </div>
                         <div className={styles["main-content"]}>
@@ -268,7 +361,7 @@ function EstabelecimentoUsuario() {
                             <div className={styles.secoes}>SAIBA MAIS</div>
                         </div>
                         <div className={styles.saibaMais}>
-                            <p>{/* {dadosEstabelecimento.endereco} */}Endereço</p>
+                        <p><strong>ENDEREÇO:</strong> {formatAddress()}</p>
                             <div className={styles.mapa}>
                                 {/* <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dadosEstabelecimento.endereco)}`} target="_blank" rel="noopener noreferrer">
                                     <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(dadosEstabelecimento.endereco)}&zoom=15&size=600x300&key=YOUR_GOOGLE_MAPS_API_KEY`} alt="Google Map" />

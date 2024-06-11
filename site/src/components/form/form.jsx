@@ -12,7 +12,6 @@ import axios from "axios";
 function Editar() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [nomeFantasia, setFantasyName] = useState("");
     const [selectedProfileFile, setSelectedProfileFile] = useState(null);
     const [selectedBackgroundFile, setSelectedBackgroundFile] = useState(null);
     const [selectedGalleryFiles, setSelectedGalleryFiles] = useState([]);
@@ -42,9 +41,9 @@ function Editar() {
     const [estacionamento, setEstacionamento] = useState(false);
 
     useEffect(() => {
-        api.get(`/${id}`).then((response) => {
+        api.get(`establishments/${id}`).then((response) => {
             const { data } = response;
-            const { nomeFantasia,
+            const {
                 imagem,
                 phone,
                 facebookUrl,
@@ -64,7 +63,6 @@ function Editar() {
                 openAt,
                 closeAt
             } = data;
-            setFantasyName(nomeFantasia);
             setImagem(imagem);
             setPhone(phone);
             setFacebookUrl(facebookUrl);
@@ -85,7 +83,7 @@ function Editar() {
             setEstacionamento(estacionamento);
         })
             .catch((error) => {
-                console.log("Erro ao buscar os detalhes da música:", error);
+                console.log("Erro ao buscar os detalhes do estabelecimento:", error);
             })
     }, [id]);
     const handleInputChange = (event, setStateFunction) => {
@@ -180,25 +178,27 @@ function Editar() {
 
     const handleSave = async () => {
         try {
-            await api.put(`/${id}`, {
-                nomeFantasia,
-                phone,
-                facebookUrl,
-                instagramUrl,
-                wwwUrl,
+            await api.post(`/establishments`,{})
+            await api.put(`/address/${id}`, {
                 postalCode,
                 street,
                 number,
                 neighborhood,
                 complement,
                 city,
-                state,
+                state
+            });
+            await api.post(`/informations/establishment/${id}`,{
                 openAt,
                 closeAt,
                 tv,
                 wifi,
                 acessibilidade,
-                estacionamento
+                estacionamento,
+                phone,
+                facebookUrl,
+                instagramUrl,
+                wwwUrl
             });
             toast.success('Dados editados com sucesso!');
             navigate("/estabelecimento")
@@ -216,12 +216,6 @@ function Editar() {
                 <div className={styles["secao-direita-editar"]}>
                     <form>
                         <span className={styles["titulo"]}>Edite suas informações:</span>
-                        <input
-                            type="text"
-                            value={nomeFantasia}
-                            placeholder="Nome Fantasia"
-                            onChange={(e) => handleInputChange(e, setFantasyName)}
-                        />
                         <div>
                             <h3>Insira a logo do seu estabelecimento</h3>
                             <div className={styles.uploadContainer}>
@@ -230,11 +224,6 @@ function Editar() {
                                     {uploading ? 'Carregando...' : 'Upload'}
                                 </button>
                             </div>
-                            {/* {imagem && (
-                                <div>
-                                    <img src={imagem} alt="Logo" width="10" />
-                                </div>
-                            )} */}
                         </div>
                         <div>
                             <h3>Insira uma imagem de fundo do seu estabelecimento</h3>
@@ -244,11 +233,6 @@ function Editar() {
                                     {uploading ? 'Carregando...' : 'Upload'}
                                 </button>
                             </div>
-                            {/* {backgroundImage && (
-                                <div>
-                                    <img src={backgroundImage} alt="Imagem de Fundo" width="10" />
-                                </div>
-                            )} */}
                         </div>
                        <InputMask
                             mask="(99) 99999-9999"
@@ -335,7 +319,7 @@ function Editar() {
                             type="text"
                             value={wwwUrl}
                             placeholder="Site Oficial"
-                            onChange={(e) => handleInputChange(e, wwwUrl)}
+                            onChange={(e) => handleInputChange(e, setwwwUrl)}
                         />
                         <input
                             type="text"
