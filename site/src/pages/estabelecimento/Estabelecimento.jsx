@@ -16,9 +16,9 @@ function Estabelecimento() {
                 <div className="conteudo">
                     <h2 className="nome-estabelecimento">BEER4U</h2>
                     <div className="redes">
-                        <Link to="#" >
+                        {/* <Link to="#" >
                             <img src="../../assets/Facebook.svg" alt="Facebook do estabelecimento" />
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </div>
