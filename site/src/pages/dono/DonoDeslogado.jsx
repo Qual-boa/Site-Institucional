@@ -10,34 +10,56 @@ import DashImg from "../../assets/dashImg.svg"
 import Beer4uDestaque from "../../assets/beer4uDestaques.jpeg"
 import ChopperDanca from "../../assets/ChopperDanca.svg"
 import RetanguloDica from "../../assets/retanguloDica.svg"
+import { useNavigate } from "react-router-dom";
 
 function Dono() {
+    const navigate = useNavigate();
+
+    {/*const quemSomosSection = () =>{
+        navigate('/quemSomos');
+    }*/}
+
+    const scrollToSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/cadastroEmpresa');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+
     return (
         <>
             <NavBar logoInicio={logo}/>
             <div className={styles["container-fullpage"]}>
-                <div className={styles["container"]}>
-                    <div className={styles["pesquisa"]}>
-                        <div className={styles["container-inicial"]}>
-                            <div className={styles["pesquisa-titulo"]}>QUAL A BOA </div>
-                            <div className={styles["pesquisa-interrogacao"]}>?</div>
-                            <span className={styles["subtitulo"]}>CADASTRE SEU ESTABELECIMENTO</span>
+                <section className={styles["sessao"]} id="inicio">
+                    <div className={styles["container"]}>
+                        <div className={styles["pesquisa"]}>
+                            <div className={styles["container-inicial"]}>
+                                <div className={styles["pesquisa-titulo"]}>QUAL A BOA </div>
+                                <div className={styles["pesquisa-interrogacao"]}>?</div>
+                                <span className={styles["subtitulo"]}>CADASTRE SEU ESTABELECIMENTO</span>
+                            </div>
+                            <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
                         </div>
-                        <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
+                        <div className={styles["container-input"]}>
+                            <input className={styles["input-principal"]} type="text" placeholder="Insira o e-mail da sua empresa"/>
+                            <button className={styles["botao-principal"]} type="cadastrar">CADASTRAR</button>
+                        </div>
                     </div>
-                    <div className={styles["container-input"]}>
-                        <input className={styles["input-principal"]} type="text" placeholder="Insira o e-mail da sua empresa"/>
-                        <button className={styles["botao-principal"]} type="cadastrar">CADASTRAR</button>
+                    <div className={styles["display-logos"]}>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
                     </div>
-                </div>
-                <div className={styles["display-logos"]}>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                </div>
+                </section>
                 <section className={styles["sessao"]} id="vantagens">
                     <div className={styles["vantagens"]} id="vantagens">
                         <div className={styles["linha"]}></div>
@@ -100,7 +122,7 @@ function Dono() {
                             </span>
                             <img src={RetanguloDica} className={styles["retangulo-dica"]} alt="retangulo do fundo" />
                             <img src={ChopperDanca} className={styles["chopper-dica"]} alt="Chopper" />
-                            <button className={styles["botao-dica"]} type="cadastrar">CADASTRAR</button>
+                            <button className={styles["botao-dica"]} type="cadastrar" to="outra-pagina" smooth={true} onClick={() => scrollToSection('inicio')}>CADASTRAR</button>
                         </div>
                     </div>
                 </section>

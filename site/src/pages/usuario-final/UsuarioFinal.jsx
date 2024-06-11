@@ -14,34 +14,72 @@ import Entradas from "../../assets/entradas.svg";
 import Bolinho from "../../assets/bolinho.svg";
 import Drinks from "../../assets/drinks.svg"
 import TonsCerveja from "../../assets/TonsCerveja.svg"
+import { useNavigate } from "react-router-dom";
 
 function Usuario() {
+    const navigate = useNavigate();
+
+    {/*const quemSomosSection = () =>{
+        navigate('/quemSomos');
+    }*/}
+
+    const scrollToSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/home-estabelecimento');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+
+    {/*const quemSomosSection = () =>{
+        navigate('/quemSomos');
+    }*/}
+
+    const scrollBack = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/home');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
     return (
         <>
             <NavBar logoInicio={logo}/>
             <div className={styles["container-fullpage"]}>
-                <div className={styles["container"]}>
-                    <div className={styles["pesquisa"]}>
-                        <div className={styles["container-inicial"]}>
-                            <div className={styles["pesquisa-titulo"]}>QUAL A BOA </div>
-                            <div className={styles["pesquisa-interrogacao"]}>?</div>
-                            <span className={styles["subtitulo"]}>ENCONTRE QUAL É A SUA BOA</span>
+                <section className={styles["sessao"]} id="inicio">
+                    <div className={styles["container"]}>
+                        <div className={styles["pesquisa"]}>
+                            <div className={styles["container-inicial"]}>
+                                <div className={styles["pesquisa-titulo"]}>QUAL A BOA </div>
+                                <div className={styles["pesquisa-interrogacao"]}>?</div>
+                                <span className={styles["subtitulo"]}>ENCONTRE QUAL É A SUA BOA</span>
+                            </div>
+                            <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
                         </div>
-                        <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
+                        <div className={styles["container-input"]}>
+                            <input className={styles["input-principal"]} type="text" placeholder="Escreva o seu endereço"/>
+                            <button className={styles["botao-principal"]} type="cadastrar">PESQUISAR</button>
+                        </div>
                     </div>
-                    <div className={styles["container-input"]}>
-                        <input className={styles["input-principal"]} type="text" placeholder="Escreva o seu endereço"/>
-                        <button className={styles["botao-principal"]} type="cadastrar">PESQUISAR</button>
+                    <div className={styles["display-logos"]}>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
+                        <div className={styles["logos"]}></div>
                     </div>
-                </div>
-                <div className={styles["display-logos"]}>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                    <div className={styles["logos"]}></div>
-                </div>
+                </section>
                 <div className={styles["pesquisa-filtros"]}>
                     <h3>PROCURE SEU ROLÊ</h3>
                     <div className={styles["container-inpu-filtro"]}>
@@ -239,7 +277,7 @@ function Usuario() {
                                             Com o você pode cadastrar seu estabelecimento,
                                              ser avaliado, impulsionar seu negócio e deixa-lo com a sua cara!
                                         </span>
-                                        <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                        <button className={styles["botao-visitar"]} type="cadastrar" to="outra-pagina" smooth={true} onClick={() => scrollToSection('inicio')}>SAIBA MAIS</button>
                                     </div>
 
                                 </div>
@@ -254,7 +292,7 @@ function Usuario() {
                                             E você que busca um rolê inesquecível pode procurar o melhor lugar através
                                             do nosso app, basta filtrar de acordo com a sua preferência
                                         </span>
-                                        <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                        <button className={styles["botao-visitar"]} type="cadastrar" to="outra-pagina" smooth={true} onClick={() => scrollBack('inicio')}>SAIBA MAIS</button>
                                     </div>
                                 </div>
                                 <div className={styles["boa-foto2"]}>

@@ -25,7 +25,7 @@ const NavBar = ({ logoInicio }) => {
 
     return (
         <nav className={styles["navbar"]}>
-            <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" />
+            <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" to="outra-pagina" smooth={true} onClick={() => scrollToSection('inicio')}/>
             <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('vantagens')}><b>VANTAGENS</b></span>
             <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('destaque')}><b>BAR DESTAQUE DO MÊS</b></span>
             <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('dica')}><b>DICA DO CHOPPER</b></span>

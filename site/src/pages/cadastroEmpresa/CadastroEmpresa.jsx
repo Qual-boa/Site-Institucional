@@ -9,11 +9,13 @@ function LoginEmpresa(){
     return(
         <>
         <NavbarEmpresa logoInicio = {logo}/>
-            <div className={styles["background-image"]}>
-                    <div className={styles["containerCadastroEmpresa"]}>
-                <CardLoginEmpresa />
+            <section className={styles["sessao"]} id="inicio">
+                <div className={styles["background-image"]}>
+                        <div className={styles["containerCadastroEmpresa"]}>
+                    <CardLoginEmpresa />
+                    </div>
                 </div>
-            </div>
+            </section>
         <FooterEmpresa/>    
         </>
     );
