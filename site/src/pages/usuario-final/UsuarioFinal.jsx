@@ -58,6 +58,7 @@ function Usuario() {
                     <button className={styles["button-filter"]}>+AO VIVO</button>
                     <button className={styles["button-filter"]}>+BALADA</button>
                 </div>
+               <section className={styles["sessao"]} id="cidades"> 
                 <div className={styles["cidades-procuradas"]}>
                     <div className={styles["linha"]}></div>
                     <h1>CIDADES MAIS PROCURADAS</h1>
@@ -112,149 +113,156 @@ function Usuario() {
                         </div>
                     </div>
                 </div>
-                <div className={styles["bares"]}>
-                    <div className={styles["linha"]}></div>
-                    <h1>BARES MAIS VISTOS</h1>
-                    <div className={styles["bares-containers"]}>
-                        <div className={styles["bares-box"]}>
-                            <div className={styles["bares-img"]}>
-                                <img src={Beer4U} alt="Imagem do estabelecimento" />
-                            </div>
+                </section>
+                <section className={styles["sessao"]} id="bares">
+                    <div className={styles["bares"]}>
+                        <div className={styles["linha"]}></div>
+                        <h1>BARES MAIS VISTOS</h1>
+                        <div className={styles["bares-containers"]}>
+                            <div className={styles["bares-box"]}>
+                                <div className={styles["bares-img"]}>
+                                    <img src={Beer4U} alt="Imagem do estabelecimento" />
+                                </div>
 
-                            <div className={styles["bares-info"]}>
-                                <h3>BEER4U</h3>
-                                <span>
-                                    Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                            </div>
-                        </div>
-                        <div className={styles["bares-box"]}>
-                            <div className={styles["bares-img"]}>
-                                <img src={BarRock} alt="Imagem do estabelecimento" />
-                            </div>
-
-                            <div className={styles["bares-info"]}>
-                                <h3>BAR DE ROCK</h3>
-                                <span>
-                                    Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                            </div>
-                        </div>
-                        <div className={styles["bares-box"]}>
-                            <div className={styles["bares-img"]}>
-                                <img src={Divine} alt="Imagem do estabelecimento" />
-                            </div>
-
-                            <div className={styles["bares-info"]}>
-                                <h3>DIVINE</h3>
-                                <span>
-                                    Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles["cidades-procuradas"]}>
-                    <div className={styles["linha"]}></div>
-                    <h1>SUGESTÕES DO MÊS</h1>
-                    <div className={styles["cidades-containers"]}>
-                        <div className={styles["sugestoes-box"]}>
-                            <div className={styles["sugestoes-img"]}>
-                                <img src={Entradas} alt="" />
-                            </div>
-                            <div className={styles["sugestoes-info"]}>
-                                <div className={styles["sugestoes-info-txt"]}>
-                                    <h3>ENTRADINHAS</h3>
-                                    <span>Comece a noite com aperitivos incríveis.</span>
-                                </div>
-                                <div className={styles["sugestoes-info-btn"]}>
-                                    <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles["sugestoes-box"]}>
-                            <div className={styles["sugestoes-img"]}>
-                                <img src={Bolinho} alt="" />
-                            </div>
-                            <div className={styles["sugestoes-info"]}>
-                                <div className={styles["sugestoes-info-txt"]}>
-                                    <h3>BOLINHO DE FEIJOADA</h3>
-                                    <span>Bolinhos caseiros fetos com a feijoada mais famosa de SP.</span>
-                                </div>
-                                <div className={styles["sugestoes-info-btn"]}>
-                                    <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles["sugestoes-box"]}>
-                            <div className={styles["sugestoes-img"]}>
-                                <img src={Drinks} alt="" />
-                            </div>
-                            <div className={styles["sugestoes-info"]}>
-                                <div className={styles["sugestoes-info-txt"]}>
-                                    <h3>DRINKS SAZONAIS</h3>
-                                    <span>Drinks feitos com as melhores frutas da estação.</span>
-                                </div>
-                                <div className={styles["sugestoes-info-btn"]}>
-                                    <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles["sugestoes-box"]}>
-                            <div className={styles["sugestoes-img"]}>
-                                <img src={TonsCerveja} alt="" />
-                            </div>
-                            <div className={styles["sugestoes-info"]}>
-                                <div className={styles["sugestoes-info-txt"]}>
-                                    <h3>4 TONS DE CERVEJA</h3>
-                                    <span>Degustação de todas as cervejas da casa.</span>
-                                </div>
-                                <div className={styles["sugestoes-info-btn"]}>
-                                    <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles["cidades-procuradas"]}>
-                    <div className={styles["linha"]}></div>
-                    <h1>QUAL A SUA BOA?</h1>
-                    <div className={styles["boa-containers"]}>
-                        <div className={styles["boa-bloco"]}>
-                            <div className={styles["boa-foto1"]}>
-                            </div>
-                            <div className={styles["boa-box"]}>
-                                <div className={styles["boa-txt1"]}>
-                                    <h3>DONO DO ESTABELECIMENTO</h3>
-                                    <h6>$$ GRATUITO</h6>
-
+                                <div className={styles["bares-info"]}>
+                                    <h3>BEER4U</h3>
                                     <span>
-                                        Com o você pode cadastrar seu estabelecimento,
-                                         ser avaliado, impulsionar seu negócio e deixa-lo com a sua cara!
-                                    </span>
-                                    <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                        Bar em todo Brasil com atualizações diárias do cardápio         </span>
+                                    <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                </div>
+                            </div>
+                            <div className={styles["bares-box"]}>
+                                <div className={styles["bares-img"]}>
+                                    <img src={BarRock} alt="Imagem do estabelecimento" />
                                 </div>
 
-                            </div>
-                        </div>
-                        <div className={styles["boa-bloco"]}>
-                            <div className={styles["boa-box"]}> 
-                                <div className={styles["boa-txt2"]}>
-                                    <h3>ROLEZEIRO ATUALIZADO</h3>
-                                    <h6>$$ GRATUITO</h6>
-
+                                <div className={styles["bares-info"]}>
+                                    <h3>BAR DE ROCK</h3>
                                     <span>
-                                        E você que busca um rolê inesquecível pode procurar o melhor lugar através
-                                        do nosso app, basta filtrar de acordo com a sua preferência
-                                    </span>
-                                    <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                        Bar em todo Brasil com atualizações diárias do cardápio         </span>
+                                    <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                                 </div>
                             </div>
-                            <div className={styles["boa-foto2"]}>
+                            <div className={styles["bares-box"]}>
+                                <div className={styles["bares-img"]}>
+                                    <img src={Divine} alt="Imagem do estabelecimento" />
+                                </div>
+
+                                <div className={styles["bares-info"]}>
+                                    <h3>DIVINE</h3>
+                                    <span>
+                                        Bar em todo Brasil com atualizações diárias do cardápio         </span>
+                                    <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+                <section className={styles["sessao"]} id="sugestoes">
+                    <div className={styles["cidades-procuradas"]}>
+                        <div className={styles["linha"]}></div>
+                        <h1>SUGESTÕES DO MÊS</h1>
+                        <div className={styles["sugestoes-containers"]}>
+                            <div className={styles["sugestoes-box"]}>
+                                <div className={styles["sugestoes-img"]}>
+                                    <img src={Entradas} alt="" />
+                                </div>
+                                <div className={styles["sugestoes-info"]}>
+                                    <div className={styles["sugestoes-info-txt"]}>
+                                        <h3>ENTRADINHAS</h3>
+                                        <span>Comece a noite com aperitivos incríveis.</span>
+                                    </div>
+                                    <div className={styles["sugestoes-info-btn"]}>
+                                        <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles["sugestoes-box"]}>
+                                <div className={styles["sugestoes-img"]}>
+                                    <img src={Bolinho} alt="" />
+                                </div>
+                                <div className={styles["sugestoes-info"]}>
+                                    <div className={styles["sugestoes-info-txt"]}>
+                                        <h3>BOLINHO DE FEIJOADA</h3>
+                                        <span>Bolinhos caseiros fetos com a feijoada mais famosa de SP.</span>
+                                    </div>
+                                    <div className={styles["sugestoes-info-btn"]}>
+                                        <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles["sugestoes-box"]}>
+                                <div className={styles["sugestoes-img"]}>
+                                    <img src={Drinks} alt="" />
+                                </div>
+                                <div className={styles["sugestoes-info"]}>
+                                    <div className={styles["sugestoes-info-txt"]}>
+                                        <h3>DRINKS SAZONAIS</h3>
+                                        <span>Drinks feitos com as melhores frutas da estação.</span>
+                                    </div>
+                                    <div className={styles["sugestoes-info-btn"]}>
+                                        <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles["sugestoes-box"]}>
+                                <div className={styles["sugestoes-img"]}>
+                                    <img src={TonsCerveja} alt="" />
+                                </div>
+                                <div className={styles["sugestoes-info"]}>
+                                    <div className={styles["sugestoes-info-txt"]}>
+                                        <h3>4 TONS DE CERVEJA</h3>
+                                        <span>Degustação de todas as cervejas da casa.</span>
+                                    </div>
+                                    <div className={styles["sugestoes-info-btn"]}>
+                                        <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section className={styles["sessao"]} id="boa">
+                    <div className={styles["cidades-procuradas"]}>
+                        <div className={styles["linha"]}></div>
+                        <h1>QUAL A SUA BOA?</h1>
+                        <div className={styles["boa-containers"]}>
+                            <div className={styles["boa-bloco"]}>
+                                <div className={styles["boa-foto1"]}>
+                                </div>
+                                <div className={styles["boa-box"]}>
+                                    <div className={styles["boa-txt1"]}>
+                                        <h3>DONO DO ESTABELECIMENTO</h3>
+                                        <h6>$$ GRATUITO</h6>
+        
+                                        <span>
+                                            Com o você pode cadastrar seu estabelecimento,
+                                             ser avaliado, impulsionar seu negócio e deixa-lo com a sua cara!
+                                        </span>
+                                        <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                    </div>
+        
+                                </div>
+                            </div>
+                            <div className={styles["boa-bloco"]}>
+                                <div className={styles["boa-box"]}> 
+                                    <div className={styles["boa-txt2"]}>
+                                        <h3>ROLEZEIRO ATUALIZADO</h3>
+                                        <h6>$$ GRATUITO</h6>
+        
+                                        <span>
+                                            E você que busca um rolê inesquecível pode procurar o melhor lugar através
+                                            do nosso app, basta filtrar de acordo com a sua preferência
+                                        </span>
+                                        <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
+                                    </div>
+                                </div>
+                                <div className={styles["boa-foto2"]}>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
             <Footer/>
         </>

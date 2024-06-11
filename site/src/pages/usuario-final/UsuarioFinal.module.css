@@ -174,8 +174,19 @@ html {
     margin-bottom: 6vw;
 }
 
-
 .cidades-containers{
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 1.5fr 1fr;
+    flex-direction: row;
+    width: 81%;
+    justify-content: space-evenly;
+    margin-top: 7vh;
+    padding-left: 10vw;
+    margin-bottom: 7vw;
+}
+
+.sugestoes-containers{
     display: grid;
     grid-template-columns: 0.95fr 1fr;
     grid-template-rows: 1.3fr 1fr;
@@ -690,4 +701,8 @@ html {
     flex-direction: column;
     width: 49vw;
     bottom: 2%;
+}
+
+.sessao{
+    margin-right: 3vw;
 }

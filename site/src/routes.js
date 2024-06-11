@@ -22,6 +22,7 @@ function Rotas() {
                     <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
                     <Route path="/home" element={<UsuarioFinal/>}/>
 
+
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
                 </Routes>
             </BrowserRouter> 
