@@ -2,7 +2,7 @@ import NavBar from "../../components/navbar/NavBar";
 import styles from "./UsuarioFinal.module.css";
 import cervejinha from "../../assets/breja-removebg-preview.png";
 import logo from "../../assets/QualABoa.svg";
-import Footer from "../../components/footerEmpresa/FooterEmpresa";
+import Footer from "../../components/footer/Footer";
 import SaoPaulo from "../../assets/SaoPaulo.svg";
 import RioJaneiro from "../../assets/RioJaneiro.svg";
 import XiqueXique from "../../assets/XiqueXique.svg";
@@ -234,14 +234,14 @@ function Usuario() {
                                     <div className={styles["boa-txt1"]}>
                                         <h3>DONO DO ESTABELECIMENTO</h3>
                                         <h6>$$ GRATUITO</h6>
-        
+
                                         <span>
                                             Com o você pode cadastrar seu estabelecimento,
                                              ser avaliado, impulsionar seu negócio e deixa-lo com a sua cara!
                                         </span>
                                         <button className={styles["botao-visitar"]} type="cadastrar">SAIBA MAIS</button>
                                     </div>
-        
+
                                 </div>
                             </div>
                             <div className={styles["boa-bloco"]}>
@@ -249,7 +249,7 @@ function Usuario() {
                                     <div className={styles["boa-txt2"]}>
                                         <h3>ROLEZEIRO ATUALIZADO</h3>
                                         <h6>$$ GRATUITO</h6>
-        
+
                                         <span>
                                             E você que busca um rolê inesquecível pode procurar o melhor lugar através
                                             do nosso app, basta filtrar de acordo com a sua preferência

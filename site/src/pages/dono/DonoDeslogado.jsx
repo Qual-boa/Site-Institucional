@@ -38,66 +38,72 @@ function Dono() {
                     <div className={styles["logos"]}></div>
                     <div className={styles["logos"]}></div>
                 </div>
-                <div className={styles["vantagens"]} id="vantagens">
-                    <div className={styles["linha"]}></div>
-                    <h1>VANTAGENS</h1>
-                    <div className={styles["vantagens-containers"]}>
-                        <div className={styles["vantagens-box"]}>
-                            <img src={FacilidadeImg} alt="Imagem relacionada a facilidade" className={styles["vantagemImg"]}/>
-                            <h3>FACILIDADE</h3>
-                            <span>
-                                Com a nossa aplicação, você possui mais facilidade ao divulgar seu estabelecimento
-                            </span>
-                        </div>
-                        <div className={styles["vantagens-box"]}>
-                            <img src={IdadentidadeIMG} alt="Imagem relacionada a facilidade" className={styles["vantagemImg"]}/>
-                            <h3>IDENTIDADE</h3>
-                            <span>
-                                Adicione novas atrações, adapte seu cardapio e perfil e deixe seu estabelecimento com a sua cara
-                            </span>
-                        </div>
-                        <div className={styles["vantagens-box"]}>
-                            <img src={DashImg} alt="Imagem relacionada a facilidade" className={styles["vantagemImg"]}/>
-                            <h3>DASHBOARD</h3>
-                            <span>
-                                Insights que te ajudarão no monitoramento de visistas e atividades dos acessos a sua página
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles["destaques"]}>
-                    <div className={styles["linha"]}></div>
-                    <h1>BAR DESTAQUES DO MÊS</h1>
-                    <div className={styles["destaques-containers"]}>
-                        <div className={styles["destaques-box"]}>
-                            <img src={Beer4uDestaque} alt="Bar destaque nesse mês"/>
-                            <div className={styles["destaques-txt"]}>
-                                <h2>BEER4U</h2>
+                <section className={styles["sessao"]} id="vantagens">
+                    <div className={styles["vantagens"]} id="vantagens">
+                        <div className={styles["linha"]}></div>
+                        <h1>VANTAGENS</h1>
+                        <div className={styles["vantagens-containers"]}>
+                            <div className={styles["vantagens-box"]}>
+                                <img src={FacilidadeImg} alt="Imagem relacionada a facilidade" className={styles["vantagemImg"]}/>
+                                <h3>FACILIDADE</h3>
                                 <span>
-                                    O Beer4U possui atrações diárias e um menu novo por dia.
-                                    É especialista em cervejas artesanais e possui uma novidade diária.
-                                    Ideal para você que gosta de degustar e apreciar novos sabpres. 
+                                    Com a nossa aplicação, você possui mais facilidade ao divulgar seu estabelecimento
                                 </span>
-                                <button className={styles["botao-visita"]} type="cadastrar">VISITAR</button>
+                            </div>
+                            <div className={styles["vantagens-box"]}>
+                                <img src={IdadentidadeIMG} alt="Imagem relacionada a facilidade" className={styles["vantagemImg"]}/>
+                                <h3>IDENTIDADE</h3>
+                                <span>
+                                    Adicione novas atrações, adapte seu cardapio e perfil e deixe seu estabelecimento com a sua cara
+                                </span>
+                            </div>
+                            <div className={styles["vantagens-box"]}>
+                                <img src={DashImg} alt="Imagem relacionada a facilidade" className={styles["vantagemImg"]}/>
+                                <h3>DASHBOARD</h3>
+                                <span>
+                                    Insights que te ajudarão no monitoramento de visistas e atividades dos acessos a sua página
+                                </span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles["dica"]}>
-                    <div className={styles["linha"]}></div>
-                    <h1>DICA DO CHOPPER</h1>
-                    <div className={styles["dica-containers"]}>
-                        <span className={styles["primeira-dica"]}>SE CADASTRE E SE TORNE TAMBÉM UM DESTAQUE,
-                             AUMENTANDO A <br></br> VISIBILIDADE DO SEU ESTABELCIEMENTO RECEBENDO AINDA MAIS CLIENTES
-                        </span>
-                        <span className={styles["segunda-dica"]}>
-                            Não fique fora dessa, venha fazer parte do<img src={logo}/>
-                        </span>
-                        <img src={RetanguloDica} className={styles["retangulo-dica"]} alt="retangulo do fundo" />
-                        <img src={ChopperDanca} className={styles["chopper-dica"]} alt="Chopper" />
-                        <button className={styles["botao-dica"]} type="cadastrar">CADASTRAR</button>
+                </section>
+                <section className={styles["sessao"]} id="destaque">
+                    <div className={styles["destaques"]}>
+                        <div className={styles["linha"]}></div>
+                        <h1>BAR DESTAQUES DO MÊS</h1>
+                        <div className={styles["destaques-containers"]}>
+                            <div className={styles["destaques-box"]}>
+                                <img src={Beer4uDestaque} alt="Bar destaque nesse mês"/>
+                                <div className={styles["destaques-txt"]}>
+                                    <h2>BEER4U</h2>
+                                    <span>
+                                        O Beer4U possui atrações diárias e um menu novo por dia.
+                                        É especialista em cervejas artesanais e possui uma novidade diária.
+                                        Ideal para você que gosta de degustar e apreciar novos sabpres. 
+                                    </span>
+                                    <button className={styles["botao-visita"]} type="cadastrar">VISITAR</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
+                <section className={styles["sessao"]} id="dica">
+                    <div className={styles["dica"]}>
+                        <div className={styles["linha"]}></div>
+                        <h1>DICA DO CHOPPER</h1>
+                        <div className={styles["dica-containers"]}>
+                            <span className={styles["primeira-dica"]}>SE CADASTRE E SE TORNE TAMBÉM UM DESTAQUE,
+                                 AUMENTANDO A <br></br> VISIBILIDADE DO SEU ESTABELCIEMENTO RECEBENDO AINDA MAIS CLIENTES
+                            </span>
+                            <span className={styles["segunda-dica"]}>
+                                Não fique fora dessa, venha fazer parte do<img src={logo}/>
+                            </span>
+                            <img src={RetanguloDica} className={styles["retangulo-dica"]} alt="retangulo do fundo" />
+                            <img src={ChopperDanca} className={styles["chopper-dica"]} alt="Chopper" />
+                            <button className={styles["botao-dica"]} type="cadastrar">CADASTRAR</button>
+                        </div>
+                    </div>
+                </section>
             </div>
             <Footer/>
         </>

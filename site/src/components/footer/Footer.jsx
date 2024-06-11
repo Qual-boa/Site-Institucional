@@ -2,8 +2,29 @@ import styles from "./Footer.module.css";
 import LogoFooter from '../../assets/footerIcon.svg'
 import {FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import LogoFooter2024 from "../../assets/footer2024.svg"
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+
+    const navigate = useNavigate();
+
+    {/*const quemSomosSection = () =>{
+        navigate('/quemSomos');
+    }*/}
+
+    const scrollToSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/home');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+
     return (
         <footer className={styles.footer}>
             <div className={styles.logoContainer}>
@@ -18,10 +39,10 @@ function Footer() {
             <div className={styles.menuContainer}>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <a className={styles.options} onClick={""}>CIDADES MAIS PROCURADAS</a>
-                    <a className={styles.options} onClick={""}>BARES MAIS VISTOS</a>
-                    <a className={styles.options} onClick={""}>SUGESTÔES DO MÊS</a>
-                    <a className={styles.options} onClick={""}>QUAL A SUA BOA?</a>                    
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('cidades')}>CIDADES MAIS PROCURADAS</a>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('bares')}>BARES MAIS VISTOS</a>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('sugestoes')}>SUGESTÔES DO MÊS</a>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('boa')}>QUAL A SUA BOA?</a>                    
                     <a className={styles.options} onClick={""}>QUEM SOMOS</a>
                 </div>
                 <div className={styles.menu}>

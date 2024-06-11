@@ -176,10 +176,10 @@ html {
 
 .cidades-containers{
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-template-rows: 1.5fr 1fr;
+    grid-template-columns: 0.95fr 1fr;
+    grid-template-rows: 1.3fr 1fr;
     flex-direction: row;
-    width: 81%;
+    width: 86%;
     justify-content: space-evenly;
     margin-top: 7vh;
     padding-left: 10vw;
@@ -199,7 +199,6 @@ html {
 }
 
 .cidades-procuradas{
-    margin-top: 10vh;
     width: 100%;
 }
 
@@ -692,7 +691,7 @@ html {
     display: flex;
     flex-direction: column;
     width: 49vw;
-    bottom: 11.3%;
+    bottom: 12%;
 }
 
 .boa-txt2{
@@ -704,5 +703,6 @@ html {
 }
 
 .sessao{
-    margin-right: 3vw;
+    width: 100%;
+    height: auto;
 }
