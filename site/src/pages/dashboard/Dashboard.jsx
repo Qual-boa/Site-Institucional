@@ -1,15 +1,16 @@
 import React from 'react';
-import Navbar from '../../components/navbar/NavBar';
+import Navbar from '../../components/navbardash/NavbarDash';
 import Overview from '../../components/overview/Overview';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Charts from '../../components/charts/Charts';
 import styles from './Dashboard.module.css';
 import Footer from "../../components/footer/Footer";
+import logo from "../../assets/QualABoa.svg"
 
 const Dashboard = () => {
     return (
         <>
-            <Navbar />
+            <Navbar logoInicio={logo}/>
             <div className={styles["background-imageCadastro"]}>
                 <div className={styles.dashboard}>
                     <Sidebar />

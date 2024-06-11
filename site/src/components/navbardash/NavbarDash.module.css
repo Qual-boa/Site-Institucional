@@ -1,0 +1,116 @@
+.navbar {
+    top: 0;
+    left: 0;
+    height: 6vh;
+    width: 100vw;
+    z-index: 999;
+    display: flex;
+    max-height: 8vh;
+    min-height: 6vh;
+    padding: 0.6rem;
+    align-items: center;    
+    justify-content: space-between;
+    background-color: transparent;
+    position: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: black;
+    color: white;
+}
+
+.navbar span {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: inherit;
+}
+
+.navbar span:hover {
+    background-color: #000;
+    color: white;
+    border-radius: 30px;
+    padding: 0.5rem 1rem; 
+}
+
+.navbar input {
+    height: 4vh;
+    width: 30vw;
+    border: none;
+    border-radius: 20px;
+    text-indent: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.perfil-user {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.links {
+    display: flex;
+    gap: 1rem;
+    transition: max-height 0.3s ease;
+}
+
+.burger {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0.5rem;
+    }
+
+    .navbar input {
+        width: 50%;
+        margin-top: 0.5rem;
+    }
+
+    .links {
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .navbar span:hover {
+        width: auto;
+    }
+
+    .burger {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: row;
+        padding: 0.5rem;
+    }
+
+    .navbar input {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .links {
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .navbar span {
+        font-size: 8px;
+    }
+}
