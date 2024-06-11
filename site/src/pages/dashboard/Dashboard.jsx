@@ -19,7 +19,7 @@ const Dashboard = () => {
                             <span>10 de junho de 2024</span>
                         </header>
                         <Overview />
-                        <Charts />
+                        <Charts/>
                     </div>
                 </div>
             </div>
