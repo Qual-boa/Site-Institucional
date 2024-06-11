@@ -1,0 +1,44 @@
+.charts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.chart {
+    flex: 1 1 45%;
+    margin: 10px;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.charts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chart {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.chart canvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+
+@media (max-width: 768px) {
+    .charts {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chart {
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
+}

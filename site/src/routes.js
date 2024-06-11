@@ -9,6 +9,11 @@ import UsuarioFinal from "./pages/usuarioFinal/UsuarioFinal"
 import QuemSomos from  "./pages/quemSomos/quemSomos"
 import CadastroEmpresa from "./pages/cadastroEmpresa/CadastroEmpresa"
 import NotFound from "./pages/notfound/notfound";
+import Dashboard from "./pages/dashboard/Dashboard"
+import AdicionarUsuarios from './pages/formsDashboard/AdicionarUsuarios';
+import EditarUsuarios from './pages/formsDashboard/EditarUsuarios';
+
+
 function Rotas() {
     return (
         <>
@@ -23,6 +28,9 @@ function Rotas() {
                     <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
                     <Route path="*" element={<NotFound />} />
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
+                    <Route path="/dashboard" element={<Dashboard/>}/>
+                    <Route path="/usuarios/adicionarUsuarios" element={<AdicionarUsuarios />} />
+                    <Route path="/usuarios/editarUsuarios" element={<EditarUsuarios />} />
                 </Routes>
             </BrowserRouter>
         </>
