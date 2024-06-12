@@ -33,11 +33,6 @@
     color: white;
     border-radius: 30px;
     padding: 0.5rem 1rem; 
-    width: 12vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: .7s;
 }
 
 .navbar input {
@@ -69,6 +64,33 @@
     cursor: pointer;
     color: inherit;
 }
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    background-color: white;
+    border: 1px solid #ccc;
+    right: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.dropdown-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f0f0f0;
+}
+
 
 @media (max-width: 768px) {
     .navbar {
