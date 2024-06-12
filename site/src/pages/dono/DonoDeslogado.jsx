@@ -8,7 +8,7 @@ import FacilidadeImg from "../../assets/facilidadeImg.svg"
 import IdadentidadeIMG from "../../assets/identidadeImg.svg"
 import DashImg from "../../assets/dashImg.svg"
 import Beer4uDestaque from "../../assets/beer4uDestaques.jpeg"
-import ChopperDanca from "../../assets/ChopperDanca.svg"
+import ChopperDanca from "../../assets/Crop_chopper2.svg"
 import RetanguloDica from "../../assets/retanguloDica.svg"
 import { useNavigate } from "react-router-dom";
 

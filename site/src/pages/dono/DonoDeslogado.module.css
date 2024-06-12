@@ -155,6 +155,7 @@ html {
     width: 23vw;
     padding-left: 10px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .display-logos{
@@ -242,8 +243,10 @@ html {
     height: 8.4vh;
     width: 23vw;
     font-size: 15px;
-    margin-left: 10vw;
-    margin-top: 10vh;
+    cursor: pointer;
+    position: absolute;
+    bottom: 29%;
+    right: 23%;
 }
 
 .destaques-containers{
@@ -271,10 +274,10 @@ html {
 }
 
 .chopper-dica{
-    width: 60vw;
+    width: 26vw;
     position: absolute;
-    top: 65%;
-    right: 10%;
+    right: 13%;
+    bottom: 0%;
 }
 
 .dica h1{
@@ -333,6 +336,7 @@ html {
     position: absolute;
     top: 93%;
     margin-right: 25vw;
+    cursor: pointer;
 }
 
 .vantagens-box{
