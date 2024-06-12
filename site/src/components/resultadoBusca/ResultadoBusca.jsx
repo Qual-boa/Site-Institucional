@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import "../../global.css";
-import api from '../../api';
+import api from "../../api";
+import apiBlob from "../../api-blob";
 import styles from "./ResultadoBusca.module.css";
 import Multiselect from 'multiselect-react-dropdown';
 import axios from 'axios';
@@ -20,9 +21,7 @@ function ResultadoBusca() {
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [selectedMusics, setSelectedMusics] = useState([]);
 
-  const api = axios.create({
-    baseURL: 'https://api-blob-qualaboa.azurewebsites.net/',
-  });
+ 
 
   const buscarDados = () => {
     api.post("/establishments/listbyfilters", {
@@ -32,10 +31,15 @@ function ResultadoBusca() {
       .then((response) => {
         const establishments = response.data;
         const imageRequests = establishments.map(establishment =>
-          api.get(`/blob/establishments/${establishment.id}`).then(imageResponse => ({
-            ...establishment,
-            imageUrl: imageResponse.data.imageUrl,
-          }))
+          apiBlob.get(`/establishments/${establishment.id}`).then((response) => {
+            const { data } = response;
+            const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
+            
+            return {
+              ...establishment,
+              imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
+            };
+          })
         );
 
         Promise.all(imageRequests)
@@ -134,7 +138,7 @@ function ResultadoBusca() {
               <div className={styles.imageContainer}>
                 <img src={resultado.imageUrl} alt={resultado.name} className={styles.image} />
               </div>
-              <div className={styles.details}>
+              <div className={styles.details}> 
                 <div className={styles.header}>
                   <h2 className={styles.name}>{resultado.fantasyName}</h2>
                   <div className={styles.location}>{resultado.location}</div>
