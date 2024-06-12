@@ -25,10 +25,12 @@
     background-color: #000;
     color: white;
     border-radius: 30px;
-    width: 12vw;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
 }
 
 .navbar input {
