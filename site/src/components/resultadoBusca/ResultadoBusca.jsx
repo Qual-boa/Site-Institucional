@@ -19,8 +19,9 @@ function ResultadoBusca() {
   const [selectedMusics, setSelectedMusics] = useState([]);
 
   const buscarDados = () => {
-    // Adiciona o parâmetro de consulta com o termo de busca
-    api.post("/establishments/listbyfilters", {categories})
+    api.post("/establishments/listbyfilters", {categories,
+      name : searchTerm,
+    })
       .then((response) => {
         setResultados(response.data); // Supondo que a resposta seja um array de objetos dos bares
         toast.success("Dados carregados com sucesso!");
@@ -30,35 +31,29 @@ function ResultadoBusca() {
       });
   };
 
-  // Função para lidar com a submissão do formulário de busca
   const handleSubmit = (evento) => {
     evento.preventDefault(); // Previne o comportamento padrão do formulário
     buscarDados(); // Faz a busca com o termo atualizado
   };
 
-  // Função para lidar com a mudança de valor do input e definir o termo de busca
   const setarValoresInput = (e, setter) => {
     setter(e.target.value);
   };
 
-  // Função para lidar com o clique na sugestão
   const handleSuggestionClick = (suggestion) => {
     setSearchTerm(suggestion);
     buscarDados(); // Faz a busca com o termo atualizado
   };
 
-  const musics = ['Rock', 'Sertanejo'];
-  const foods = ['Japa', 'Chicana'];
-  const drinks = ['Cerveja', 'Vinho'];
+  const musics = ['Rock', 'Sertanejo', 'Indie', 'Rap', 'Funk', 'Metal'];
+  const foods = ['Brasileira', 'Boteco', 'Japonesa', 'Mexicana', 'Churrasco', 'Hamburguer'];
+  const drinks = ['Cerveja', 'Vinho', 'Chopp', 'Whisky', 'Gim', 'Caipirinha', 'Drinks'];
 
-  // Combina todas as seleções em uma lista com o formato desejado
   const categories = [
-    ...selectedDrinks.map((item, index) => ({ categoryType: 3, category: drinks.indexOf(item) + 1 })),
-    ...selectedFoods.map((item, index) => ({ categoryType: 2, category: foods.indexOf(item) + 1 })),
-    ...selectedMusics.map((item, index) => ({ categoryType: 1, category: musics.indexOf(item) + 1 }))
+    ...selectedDrinks.map((item) => ({ categoryType: 3, category: drinks.indexOf(item) + 1 })),
+    ...selectedFoods.map((item) => ({ categoryType: 2, category: foods.indexOf(item) + 1 })),
+    ...selectedMusics.map((item) => ({ categoryType: 1, category: musics.indexOf(item) + 1 }))
   ];
-
-  console.log(categories)
 
   return (
     <div className={styles["containerBusca"]}>
@@ -81,6 +76,7 @@ function ResultadoBusca() {
             onSelect={(selectedList, selectedItem) => setSelectedDrinks(selectedList)}
             options={drinks}
             selectedValues={selectedDrinks}
+            className={styles["multiselect-container"]}
           />
         </div>
 
@@ -91,6 +87,7 @@ function ResultadoBusca() {
             onSelect={(selectedList, selectedItem) => setSelectedFoods(selectedList)}
             options={foods}
             selectedValues={selectedFoods}
+            className={styles["multiselect-container"]}
           />
         </div>
 
@@ -101,6 +98,7 @@ function ResultadoBusca() {
             onSelect={(selectedList, selectedItem) => setSelectedMusics(selectedList)}
             options={musics}
             selectedValues={selectedMusics}
+            className={styles["multiselect-container"]}
           />
         </div>
       </div>
@@ -128,11 +126,6 @@ function ResultadoBusca() {
         ) : (
           <p></p>
         )}
-      </div>
-
-      <div>
-        <h3>Itens Selecionados</h3>
-        <pre>{JSON.stringify(categories, null, 2)}</pre>
       </div>
     </div>
   );
