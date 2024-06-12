@@ -2,7 +2,9 @@ import React, { useCallback } from 'react';
 import styles from './NavBar.module.css';
 import perfil from '../../assets/perfilUser.svg';
 import { useNavigate } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import SearchBar from '../searchBar/SearchBar'; // Importe o componente SearchBar
 
 const NavBar = ({ logoInicio }) => {
     const navigate = useNavigate();
@@ -41,7 +43,7 @@ const NavBar = ({ logoInicio }) => {
             <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('sugestoes')}><b>SUGESTÔES DO MÊS</b></span>
             <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('boa')}><b>QUAL A SUA BOA?</b></span>
             <span to="outra-pagina" smooth={true} onClick={() => quemSomosSection('quem-somos')}><b>QUEM SOMOS</b></span>
-            <input type="text" placeholder="Escreva aqui"/>
+            <SearchBar /> {/* Use o componente SearchBar */}
             <img src={perfil} className={styles["perfil-user"]} alt="Usuário" />
         </nav>        
     );

@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './navBarQS.module.css';
 import perfil from '../../../assets/perfilBranco.svg';
 import { useNavigate } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 const NavBarQS = ({ logoQS }) => {
     const navigate = useNavigate();

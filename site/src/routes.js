@@ -8,6 +8,7 @@ import LoginEmpresa from "./pages/loginEmpresa/LoginEmpresa"
 import QuemSomos from  "./pages/quemSomos/quemSomos"
 import CadastroEmpresa from "./pages/cadastroEmpresa/CadastroEmpresa"
 import UsuarioFinal from "./pages/usuario-final/UsuarioFinal"
+import NotFound from "./pages/notfound/notfound"
 
 function Rotas() {
     return (
