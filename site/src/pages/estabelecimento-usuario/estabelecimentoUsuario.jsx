@@ -35,7 +35,7 @@ const containerStyle = {
             {
               params: {
                 address,
-                key: 'YOUR_GOOGLE_MAPS_API_KEY' // Substitua pela sua chave de API do Google Maps
+                key: 'AIzaSyBfK8M_o3m3AH-NrY2KVjhSSZQD5lgly-I' // Substitua pela sua chave de API do Google Maps
               }
             }
           );
@@ -64,7 +64,7 @@ const containerStyle = {
     };
   
     return (
-      <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+      <LoadScript googleMapsApiKey="AIzaSyBfK8M_o3m3AH-NrY2KVjhSSZQD5lgly-I">
         {coordinates.lat && coordinates.lng ? (
           <GoogleMap
             mapContainerStyle={containerStyle}
@@ -82,8 +82,7 @@ const containerStyle = {
 
 function EstabelecimentoUsuario() {
     const navigate = useNavigate();
-    const { id } = useParams();
-    const { userId } = useParams();
+    const  id  = "123e4567-e89b-12d3-a456-426614174000"; 
     const [fantasyName, setFantasyName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");
@@ -92,7 +91,6 @@ function EstabelecimentoUsuario() {
     const [instagramUrl, setInstagramUrl] = useState("");
     const [setTelegramUrl, setsetTelegramUrl] = useState("");
     const [postalCode, setPostalCode] = useState("");
-    const [userPostalCode, setUserPostalCode] = useState("");
     const [street, setStreet] = useState("");
     const [number, setNumber] = useState("");
     const [neighborhood, setNeighborhood] = useState("");
@@ -116,85 +114,48 @@ function EstabelecimentoUsuario() {
     ]);
 
     useEffect(()=>{
+        
         api.get(`establishments/${id}`).then((response) => {
             const { data } = response;
             const {
-                fantasyName
+                fantasyName,
+                information
             } = data;
             setFantasyName(fantasyName);
-    }) 
-    .catch((error) => {
-        console.log("Erro ao buscar nome fantasia do estabelecimento:", error);
-    });
-        api.get(`/information/establishment/${id}`).then((response) => {
-            const { data } = response;
-            const {
-                phone,
-                facebookUrl,
-                instagramUrl,
-                setTelegramUrl,
-                tv,
-                wifi,
-                acessibilidade,
-                estacionamento,
-                openAt,
-                closeAt
-            } = data;
-            setPhone(phone);
-            setFacebookUrl(facebookUrl);
-            setInstagramUrl(instagramUrl);
-            setsetTelegramUrl(setTelegramUrl);
-            setTv(tv);
-            setWifi(wifi);
-            setAcessibilidade(acessibilidade);
-            setEstacionamento(estacionamento);
-            setOpenAt(openAt);
-            setCloseAt(closeAt);
+            setPhone(information.phone);
+            setFacebookUrl(information.facebookUrl);
+            setInstagramUrl(information.instagramUrl);
+            setTelegramUrl(information.telegramUrl);
+            setTv(information.hasTv);
+            setWifi(information.hasWifi);
+            setAcessibilidade(information.hasAccessibility);
+            setEstacionamento(information.hasParking);
+            setOpenAt(`${information.openAt.hour}:${information.openAt.minute}`);
+            setCloseAt(`${information.closeAt.hour}:${information.closeAt.minute}`);
     }) 
     .catch((error) => {
         console.log("Erro ao buscar informações gerais do estabelecimento:", error);
     });
     api.get(`/address/establishment/${id}`).then((response) => {
-        const { data } = response;
-        const {
-                postalCode,
-                street,
-                number,
-                neighborhood,
-                complement,
-                city,
-                state
-        } = data;
-            setPostalCode(postalCode);
-            setStreet(street);
-            setNumber(number);
-            setNeighborhood(neighborhood);
-            setComplement(complement);
-            setCity(city);
-            setState(state);;
-}) 
+        const data  = response.data[0];
+        setPostalCode(data.postalCode);
+        setStreet(data.street);
+        setNumber(data.number);
+        setNeighborhood(data.neighborhood);
+        setComplement(data.complement);
+        setCity(data.city);
+        setState(data.state);
+    }) 
 .catch((error) => {
     console.log("Erro ao buscar endereço do estabelecimento:", error);
 });
-    api.get(`address/user/${userId}`).then((response) => {
-        const { data } = response;
-        const {userPostalCode
-            
-    } = data;
-        setUserPostalCode(userPostalCode);
-               
-    }) 
-    .catch((error) => {
-    console.log("Erro ao buscar nome fantasia do estabelecimento:", error);
-    });       
-      
         
-        apiBlob.get(`/blob/establishments/${id}`).then((response) => {
+        apiBlob.get(`/establishments/${id}`).then((response) => {
             const { data } = response;
-
+            console.log(response);
             const backgroundImage = data.find(image => image.establishmentCategory === 'BACKGROUND');
             const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
-
+            
             if (backgroundImage) {
                 setBackgroundImage(backgroundImage.imgUrl);
             } else {
@@ -476,7 +437,7 @@ function EstabelecimentoUsuario() {
                         <div className={styles.saibaMais}>
                         <p><strong>ENDEREÇO:</strong> {formatAddress()}</p>
                             <div className={styles.mapa}>
-                            <MapComponent postalCode={postalCode} number={number} />
+                            <MapComponent postalCode={"04102-010"} number={"248"} />
                             </div>
                             <p><strong>FUNCIONAMENTO:</strong>  {`${openAt} - ${closeAt}`}</p>
                             <p><strong>CONTATO:</strong>{phone}</p>

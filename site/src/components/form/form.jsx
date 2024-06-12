@@ -92,8 +92,10 @@ function Editar() {
     const handlePostalCodeChange = async (event) => {
         const cep = event.target.value.replace('-', ''); // Remover o hífen
         setPostalCode(cep);
+        console.log("Tamanho do cep " + cep.length)
         if (cep.length === 8) {
             try {
+                console.log("try if")
                 const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
                 const data = response.data;
                 if (!data.erro) {
@@ -157,7 +159,7 @@ function Editar() {
 
         try {
             setUploading(true);
-            const response = await apiBlob.post(`/establishments/${"48b6eafc-0a2f-4b8a-bfa5-6735b18d4961"}/upload`, formData, {
+            const response = await apiBlob.post(`/establishments/${"123e4567-e89b-12d3-a456-426614174000"}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
