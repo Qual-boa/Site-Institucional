@@ -4,6 +4,8 @@ import "../../global.css";
 import api from '../../api';
 import styles from "./ResultadoBusca.module.css";
 import Multiselect from 'multiselect-react-dropdown';
+import axios from 'axios';
+
 
 function ResultadoBusca() {
 
@@ -18,13 +20,32 @@ function ResultadoBusca() {
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [selectedMusics, setSelectedMusics] = useState([]);
 
+  const api = axios.create({
+    baseURL: 'https://api-blob-qualaboa.azurewebsites.net/',
+  });
+
   const buscarDados = () => {
-    api.post("/establishments/listbyfilters", {categories,
-      name : searchTerm,
+    api.post("/establishments/listbyfilters", {
+      categories,
+      name: searchTerm,
     })
       .then((response) => {
-        setResultados(response.data); // Supondo que a resposta seja um array de objetos dos bares
-        toast.success("Dados carregados com sucesso!");
+        const establishments = response.data;
+        const imageRequests = establishments.map(establishment =>
+          api.get(`/blob/establishments/${establishment.id}`).then(imageResponse => ({
+            ...establishment,
+            imageUrl: imageResponse.data.imageUrl,
+          }))
+        );
+
+        Promise.all(imageRequests)
+          .then(completeResults => { 
+            setResultados(completeResults);
+            toast.success("Dados carregados com sucesso!");
+          })
+          .catch(() => {
+            toast.error("Ocorreu um erro ao carregar as imagens, por favor, tente novamente.");
+          });
       })
       .catch(() => {
         toast.error("Ocorreu um erro ao carregar os dados, por favor, tente novamente.");
@@ -77,6 +98,7 @@ function ResultadoBusca() {
             options={drinks}
             selectedValues={selectedDrinks}
             className={styles["multiselect-container"]}
+            placeholder="Escolha suas bebidas"
           />
         </div>
 
@@ -88,6 +110,7 @@ function ResultadoBusca() {
             options={foods}
             selectedValues={selectedFoods}
             className={styles["multiselect-container"]}
+            placeholder="Escolha suas comidas"
           />
         </div>
 
@@ -99,6 +122,7 @@ function ResultadoBusca() {
             options={musics}
             selectedValues={selectedMusics}
             className={styles["multiselect-container"]}
+            placeholder="Escolha suas músicas"
           />
         </div>
       </div>
@@ -117,8 +141,10 @@ function ResultadoBusca() {
                 </div>
                 <div className={styles.description}>{resultado.description}</div>
                 <div className={styles.additionalInfo}>
-                  <span>Estacionamento - Acessibilidade - TV - Wi-fi</span>
-                </div>
+                {resultado.information.hasParking && <span>Estacionamento </span>}
+                  {resultado.information.hasAccessibility && <span>Acessibilidade </span>}
+                  {resultado.information.hasTv && <span>TV </span>}
+                  {resultado.information.hasWifi && <span>Wi-Fi </span>} </div>
                 <button className={styles.visitButton}>VISITAR</button>
               </div>
             </div>
