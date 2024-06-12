@@ -13,7 +13,7 @@
   }
   
   .modalContent {
-    background-color: #fefefe;
+    background-color: #FFFDF2;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -21,7 +21,8 @@
     max-width: 620px;
     position: relative;
     border-radius: 30px;
-    height: 50vh;
+    height: auto;
+    padding-bottom: 2vw;
 
   }
   
@@ -41,4 +42,13 @@
   .enviar{
     border-radius: 5px;
     padding: 2px 2px;
+  }
+
+  .modalTxt{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modalTxt span{
+    font-size: 1.2vw;
   }

@@ -9,8 +9,10 @@ const Modal = ({ isOpen, onClose, modalText }) => {
       <div className={styles.modal}>
         <div className={styles.modalContent}>
           <span className={styles.close} onClick={onClose}>&times;</span>
-          <span>TESTE</span>
-          <span>{modalText}</span>
+          <div className={styles.modalTxt}>
+            <h3>MAIS INFORMAÇÕES</h3>
+            <span>{modalText}</span>
+          </div>
         </div>
       </div>
     );

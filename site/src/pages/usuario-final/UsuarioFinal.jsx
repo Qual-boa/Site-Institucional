@@ -33,9 +33,9 @@ function Usuario() {
 
     const navigate = useNavigate();
 
-    {/*const quemSomosSection = () =>{
-        navigate('/quemSomos');
-    }*/}
+    const quemSomosSection = () =>{
+        navigate('/quem-somos');
+    }
 
     const scrollToSection = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)
@@ -68,6 +68,7 @@ function Usuario() {
     };
     return (
         <>
+            <Modal isOpen={modalIsOpen} onClose={closeModal} modalText={modalText}/>
             <NavBar logoInicio={logo}/>
             <div className={styles["container-fullpage"]}>
                 <section className={styles["sessao"]} id="inicio">
@@ -121,7 +122,7 @@ function Usuario() {
                                 <span>
                                     Conhecida por sua gastronomia contemporanea metropolitana etc etc etc 
                                 </span>
-                                <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                <button onClick={() => openModal('São Paulo é conhecida por sua vibrante vida noturna, com uma grande variedade de bares, restaurantes, casas de show e baladas')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                             </div>
                             <div className={styles["cidades-img"]}>
                                 <img src={SaoPaulo} alt="Imagem da cidade" />
@@ -133,7 +134,7 @@ function Usuario() {
                                 <span>
                                     Conhecida por sua gastronomia contemporanea metropolitana etc etc etc 
                                 </span>
-                                <button onClick={() => openModal('teste1')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                <button onClick={() => openModal('É uma cidade localizada no interior da Bahia, conhecida por sua hospitalidade e cultura tradicional')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                             </div>
                             <div className={styles["cidades-img"]}>
                                 <img src={XiqueXique} alt="Imagem da cidade" />
@@ -145,7 +146,7 @@ function Usuario() {
                                 <span>
                                     Conheça o calor da cidade mais fervorosa do Brasil etc etc etc
                                 </span>
-                                <button onClick={() => openModal("teste2")} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                <button onClick={() => openModal("É famoso por suas belas praias, paisagens deslumbrantes e uma atmosfera descontraída")} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                             </div>
                             <div className={styles["cidades-img"]}>
                                 <img src={RioJaneiro} alt="Imagem da cidade" />
@@ -157,7 +158,7 @@ function Usuario() {
                                 <span>
                                     Conheça o calor da cidade mais fervorosa do Brasil etc etc etc
                                 </span>
-                                <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                <button onClick={() => openModal('Capital de Pernambuco, é uma cidade conhecida por sua rica herança cultural, manifestada em sua música, dança, arte e gastronomia')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                             </div>
                             <div className={styles["cidades-img"]}>
                                 <img src={Recife} alt="Imagem da cidade" />
@@ -180,7 +181,7 @@ function Usuario() {
                                     <h3>BEER4U</h3>
                                     <span>
                                         Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                    <button onClick={() => openModal('Um bar de tap house de cerveja artesanal é um estabelecimento que se concentra na oferta de cervejas produzidas localmente ou regionalmente, muitas vezes em pequenos lotes e com métodos tradicionais')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                                 </div>
                             </div>
                             <div className={styles["bares-box"]}>
@@ -192,7 +193,7 @@ function Usuario() {
                                     <h3>BAR DE ROCK</h3>
                                     <span>
                                         Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                    <button onClick={() => openModal('É um local que celebra a cultura e a música do rock n roll, oferecendo uma atmosfera energética e uma seleção de músicas de bandas de rock famosas')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                                 </div>
                             </div>
                             <div className={styles["bares-box"]}>
@@ -204,7 +205,7 @@ function Usuario() {
                                     <h3>DIVINE</h3>
                                     <span>
                                         Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                    <button onClick={() => openModal('Um estabelecimento que oferece uma experiência gastronômica sofisticada e de alta qualidade, com ênfase na culinária refinada e na apresentação cuidadosa dos pratos')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +226,7 @@ function Usuario() {
                                         <span>Comece a noite com aperitivos incríveis.</span>
                                     </div>
                                     <div className={styles["sugestoes-info-btn"]}>
-                                        <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                        <button onClick={() => openModal('As entradinhas, também conhecidas como petiscos ou aperitivos, são pequenas porções de alimentos servidas antes do prato principal em muitos restaurantes e bares')} className={styles["botao-visitar"]} type="cadastrar">VER MAIS</button>
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +240,7 @@ function Usuario() {
                                         <span>Bolinhos caseiros fetos com a feijoada mais famosa de SP.</span>
                                     </div>
                                     <div className={styles["sugestoes-info-btn"]}>
-                                        <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                        <button onClick={() => openModal('O bolinho de feijoada é uma versão empanada e frita do clássico prato brasileiro, feijoada')} className={styles["botao-visitar"]} type="cadastrar">VER MAIS</button>
                                     </div>
                                 </div>
                             </div>
@@ -253,7 +254,7 @@ function Usuario() {
                                         <span>Drinks feitos com as melhores frutas da estação.</span>
                                     </div>
                                     <div className={styles["sugestoes-info-btn"]}>
-                                        <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                        <button onClick={() => openModal('Os drinks sazonais são coquetéis criados com ingredientes frescos e sazonais, que refletem as características e sabores das estações do ano')} className={styles["botao-visitar"]} type="cadastrar">VER MAIS</button>
                                     </div>
                                 </div>
                             </div>
@@ -267,7 +268,7 @@ function Usuario() {
                                         <span>Degustação de todas as cervejas da casa.</span>
                                     </div>
                                     <div className={styles["sugestoes-info-btn"]}>
-                                        <button className={styles["botao-visitar"]} type="cadastrar">VISITAR</button>
+                                        <button onClick={() => openModal('4 tons de cerveja refere-se a uma degustação que oferece uma variedade de cervejas diferentes, representando uma gama de estilos e sabores')} className={styles["botao-visitar"]} type="cadastrar">VER MAIS</button>
                                     </div>
                                 </div>
                             </div>
@@ -315,7 +316,6 @@ function Usuario() {
                         </div>
                     </div>
                 </section>
-            <Modal isOpen={modalIsOpen} onClose={closeModal} modalText={modalText}/>
             </div>
             <Footer/>
         </>
