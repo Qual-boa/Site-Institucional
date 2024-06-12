@@ -18,7 +18,7 @@ api.interceptors.request.use(config => {
 
 const Overview = () => {
     const [metrics, setMetrics] = useState({
-        averageClicksPerMonth: 0,
+        rate: 0,
         dayOfWeekWithMostClicks: '',
         findHourWithMostClicks: '',
         favoriteCount: 0
@@ -32,18 +32,13 @@ const Overview = () => {
                     const response = await api.get(`/access/dashboard/${establishmentId}`);
                     const responseData = response.data;
 
-                    const dayOfWeekWithMostClicks = responseData.dayOfWeekWithMostClicks.length > 0
-                        ? Object.keys(responseData.dayOfWeekWithMostClicks[0])[0]
-                        : 'N/A';
-
-                    const findHourWithMostClicks = responseData.findHourWithMostClicks.length > 0
-                        ? Object.keys(responseData.findHourWithMostClicks[0])[0]
-                        : 'N/A';
+                    const dayOfWeekWithMostClicks = responseData.dayOfWeekWithMostClicks[0];
+                    const findHourWithMostClicks = responseData.findHourWithMostClicks[0];
 
                     setMetrics({
-                        averageClicksPerMonth: responseData.averageClicksPerMonth,
-                        dayOfWeekWithMostClicks: dayOfWeekWithMostClicks,
-                        findHourWithMostClicks: findHourWithMostClicks,
+                        rate: responseData.rate,
+                        dayOfWeekWithMostClicks: dayOfWeekWithMostClicks ? Object.keys(dayOfWeekWithMostClicks)[0] : 'N/A',
+                        findHourWithMostClicks: findHourWithMostClicks ? Object.keys(findHourWithMostClicks)[0] : 'N/A',
                         favoriteCount: responseData.favoriteCount
                     });
                 } catch (error) {
@@ -60,8 +55,8 @@ const Overview = () => {
             <span className={styles.nameOverview}><b>Bem Vindo, Matheus!</b></span>
             <div className={styles.overview}>
                 <div className={styles.metric1}>
-                    <span><b>Quantidade de Clicks por Mês</b></span><br /> 
-                    <span><b>{metrics.averageClicksPerMonth}</b></span>
+                    <span><b>Média de clicks</b></span><br /> 
+                    <span><b>{metrics.rate}</b></span>
                 </div>
                 <div className={styles.metric2}>
                     <span><b>Dia com mais Clicks</b></span><br />

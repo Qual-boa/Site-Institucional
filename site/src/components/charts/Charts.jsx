@@ -31,12 +31,13 @@ const Charts = () => {
                 .then(response => {
                     const responseData = response.data;
 
+                    const clicksPerDay = responseData.clicksPerDayLast7Days[0];
                     const dailyVisits = {
-                        labels: responseData.clicksPerDayLast30Days.map(item => item.date), // Supondo que o objeto tem uma propriedade `date`
+                        labels: Object.keys(clicksPerDay),
                         datasets: [
                             {
-                                label: 'Visitas Diárias',
-                                data: responseData.clicksPerDayLast30Days.map(item => item.clicks), // Supondo que o objeto tem uma propriedade `clicks`
+                                label: 'Clicks nos Últimos 7 Dias',
+                                data: Object.values(clicksPerDay),
                                 fill: false,
                                 backgroundColor: 'rgba(75,192,192,0.4)',
                                 borderColor: 'rgba(75,192,192,1)'
@@ -46,11 +47,11 @@ const Charts = () => {
                     setDailyVisitsData(dailyVisits);
 
                     const interestOverTime = {
-                        labels: responseData.categoriesSearches.map(item => item.name), // Supondo que o objeto tem uma propriedade `name`
+                        labels: responseData.categoriesSearches.map(item => item.name),
                         datasets: [
                             {
                                 label: 'Interesse ao Longo do Tempo',
-                                data: responseData.categoriesSearches.map(item => item.searchesCount), // Supondo que o objeto tem uma propriedade `searchesCount`
+                                data: responseData.categoriesSearches.map(item => item.searchesCount),
                                 backgroundColor: 'rgba(153,102,255,0.6)',
                                 borderColor: 'rgba(153,102,255,1)',
                                 borderWidth: 1
@@ -73,7 +74,7 @@ const Charts = () => {
             },
             title: {
                 display: true,
-                text: 'Visitas Diárias',
+                text: 'Clicks nos Últimos 7 Dias',
             },
         },
     };
@@ -95,7 +96,7 @@ const Charts = () => {
         <div className={styles.charts}>
             {dailyVisitsData && (
                 <div className={styles.chart}>
-                    <h2>Visitas Diárias</h2>
+                    <h2>Clicks nos Últimos 7 Dias</h2>
                     <Line data={dailyVisitsData} options={dailyVisitsOptions} />
                 </div>
             )}

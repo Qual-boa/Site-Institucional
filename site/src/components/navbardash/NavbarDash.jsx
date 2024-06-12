@@ -18,7 +18,6 @@ const NavBar = ({ logoInicio }) => {
             <span><b>VANTAGENS</b></span>
             <span><b>DESTAQUES DO MÊS</b></span>
             <span><b>CONTATOS</b></span>
-            <span><b>QUEM SOMOS</b></span>
             <span onClick={() => navigate("/quem-somos")}><b>QUEM SOMOS</b></span>
             <input type="text" placeholder="Escreva aqui"/>
             <div className={styles["perfil-container"]} onClick={() => setMenuOpen(!menuOpen)}>
