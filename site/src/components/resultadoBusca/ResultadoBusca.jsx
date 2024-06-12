@@ -79,14 +79,11 @@ function ResultadoBusca() {
   return (
     <div className={styles["containerBusca"]}>
       <div className={styles["search-bar"]}>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setarValoresInput(e, setSearchTerm)}
-          placeholder="Pesquise sua boa"
-          className={styles["search-input"]}
-        />
-        <button onClick={handleSubmit} className={styles["search-button"]}>Pesquisar</button>
+        <h3>PROCURE SEU ROLÊ</h3>
+        <div className={styles["container-inpu-filtro"]}>
+          <input className={styles["input-secundaria"]} type="text" placeholder="Pesquise a sua boa"/>
+          <button className={styles["botao-secundario"]} type="cadastrar">PESQUISAR</button>
+         </div>
       </div>
 
       <div className={styles["option-container"]}>

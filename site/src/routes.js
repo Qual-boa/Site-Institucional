@@ -9,6 +9,7 @@ import QuemSomos from  "./pages/quemSomos/quemSomos"
 import CadastroEmpresa from "./pages/cadastroEmpresa/CadastroEmpresa"
 import NotFound from "./pages/notfound/notfound";
 import Listagem from "./pages/listagemEstabelecimento/Listagem";
+import UsuarioFinal from "./pages/usuario-final/UsuarioFinal"
 
 function Rotas() {
     return (
@@ -22,7 +23,7 @@ function Rotas() {
                     <Route path="/login" element={<LoginUsuario/>}/>
                     <Route path="/loginEmpresa" element={<LoginEmpresa/>}/>
                     <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
-                    <Route path="*" element={<NotFound />} />                    <Route path="/home" element={<UsuarioFinal/>}/>
+                    <Route path="*" element={<NotFound />} />                    
                     <Route path="/home" element={<UsuarioFinal/>}/>
 
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
