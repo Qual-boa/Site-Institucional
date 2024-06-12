@@ -14,10 +14,10 @@ const NavBar = ({ logoInicio }) => {
 
     return (
         <nav className={styles["navbar"]}>
-            <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" />
-            <span><b>VANTAGENS</b></span>
-            <span><b>DESTAQUES DO MÊS</b></span>
-            <span><b>CONTATOS</b></span>
+            <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" onClick={() => navigate("/")}/>
+            <span onClick={() => navigate("/")}><b>VANTAGENS</b></span>
+            <span onClick={() => navigate("/quem-somos")}><b>DESTAQUES DO MÊS</b></span>
+            <span onClick={() => navigate("#footer")}><b>CONTATOS</b></span>
             <span onClick={() => navigate("/quem-somos")}><b>QUEM SOMOS</b></span>
             <input type="text" placeholder="Escreva aqui"/>
             <div className={styles["perfil-container"]} onClick={() => setMenuOpen(!menuOpen)}>

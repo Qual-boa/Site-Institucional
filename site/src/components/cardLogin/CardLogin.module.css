@@ -22,13 +22,9 @@
     border-bottom: 1.5px solid transparent; 
     border-image: linear-gradient(to right, #dc670c, #fddb27);
      border-image-slice: 1;
-    /* Adiciona uma borda inferior */
     outline: none;
-    /* Remove o contorno ao focar */
     padding: 5px 0;
-    /* Adiciona um pouco de padding vertical */
     background-color: transparent;
-    /* Adiciona um fundo transparente */
 }
 
 .icon-user {
@@ -66,4 +62,11 @@
     margin-right: auto;
     display: block;
     font-weight: bold;
+}
+
+.loginExistente{
+    text-align: center;
+    font-size: 10px;
+    color: #7C778F;
+    margin-top: 6px;
 }
