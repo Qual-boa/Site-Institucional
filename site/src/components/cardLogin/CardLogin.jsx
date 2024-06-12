@@ -5,6 +5,7 @@ import api from "../../api";
 import { toast } from 'react-toastify';
 import "../../global.css";
 import icone from "../../assets/icon-user.svg"
+import { Link } from 'react-router-dom';
 
 export function CardLogin() {
 
@@ -44,6 +45,9 @@ export function CardLogin() {
                         <input type="password" className={styles["form-control"]} id="senha" placeholder="Digite a sua senha" onChange={(e) => setarValoresInput(e, setSenha)} />
                     </div>
                     <button type="button" className={styles["botao-entrar-usuario"]} onClick={autenticarUsuario}>ENTRAR</button>
+                    <div className={styles["loginExistente"]}>
+                        Não possui Login?<Link to="/cadastro-usuario" className={styles.entrar}>Cadastrar</Link>
+                    </div>
                 </form>
             </div>
         </div>

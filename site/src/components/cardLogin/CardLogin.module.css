@@ -67,3 +67,10 @@
     display: block;
     font-weight: bold;
 }
+
+.loginExistente{
+    text-align: center;
+    font-size: 10px;
+    color: #7C778F;
+    margin-top: 3vh;
+}

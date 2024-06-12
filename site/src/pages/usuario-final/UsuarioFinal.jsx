@@ -15,8 +15,22 @@ import Bolinho from "../../assets/bolinho.svg";
 import Drinks from "../../assets/drinks.svg"
 import TonsCerveja from "../../assets/TonsCerveja.svg"
 import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import Modal from '../../components/modal/Modal'
 
 function Usuario() {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalText, setModalText] = useState('');
+
+    const openModal = (text) => {
+        setModalText(text);
+        setModalIsOpen(true);
+    };
+  
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
     const navigate = useNavigate();
 
     {/*const quemSomosSection = () =>{
@@ -107,7 +121,7 @@ function Usuario() {
                                 <span>
                                     Conhecida por sua gastronomia contemporanea metropolitana etc etc etc 
                                 </span>
-                                <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                             </div>
                             <div className={styles["cidades-img"]}>
                                 <img src={SaoPaulo} alt="Imagem da cidade" />
@@ -119,7 +133,7 @@ function Usuario() {
                                 <span>
                                     Conhecida por sua gastronomia contemporanea metropolitana etc etc etc 
                                 </span>
-                                <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                <button onClick={() => openModal('teste1')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                             </div>
                             <div className={styles["cidades-img"]}>
                                 <img src={XiqueXique} alt="Imagem da cidade" />
@@ -131,7 +145,7 @@ function Usuario() {
                                 <span>
                                     Conheça o calor da cidade mais fervorosa do Brasil etc etc etc
                                 </span>
-                                <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                <button onClick={() => openModal("teste2")} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                             </div>
                             <div className={styles["cidades-img"]}>
                                 <img src={RioJaneiro} alt="Imagem da cidade" />
@@ -143,7 +157,7 @@ function Usuario() {
                                 <span>
                                     Conheça o calor da cidade mais fervorosa do Brasil etc etc etc
                                 </span>
-                                <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                             </div>
                             <div className={styles["cidades-img"]}>
                                 <img src={Recife} alt="Imagem da cidade" />
@@ -166,7 +180,7 @@ function Usuario() {
                                     <h3>BEER4U</h3>
                                     <span>
                                         Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                    <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                                 </div>
                             </div>
                             <div className={styles["bares-box"]}>
@@ -178,7 +192,7 @@ function Usuario() {
                                     <h3>BAR DE ROCK</h3>
                                     <span>
                                         Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                    <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                                 </div>
                             </div>
                             <div className={styles["bares-box"]}>
@@ -190,7 +204,7 @@ function Usuario() {
                                     <h3>DIVINE</h3>
                                     <span>
                                         Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
+                                    <button onClick={openModal} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
                                 </div>
                             </div>
                         </div>
@@ -301,6 +315,7 @@ function Usuario() {
                         </div>
                     </div>
                 </section>
+            <Modal isOpen={modalIsOpen} onClose={closeModal} modalText={modalText}/>
             </div>
             <Footer/>
         </>
