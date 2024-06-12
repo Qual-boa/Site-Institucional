@@ -33,6 +33,11 @@
     color: white;
     border-radius: 30px;
     padding: 0.5rem 1rem; 
+    width: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .7s;
 }
 
 .navbar input {
