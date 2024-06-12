@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 
 export function CardLogin() {
 
-
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -18,17 +17,16 @@ export function CardLogin() {
         api.post("/users/login", {
             login: email,
             password: senha,
-        }).then(() => {
-            alert("Usuário logado com sucesso!"); toast.success("Novo Usuário cadastrado com sucesso!");
-            navigate("/loginEmpresa");
-        }).catch(() => { alert("Erro ao efetuar o login, tente novamente"); toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.") })
+        }).then((response) => {
+            sessionStorage.setItem('qabToken', response.data.token)
+            toast.success("Usuário logado com sucesso!");
+            navigate("/quem-somos");
+        }).catch(() => { toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.") })
     }
 
     const setarValoresInput = (evento, setState) => {
         setState(evento.target.value)
     }
-
-
 
     return (
         <div className={styles["card"]}>
@@ -52,6 +50,4 @@ export function CardLogin() {
             </div>
         </div>
     );
-
-
 }

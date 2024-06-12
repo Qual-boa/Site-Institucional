@@ -10,8 +10,8 @@ import Nicolas from "../../assets/Nicolas.svg"
 import Pedro from "../../assets/Pedro.svg"
 import Samuel from "../../assets/Samuca.svg"
 import Vinicius from "../../assets/Vinicius.svg"
-
 function QuemSomos(){
+    
     return(
         <>
         <Helmet>

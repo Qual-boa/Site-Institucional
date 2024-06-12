@@ -2,9 +2,14 @@ import React from 'react';
 import styles from './navBarQS.module.css';
 import perfil from '../../../assets/perfilBranco.svg';
 import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NavBarQS = ({ logoQS }) => {
     const navigate = useNavigate();
+    function logOff() {
+        sessionStorage.removeItem("qabToken");
+        navigate("/login")
+    }
 
     const quemSomosSection = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)
@@ -41,7 +46,7 @@ const NavBarQS = ({ logoQS }) => {
             <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('boa')}><b>QUAL A SUA BOA?</b></span>
             <span to="outra-pagina" smooth={true} onClick={() => quemSomosSection('quem-somos')}><b>QUEM SOMOS</b></span>
             <input type="text" placeholder="Escreva aqui"/>
-            <img src={perfil} className={styles["perfil-userQS"]} alt="Usuário" />
+            <img onClick={logOff} src={perfil} className={styles["perfil-userQS"]} alt="Usuário" />
         </nav>
     );
 };
