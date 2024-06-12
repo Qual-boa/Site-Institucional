@@ -14,9 +14,13 @@ function ResultadoBusca() {
   const [searchTerm, setSearchTerm] = useState(""); // Estado para armazenar o valor do input de busca
   const [suggestions, setSuggestions] = useState([]); // Estado para armazenar sugestões
 
+  const [selectedDrinks, setSelectedDrinks] = useState([]);
+  const [selectedFoods, setSelectedFoods] = useState([]);
+  const [selectedMusics, setSelectedMusics] = useState([]);
+
   const buscarDados = () => {
     // Adiciona o parâmetro de consulta com o termo de busca
-    api.post("/establishments/listbyfilters", {})
+    api.post("/establishments/listbyfilters", {categories})
       .then((response) => {
         setResultados(response.data); // Supondo que a resposta seja um array de objetos dos bares
         toast.success("Dados carregados com sucesso!");
@@ -43,9 +47,18 @@ function ResultadoBusca() {
     buscarDados(); // Faz a busca com o termo atualizado
   };
 
-  const musics = ['Cerveja', 'Vinho'];
-  const foods = ['Cerveja', 'Vinho'];
+  const musics = ['Rock', 'Sertanejo'];
+  const foods = ['Japa', 'Chicana'];
   const drinks = ['Cerveja', 'Vinho'];
+
+  // Combina todas as seleções em uma lista com o formato desejado
+  const categories = [
+    ...selectedDrinks.map((item, index) => ({ categoryType: 3, category: drinks.indexOf(item) + 1 })),
+    ...selectedFoods.map((item, index) => ({ categoryType: 2, category: foods.indexOf(item) + 1 })),
+    ...selectedMusics.map((item, index) => ({ categoryType: 1, category: musics.indexOf(item) + 1 }))
+  ];
+
+  console.log(categories)
 
   return (
     <div className={styles["containerBusca"]}>
@@ -64,27 +77,30 @@ function ResultadoBusca() {
         <div className={styles["option-box"]}>
           <Multiselect
             isObject={false}
-            onRemove={function noRefCheck() { }}
-            onSelect={function noRefCheck() { }}
+            onRemove={(selectedList, removedItem) => setSelectedDrinks(selectedList)}
+            onSelect={(selectedList, selectedItem) => setSelectedDrinks(selectedList)}
             options={drinks}
+            selectedValues={selectedDrinks}
           />
         </div>
 
         <div className={styles["option-box"]}>
           <Multiselect
             isObject={false}
-            onRemove={function noRefCheck() { }}
-            onSelect={function noRefCheck() { }}
+            onRemove={(selectedList, removedItem) => setSelectedFoods(selectedList)}
+            onSelect={(selectedList, selectedItem) => setSelectedFoods(selectedList)}
             options={foods}
+            selectedValues={selectedFoods}
           />
         </div>
 
         <div className={styles["option-box"]}>
           <Multiselect
             isObject={false}
-            onRemove={function noRefCheck() { }}
-            onSelect={function noRefCheck() { }}
+            onRemove={(selectedList, removedItem) => setSelectedMusics(selectedList)}
+            onSelect={(selectedList, selectedItem) => setSelectedMusics(selectedList)}
             options={musics}
+            selectedValues={selectedMusics}
           />
         </div>
       </div>
@@ -112,6 +128,11 @@ function ResultadoBusca() {
         ) : (
           <p></p>
         )}
+      </div>
+
+      <div>
+        <h3>Itens Selecionados</h3>
+        <pre>{JSON.stringify(categories, null, 2)}</pre>
       </div>
     </div>
   );
