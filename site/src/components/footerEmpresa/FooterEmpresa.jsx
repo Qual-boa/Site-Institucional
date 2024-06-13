@@ -2,10 +2,40 @@ import styles from "./FooterEmpresa.module.css";
 import LogoFooter from '../../assets/footerIcon.svg'
 import {FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import LogoFooter2024 from "../../assets/footer2024.svg"
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Footer() {
+    const navigate = useNavigate();
+
+    const quemSomosSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/quem-somos');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+
+    const scrollToSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/home-estabelecimento');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+
     return (
+        <section id="footerEmpresa">
         <footer className={styles.footer}>
             <div className={styles.logoContainer}>
                 <img src={LogoFooter} alt="logo" className={styles.logo} style={{ margin: '13px' }}/>
@@ -46,6 +76,8 @@ function Footer() {
                     <span>Todos os direitos reservados</span>
                 </div>
             </div>
-        </footer>)
+        </footer>
+        </section>
+        )
 }
 export default Footer

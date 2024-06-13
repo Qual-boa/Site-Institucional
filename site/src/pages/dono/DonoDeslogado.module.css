@@ -9,37 +9,60 @@ html {
     background-color: #fff;
 }
 
-.container {
-    background-image: url("../../assets/LoginFundo.svg");
+.container-fullpage {
+    background-image: url("../../assets/fundoGrande.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top left;
     width: 100%;
     display: flex;
-    height: 100vh;
-    overflow: hidden;
+    flex-direction: column;
+    height: 100%; 
     position: relative;
     align-items: center;
+    justify-content: center;
+
+}
+
+.container{
+    display: flex;
+    height: 100vh;
+    position: relative;
     justify-content: center;
 }
 
 .pesquisa {
     display: flex;
-    flex-direction: column;
     gap: 5px;
 }
+.container-inicial{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 18vh;
+    margin-left: 5vw;
+}
 
-.pesquisa-titulo, .pesquisa-interrogacao{
-    font-size: 80pt;
+.pesquisa-titulo{
+    font-size: 110pt;
     font-family: 'Modak', sans-serif;
 }
 
 .pesquisa-interrogacao{
-    font-size: 100pt;
+    font-size: 300pt;
+    transform: rotate(40deg);
+    margin-left: 3vw;
+    padding-bottom: 5vh;
+    font-family: 'Modak', sans-serif;
+    padding-bottom: 10px;
+
 }
 
 .cervejinha{
-    width: 20%;
+    position: absolute;
+    margin-top: 49.4vh;
+    margin-left: 70vw;
+    height: 18vh;
 }
 
 .pesquisa-cervejinha{
@@ -49,8 +72,14 @@ html {
     flex-direction: row;
 }
 
-.bold {
+.subtitulo {
     font-weight: 700;
+    position: absolute;
+    padding-bottom: 55vh;
+    font-size: 20pt;
+    display: flex;
+    margin-top: 82vh;
+    margin-right: 35vw;
 }
 
 .pesquisa-configure{
@@ -79,4 +108,264 @@ html {
     outline: none;
     padding: 10px;
     border-radius: 30px;
+}
+
+.container-input{
+    display: inline-block;
+    position: absolute;
+    margin-top: 68vh;
+    margin-right: 18vw;
+}
+
+.input-principal{
+    height: 8vh;
+    width: 50vw;
+    font-size: 20px;
+    padding-left: 2vh;
+    padding-right: 5vh;
+    border: none;
+    border-radius: 30px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    text-indent: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-principal::placeholder{
+    font-size: 20px;
+    padding-left: 2vh;
+}
+
+.botao-principal{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    border:none;
+    float:right;
+    padding: 5px 10px;
+    margin-right: 20px;
+    position: absolute;
+    left: 96%;
+    border-radius: 30px;
+    height: 8.4vh;
+    width: 23vw;
+    padding-left: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.display-logos{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.logos{
+    background-color: #fff;
+    width: 6vw;
+    height: 12vh;
+    border-radius: 100%;
+}
+
+.vantagens-containers{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 12vh;
+}
+
+.vantagens{
+    margin-top: 13vh;
+    width: 100%;
+}
+
+.vantagens h1{
+    margin-left: 20vh;
+}
+
+.linha{
+    width: 3vw;
+    height: 0.5vh;
+    background-color: #FEF1CE;
+    margin-left: 20vh;
+}
+
+.destaques{
+    margin-top: 13vh;
+    width: 100%;
+}
+
+.destaques h1{
+    margin-left: 20vh;
+}
+
+.destaques-box{
+    height: 70vh;
+    width: 80vw;
+    background-color: #FFFDF2;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.destaques-txt{
+    display: flex;
+    flex-direction: column;
+}
+
+.destaques-txt h2{
+    font-size: 5vh;
+    margin-left: 6vw;
+    margin-top: 10vh;
+}
+
+.destaques-txt span{
+    margin-left: 6vw;
+    margin-right: 6vw;
+    margin-top: 5vh;
+    font-size: 3vh;
+}
+
+.botao-visita{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    border:none;
+    border-radius: 30px;
+    height: 8.4vh;
+    width: 23vw;
+    font-size: 15px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 29%;
+    right: 23%;
+}
+
+.destaques-containers{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 8vh;
+}
+
+.destaques-containers img{
+    height: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.dica{
+    margin-top: 13vh;
+    width: 100%;
+}
+
+.retangulo-dica{
+    width: 70vw;
+    margin-bottom: 4vh;
+}
+
+.chopper-dica{
+    width: 26vw;
+    position: absolute;
+    right: 13%;
+    bottom: 0%;
+}
+
+.dica h1{
+    margin-left: 20vh;
+    margin-bottom: 2vh;
+}
+
+.dica-box{
+    height: 50vh;
+    width: 80vw;
+    background-color: #FFFDF2;
+    border-radius: 30px;
+    margin-bottom: 13vh;
+}
+
+.dica-containers{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 10vh;
+}
+
+.primeira-dica{
+    position: absolute;
+    top: 85%;
+    font-weight: bold;
+    font-size: 3vh;
+    margin-right: 20vw;
+
+}
+
+.segunda-dica{
+    position: absolute;
+    top: 90%;
+    font-weight: bold;
+    font-size: 3vh;
+    margin-right: 30vw;
+}
+
+.segunda-dica img{
+    width: 10vw;
+    margin-left: 1vw;
+}
+
+.botao-dica{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    border:none;
+    border-radius: 30px;
+    height: 8.4vh;
+    width: 23vw;
+    font-size: 15px;
+    position: absolute;
+    top: 93%;
+    margin-right: 25vw;
+    cursor: pointer;
+}
+
+.vantagens-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+    width: 20vw;
+    background-color: #FFFDF2;
+    border-radius: 30px;
+    font-size: 3vh;
+}
+
+.vantagens-box span{
+    margin-left: 3vh;
+    margin-right: 3vh;
+}
+
+.vantagens-box h3{
+    margin-top: 20vh;
+}
+
+.vantagens-box img{
+    width: 18vw;
+    position: absolute;
+    margin-bottom: 70px;
+    bottom: 58%;
+}
+
+.sessao{
+    width: 100%;
+    height: auto;
 }

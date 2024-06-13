@@ -55,7 +55,7 @@ const Overview = () => {
             <span className={styles.nameOverview}><b>Bem Vindo, Matheus!</b></span>
             <div className={styles.overview}>
                 <div className={styles.metric1}>
-                    <span><b>Média de clicks</b></span><br /> 
+                    <span><b>Média Nota</b></span><br /> 
                     <span><b>{metrics.rate}</b></span>
                 </div>
                 <div className={styles.metric2}>

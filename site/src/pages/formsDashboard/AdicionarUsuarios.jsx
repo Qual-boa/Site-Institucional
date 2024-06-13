@@ -45,7 +45,6 @@ function AdicionarUsuarios ({ closeModal }) {
                 <input type="text" id="newName" name="newName" placeholder="Digite Nome" aria-required="true" />
                 <label htmlFor="email">E-MAIL:</label>
                 <input type="email" id="email" name="email" placeholder="Digite E-mail" aria-required="true" />
-                <label htmlFor="role">CARGO:</label>
                 <label htmlFor="newPassword">SENHA:</label>
                 <input type="password" id="newPassword" name="newPassword" placeholder="Digite senha" aria-required="true" />
                 <label htmlFor="newPassword">SENHA NOVAMENTE:</label>
