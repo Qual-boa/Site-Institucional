@@ -25,7 +25,7 @@ export function CardLoginEmpresa() {
                     </div>
                     <button type="submit" className={styles["botao-entrar-usuario"]}>ENTRAR</button>
                     <div className={styles["loginExistente"]}>
-                        Não possui Login?<Link to="/cadastro-usuario" className={styles.entrar}>Cadastrar</Link>
+                        Não possui Login?<Link to="/dashboard" className={styles.entrar}>Cadastrar</Link>
                     </div>
                 </form>
             </div>

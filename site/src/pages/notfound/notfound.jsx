@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./notfound.module.css";
-import logo from "../../assets/QualABoa.svg";
+import logo from "../../assets/logoBranca.svg";
 import NavBar from "../../components/navbar/NavBar";
 import imgNotFound from "../../assets/404.svg";
 import Footer from "../../components/footer/Footer";

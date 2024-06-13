@@ -5,9 +5,19 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Charts from '../../components/charts/Charts';
 import styles from './Dashboard.module.css';
 import Footer from "../../components/footerEmpresa/FooterEmpresa";
-import logo from "../../assets/QualABoa.svg"
+import logo from "../../assets/logoBranca.svg";
 
 const Dashboard = () => {
+    // Função para formatar a data
+    const formatDate = (date) => {
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        return date.toLocaleDateString('pt-BR', options);
+    };
+
+    // Obtém a data atual e a formata
+    const today = new Date();
+    const formattedDate = formatDate(today);
+
     return (
         <>
             <Navbar logoInicio={logo}/>
@@ -16,7 +26,7 @@ const Dashboard = () => {
                     <Sidebar />
                     <div className={styles.main}>
                         <header className={styles.header}>
-                            <span>10 de junho de 2024</span>
+                            <span>{formattedDate}</span>
                         </header>
                         <Overview />
                         <Charts/>

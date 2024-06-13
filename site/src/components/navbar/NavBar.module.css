@@ -1,8 +1,8 @@
 .navbar {
-    top: 0;
-    left: 0;
+    top: 20px;
+    left: 10px;
     height: 6vh;
-    width: 100vw;
+    width: 96vw;
     z-index: 999;
     display: flex;
     max-height: 8vh;
@@ -10,15 +10,13 @@
     padding: 0.6rem;
     align-items: center;
     justify-content: space-between;
-    background-color: transparent;
-    position: fixed;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.navbar.scrolled {
     background-color: black;
     color: white;
+    position: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 30px;
 }
+
 
 .navbar span {
     font-size: 14px;
@@ -44,6 +42,7 @@
     text-indent: 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    background-color: white;
 }
 
 .perfil-user {

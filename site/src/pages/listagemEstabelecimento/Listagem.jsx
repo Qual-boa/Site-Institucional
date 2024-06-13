@@ -1,6 +1,7 @@
 import styles from "./Listagem.module.css";
 import "../../global.css";
-import logo from "../../assets/QualABoa.svg";
+import NavbarEmpresa from "../../components/navbarEmpresa/NavbarEmpresa";
+import logo from "../../assets/logoBranca.svg";
 import ResultadoBusca  from "../../components/resultadoBusca/ResultadoBusca";
 import Navbar from '../../components/navbar/NavBar'
 import Footer from "../../components/footer/Footer";
