@@ -116,7 +116,7 @@ function Editar() {
         }
     };
     const handleTimeChange = (event, timeType) => {
-        const [hour, minute] = event.target.value.split(':').map(Number);
+        const [hour] = event.target.value.split(':').map(Number);
         if (timeType === "openAt") {
             setOpenAt({ hour, minute: 0 });
         } else {
@@ -181,65 +181,23 @@ function Editar() {
             ...selectedFoods.map((item) => ({ categoryType: 2, category: foods.indexOf(item) + 1 })),
             ...selectedMusics.map((item) => ({ categoryType: 1, category: musics.indexOf(item) + 1 }))
         ];
-        
-        try {
-            api.get(`/address/establishment/${id}`).then(async (response) => {
-                const data  = response.data[0];
-                const addressId = data.id;
-                try {
-                    const response = await fetch("https://api-qualaboa.azurewebsites.net/address/" + addressId, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                        body: JSON.stringify({
-                            street: street,
-                            number: number,
-                            postalCode: postalCode,
-                            neighborhood: neighborhood,
-                            complement: complement,
-                            state: state,
-                            city: city
-                        })
-                    });
-    
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-    
-                    const data2 = await response.json();
-                    console.log('Sucesso:', data2);
-                } catch (error) {
-                    console.error('Erro:', error);
-                }
-            })
-        
-        api.get(`/establishments/${id}`).then(async (response) => {
-            
+        api.get(`/address/establishment/${id}`).then(async (response) => {
+            const data  = response.data[0];
+            const addressId = data.id;
             try {
-                const response = await fetch("https://api-qualaboa.azurewebsites.net/informations/establishment/", {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                const response = await fetch("https://api-qualaboa.azurewebsites.net/address/" + addressId, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                     body: JSON.stringify({
-                        hasParking: estacionamento,
-                        hasAccessibility: acessibilidade,
-                        hasTv: tv,
-                        hasWifi: wifi,
-                        openAt: {
-                            hour: parseInt(openAt.match(/^(\d{1,2}):(\d{2})$/)[1], 10),
-                            minute: parseInt(openAt.match(/^(\d{1,2}):(\d{2})$/)[2], 10)
-                        },
-                        closeAt: {
-                            hour: parseInt(closeAt.match(/^(\d{1,2}):(\d{2})$/)[1], 10),
-                            minute: parseInt(closeAt.match(/^(\d{1,2}):(\d{2})$/)[2], 10)
-                        },
-                        phone: phone,
-                        facebookUrl: facebookUrl,
-                        instagramUrl: instagramUrl,
-                        setTelegramUrl: setTelegramUrl,
-                        establishmentId: id
+                        street: street,
+                        number: number,
+                        postalCode: postalCode,
+                        neighborhood: neighborhood,
+                        complement: complement,
+                        state: state,
+                        city: city
                     })
                 });
 
@@ -247,20 +205,39 @@ function Editar() {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
 
-                const data4 = await response.json();
-                console.log('Sucesso:', data4);
+                const data2 = await response.json();
+                console.log('Sucesso:', data2);
             } catch (error) {
                 console.error('Erro:', error);
-            }
-        })
-
+            }
+        });
+        await fetch("https://api-qualaboa.azurewebsites.net/informations/establishment", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                hasParking: estacionamento,
+                hasAccessibility: acessibilidade,
+                hasTv: tv,
+                hasWifi: wifi,
+                openAt: {
+                    hour: 9,
+                    minute: 0
+                },
+                closeAt: {
+                    hour: 23,
+                    minute: 0
+                },
+                phone: phone,
+                facebookUrl: facebookUrl,
+                instagramUrl: instagramUrl,
+                setTelegramUrl: setTelegramUrl,
+                establishmentId: id
+            })
+        });
         toast.success('Dados editados com sucesso!');
-        navigate("/estabelecimento-usuario")
-    } catch (error) {
-        toast.error('Ocorreu um erro ao salvar os dados. Por favor, tente novamente.');
-    }
-
-        
+        navigate("/estabelecimento-usuario");
     };
 
     const handleCancel = () => {
