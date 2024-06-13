@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import "../../global.css";
 import api from "../../api";
 import apiBlob from "../../api-blob";
 import styles from "./ResultadoBusca.module.css";
 import Multiselect from 'multiselect-react-dropdown';
+import { useSearchParams } from 'react-router-dom';
 
 function ResultadoBusca() {
 
   const [resultados, setResultados] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para armazenar o valor do input de busca
+  const [searchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(''); // Estado para armazenar o valor do input de busca
   const [selectedDrinks, setSelectedDrinks] = useState([]);
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [selectedMusics, setSelectedMusics] = useState([]);
 
- 
+  useEffect(() => {
+    const term = searchParams.get('searchTerm');
+    if (term) {
+      setSearchTerm(term);
+    }
+  }, [searchParams]);
 
   const buscarDados = () => {
     api.post("/establishments/listbyfilters", {
@@ -22,6 +29,7 @@ function ResultadoBusca() {
       name: searchTerm,
     })
       .then((response) => {
+        let completeResults; 
         const establishments = response.data;
         const imageRequests = establishments.map(establishment =>
           apiBlob.get(`/establishments/${establishment.id}`).then((response) => {
@@ -37,7 +45,7 @@ function ResultadoBusca() {
 
         Promise.all(imageRequests)
           .then(completeResults => { 
-            setResultados(completeResults);
+            completeResults = completeResults
             toast.success("Dados carregados com sucesso!");
           })
           .catch(() => {
@@ -52,6 +60,10 @@ function ResultadoBusca() {
   const handleSubmit = (evento) => {
     evento.preventDefault(); // Previne o comportamento padrão do formulário
     buscarDados(); // Faz a busca com o termo atualizado
+  };
+
+  const setarValoresInput = (e, setter) => {
+    setter(e.target.value);
   };
 
   const musics = ['Rock', 'Sertanejo', 'Indie', 'Rap', 'Funk', 'Metal'];
@@ -69,8 +81,14 @@ function ResultadoBusca() {
       <div className={styles["search-bar"]}>
         <h3>PROCURE SEU ROLÊ</h3>
         <div className={styles["container-inpu-filtro"]}>
-          <input className={styles["input-secundaria"]} type="text" placeholder="Pesquise a sua boa"/>
-          <button onClick={handleSubmit} className={styles["botao-secundario"]}>PESQUISAR</button>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setarValoresInput(e, setSearchTerm)}
+          placeholder="Pesquise sua boa"
+          className={styles["search-input"]}
+        />
+        <button onClick={handleSubmit} className={styles["search-button"]}>Pesquisar</button>
          </div>
       </div>
 

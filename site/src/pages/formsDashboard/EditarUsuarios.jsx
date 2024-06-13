@@ -11,7 +11,6 @@ function EditarUsuarios({ closeModal }) {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [senhaConfirmacao, setSenhaConfirmacao] = useState("");
-    const establishmentId = sessionStorage.getItem("establishmentId");
     const userId = sessionStorage.getItem("userId");
 
     const fetchUsuario = useCallback(async () => {
