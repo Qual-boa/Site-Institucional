@@ -263,17 +263,7 @@ function EstabelecimentoUsuario() {
                 setCurrentIndex(currentIndex + 1);
             }
         };
-        const formatTime = (time) => {
-            if (!time) return '';
-          
-            const { hour, minute } = time;
-            const formattedHour = hour.toString().padStart(2, '0');
-            const formattedMinute = minute.toString().padStart(2, '0');
-    
-          
-            return `${formattedHour}:${formattedMinute}`;
-          };
-        
+              
 
         return (
             <div className={styles.avaliacao}>
@@ -411,12 +401,12 @@ function EstabelecimentoUsuario() {
                             </div>
                         </div>
                         <div className={styles["main-content"]}>
-                            <div className="breadcrumbs">
+                            {/* <div className="breadcrumbs">
                                 <ul>
                                     <li><a>HOME</a></li>
                                     <li><a>ESTABELECIMENTO</a></li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                         <div className={styles.locationDistance}>
                             <p>{neighborhood}, {city}</p> {/* Ajuste a localização e distância conforme necessário */}
@@ -435,28 +425,6 @@ function EstabelecimentoUsuario() {
                         <div className={styles.divisor2}>__________</div>
                         <div className={styles.flexContainer2}>
                             <Avaliacao />
-                        </div>
-                        <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
-                        <div className={styles.divisor2}>__________</div>
-                        <div className={styles.flexContainer2}>
-                            <div className={styles.secoes}>ATRAÇÕES E NOVIDADES</div>
-                        </div>
-                        <div className={styles.cardContainer2}>
-                            <CardAtracao
-                                /* foto={} */
-                                titulo="SHOW AO VIVO"
-                                descricao="A BANDA VIVA virá alegrar nossa noite do dia 15/09/24 a partir das 18:00 horas, entrada gratuita!"
-                            />
-                            <CardAtracao
-                                /* foto={} */
-                                titulo="SHOW AO VIVO"
-                                descricao="A BANDA VIVA virá alegrar nossa noite do dia 15/09/24 a partir das 18:00 horas, entrada gratuita!"
-                            />
-                            <CardAtracao
-                                /* foto={} */
-                                titulo="SHOW AO VIVO"
-                                descricao="A BANDA VIVA virá alegrar nossa noite do dia 15/09/24 a partir das 18:00 horas, entrada gratuita!"
-                            />
                         </div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>
