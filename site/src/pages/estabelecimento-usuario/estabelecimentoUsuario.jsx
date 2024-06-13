@@ -83,10 +83,10 @@ const containerStyle = {
     );
   }
 
-function EstabelecimentoUsuario() {
+function EstabelecimentoUsuario({ establishmentId }) {
     const navigate = useNavigate();
     const searchParams = useSearchParams();
-    const  id  = searchParams.get('establishmentId')
+    const id = establishmentId;
     const [fantasyName, setFantasyName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");

@@ -13,7 +13,7 @@ const drinks = ['Cerveja', 'Vinho', 'Chopp', 'Whisky', 'Gim', 'Caipirinha', 'Dri
 
 function Editar() {
     const navigate = useNavigate();
-    const id = "123e4567-e89b-12d3-a456-426614174000";
+    const id = sessionStorage.getItem("empresaId");
     const [selectedProfileFile, setSelectedProfileFile] = useState(null);
     const [selectedBackgroundFile, setSelectedBackgroundFile] = useState(null);
     const [selectedMenuFile, setSelectedMenuFile] = useState(null);

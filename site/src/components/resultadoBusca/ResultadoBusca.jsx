@@ -131,7 +131,7 @@ function ResultadoBusca() {
                   {resultado.information.hasAccessibility && <span>Acessibilidade </span>}
                   {resultado.information.hasTv && <span>TV </span>}
                   {resultado.information.hasWifi && <span>Wi-Fi </span>} </div>
-                <Link to={"/estabelecimento-usuario"} className={styles.visitButton}>VISITAR</Link>
+                <Link to={"/estabelecimento-usuario"} establishmentId={resultado.id} className={styles.visitButton}>VISITAR</Link>
               </div>
             </div>
           ))
