@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import "../../global.css";
 import styles from "./edicaoEmpresa.module.css";
 import NavBarQS from "../quemSomos/NavBarQS/navBarQS";

@@ -9,7 +9,7 @@ import Multiselect from 'multiselect-react-dropdown';
 function ResultadoBusca() {
 
   const [resultados, setResultados] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para armazenar o valor do input de busca
+  const [searchTerm] = useState(""); // Estado para armazenar o valor do input de busca
   const [selectedDrinks, setSelectedDrinks] = useState([]);
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [selectedMusics, setSelectedMusics] = useState([]);
