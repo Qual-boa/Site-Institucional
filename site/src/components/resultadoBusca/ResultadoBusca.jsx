@@ -132,7 +132,7 @@ function ResultadoBusca() {
         {resultados.length > 0 ? (
           resultados.map((resultado, index) => (
             <div key={index} className={styles.card}>
-              <div className={styles.imageContainer}>
+              <div className={styles.imageContainer} style={{ backgroundImage: `url(${resultado.imageUrl})` }}>
                 <img src={resultado.imageUrl} alt={resultado.name} className={styles.image} />
               </div>
               <div className={styles.details}> 
