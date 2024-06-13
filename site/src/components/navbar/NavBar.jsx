@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './NavBar.module.css';
-import perfil from '../../assets/perfilUser.svg';
+import perfil from '../../assets/perfilBranco.svg';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../searchBar/SearchBar';
 import Modal from '../modalGenerico/ModalGenerico';

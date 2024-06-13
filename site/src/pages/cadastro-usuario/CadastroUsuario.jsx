@@ -1,6 +1,6 @@
 import styles from "./CadastroUsuario.module.css";
 import "../../global.css";
-import logo from "../../assets/QualABoa.svg";
+import logo from "../../assets/logoBranca.svg";
 import NavBar from "../../components/navbar/NavBar";
 import CardCadastro from "../../components/cardCadastro/CardCadastro";
 import Footer from "../../components/footer/Footer";

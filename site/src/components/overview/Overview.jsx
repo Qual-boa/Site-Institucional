@@ -52,7 +52,7 @@ const Overview = () => {
 
     return (
         <>
-            <span className={styles.nameOverview}><b>Bem Vindo, Matheus!</b></span>
+            <span className={styles.nameOverview}><b>Bem Vindo!</b></span>
             <div className={styles.overview}>
                 <div className={styles.metric1}>
                     <span><b>Média Nota</b></span><br /> 

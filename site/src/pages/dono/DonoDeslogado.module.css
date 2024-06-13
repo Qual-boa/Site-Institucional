@@ -35,12 +35,13 @@ html {
     display: flex;
     gap: 5px;
 }
+
 .container-inicial{
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding-bottom: 18vh;
-    margin-left: 5vw;
+    /* margin-left: 25vw; */
 }
 
 .pesquisa-titulo{
@@ -61,7 +62,7 @@ html {
 .cervejinha{
     position: absolute;
     margin-top: 49.4vh;
-    margin-left: 70vw;
+    margin-left: 63vw;
     height: 18vh;
 }
 

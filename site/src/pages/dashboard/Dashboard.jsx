@@ -5,7 +5,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Charts from '../../components/charts/Charts';
 import styles from './Dashboard.module.css';
 import Footer from "../../components/footerEmpresa/FooterEmpresa";
-import logo from "../../assets/QualABoa.svg"
+import logo from "../../assets/logoBranca.svg"
 
 const Dashboard = () => {
     return (
