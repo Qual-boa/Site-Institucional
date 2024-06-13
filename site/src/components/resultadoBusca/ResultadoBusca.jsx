@@ -86,7 +86,7 @@ function ResultadoBusca() {
         <h3>PROCURE SEU ROLÊ</h3>
         <div className={styles["container-inpu-filtro"]}>
           <input className={styles["input-secundaria"]} type="text" placeholder="Pesquise a sua boa"/>
-          <button className={styles["botao-secundario"]} type="cadastrar">PESQUISAR</button>
+          <button onClick={handleSubmit} className={styles["botao-secundario"]}>PESQUISAR</button>
          </div>
       </div>
 

@@ -81,26 +81,6 @@ Estilos para card .card {
   /* Ajusta o espaço entre as linhas de botões */
 
 }
-/* 
-.suggestion-button {
-  padding: 3px 12px;
-  border: 1px solid #000;
-  border-radius: 8px;
-  cursor: pointer;  
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  background-color: transparent;
-} */
-/* 
-.suggestion-button:hover {
-  border: 1px solid #fff;
-  background-color: #000;
-  color: #fff;
-  transition: ease-in-out 0.3s;
-} */
-
-
 
 .containerJsons {
   max-height: calc(900px - 600px);/* Ajuste o valor de 250px conforme necessário */
@@ -315,44 +295,4 @@ Estilos para card .card {
     font-size: 14px;
   }
  
-  /* ResultadoBusca.module.css */
-
-/* ResultadoBusca.module.css */
-/* 
-.option-container {
-  display: flex;
-  gap: 10px; } */
-/* 
-.option-box {
-  flex: 1; 
-  } */
-/* 
-.multiselect-container {
-  background-color: white !important;
-  border-radius: 8px !important;
-  border: 1px solid #ccc; 
-  padding: 5px; 
-} */
-
-/* .multiselect-container .option {
-  background-color: white;
-  border: none;
-  border-radius: 0 25px 25px 0;
-  padding: 5px;
-  margin-bottom: 5px;
-} */
-
-/* .multiselect-container .option:hover {
-  background-color: #f0f0f0;
-} */
-
-/* .multiselect-container .selected-item {
-  background-color: #e6e6e6;
-  border-radius: 8px;
-} */
-
-/* .multiselect-container .option-checkbox {
-  margin-right: 5px;
-} */
-
 }
