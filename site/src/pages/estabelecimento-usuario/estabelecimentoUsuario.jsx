@@ -211,9 +211,9 @@ function EstabelecimentoUsuario({ establishmentId }) {
         const [selectedRating, setSelectedRating] = useState(0);
         const [comment, setComment] = useState('');
         const [avaliacoes, setAvaliacoes] = useState([
-            { nome: 'Marcos', comentario: 'Booommm!!!', data: '20/05/2024', rating: 5 },
-            { nome: 'Cláudia', comentario: 'Muito bom!!!!', data: '12/05/2024', rating: 5 },
-            { nome: 'Rodrigo', comentario: 'Bom demais!', data: '21/02/2024', rating: 5 },
+            // { nome: 'Marcos', comentario: 'Booommm!!!', data: '20/05/2024', rating: 5 },
+            // { nome: 'Cláudia', comentario: 'Muito bom!!!!', data: '12/05/2024', rating: 5 },
+            // { nome: 'Rodrigo', comentario: 'Bom demais!', data: '21/02/2024', rating: 5 },
         ]);
         const [currentIndex, setCurrentIndex] = useState(0);
         useEffect(() => {

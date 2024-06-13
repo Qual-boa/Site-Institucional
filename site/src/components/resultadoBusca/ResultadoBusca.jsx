@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import "../../global.css";
 import api from "../../api";
 import apiBlob from "../../api-blob";
 import styles from "./ResultadoBusca.module.css";
 import Multiselect from 'multiselect-react-dropdown';
-import { Link } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
 function ResultadoBusca() {
 
   const [resultados, setResultados] = useState([]);
-  const [searchTerm] = useState(""); // Estado para armazenar o valor do input de busca
+  const [searchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedDrinks, setSelectedDrinks] = useState([]);
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [selectedMusics, setSelectedMusics] = useState([]);
 
- 
+  useEffect(() => {
+    const term = searchParams.get('searchTerm');
+    if (term) {
+      setSearchTerm(term);
+    }
+  }, [searchParams]);
 
   const buscarDados = () => {
     api.post("/establishments/listbyfilters", {
@@ -25,15 +31,21 @@ function ResultadoBusca() {
       .then((response) => {
         const establishments = response.data;
         const imageRequests = establishments.map(establishment =>
-          apiBlob.get(`/establishments/${establishment.id}`).then((response) => {
-            const { data } = response;
-            const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
-            
-            return {
-              ...establishment,
-              imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
-            };
-          })
+          apiBlob.get(`/establishments/${establishment.id}`)
+            .then((response) => {
+              const { data } = response;
+              const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
+              return {
+                ...establishment,
+                imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
+              };
+            })
+            .catch(() => {
+              return {
+                ...establishment,
+                imageUrl: 'defaultLogoImage.jpg'
+              };
+            })
         );
 
         Promise.all(imageRequests)
@@ -42,7 +54,7 @@ function ResultadoBusca() {
             toast.success("Dados carregados com sucesso!");
           })
           .catch(() => {
-            toast.error("Ocorreu um erro ao carregar as imagens, por favor, tente novamente.");
+            toast.error("Ocorreu um erro ao carregar algumas imagens, mas os dados foram carregados.");
           });
       })
       .catch(() => {
@@ -51,8 +63,12 @@ function ResultadoBusca() {
   };
 
   const handleSubmit = (evento) => {
-    evento.preventDefault(); // Previne o comportamento padrão do formulário
-    buscarDados(); // Faz a busca com o termo atualizado
+    evento.preventDefault();
+    buscarDados();
+  };
+
+  const setarValoresInput = (e, setter) => {
+    setter(e.target.value);
   };
 
   const musics = ['Rock', 'Sertanejo', 'Indie', 'Rap', 'Funk', 'Metal'];
@@ -70,9 +86,15 @@ function ResultadoBusca() {
       <div className={styles["search-bar"]}>
         <h3>PROCURE SEU ROLÊ</h3>
         <div className={styles["container-inpu-filtro"]}>
-          <input className={styles["input-secundaria"]} type="text" placeholder="Pesquise a sua boa"/>
-          <button onClick={handleSubmit} className={styles["botao-secundario"]}>PESQUISAR</button>
-         </div>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setarValoresInput(e, setSearchTerm)}
+            placeholder="Pesquise sua boa"
+            className={styles["search-input"]}
+          />
+          <button onClick={handleSubmit} className={styles["search-button"]}>Pesquisar</button>
+        </div>
       </div>
 
       <div className={styles["option-container"]}>
@@ -116,27 +138,28 @@ function ResultadoBusca() {
       <div className={styles.containerJsons}>
         {resultados.length > 0 ? (
           resultados.map((resultado, index) => (
-            <div key={index} className={styles.card}>
+            <Link to={`/establishment/${resultado.id}`} key={index} className={styles.card}>
               <div className={styles.imageContainer}>
                 <img src={resultado.imageUrl} alt={resultado.name} className={styles.image} />
               </div>
-              <div className={styles.details}> 
+              <div className={styles.details}>
                 <div className={styles.header}>
                   <h2 className={styles.name}>{resultado.fantasyName}</h2>
                   <div className={styles.location}>{resultado.location}</div>
                 </div>
                 <div className={styles.description}>{resultado.description}</div>
                 <div className={styles.additionalInfo}>
-                {resultado.information.hasParking && <span>Estacionamento </span>}
-                  {resultado.information.hasAccessibility && <span>Acessibilidade </span>}
-                  {resultado.information.hasTv && <span>TV </span>}
-                  {resultado.information.hasWifi && <span>Wi-Fi </span>} </div>
+                  {resultado.information?.hasParking && <span>Estacionamento </span>}
+                  {resultado.information?.hasAccessibility && <span>Acessibilidade </span>}
+                  {resultado.information?.hasTv && <span>TV </span>}
+                  {resultado.information?.hasWifi && <span>Wi-Fi </span>}
+                </div>
                 <Link to={"/estabelecimento-usuario"} establishmentId={resultado.id} className={styles.visitButton}>VISITAR</Link>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
-          <p></p>
+          <p>Nenhum resultado encontrado.</p>
         )}
       </div>
     </div>
