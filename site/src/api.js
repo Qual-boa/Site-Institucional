@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://api-qualaboa.azurewebsites.net"
+    baseURL: "https://api-qualaboa.azurewebsites.net" //-http://localhost:8080
 })
 
 export default api;

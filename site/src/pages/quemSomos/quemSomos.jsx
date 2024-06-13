@@ -11,29 +11,63 @@ import Pedro from "../../assets/Pedro.svg"
 import Samuel from "../../assets/Samuca.svg"
 import Vinicius from "../../assets/Vinicius.svg"
 function QuemSomos(){
+    const images = {
+        "CARLOS BENECKE": Carlos,
+        "DANIELLE ROMANO": Danielle,
+        "NICOLAS PRATES": Nicolas,
+        "PEDRO PRADO": Pedro,
+        "SAMUEL LUCENA": Samuel,
+        "VINICIUS COSTA": Vinicius
+    };
     
-    return(
+    const githubUsernames = {
+        "CARLOS BENECKE": "CarlosHBenecke",
+        "DANIELLE ROMANO": "DanielleRomano",
+        "NICOLAS PRATES": "nicolas-prates",
+        "PEDRO PRADO": "PedroPradoCho",
+        "SAMUEL LUCENA": "samlucena",
+        "VINICIUS COSTA": "Vinicius-Costa23"
+    };
+    
+    const integrantes = [
+        ["CARLOS BENECKE", "DANIELLE ROMANO", "NICOLAS PRATES"],
+        ["PEDRO PRADO", "SAMUEL LUCENA", "VINICIUS COSTA"]
+    ];
+    
+    return (
         <>
-        <Helmet>
+            <Helmet>
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modak&display=swap" />
             </Helmet>
-        <NavBarQS logoQS = {logoQS} />
+            <NavBarQS logoQS={logoQS} />
             <div className={styles["container"]}>
-                <section className={styles["sessao"]} id="quem-somos">
-                    <div className={styles["background-imageQuemSomos"]}>
-                        <div className={styles["containerQS"]}>
-                            <span className={styles["titulo"]}>QUEM SOMOS?</span>
-                            <span className={styles["texto"]}>Nos somos a empresa QUAL A BOA?, do ramo de tecnologia e formada por seis desenvolvedores e analistas responsáveis pela criação, idealização e desenvolvimento do  <span className={styles["modak-words"]}>Qual a boa?</span>, projeto que leva o nome da empresa.</span>
-                            <span className={styles["conheca"]}>CONHEÇA NOSSOS INTEGRANTES!</span>
-                            <div className={styles["avatares"]}><a href="https://github.com/CarlosHBenecke" target="_blank" rel="noreferrer"><img src={Carlos} alt="avatar Carlos" /></a><a href="https://github.com/DanielleRomano" target="_blank" rel="noreferrer"><img src={Danielle} alt="avatar Danielle" /></a><a href="https://github.com/nicolas-prates" target="_blank" rel="noreferrer"><img src={Nicolas} alt="avatar Nicolas" /></a></div>
-                            <div className={styles["avatares-nomes"]}><span className={styles["nomes"]}>CARLOS BENECKE</span><span className={styles["nomes"]}>DANIELLE ROMANO</span><span className={styles["nomes"]}>NICOLAS PRATES&nbsp;&nbsp;</span></div>
-                            <div className={styles["avatares"]}><a href="https://github.com/PedroPradoCho" target="_blank" rel="noreferrer"><img src={Pedro} alt="avatar Pedro" /></a><a href="https://github.com/samlucena" target="_blank" rel="noreferrer"><img src={Samuel} alt="avatar Samuel" /></a><a href="https://github.com/Vinicius-Costa23" target="_blank" rel="noreferrer"><img src={Vinicius} alt="avatar Vinicius" /></a></div>
-                            <div className={styles["avatares-nomes"]}><span className={styles["nomes"]}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PEDRO PRADO</span><span className={styles["nomes"]}>SAMUEL LUCENA</span><span className={styles["nomes"]}>VINICIUS COSTA&nbsp;&nbsp;&nbsp;</span></div>                    
-                        </div> 
+                <div className={styles["background-imageQuemSomos"]}>
+                    <div className={styles["containerQS"]}>
+                        <span className={styles["titulo"]}>QUEM SOMOS?</span>
+                        <span className={styles["texto"]}>
+                            Nos somos a empresa QUAL A BOA?, do ramo de tecnologia e formada por seis desenvolvedores e analistas responsáveis pela criação, idealização e desenvolvimento do <span className={styles["modak-words"]}>Qual a boa?</span>, projeto que leva o nome da empresa.
+                        </span>
+                        <span className={styles["conheca"]}>CONHEÇA NOSSOS INTEGRANTES!</span>
+                        {integrantes.map((row, rowIndex) => (
+                            <div key={rowIndex}>
+                                <div className={styles["avatares"]}>
+                                    {row.map((name, colIndex) => (
+                                        <a key={colIndex} href={`https://github.com/${githubUsernames[name]}`} target="_blank" rel="noreferrer">
+                                            <img src={images[name]} alt={`avatar ${name}`} />
+                                        </a>
+                                    ))}
+                                </div>
+                                <div className={styles["avatares-nomes"]}>
+                                    {row.map((name, colIndex) => (
+                                        <span key={colIndex} className={styles["nomes"]}>{name}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                </section>  
-            </div> 
-        <Footer />       
+                </div>
+            </div>
+            <Footer />
         </>
     );
 }
