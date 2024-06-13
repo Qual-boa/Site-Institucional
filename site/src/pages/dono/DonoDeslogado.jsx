@@ -51,14 +51,6 @@ function Dono() {
                             <button className={styles["botao-principal"]} type="cadastrar">CADASTRAR</button>
                         </div>
                     </div>
-                    <div className={styles["display-logos"]}>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                    </div>
                 </section>
                 <section className={styles["sessao"]} id="vantagens">
                     <div className={styles["vantagens"]} id="vantagens">
