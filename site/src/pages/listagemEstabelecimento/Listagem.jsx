@@ -4,10 +4,8 @@ import NavbarEmpresa from "../../components/navbarEmpresa/NavbarEmpresa";
 import logo from "../../assets/QualABoa.svg";
 import ResultadoBusca  from "../../components/resultadoBusca/ResultadoBusca";
 import FooterEmpresa from "../../components/footerEmpresa/FooterEmpresa";
-import { useState } from "react";
 
 function Listagem(props){
-    const [state, setState] = useState(initialState);
     const { nome, idade, cidade } = props.location.state.data;
 
     return(
