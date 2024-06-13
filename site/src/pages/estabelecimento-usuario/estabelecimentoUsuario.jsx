@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import "../../global.css";
@@ -82,7 +84,9 @@ const containerStyle = {
   }
 
 function EstabelecimentoUsuario() {
-    const  id  = "123e4567-e89b-12d3-a456-426614174000"; 
+    const navigate = useNavigate();
+    const searchParams = useSearchParams();
+    const  id  = searchParams.get('establishmentId')
     const [fantasyName, setFantasyName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");

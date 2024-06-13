@@ -1,4 +1,3 @@
-
 import api from "../../api";
 import apiBlob from "../../api-blob";
 import { toast } from 'react-toastify';
@@ -7,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import InputMask from 'react-input-mask';
 import axios from "axios";
-
 
 const musics = ['Rock', 'Sertanejo', 'Indie', 'Rap', 'Funk', 'Metal'];
 const foods = ['Brasileira', 'Boteco', 'Japonesa', 'Mexicana', 'Churrasco', 'Hamburguer'];
@@ -85,19 +83,20 @@ function Editar() {
             setAcessibilidade(acessibilidade);
             setEstacionamento(estacionamento);
         })
-            .catch((error) => {
-                console.log("Erro ao buscar os detalhes do estabelecimento:", error);
-            })
+        .catch((error) => {
+            console.log("Erro ao buscar os detalhes do estabelecimento:", error);
+        })
     }, [id]);
+
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
     };
+
     const handlePostalCodeChange = async (event) => {
         const cep = event.target.value.replace('-', ''); // Remover o hífen
         setPostalCode(cep);
         if (cep.length === 8) {
             try {
-                console.log("try if")
                 const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
                 const data = response.data;
                 if (!data.erro) {
@@ -113,6 +112,7 @@ function Editar() {
             }
         }
     };
+
     const handleTimeChange = (event, timeType) => {
         const [hour] = event.target.value.split(':').map(Number);
         if (timeType === "openAt") {
@@ -121,10 +121,11 @@ function Editar() {
             setCloseAt({ hour, minute: 0 });
         }
     };
-    
+
     const handleCheckboxChange = (event, setStateFunction) => {
         setStateFunction(event.target.checked);
     };
+
     const handleCategoryChange = (event, setStateFunction, currentSelection) => {
         const { value, checked } = event.target;
         if (checked) {
@@ -133,6 +134,7 @@ function Editar() {
             setStateFunction(currentSelection.filter(item => item !== value));
         }
     };
+
     const handleProfileFileChange = (event) => {
         setSelectedProfileFile(event.target.files[0]);
     };
@@ -140,6 +142,7 @@ function Editar() {
     const handleBackgroundFileChange = (event) => {
         setSelectedBackgroundFile(event.target.files[0]);
     };
+
     const handleGalleryFilesChange = (event) => {
         setSelectedGalleryFiles(event.target.files[0]);
     };
@@ -160,7 +163,7 @@ function Editar() {
 
         try {
             setUploading(true);
-            await apiBlob.post(`/establishments/${"123e4567-e89b-12d3-a456-426614174000"}/upload`, formData, {
+            await apiBlob.post(`/establishments/${id}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -174,68 +177,64 @@ function Editar() {
     };
 
     const handleSave = async () => {
-        api.get(`/address/establishment/${id}`).then(async (response) => {
-            const data  = response.data[0];
-            const addressId = data.id;
-            try {
-                const response = await fetch("https://api-qualaboa.azurewebsites.net/address/" + addressId, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                    body: JSON.stringify({
-                        street: street,
-                        number: number,
-                        postalCode: postalCode,
-                        neighborhood: neighborhood,
-                        complement: complement,
-                        state: state,
-                        city: city
-                    })
-                });
+        const categories = [
+            ...selectedDrinks.map((item, index) => ({ categoryType: 3, category: index + 1 })),
+            ...selectedFoods.map((item, index) => ({ categoryType: 2, category: index + 1 })),
+            ...selectedMusics.map((item, index) => ({ categoryType: 1, category: index + 1 }))
+        ];
+        console.log(categories);
+        // Update address
+        try {
+            const addressResponse = await api.get(`/address/establishment/${id}`);
+            const addressId = addressResponse.data[0].id;
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
+            await api.put(`/address/${addressId}`, {
+                street,
+                number,
+                postalCode,
+                neighborhood,
+                complement,
+                state,
+                city
+            });
+        } catch (error) {
+            console.error('Erro ao atualizar endereço:', error);
+        }
 
-                const data2 = await response.json();
-                console.log('Sucesso:', data2);
-            } catch (error) {
-                console.error('Erro:', error);
-            }
-        });
-        await fetch("https://api-qualaboa.azurewebsites.net/informations/establishment", {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+        // Update establishment information
+        try {
+            await api.put('/informations/establishment', {
                 hasParking: estacionamento,
                 hasAccessibility: acessibilidade,
                 hasTv: tv,
                 hasWifi: wifi,
-                openAt: {
-                    hour: 9,
-                    minute: 0
-                },
-                closeAt: {
-                    hour: 23,
-                    minute: 0
-                },
-                phone: phone,
-                facebookUrl: facebookUrl,
-                instagramUrl: instagramUrl,
-                setTelegramUrl: setTelegramUrl,
+                openAt,
+                closeAt,
+                phone,
+                facebookUrl,
+                instagramUrl,
+                setTelegramUrl,
                 establishmentId: id
-            })
-        });
-        toast.success('Dados editados com sucesso!');
-        navigate("/estabelecimento-usuario");
+            });
+
+            // Update categories
+            await api.put('/establishments/categories', {
+                establishmentId: id,
+                categories
+            });
+
+            toast.success('Dados editados com sucesso!');
+            navigate("/estabelecimento-usuario");
+        } catch (error) {
+            toast.error('Erro ao salvar as informações. Por favor, tente novamente.');
+            console.error('Erro ao salvar as informações:', error);
+        }
     };
 
     const handleCancel = () => {
         navigate("/estabelecimento");
     };
+
     return (
         <>
             <div className={styles.container}>
@@ -260,7 +259,7 @@ function Editar() {
                                 </button>
                             </div>
                         </div>
-                       <InputMask
+                        <InputMask
                             mask="(99) 99999-9999"
                             value={phone}
                             placeholder="Telefone"
@@ -332,13 +331,13 @@ function Editar() {
                             placeholder="Facebook"
                             onChange={(e) => handleInputChange(e, setFacebookUrl)}
                         />
-                         <input
+                        <input
                             type="text"
                             value={instagramUrl}
                             placeholder="Instagram URL"
                             onChange={(e) => handleInputChange(e, setInstagramUrl)}
                         />
-                         <input
+                        <input
                             type="text"
                             value={setTelegramUrl}
                             placeholder="Site Oficial"
@@ -381,23 +380,25 @@ function Editar() {
                         </div>
                         <div>
                             <h3>Selecione as categorias de Música</h3>
-                           <div className={[styles.checkboxContainer]}> {musics.map((music) => (
-                                <div key={music}>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            value={music}
-                                            checked={selectedMusics.includes(music)}
-                                            onChange={(event) => handleCategoryChange(event, setSelectedMusics, selectedMusics)}
-                                        />
-                                        {music}
-                                    </label>
-                                </div>
-                            ))}</div>
+                            <div className={styles.checkboxContainer}>
+                                {musics.map((music) => (
+                                    <div key={music}>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                value={music}
+                                                checked={selectedMusics.includes(music)}
+                                                onChange={(event) => handleCategoryChange(event, setSelectedMusics, selectedMusics)}
+                                            />
+                                            {music}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         <div>
-                        <h3>Selecione as categorias de Comida</h3>
-                            <div className={[styles.checkboxContainer]}>                                
+                            <h3>Selecione as categorias de Comida</h3>
+                            <div className={styles.checkboxContainer}>
                                 {foods.map((food) => (
                                     <div key={food}>
                                         <label>
@@ -415,23 +416,22 @@ function Editar() {
                         </div>
                         <div>
                             <h3>Selecione as categorias de Bebida</h3>
-                            <div className={[styles.checkboxContainer]}>
-                            {drinks.map((drink) => (
-                                <div key={drink}>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            value={drink}
-                                            checked={selectedDrinks.includes(drink)}
-                                            onChange={(event) => handleCategoryChange(event, setSelectedDrinks, selectedDrinks)}
-                                        />
-                                        {drink}
-                                    </label>
-                                </div>
-                            ))}
+                            <div className={styles.checkboxContainer}>
+                                {drinks.map((drink) => (
+                                    <div key={drink}>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                value={drink}
+                                                checked={selectedDrinks.includes(drink)}
+                                                onChange={(event) => handleCategoryChange(event, setSelectedDrinks, selectedDrinks)}
+                                            />
+                                            {drink}
+                                        </label>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                        <div>
                         <div>
                             <h3>Insira as imagens do menu do seu estabelecimento</h3>
                             <div className={styles.uploadContainer}>
@@ -439,20 +439,16 @@ function Editar() {
                                 <button type="button" className={styles.upload} onClick={() => handleUpload("MENU", selectedMenuFile)} disabled={uploading}>
                                     {uploading ? 'Carregando...' : 'Upload'}
                                 </button>
-                                </div>
-                            </div>
-                            <div>
-                                <h3>Insira as imagens da galeria do seu estabelecimento</h3>
-                                <div className={styles.uploadContainer}>
-                                    <input type="file" className={styles.arquivo} onChange={handleGalleryFilesChange} />
-                                    <button type="button" className={styles.upload} onClick={() => handleUpload("GALLERY", selectedGalleryFiles)} disabled={uploading}>
-                                        {uploading ? 'Carregando...' : 'Upload'}
-                                    </button>
-                                </div>
                             </div>
                         </div>
-                    <div>
-                            
+                        <div>
+                            <h3>Insira as imagens da galeria do seu estabelecimento</h3>
+                            <div className={styles.uploadContainer}>
+                                <input type="file" className={styles.arquivo} onChange={handleGalleryFilesChange} />
+                                <button type="button" className={styles.upload} onClick={() => handleUpload("GALLERY", selectedGalleryFiles)} disabled={uploading}>
+                                    {uploading ? 'Carregando...' : 'Upload'}
+                                </button>
+                            </div>
                         </div>
                         <div className={styles["buttons-container-editar"]}>
                             <button type="button" onClick={handleSave}>

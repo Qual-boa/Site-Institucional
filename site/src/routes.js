@@ -37,6 +37,7 @@ function Rotas() {
                     <Route path="/listagem" element={<Listagem />} />{/*listagem*/}
                     <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>
                     <Route path="/edicao-empresa" element={<EdicaoEmpresa/>}/>
+                    <Route path="/listagemEstabelecimento" element={<EdicaoEmpresa/>}/>
                 </Routes>
             </BrowserRouter>
         </>
