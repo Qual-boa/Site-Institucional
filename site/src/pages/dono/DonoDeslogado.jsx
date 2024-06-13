@@ -15,9 +15,18 @@ import { useNavigate } from "react-router-dom";
 function Dono() {
     const navigate = useNavigate();
 
-    {/*const quemSomosSection = () =>{
-        navigate('/quemSomos');
-    }*/}
+    const beer4U = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
 
     const scrollToSection = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)

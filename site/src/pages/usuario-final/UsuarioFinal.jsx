@@ -17,8 +17,11 @@ import TonsCerveja from "../../assets/TonsCerveja.svg"
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import Modal from '../../components/modal/Modal'
+import Listagem from "../listagemEstabelecimento/Listagem"
+import { useHistory } from 'react-router-dom';
 
 function Usuario() {
+    
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalText, setModalText] = useState('');
 
@@ -33,10 +36,6 @@ function Usuario() {
 
     const navigate = useNavigate();
 
-    const quemSomosSection = () =>{
-        navigate('/quem-somos');
-    }
-
     const scrollToSection = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)
         navigate('/home-estabelecimento');
@@ -50,10 +49,6 @@ function Usuario() {
         }, 100); // ajuste o tempo conforme necessário
     };
 
-    {/*const quemSomosSection = () =>{
-        navigate('/quemSomos');
-    }*/}
-
     const scrollBack = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)
         navigate('/home');
@@ -65,6 +60,29 @@ function Usuario() {
                 secao.scrollIntoView({ behavior: 'smooth' });
             }
         }, 100); // ajuste o tempo conforme necessário
+    };
+
+    const scrollListagem = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/listagemEstabelecimento');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+    const jsonData = {
+      nome: "João",
+      idade: 25,
+      cidade: "São Paulo"
+    };
+  
+    // Função para redirecionar para Tela2
+    const goToTela2 = () => {
+      scrollListagem('listagem');
     };
     return (
         <>
@@ -99,7 +117,7 @@ function Usuario() {
                     <h3>PROCURE SEU ROLÊ</h3>
                     <div className={styles["container-inpu-filtro"]}>
                         <input className={styles["input-secundaria"]} type="text" placeholder="Pesquise a sua boa"/>
-                        <button className={styles["botao-secundario"]} type="cadastrar">PESQUISAR</button>
+                        <button onClick={goToTela2} className={styles["botao-secundario"]} type="cadastrar">PESQUISAR</button>
                     </div>
                 </div>
                 <div className={styles["container-button"]}>
