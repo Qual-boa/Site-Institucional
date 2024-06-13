@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Forms.module.css';
 import api from "../../api";
 import { toast } from 'react-toastify';
@@ -7,27 +7,27 @@ import { useNavigate } from "react-router-dom";
 function EditarUsuarios({ closeModal }) {
     const navigate = useNavigate();
     const [usuario, setUsuario] = useState(null);
-    const [nome, setNome] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [senhaConfirmacao, setSenhaConfirmacao] = useState("");
-    const [cargo, setCargo] = useState("");
+    const userId = sessionStorage.getItem("userId");
+
+    const fetchUsuario = useCallback(async () => {
+        try {
+            const response = await api.get(`/users/${userId}`);
+            const usuarioData = response.data;
+            setUsuario(usuarioData);
+            setName(usuarioData.name || "");
+            setEmail(usuarioData.email || "");
+        } catch (error) {
+            console.error("Erro ao buscar informações do usuário:", error);
+        }
+    },[userId]);
 
     useEffect(() => {
-        const fetchUsuario = async () => {
-            try {
-                const response = await api.get("/user/me");
-                const usuarioData = response.data;
-                setUsuario(usuarioData);
-                setNome(usuarioData.nome || "");
-                setEmail(usuarioData.email || "");
-                setCargo(usuarioData.cargo || "");
-            } catch (error) {
-                console.error("Erro ao buscar informações do usuário:", error);
-            }
-        };
         fetchUsuario();
-    }, []);
+    }, [fetchUsuario]);
 
     const salvarUsuario = (evento) => {
         evento.preventDefault();
@@ -37,13 +37,10 @@ function EditarUsuarios({ closeModal }) {
             return;
         }
 
-        api.put(`/users/${usuario.id}`, {
-            nome,
+        api.put(`/users/${userId}`, {
+            name,
             email,
-            password: senha,
-            userTypeEnum: "EMPLOYEE",
-            roleEnum: "ADMIN",
-            cargo
+            password: senha
         }).then(() => {
             toast.success("Usuário atualizado com sucesso!");
             navigate("/dashboard");
@@ -66,10 +63,10 @@ function EditarUsuarios({ closeModal }) {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder={usuario ? usuario.nome || "Nome" : "Carregando..."}
+                    placeholder={usuario ? usuario.name || "Nome" : "Carregando..."}
                     aria-required="true"
-                    value={nome}
-                    onChange={(e) => setarValoresInput(e, setNome)}
+                    value={name}
+                    onChange={(e) => setarValoresInput(e, setName)}
                 />
                 <label htmlFor="email">E-MAIL:</label>
                 <input
@@ -81,17 +78,6 @@ function EditarUsuarios({ closeModal }) {
                     value={email}
                     onChange={(e) => setarValoresInput(e, setEmail)}
                 />
-                <label htmlFor="role">CARGO:</label>
-                <select
-                    id="role"
-                    name="role"
-                    aria-required="true"
-                    value={cargo}
-                    onChange={(e) => setarValoresInput(e, setCargo)}
-                >
-                    <option value="admin">Admin</option>
-                    <option value="funcionario">Funcionário</option>
-                </select>
                 <label htmlFor="password">SENHA:</label>
                 <input
                     type="password"
@@ -114,7 +100,7 @@ function EditarUsuarios({ closeModal }) {
                 />
                 <div className={styles.formButtons}>
                     <button type="button" onClick={closeModal} aria-label="Cancelar">CANCELAR</button>
-                    <button type="submit" aria-label="Salvar usuário">SALVAR</button>
+                    <button type="submit" onClick={salvarUsuario} aria-label="Salvar usuário">SALVAR</button>
                 </div>
             </form>
         </div>

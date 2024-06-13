@@ -34,9 +34,8 @@ function Rotas() {
                     <Route path="/dashboard" element={<Dashboard/>}/>
                     <Route path="/usuarios/adicionarUsuarios" element={<AdicionarUsuarios />} />{/*finalizada?*/}
                     <Route path="/usuarios/editarUsuarios" element={<EditarUsuarios />} />{/*finalizada?*/}
-                    <Route path="/listagem" element={<Listagem />} />{/*listagem*/}
-                    <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>
                     <Route path="/edicao-empresa" element={<EdicaoEmpresa/>}/>
+                    <Route path="/listagemEstabelecimento" element={<Listagem />} />
                 </Routes>
             </BrowserRouter>
         </>

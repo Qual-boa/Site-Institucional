@@ -25,7 +25,7 @@ const Charts = () => {
     const [interestOverTimeData, setInterestOverTimeData] = useState(null);
 
     useEffect(() => {
-        const establishmentId = sessionStorage.getItem("empresaId");
+        const establishmentId = sessionStorage.getItem("establishmentId");
         if (establishmentId) {
             api.get(`/access/dashboard/${establishmentId}`)
                 .then(response => {

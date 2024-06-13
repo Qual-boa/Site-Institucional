@@ -22,6 +22,7 @@ function Usuario() {
     
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalText, setModalText] = useState('');
+    const [query, setquery] = useState("");
 
     const openModal = (text) => {
         setModalText(text);
@@ -60,9 +61,14 @@ function Usuario() {
         }, 100); // ajuste o tempo conforme necessário
     };
 
+    const setarValoresInput = (e, setter) => {
+        setter(e.target.value);
+      };
+
     const scrollListagem = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)
-        navigate('/listagemEstabelecimento');
+        console.log("search" + query)
+        navigate(`/listagemEstabelecimento?searchTerm=${query}`);
 
         // Espera um pequeno intervalo de tempo antes de rolar para a seção
         setTimeout(() => {
@@ -94,14 +100,19 @@ function Usuario() {
                         </div>
                         <div className={styles["container-input"]}>
                             <input className={styles["input-principal"]} type="text" placeholder="Escreva o seu endereço"/>
-                            <button className={styles["botao-principal"]} type="cadastrar">PESQUISAR</button>
+                            <button className={styles["botao-principal"]} type="button">PESQUISAR</button>
                         </div>
                     </div>
                 </section>
                 <div className={styles["pesquisa-filtros"]}>
                     <h3>PROCURE SEU ROLÊ</h3>
                     <div className={styles["container-inpu-filtro"]}>
-                        <input className={styles["input-secundaria"]} type="text" placeholder="Pesquise a sua boa"/>
+                        <input 
+                        className={styles["input-secundaria"]} 
+                        type="text"
+                        value={query}
+                        onChange={(e) => setarValoresInput(e, setquery)} 
+                        placeholder="Pesquise a sua boa"/>
                         <button onClick={goToTela2} className={styles["botao-secundario"]} type="cadastrar">PESQUISAR</button>
                     </div>
                 </div>
