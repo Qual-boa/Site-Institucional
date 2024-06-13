@@ -8,13 +8,11 @@ import LoginEmpresa from "./pages/loginEmpresa/LoginEmpresa"
 import QuemSomos from  "./pages/quemSomos/quemSomos"
 import CadastroEmpresa from "./pages/cadastroEmpresa/CadastroEmpresa"
 import NotFound from "./pages/notfound/notfound";
-import Listagem from "./pages/listagemEstabelecimento/Listagem";
+import EstabelecimentoUsuario from "./pages/estabelecimento-usuario/estabelecimentoUsuario";
 import UsuarioFinal from "./pages/usuario-final/UsuarioFinal"
-
 import Dashboard from "./pages/dashboard/Dashboard"
 import AdicionarUsuarios from './pages/formsDashboard/AdicionarUsuarios';
 import EditarUsuarios from './pages/formsDashboard/EditarUsuarios';
-
 
 function Rotas() {
     return (
@@ -31,6 +29,7 @@ function Rotas() {
                     <Route path="*" element={<NotFound />} />                    
                     <Route path="/home" element={<UsuarioFinal/>}/>
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
+                    <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>
                     <Route path="/dashboard" element={<Dashboard/>}/>
                     <Route path="/usuarios/adicionarUsuarios" element={<AdicionarUsuarios />} />
                     <Route path="/usuarios/editarUsuarios" element={<EditarUsuarios />} />

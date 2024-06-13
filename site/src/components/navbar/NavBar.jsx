@@ -4,7 +4,6 @@ import perfil from '../../assets/perfilUser.svg';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../searchBar/SearchBar';
 import Modal from '../modalGenerico/ModalGenerico';
-import EditarUsuarios from '../../pages/formsDashboard/EditarUsuarios'; 
 import EditarFinal from '../editarFinal/EditarFinal';
 
 const NavBar = ({ logoInicio }) => {

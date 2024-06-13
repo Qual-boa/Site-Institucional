@@ -1,7 +1,6 @@
 import NavBar from "../../components/navbarEmpresa/NavbarEmpresa";
 import styles from "./DonoDeslogado.module.css";
 import cervejinha from "../../assets/breja-removebg-preview.png";
-import iconeLocal from "../../assets/local-icon.svg"
 import logo from "../../assets/QualABoa.svg";
 import Footer from "../../components/footerEmpresa/FooterEmpresa";
 import FacilidadeImg from "../../assets/facilidadeImg.svg"
@@ -14,10 +13,6 @@ import { useNavigate } from "react-router-dom";
 
 function Dono() {
     const navigate = useNavigate();
-
-    {/*const quemSomosSection = () =>{
-        navigate('/quemSomos');
-    }*/}
 
     const scrollToSection = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)
@@ -110,7 +105,7 @@ function Dono() {
                                  AUMENTANDO A <br></br> VISIBILIDADE DO SEU ESTABELECIMENTO RECEBENDO AINDA MAIS CLIENTES
                             </span>
                             <span className={styles["segunda-dica"]}>
-                                Não fique fora dessa, venha fazer parte do<img src={logo}/>
+                                Não fique fora dessa, venha fazer parte do<img src={logo} alt="Logo"/>
                             </span>
                             <img src={RetanguloDica} className={styles["retangulo-dica"]} alt="retangulo do fundo" />
                             <img src={ChopperDanca} className={styles["chopper-dica"]} alt="Chopper" />
