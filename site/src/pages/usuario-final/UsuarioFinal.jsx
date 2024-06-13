@@ -104,14 +104,6 @@ function Usuario() {
                             <button className={styles["botao-principal"]} type="cadastrar">PESQUISAR</button>
                         </div>
                     </div>
-                    <div className={styles["display-logos"]}>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                    </div>
                 </section>
                 <div className={styles["pesquisa-filtros"]}>
                     <h3>PROCURE SEU ROLÊ</h3>

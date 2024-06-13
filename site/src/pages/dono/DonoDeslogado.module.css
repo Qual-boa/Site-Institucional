@@ -17,7 +17,7 @@ html {
     width: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%; /*alterei aqui era 100vh */
+    height: 100%; 
     position: relative;
     align-items: center;
     justify-content: center;
@@ -171,7 +171,6 @@ html {
     height: 12vh;
     border-radius: 100%;
 }
-
 
 .vantagens-containers{
     display: flex;
@@ -362,7 +361,7 @@ html {
 .vantagens-box img{
     width: 18vw;
     position: absolute;
-    margin-bottom: 20px;
+    margin-bottom: 70px;
     bottom: 58%;
 }
 

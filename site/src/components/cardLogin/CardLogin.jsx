@@ -7,6 +7,7 @@ import "../../global.css";
 import icone from "../../assets/icon-user.svg"
 import { Link } from 'react-router-dom';
 
+
 export function CardLogin() {
 
     const navigate = useNavigate();
@@ -44,7 +45,10 @@ export function CardLogin() {
                     </div>
                     <button type="button" className={styles["botao-entrar-usuario"]} onClick={autenticarUsuario}>ENTRAR</button>
                     <div className={styles["loginExistente"]}>
-                        Não possui Login?<Link to="/cadastro-usuario" className={styles.entrar}>Cadastrar</Link>
+                            É empresa?<Link to="/cadastroEmpresa" className={styles.entrar}>Cadastrar Empresa</Link>
+                        </div>
+                    <div className={styles["loginExistente"]}>
+                            Procura Qual A Boa?<Link to="/cadastro-usuario" className={styles.entrar}>Cadastrar Usuário</Link>
                     </div>
                 </form>
             </div>
