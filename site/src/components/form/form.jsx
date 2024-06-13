@@ -2,7 +2,6 @@ import api from "../../api";
 import apiBlob from "../../api-blob";
 import { toast } from 'react-toastify';
 import styles from "./form.module.css";
-import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import InputMask from 'react-input-mask';
@@ -31,9 +30,10 @@ function Editar() {
     const [complement, setComplement] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [openAt, setOpenAt] = useState({ hour: 0, minute: 0 });
-    const [closeAt, setCloseAt] = useState({ hour: 0, minute: 0 });
-
+    const [setOpenAt] = useState({ hour: 0, minute: 0 });
+    const [setCloseAt] = useState({ hour: 0, minute: 0 });
+    
+    // Novos estados para informações adicionais
     const [tv, setTv] = useState(false);
     const [wifi, setWifi] = useState(false);
     const [acessibilidade, setAcessibilidade] = useState(false);

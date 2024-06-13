@@ -9,8 +9,7 @@ import NavBarQS from "../quemSomos/NavBarQS/navBarQS";
 import logoQS from "../../assets/logoBranca.svg";
 import Footer from "../../components/footer/Footer";
 import { Helmet } from 'react-helmet';
-import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { TbWorldWww } from "react-icons/tb";
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import CardAvaliacao from '../../components/cardAvaliacao/CardAvaliacao';
 import ModalImage from "react-modal-image";
 import Modal from '../../components/modalAvaliacao/modalAvaliacao'; 
@@ -94,7 +93,6 @@ function EstabelecimentoUsuario() {
     const [phone, setPhone] = useState("");
     const [facebookUrl, setFacebookUrl] = useState("");
     const [instagramUrl, setInstagramUrl] = useState("");
-    const [telegramUrl, setTelegramUrl] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [street, setStreet] = useState("");
     const [number, setNumber] = useState("");
@@ -124,7 +122,6 @@ function EstabelecimentoUsuario() {
             setPhone(formatPhone(data.information.phone));
             setFacebookUrl(data.information.facebookUrl);
             setInstagramUrl(data.information.instagramUrl);
-            setTelegramUrl(data.information.telegramUrl);
             setTv(data.information.hasTv);
             setWifi(data.information.hasWifi);
             setAcessibilidade(data.information.hasAccessibility);
@@ -208,7 +205,6 @@ function EstabelecimentoUsuario() {
       };
 
     const Avaliacao = () => {
-        const navigate = useNavigate();
         const [id, setId] = useState("");
         const [nome, setNome] = useState("");
         const [isModalOpen, setIsModalOpen] = useState(false);
@@ -392,7 +388,6 @@ function EstabelecimentoUsuario() {
                             <div className={styles.menu}>
                             {facebookUrl && <a href={facebookUrl}><FaFacebook className={styles.midias} /></a>}
                             {instagramUrl && <a href={instagramUrl}><FaInstagram className={styles.midias} /></a>}
-                            {setTelegramUrl && <a href={setTelegramUrl}><TbWorldWww className={styles.midias} /></a>}
                             </div>
                             {/* <div className={styles.container}>
 

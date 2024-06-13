@@ -2,15 +2,11 @@ import styles from "./FooterEmpresa.module.css";
 import LogoFooter from '../../assets/footerIcon.svg'
 import {FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import LogoFooter2024 from "../../assets/footer2024.svg"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
 
     const navigate = useNavigate();
-
-    {/*const quemSomosSection = () =>{
-        navigate('/quemSomos');
-    }*/}
     const quemSomosSection = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)
         navigate('/quem-somos');
@@ -51,10 +47,10 @@ function Footer() {
             <div className={styles.menuContainer}>
             <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('vantagens')}>VANTAGENS</a>
-                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('destaque')}>BAR DESTAQUE DO MÊS</a>
-                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('dica')}>DICA DO CHOPPER</a>                    
-                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => quemSomosSection('quem-somos')}>QUEM SOMOS</a>
+                    <a className={styles.options} href="#outra-pagina" smooth={true} onClick={() => scrollToSection('vantagens')}>VANTAGENS</a>
+                    <a className={styles.options} href="#outra-pagina" smooth={true} onClick={() => scrollToSection('destaque')}>BAR DESTAQUE DO MÊS</a>
+                    <a className={styles.options} href="#outra-pagina" smooth={true} onClick={() => scrollToSection('dica')}>DICA DO CHOPPER</a>                    
+                    <a className={styles.options} href="/quem-somos" smooth={true} onClick={() => quemSomosSection('quem-somos')}>QUEM SOMOS</a>
                 </div>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>ENDEREÇO</h3>
