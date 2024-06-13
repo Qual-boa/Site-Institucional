@@ -514,7 +514,7 @@ html {
     flex-direction: column;
     align-items: center;
     height: 55vh;
-    width: 21vw;
+    width: 21.9vw;
     background-color: #FFFDF2;
     border-radius: 30px;
     font-size: 3vh;
@@ -538,6 +538,7 @@ html {
     flex-direction: column;
     margin-bottom: 2vh;
     height: 60%;
+
 }
 
 .bares-info h3{
@@ -638,8 +639,8 @@ html {
 .sugestoes-box{
     display: flex;
     flex-direction: row;
-    height: 34.4vh;
-    width: 37vw;
+    height: 36.3vh;
+    width: 39vw;
     font-size: 3vh;
     background-color: #FFFDF2;
     border-radius: 20px;
@@ -655,7 +656,7 @@ html {
 .sugestoes-info{
     display: flex;
     flex-direction: column;
-    padding-left: 2vw;
+    padding-left: 0.5vw;
 }
 
 .sugestoes-info-txt{

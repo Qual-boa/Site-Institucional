@@ -30,7 +30,6 @@ function Rotas() {
                     <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
                     <Route path="*" element={<NotFound />} />                    
                     <Route path="/home" element={<UsuarioFinal/>}/>
-
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
                     <Route path="/dashboard" element={<Dashboard/>}/>
                     <Route path="/usuarios/adicionarUsuarios" element={<AdicionarUsuarios />} />

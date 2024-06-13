@@ -8,7 +8,7 @@
     max-height: 8vh;
     min-height: 6vh;
     padding: 0.6rem;
-    align-items: center;    
+    align-items: center;
     justify-content: space-between;
     background-color: transparent;
     position: fixed;
@@ -21,31 +21,24 @@
 }
 
 .navbar span {
-    font-size: 13px;
+    font-size: 14px;
     display: flex;
     align-items: center;
     cursor: pointer;
     color: inherit;
+    padding: 0.5rem 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar span:hover {
     background-color: #000;
     color: white;
     border-radius: 30px;
-    width: auto;
-    padding-left: 0.5vw;
-    padding-right: 0.5vw;
-    padding: 0.5rem 1rem; 
-    width: 12vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: .7s;
 }
 
 .navbar input {
     height: 4vh;
-    width: 25vw;
+    width: 20vw;
     border: none;
     border-radius: 20px;
     text-indent: 10px;
@@ -53,26 +46,40 @@
     cursor: pointer;
 }
 
-.perfil-user{
-    margin-right: 1vw;
 .perfil-user {
-    margin-right: 5px;
+    margin-right: 1vw;
     cursor: pointer;
 }
 
-.links {
-    display: flex;
-    gap: 1rem;
-    transition: max-height 0.3s ease;
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    background-color: white;
+    border: 1px solid #ccc;
+    right: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none; /* Oculto por padrão */
 }
 
-.burger {
-    display: none;
-    font-size: 2rem;
-    background: none;
-    border: none;
+.perfil-container:hover .dropdown-menu {
+    display: block; /* Mostra o menu ao passar o mouse */
+}
+
+.dropdown-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
     cursor: pointer;
-    color: inherit;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f0f0f0;
 }
 
 @media (max-width: 768px) {
@@ -88,18 +95,8 @@
         margin-top: 0.5rem;
     }
 
-    .links {
-        flex-direction: row;
-        gap: 0.5rem;
-        width: 100%;
-    }
-
     .navbar span:hover {
         width: auto;
-    }
-
-    .burger {
-        display: block;
     }
 }
 
@@ -112,12 +109,6 @@
     .navbar input {
         width: 100%;
         margin-top: 0.5rem;
-    }
-
-    .links {
-        flex-direction: row;
-        gap: 0.5rem;
-        width: 100%;
     }
 
     .navbar span {

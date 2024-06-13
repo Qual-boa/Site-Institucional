@@ -1,8 +1,9 @@
-
-.containerCadastroUsuario {
+/* .containerCadastroUsuario {
     display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
-}
+} */
 
 .card {
     max-width: 400px;
@@ -40,12 +41,11 @@
     border-image-slice: 1;
     outline: none;
     padding: 6px 0;
-    background-color: transparent;
 }
 
 .botao-entrar-usuario {
     width: 60%;
-    height: 40px;
+    height: 30px;
     background-color: #000;
     color: #fff;
     border: none;

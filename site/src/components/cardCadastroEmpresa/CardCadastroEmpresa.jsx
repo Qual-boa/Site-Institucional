@@ -24,8 +24,7 @@ export function CardLoginEmpresa() {
         navigate("/cadastro-usuario");
     }
 
-    return (
-        <div className={styles["containerCadastroUsuario"]}>       
+    return (    
             <div className={styles["card"]}>
                 <img src={icone} alt="icone do usuário" className={styles["avatar"]}/>
                 <div className={styles["card-body"]}>
@@ -50,7 +49,6 @@ export function CardLoginEmpresa() {
                     </form>
                 </div>
             </div>
-        </div>
     );
 }
 
