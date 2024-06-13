@@ -1,9 +1,28 @@
 import styles from "./CardCadastroEmpresa.module.css";
 import "../../global.css";
 import icone from "../../assets/icon-user.svg"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { cnpjMask, removeCnpjMask } from "../../utils";
+import api from "../../api";
 
 export function CardLoginEmpresa() {
+    const [cnpj, setCnpj] = useState("");
+    const [name, setName] = useState("");
+    const [avgValue, setAvgValue] = useState("");
+    const navigate = useNavigate();
+
+    const create = async () => {
+        const response = await api.post("/establishments", {
+            fantasyName: name,
+            cnpj: removeCnpjMask(cnpj),
+            averageOrderValue: avgValue
+        });
+        toast.success("Cadastrado com sucesso!");
+        sessionStorage.setItem("empresaId", response.data.id);
+        navigate("/cadastro-usuario");
+    }
 
     return (
         <div className={styles["card"]}>
@@ -13,25 +32,18 @@ export function CardLoginEmpresa() {
                 <form>
                 <div className={styles["form-group"]}>
                         <label htmlFor="text">CNPJ</label>
-                        <input type="text" className={styles["form-control"]} id="cnpj" placeholder="Digite seu CNPJ"/>
+                        <input type="text" className={styles["form-control"]} id="cnpj" placeholder="CNPJ" onChange={e => handleChangeInput(e, setCnpj)} value={cnpjMask(cnpj)}/>
                     </div>
                     <div className={styles["form-group"]}>
-                        <label htmlFor="text">Nome Responsável</label>
-                        <input type="text" className={styles["form-control"]} id="nome-responsavel" aria-describedby="emailHelp" placeholder="Digite o nome do responsável"/>
+                        <label htmlFor="text">Nome Fantasia</label>
+                        <input type="text" className={styles["form-control"]} id="nome" aria-describedby="name" placeholder="Nome fantasia" onChange={e => handleChangeInput(e, setName)}/>
                     </div>
                     <div className={styles["form-group"]}>
-                        <label htmlFor="email">E-mail Responsável</label>
-                        <input type="email" className={styles["form-control"]} id="email" aria-describedby="emailHelp" placeholder="Digite o e-mail do responsável"/>
+                        <label htmlFor="valorMedio">Valor médio</label>
+                        <input type="number" className={styles["form-control"]} id="valorMedio" aria-describedby="valorMedioHelp" placeholder="Valor médio (ex: 50,0)" onChange={e => handleChangeInput(e, setAvgValue)}/>
                     </div>
-                    <div className={styles["form-group"]}>
-                        <label htmlFor="senha">Senha</label>
-                        <input type="password" className={styles["form-control"]} id="senha" placeholder="Digite sua senha"/>
-                    </div>
-                    <div className={styles["form-group"]}>
-                        <label htmlFor="senha">Digite A Senha Novamente</label>
-                        <input type="password" className={styles["form-control"]} id="senha" placeholder="Digite sua senha novamente"/>
-                    </div>
-                    <button type="submit" className={styles["botao-entrar-usuario"]}><b>CADASTRAR</b></button>
+                    
+                    <button type="button" className={styles["botao-entrar-usuario"]} onClick={create}><b>CADASTRAR</b></button>
                     <div className={styles["loginExistente"]}>
                             Já possui Login?<Link to="/loginEmpresa" className={styles.entrar}>Entrar</Link>
                         </div>
@@ -39,6 +51,9 @@ export function CardLoginEmpresa() {
             </div>
         </div>
     );
+}
 
 
+const handleChangeInput = (e, setStateFunction) => {
+    setStateFunction(e.target.value);
 }

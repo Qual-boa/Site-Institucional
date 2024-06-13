@@ -39,7 +39,7 @@ function CardCadastro() {
     
 
     return (
-        <div className={styles["containerCadastroUsuario"]}> {/* Adicione esta div */}        
+        <div className={styles["containerCadastroUsuario"]}>       
             <div className={styles["card"]}>            
             <img src={avatar} alt="Avatar" className={styles["avatar"]}/>
                 <div className={styles["card-body"]}>
