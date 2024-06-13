@@ -319,16 +319,16 @@ function Editar() {
                             <label>
                                 Abre às:
                                 <InputMask
-                                    mask="99:99"
-                                    placeholder="HH:MM"
+                                    mask="99"
+                                    placeholder="HH"
                                     onChange={(e) => handleTimeChange(e, "openAt")}
                                 />
                             </label>
                             <label>
                                 Fecha às:
                                 <InputMask
-                                    mask="99:99"
-                                    placeholder="HH:MM"
+                                    mask="99"
+                                    placeholder="HH"
                                     onChange={(e) => handleTimeChange(e, "closeAt")}
                                 />
                             </label>

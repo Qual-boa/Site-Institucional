@@ -209,7 +209,8 @@ function EstabelecimentoUsuario() {
 
     const Avaliacao = () => {
         const navigate = useNavigate();
-        const [id, getId] = useState("");
+        const [id, setId] = useState("");
+        const [nome, setNome] = useState("");
         const [isModalOpen, setIsModalOpen] = useState(false);
         const [selectedRating, setSelectedRating] = useState(0);
         const [comment, setComment] = useState('');
@@ -219,6 +220,21 @@ function EstabelecimentoUsuario() {
             { nome: 'Rodrigo', comentario: 'Bom demais!', data: '21/02/2024', rating: 5 },
         ]);
         const [currentIndex, setCurrentIndex] = useState(0);
+        useEffect(() => {
+            // Substitua com a lógica para obter o ID do usuário, se necessário
+            const userId = id; // Exemplo de ID de usuário
+            setId(userId);
+    
+            if (userId) {
+                axios.get(`/users/${userId}`)
+                    .then(response => {
+                        setNome(response.data.name);
+                    })
+                    .catch(error => {
+                        console.error("Erro ao buscar o nome do usuário:", error);
+                    });
+            }
+        }, [id]);
 
         const handleStarClick = (rating) => {
             setSelectedRating(rating);
@@ -235,11 +251,12 @@ function EstabelecimentoUsuario() {
 
         const handleSubmit = () => {
             const newAvaliacao = {
-                nome: 'Usuário', // Você pode substituir isso pelo nome real do usuário
+                nome: nome, // Você pode substituir isso pelo nome real do usuário
                 comentario: comment,
                 data: new Date().toLocaleDateString(),
                 rating: selectedRating,
             };
+
             const updatedAvaliacoes = [...avaliacoes, newAvaliacao];
             setAvaliacoes(updatedAvaliacoes);
 

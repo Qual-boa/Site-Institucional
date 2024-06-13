@@ -295,6 +295,7 @@ html {
     justify-content: space-between;
     width: 845px;
     margin-left: -5%;
+    height: 250px;
 }
 .navigationButtons {
     display: flex;
