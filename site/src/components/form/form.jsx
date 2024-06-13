@@ -30,8 +30,8 @@ function Editar() {
     const [complement, setComplement] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [setOpenAt] = useState({ hour: 0, minute: 0 });
-    const [setCloseAt] = useState({ hour: 0, minute: 0 });
+    const [openAt, setOpenAt] = useState({ hour: 0, minute: 0 });
+    const [closeAt, setCloseAt] = useState({ hour: 0, minute: 0 });
     
     // Novos estados para informações adicionais
     const [tv, setTv] = useState(false);
@@ -178,9 +178,9 @@ function Editar() {
 
     const handleSave = async () => {
         const categories = [
-            ...selectedDrinks.map((item, index) => ({ categoryType: 3, category: index + 1 })),
-            ...selectedFoods.map((item, index) => ({ categoryType: 2, category: index + 1 })),
-            ...selectedMusics.map((item, index) => ({ categoryType: 1, category: index + 1 }))
+            ...selectedDrinks.map(( index) => ({ categoryType: 3, category: index + 1 })),
+            ...selectedFoods.map(( index) => ({ categoryType: 2, category: index + 1 })),
+            ...selectedMusics.map(( index) => ({ categoryType: 1, category: index + 1 }))
         ];
         console.log(categories);
         // Update address
@@ -208,8 +208,14 @@ function Editar() {
                 hasAccessibility: acessibilidade,
                 hasTv: tv,
                 hasWifi: wifi,
-                openAt,
-                closeAt,
+                openAt: {
+                    hour: 9,
+                    minute: 0
+                },
+                closeAt: {
+                    hour: 23,
+                    minute: 0
+                },
                 phone,
                 facebookUrl,
                 instagramUrl,

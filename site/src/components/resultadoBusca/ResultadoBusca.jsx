@@ -5,6 +5,7 @@ import api from "../../api";
 import apiBlob from "../../api-blob";
 import styles from "./ResultadoBusca.module.css";
 import Multiselect from 'multiselect-react-dropdown';
+import { Link } from 'react-router-dom';
 
 function ResultadoBusca() {
 
@@ -130,7 +131,7 @@ function ResultadoBusca() {
                   {resultado.information.hasAccessibility && <span>Acessibilidade </span>}
                   {resultado.information.hasTv && <span>TV </span>}
                   {resultado.information.hasWifi && <span>Wi-Fi </span>} </div>
-                <button className={styles.visitButton}>VISITAR</button>
+                <Link to={"/estabelecimento-usuario"} className={styles.visitButton}>VISITAR</Link>
               </div>
             </div>
           ))
