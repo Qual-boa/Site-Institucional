@@ -48,10 +48,10 @@
 
 .avatar {
     position: absolute;
-    top: -100px; /* Ajuste conforme necessário */
-    left: 50%; /* Ajuste conforme necessário */
+    top: -100px; 
+    left: 50%; 
     transform: translateX(-50%);
-    z-index: 1; /* Certifique-se de que o avatar está sobre o card */
+    z-index: 1; 
 }
 
 .loginExistente{

@@ -68,24 +68,13 @@
     width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.form button {
-    width: calc(100% - 20px);
-    padding: 10px;
-    background-color: #000;
-    color: #fff;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.formButtons {
-    display: flex;
-    justify-content: space-between;
+    border-bottom: 1.5px solid transparent;
+    border-image: linear-gradient(to right, #dc670c, #fddb27);
+    border-image-slice: 1;
+    outline: none;
+    padding: 6px 0;
+    font-size: 0.8rem;
 }
 
 .form button {
@@ -94,9 +83,10 @@
     background-color: #000;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
 }
 
 .form button[aria-label="Cancelar"] {
@@ -104,6 +94,63 @@
     color: #000;
 }
 
+.formButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.botao-entrar-usuario {
+    width: 40%;
+    height: 30px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.avatar {
+    position: absolute;
+    top: -100px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.loginExistente {
+    text-align: center;
+    font-size: 10px;
+    color: #7C778F;
+    margin-top: 6px;
+}
+
+.entrar {
+    color: #7C778F;
+    cursor: pointer;
+}
+
+.entrar:hover {
+    color: #000;
+}
 
 @media (max-width: 768px) {
     .dashboard {

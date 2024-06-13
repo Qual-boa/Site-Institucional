@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import "../../global.css";
 import icone from "../../assets/icon-user.svg";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 export function CardLogin() {
     const navigate = useNavigate();
@@ -69,13 +71,13 @@ export function CardLogin() {
                             onChange={(e) => setarValoresInput(e, setSenha)} 
                         />
                     </div>
-                    <button 
-                        type="button" 
-                        className={styles["botao-entrar-usuario"]} 
-                        onClick={autenticarUsuario}
-                    >
-                        ENTRAR
-                    </button>
+                    <button type="button" className={styles["botao-entrar-usuario"]} onClick={autenticarUsuario}>ENTRAR</button>
+                    <div className={styles["loginExistente"]}>
+                            É empresa?<Link to="/cadastroEmpresa" className={styles.entrar}>Cadastrar Empresa</Link>
+                        </div>
+                    <div className={styles["loginExistente"]}>
+                            Procura Qual A Boa?<Link to="/cadastro-usuario" className={styles.entrar}>Cadastrar Usuário</Link>
+                    </div>
                 </form>
             </div>
         </div>
