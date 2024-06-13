@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
@@ -71,10 +70,8 @@ const containerStyle = {
             zoom={15}
           >
             <Marker 
-                        position={coordinates} 
-                        onClick={openGoogleMaps} 
-                        
-                    />
+                position={coordinates} 
+                onClick={openGoogleMaps} />
           </GoogleMap>
         ) : (
           <p>Carregando mapa...</p>
@@ -83,10 +80,8 @@ const containerStyle = {
     );
   }
 
-function EstabelecimentoUsuario({ establishmentId }) {
-    const navigate = useNavigate();
-    const searchParams = useSearchParams();
-    const id = establishmentId;
+function EstabelecimentoUsuario() {
+    const { id } = useParams();
     const [fantasyName, setFantasyName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");
@@ -126,8 +121,16 @@ function EstabelecimentoUsuario({ establishmentId }) {
             setWifi(data.information.hasWifi);
             setAcessibilidade(data.information.hasAccessibility);
             setEstacionamento(data.information.hasParking);
-            setOpenAt("0" + data.information.openAt[0] + ":" + data.information.openAt[1] + "0");
-            setCloseAt(data.information.closeAt[0] + ":" + data.information.closeAt[1] + "0");
+            if(data.information.openAt[0] < 10) {
+                setOpenAt("0" + data.information.openAt[0] + ":" + data.information.openAt[1] + "0");
+            } else {
+                setOpenAt(data.information.openAt[0] + ":" + data.information.openAt[1] + "0");
+            }
+            if(data.information.closeAt[0] < 10) {
+                setCloseAt("0" + data.information.closeAt[0] + ":" + data.information.closeAt[1] + "0");
+            } else {
+                setCloseAt(data.information.closeAt[0] + ":" + data.information.closeAt[1] + "0");
+            }    
         }) 
         .catch((error) => {
             console.log("Erro ao buscar informações gerais do estabelecimento:", error);
@@ -247,7 +250,7 @@ function EstabelecimentoUsuario({ establishmentId }) {
 
         const handleSubmit = () => {
             const newAvaliacao = {
-                nome: nome, // Você pode substituir isso pelo nome real do usuário
+                nome: nome,
                 comentario: comment,
                 data: new Date().toLocaleDateString(),
                 rating: selectedRating,
@@ -255,8 +258,7 @@ function EstabelecimentoUsuario({ establishmentId }) {
 
             const updatedAvaliacoes = [...avaliacoes, newAvaliacao];
             setAvaliacoes(updatedAvaliacoes);
-
-            // Ajustar currentIndex para mostrar a nova página se necessário
+            
             if (currentIndex + 3 > updatedAvaliacoes.length) {
                 setCurrentIndex(Math.max(updatedAvaliacoes.length - 3, 0));
             }
@@ -324,49 +326,6 @@ function EstabelecimentoUsuario({ establishmentId }) {
             </div>
         );
     };
-    
-    // const [imageUrl, setImageUrl] = useState('');
-    // const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     // Simulação de chamada ao banco de dados para obter a URL da imagem
-    //     const fetchImageUrl = async () => {
-    //         // Exemplo de chamada de API
-    //         const response = await fetch('https://api.exemplo.com/image-url');
-    //         const data = await response.json();
-    //         setImageUrl(data.imageUrl);
-    //     };
-
-    //     fetchImageUrl();
-    // }, []);
-
-    // function EstabelecimentoUsuario({ estabelecimentoId }) {
-    //     const [rating, setRating] = useState(0);
-
-    //     useEffect(() => {
-    //         // Simulação de chamada ao banco de dados para obter a avaliação
-    //         const fetchRating = async () => {
-    //             // Exemplo de chamada de API
-    //             const response = await fetch(`https://api.exemplo.com/rating/${estabelecimentoId}`);
-    //             const data = await response.json();
-    //             setRating(data.rating);
-    //         };
-
-    //         fetchRating();
-    //     }, [estabelecimentoId]);
-    // const [imageUrls, setImageUrls] = useState([]);
-
-    // useEffect(() => {
-    //     // Simulação de chamada ao banco de dados para obter as URLs das imagens
-    //     const fetchImageUrls = async () => {
-    //         // Exemplo de chamada de API
-    //         const response = await fetch(`https://api.exemplo.com/images/${estabelecimentoId}`);
-    //         const data = await response.json();
-    //         setImageUrls(data.imageUrls);
-    //     };
-
-    //     fetchImageUrls();
-    // }, [estabelecimentoId]);
 
     return (
         <>
@@ -386,23 +345,9 @@ function EstabelecimentoUsuario({ establishmentId }) {
                         <div className={styles.header}>
                             <div className={styles.nomeEstab}>{fantasyName}</div>
                             <div className={styles.menu}>
-                            {facebookUrl && <a href={facebookUrl}><FaFacebook className={styles.midias} /></a>}
-                            {instagramUrl && <a href={instagramUrl}><FaInstagram className={styles.midias} /></a>}
+                                <a href={facebookUrl} target='_blank' rel='noreferrer' external><FaFacebook className={styles.midias} /></a>
+                                <a href={instagramUrl} target='_blank' rel='noreferrer' external><FaInstagram className={styles.midias} /></a>
                             </div>
-                            {/* <div className={styles.container}>
-
-                                <div className="rating">
-                                    {[1, 2, 3, 4, 5].map((value) => (
-                                        <input
-                                            key={value}
-                                            type="radio"
-                                            name="rating-9"
-                                            className={`mask mask-star-2 ${value <= rating ? 'checked' : ''}`}
-                                            checked={value === rating}
-                                            readOnly
-                                        />
-                                    ))}
-                                </div> */}
                             <div className="rating">
                                 <input type="radio" name="rating-9" className="rating-hidden" />
                                 <input type="radio" name="rating-9" className="mask mask-star-2" />

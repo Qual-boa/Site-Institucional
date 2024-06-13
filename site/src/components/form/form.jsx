@@ -11,9 +11,9 @@ const musics = ['Rock', 'Sertanejo', 'Indie', 'Rap', 'Funk', 'Metal'];
 const foods = ['Brasileira', 'Boteco', 'Japonesa', 'Mexicana', 'Churrasco', 'Hamburguer'];
 const drinks = ['Cerveja', 'Vinho', 'Chopp', 'Whisky', 'Gim', 'Caipirinha', 'Drinks'];
 
-function Editar() {
+function Cadastrar({idEmpresa}) {
     const navigate = useNavigate();
-    const id = sessionStorage.getItem("empresaId");
+    const id = idEmpresa;
     const [selectedProfileFile, setSelectedProfileFile] = useState(null);
     const [selectedBackgroundFile, setSelectedBackgroundFile] = useState(null);
     const [selectedMenuFile, setSelectedMenuFile] = useState(null);
@@ -30,8 +30,8 @@ function Editar() {
     const [complement, setComplement] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [openAt, setOpenAt] = useState({ hour: 0, minute: 0 });
-    const [closeAt, setCloseAt] = useState({ hour: 0, minute: 0 });
+    const [openAtTime, setOpenAt] = useState({ hour: 0, minute: 0 });
+    const [closeAtTime, setCloseAt] = useState({ hour: 0, minute: 0 });
     
     // Novos estados para informações adicionais
     const [tv, setTv] = useState(false);
@@ -108,13 +108,13 @@ function Editar() {
                     toast.warn('CEP não encontrado');
                 }
             } catch (error) {
-                toast.error('Erro ao buscar o endereço. Verifique o CEP e tente novamente.');
+                console.log("Error: " + error)
             }
         }
     };
 
     const handleTimeChange = (event, timeType) => {
-        const [hour] = event.target.value.split(':').map(Number);
+        const hour = event.target.value;
         if (timeType === "openAt") {
             setOpenAt({ hour, minute: 0 });
         } else {
@@ -178,17 +178,12 @@ function Editar() {
 
     const handleSave = async () => {
         const categories = [
-            ...selectedDrinks.map(( index) => ({ categoryType: 3, category: index + 1 })),
-            ...selectedFoods.map(( index) => ({ categoryType: 2, category: index + 1 })),
-            ...selectedMusics.map(( index) => ({ categoryType: 1, category: index + 1 }))
+            ...selectedDrinks.map((item, index) => ({ categoryType: 3, category: index + 1 })),
+            ...selectedFoods.map((item, index) => ({ categoryType: 2, category: index + 1 })),
+            ...selectedMusics.map((item, index) => ({ categoryType: 1, category: index + 1 }))
         ];
-        console.log(categories);
-        // Update address
         try {
-            const addressResponse = await api.get(`/address/establishment/${id}`);
-            const addressId = addressResponse.data[0].id;
-
-            await api.put(`/address/${addressId}`, {
+            await api.post(`/address/establishment/${id}`, {
                 street,
                 number,
                 postalCode,
@@ -201,21 +196,14 @@ function Editar() {
             console.error('Erro ao atualizar endereço:', error);
         }
 
-        // Update establishment information
         try {
-            await api.put('/informations/establishment', {
+            await api.post('/informations/establishment/' + id, {
                 hasParking: estacionamento,
                 hasAccessibility: acessibilidade,
                 hasTv: tv,
                 hasWifi: wifi,
-                openAt: {
-                    hour: 9,
-                    minute: 0
-                },
-                closeAt: {
-                    hour: 23,
-                    minute: 0
-                },
+                openAt: openAtTime,
+                closeAt: closeAtTime,
                 phone,
                 facebookUrl,
                 instagramUrl,
@@ -230,7 +218,7 @@ function Editar() {
             });
 
             toast.success('Dados editados com sucesso!');
-            navigate("/estabelecimento-usuario");
+            navigate("/estabelecimento-usuario/" + id);
         } catch (error) {
             toast.error('Erro ao salvar as informações. Por favor, tente novamente.');
             console.error('Erro ao salvar as informações:', error);
@@ -246,11 +234,11 @@ function Editar() {
             <div className={styles.container}>
                 <div className={styles["secao-direita-editar"]}>
                     <form>
-                        <span className={styles["titulo"]}>Edite suas informações:</span>
+                        <span className={styles["titulo"]}>Cadastrar suas informações:</span>
                         <div>
                             <h3>Insira a logo do seu estabelecimento</h3>
                             <div className={styles.uploadContainer}>
-                                <input type="file" className={styles.arquivo} onChange={handleProfileFileChange} />
+                                <input type="file" className={styles.arquivo} onChange={handleProfileFileChange} required />
                                 <button type="button" className={styles.upload} onClick={() => handleUpload("PROFILE", selectedProfileFile)} disabled={uploading}>
                                     {uploading ? 'Carregando...' : 'Upload'}
                                 </button>
@@ -259,7 +247,7 @@ function Editar() {
                         <div>
                             <h3>Insira uma imagem de fundo do seu estabelecimento</h3>
                             <div className={styles.uploadContainer}>
-                                <input type="file" className={styles.arquivo} onChange={handleBackgroundFileChange} />
+                                <input type="file" className={styles.arquivo} onChange={handleBackgroundFileChange} required />
                                 <button type="button" className={styles.upload} onClick={() => handleUpload("BACKGROUND", selectedBackgroundFile)} disabled={uploading}>
                                     {uploading ? 'Carregando...' : 'Upload'}
                                 </button>
@@ -270,48 +258,56 @@ function Editar() {
                             value={phone}
                             placeholder="Telefone"
                             onChange={(e) => handleInputChange(e, setPhone)}
+                            required
                         />
                         <InputMask
                             mask="99999-999"
                             value={postalCode}
                             placeholder="CEP"
-                            onInput={handlePostalCodeChange}
+                            onChange={handlePostalCodeChange}
+                            required
                         />
                         <input
                             type="text"
                             value={street}
                             placeholder="Rua"
                             onChange={(e) => handleInputChange(e, setStreet)}
+                            required
                         />
                         <input
                             type="text"
                             value={number}
                             placeholder="Número"
                             onChange={(e) => handleInputChange(e, setNumber)}
+                            required
                         />
                         <input
                             type="text"
                             value={neighborhood}
                             placeholder="Bairro"
                             onChange={(e) => handleInputChange(e, setNeighborhood)}
+                            required
                         />
                         <input
                             type="text"
                             value={complement}
                             placeholder="Complemento"
                             onChange={(e) => handleInputChange(e, setComplement)}
+                            required
                         />
                         <input
                             type="text"
                             value={city}
                             placeholder="Cidade"
                             onChange={(e) => handleInputChange(e, setCity)}
+                            required
                         />
                         <input
                             type="text"
                             value={state}
                             placeholder="Estado"
                             onChange={(e) => handleInputChange(e, setState)}
+                            required
                         />
                         <div className={styles.timeContainer}>
                             <label>
@@ -320,6 +316,7 @@ function Editar() {
                                     mask="99"
                                     placeholder="HH"
                                     onChange={(e) => handleTimeChange(e, "openAt")}
+                                    required
                                 />
                             </label>
                             <label>
@@ -328,6 +325,7 @@ function Editar() {
                                     mask="99"
                                     placeholder="HH"
                                     onChange={(e) => handleTimeChange(e, "closeAt")}
+                                    required
                                 />
                             </label>
                         </div>
@@ -336,18 +334,21 @@ function Editar() {
                             value={facebookUrl}
                             placeholder="Facebook"
                             onChange={(e) => handleInputChange(e, setFacebookUrl)}
+                            required
                         />
                         <input
                             type="text"
                             value={instagramUrl}
                             placeholder="Instagram URL"
                             onChange={(e) => handleInputChange(e, setInstagramUrl)}
+                            required
                         />
                         <input
                             type="text"
                             value={setTelegramUrl}
                             placeholder="Site Oficial"
                             onChange={(e) => handleInputChange(e, setsetTelegramUrl)}
+                            required={true}
                         />
                         <h3>Informações adicionais</h3>
                         <div className={styles.checkboxContainer}>
@@ -471,4 +472,4 @@ function Editar() {
     );
 }
 
-export default Editar;
+export default Cadastrar;

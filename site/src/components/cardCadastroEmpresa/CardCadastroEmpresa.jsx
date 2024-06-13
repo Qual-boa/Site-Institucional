@@ -21,7 +21,7 @@ export function CardLoginEmpresa() {
         });
         toast.success("Cadastrado com sucesso!");
         sessionStorage.setItem("empresaId", response.data.id);
-        navigate("/edicao-empresa");
+        navigate("/cadastrar-info-empresa/" + response.data.id);
     }
 
     return (    
