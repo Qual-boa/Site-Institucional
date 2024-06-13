@@ -34,6 +34,7 @@ function Footer() {
     };
 
     return (
+        <section id="footerEmpresa">
         <footer className={styles.footer}>
             <div className={styles.logoContainer}>
                 <img src={LogoFooter} alt="logo" className={styles.logo} style={{ margin: '13px' }}/>
@@ -73,6 +74,8 @@ function Footer() {
                     <span>Todos os direitos reservados</span>
                 </div>
             </div>
-        </footer>)
+        </footer>
+        </section>
+        )
 }
 export default Footer

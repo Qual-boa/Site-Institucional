@@ -4,7 +4,7 @@ import Overview from '../../components/overview/Overview';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Charts from '../../components/charts/Charts';
 import styles from './Dashboard.module.css';
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footerEmpresa/FooterEmpresa";
 import logo from "../../assets/QualABoa.svg"
 
 const Dashboard = () => {

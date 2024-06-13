@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import styles from './NavBar.module.css';
 import perfil from '../../assets/perfilUser.svg';
 import { useNavigate } from 'react-router-dom';
-import SearchBar from '../searchBar/SearchBar'; // Importe o componente SearchBar
+import SearchBar from '../searchBar/SearchBar';
+import Modal from '../modalGenerico/ModalGenerico';
+import EditarUsuarios from '../../pages/formsDashboard/EditarUsuarios'; 
+import EditarFinal from '../editarFinal/EditarFinal';
 
 const NavBar = ({ logoInicio }) => {
     const navigate = useNavigate();
 
-    // Estado para controlar a visibilidade do menu drop-down
     const [menuOpen, setMenuOpen] = useState(false);
-
-    // Função para alternar a visibilidade do menu
+    const [modalOpen, setModalOpen] = useState(false);
+ 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
 
-    // Função para navegar para uma seção específica e fechar o menu
+    const openModal = () => {
+        setModalOpen(true);
+        setMenuOpen(false);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
     const navigateAndCloseMenu = (sectionId) => {
         navigate(`/${sectionId}`);
         setMenuOpen(false);
@@ -34,19 +44,21 @@ const NavBar = ({ logoInicio }) => {
             <span onClick={() => navigateAndCloseMenu('sugestoes')}><b>SUGESTÕES DO MÊS</b></span>
             <span onClick={() => navigateAndCloseMenu('boa')}><b>QUAL A SUA BOA?</b></span>
             <span onClick={() => navigateAndCloseMenu('quem-somos')}><b>QUEM SOMOS</b></span>
-            <SearchBar /> {/* Componente SearchBar */}
+            <SearchBar /> 
             <div className={styles["perfil-container"]} onClick={toggleMenu}>
                 <img src={perfil} className={styles["perfil-user"]} alt="Usuário" />
                 {menuOpen && (
                     <div className={styles["dropdown-menu"]}>
                         <ul>
-                            <li onClick={() => navigate("/dashboard")}>Meu Perfil</li>
-                            <li>Configurações</li>
+                            <li onClick={openModal}>Configurações</li>
                             <li onClick={() => navigate("/login")}>Logout</li>
                         </ul>
                     </div>
                 )}
             </div>
+            <Modal isOpen={modalOpen} onClose={closeModal}>
+                <EditarFinal closeModal={closeModal} />
+            </Modal>
         </nav>
     );
 };
