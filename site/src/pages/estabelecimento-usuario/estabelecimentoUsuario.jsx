@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
@@ -12,7 +12,6 @@ import { Helmet } from 'react-helmet';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { TbWorldWww } from "react-icons/tb";
 import CardAvaliacao from '../../components/cardAvaliacao/CardAvaliacao';
-import CardAtracao from '../../components/cardAtracao/CardAtracao';
 import ModalImage from "react-modal-image";
 import Modal from '../../components/modalAvaliacao/modalAvaliacao'; 
 import api from "../../api";
@@ -87,7 +86,8 @@ const containerStyle = {
 
 function EstabelecimentoUsuario() {
     const navigate = useNavigate();
-    const  id  = "123e4567-e89b-12d3-a456-426614174000"; 
+    const searchParams = useSearchParams();
+    const  id  = searchParams.get('establishmentId')
     const [fantasyName, setFantasyName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");
