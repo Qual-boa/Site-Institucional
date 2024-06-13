@@ -23,6 +23,7 @@ const containerStyle = {
     height: '400px'
   };
 
+
   function MapComponent({ postalCode, number }) {
     const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
   
@@ -62,7 +63,7 @@ const containerStyle = {
         window.open(url, '_blank');
       }
     };
-  
+    
     return (
       <LoadScript googleMapsApiKey="AIzaSyBfK8M_o3m3AH-NrY2KVjhSSZQD5lgly-I">
         {coordinates.lat && coordinates.lng ? (
@@ -71,7 +72,11 @@ const containerStyle = {
             center={coordinates}
             zoom={15}
           >
-            <Marker position={coordinates} onClick={openGoogleMaps} />
+            <Marker 
+                        position={coordinates} 
+                        onClick={openGoogleMaps} 
+                        
+                    />
           </GoogleMap>
         ) : (
           <p>Carregando mapa...</p>
@@ -89,7 +94,7 @@ function EstabelecimentoUsuario() {
     const [phone, setPhone] = useState("");
     const [facebookUrl, setFacebookUrl] = useState("");
     const [instagramUrl, setInstagramUrl] = useState("");
-    const [setTelegramUrl, setsetTelegramUrl] = useState("");
+    const [telegramUrl, setTelegramUrl] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [street, setStreet] = useState("");
     const [number, setNumber] = useState("");
@@ -97,65 +102,68 @@ function EstabelecimentoUsuario() {
     const [complement, setComplement] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [openAt, setOpenAt] = useState({ hour: 0, minute: 0 });
-    const [closeAt, setCloseAt] = useState({ hour: 0, minute: 0 });
+    const [openAt, setOpenAt] = useState("");
+    const [closeAt, setCloseAt] = useState("");
     
     // Novos estados para informações adicionais
     const [tv, setTv] = useState(false);
     const [wifi, setWifi] = useState(false);
     const [acessibilidade, setAcessibilidade] = useState(false);
     const [estacionamento, setEstacionamento] = useState(false);
-    const [imageUrls, setImageUrls] = useState([
-        "https://via.placeholder.com/300.png?text=Image+1",
-        "https://via.placeholder.com/300.png?text=Image+2",
-        "https://via.placeholder.com/300.png?text=Image+3",
-        "https://via.placeholder.com/300.png?text=Image+4",
-        "https://via.placeholder.com/300.png?text=Image+5"
-    ]);
+    const [imageUrlsMenu, setImageUrlsMenu] = useState([]);
+    const [imageUrlsGallery, setImageUrlsGallery] = useState([]);
 
     useEffect(()=>{
         
         api.get(`establishments/${id}`).then((response) => {
             const { data } = response;
             const {
-                fantasyName,
-                information
+                fantasyName
             } = data;
             setFantasyName(fantasyName);
-            setPhone(information.phone);
-            setFacebookUrl(information.facebookUrl);
-            setInstagramUrl(information.instagramUrl);
-            setTelegramUrl(information.telegramUrl);
-            setTv(information.hasTv);
-            setWifi(information.hasWifi);
-            setAcessibilidade(information.hasAccessibility);
-            setEstacionamento(information.hasParking);
-            setOpenAt(`${information.openAt.hour}:${information.openAt.minute}`);
-            setCloseAt(`${information.closeAt.hour}:${information.closeAt.minute}`);
-    }) 
-    .catch((error) => {
-        console.log("Erro ao buscar informações gerais do estabelecimento:", error);
-    });
-    api.get(`/address/establishment/${id}`).then((response) => {
-        const data  = response.data[0];
-        setPostalCode(data.postalCode);
-        setStreet(data.street);
-        setNumber(data.number);
-        setNeighborhood(data.neighborhood);
-        setComplement(data.complement);
-        setCity(data.city);
-        setState(data.state);
-    }) 
-.catch((error) => {
-    console.log("Erro ao buscar endereço do estabelecimento:", error);
-});
-        
+            setPhone(formatPhone(data.information.phone));
+            setFacebookUrl(data.information.facebookUrl);
+            setInstagramUrl(data.information.instagramUrl);
+            setTelegramUrl(data.information.telegramUrl);
+            setTv(data.information.hasTv);
+            setWifi(data.information.hasWifi);
+            setAcessibilidade(data.information.hasAccessibility);
+            setEstacionamento(data.information.hasParking);
+            setOpenAt("0" + data.information.openAt[0] + ":" + data.information.openAt[1] + "0");
+            setCloseAt(data.information.closeAt[0] + ":" + data.information.closeAt[1] + "0");
+        }) 
+        .catch((error) => {
+            console.log("Erro ao buscar informações gerais do estabelecimento:", error);
+        });
+        api.get(`/address/establishment/${id}`).then((response) => {
+            const data  = response.data[0];
+            setPostalCode(data.postalCode);
+            setStreet(data.street);
+            setNumber(data.number);
+            setNeighborhood(data.neighborhood);
+            setComplement(data.complement);
+            setCity(data.city);
+            setState(data.state);
+        }) 
+        .catch((error) => {
+            console.log("Erro ao buscar endereço do estabelecimento:", error);
+        });
+            
         apiBlob.get(`/establishments/${id}`).then((response) => {
             const { data } = response;
-            console.log(response);
             const backgroundImage = data.find(image => image.establishmentCategory === 'BACKGROUND');
             const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
-            
+            const imgsMenu = [];
+            const imgsGallery = [];
+            data.forEach((d) => {
+                if(d.establishmentCategory === "MENU") {
+                    imgsMenu.push(d.imgUrl)
+                } else if(d.establishmentCategory === "GALLERY") {
+                    imgsGallery.push(d.imgUrl);
+                }
+            });
+            setImageUrlsGallery(imgsGallery);
+            setImageUrlsMenu(imgsMenu);
             if (backgroundImage) {
                 setBackgroundImage(backgroundImage.imgUrl);
             } else {
@@ -185,6 +193,19 @@ function EstabelecimentoUsuario() {
         if (acessibilidade) facilities.push('Acessibilidade');
         return facilities.join(' - ');
     };
+    const formatPhone = (phone) => {
+        if (!phone) return '';
+        
+        const phoneString = phone.toString().replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+      
+        if (phoneString.length === 10) {
+          return `(${phoneString.slice(0, 2)}) ${phoneString.slice(2, 6)}-${phoneString.slice(6)}`;
+        } else if (phoneString.length === 11) {
+          return `(${phoneString.slice(0, 2)}) ${phoneString.slice(2, 7)}-${phoneString.slice(7)}`;
+        } else {
+          return phone; // Retorna o número original se não tiver 10 ou 11 dígitos
+        }
+      };
 
     const Avaliacao = () => {
         const navigate = useNavigate();
@@ -242,6 +263,16 @@ function EstabelecimentoUsuario() {
                 setCurrentIndex(currentIndex + 1);
             }
         };
+        const formatTime = (time) => {
+            if (!time) return '';
+          
+            const { hour, minute } = time;
+            const formattedHour = hour.toString().padStart(2, '0');
+            const formattedMinute = minute.toString().padStart(2, '0');
+    
+          
+            return `${formattedHour}:${formattedMinute}`;
+          };
         
 
         return (
@@ -343,11 +374,9 @@ function EstabelecimentoUsuario() {
                 <NavBarQS logoQS={logoQS} />
                 <div className={styles['background-image']}>
                 <img src={backgroundImage} alt={`Foto do estabelecimento`} className={styles.responsiveImage} />
-                    {/* <img src="https://bebaindependente.com.br/wp-content/uploads/2020/04/F96260EA-85C4-4C69-A31F-05825AB12679-768x758.jpeg" alt="image beer4u" className={styles.responsiveImage} />
- */}                </div>                
+                </div>                
                 <div className={styles.logoContainer}>
                 <img src={profileImage} alt="Cliente Logo" className={styles.clientLogo} />
-                    {/* <img src="https://static.goomer.app/stores/4501/products/mobile-menu/templates/8761/logo.png?w=1920" alt="Cliente Logo" className={styles.clientLogo} /> */}
                 </div>
                 <div className={styles["background-imageEstab"]}>
                     <div className={styles["container1"]}>
@@ -390,7 +419,7 @@ function EstabelecimentoUsuario() {
                             </div>
                         </div>
                         <div className={styles.locationDistance}>
-                            <p>{neighborhood}, {city}, 100m</p> {/* Ajuste a localização e distância conforme necessário */}
+                            <p>{neighborhood}, {city}</p> {/* Ajuste a localização e distância conforme necessário */}
                         </div>
                         <div className={styles.flexContainer}>
                             <div className={styles.favoritar}>
@@ -400,7 +429,7 @@ function EstabelecimentoUsuario() {
                             </div>
                             <div className={styles.facilidades}>
                             {renderFacilities()}
-                        </div>
+                            </div>
                         </div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>
@@ -437,24 +466,18 @@ function EstabelecimentoUsuario() {
                         <div className={styles.saibaMais}>
                         <p><strong>ENDEREÇO:</strong> {formatAddress()}</p>
                             <div className={styles.mapa}>
-                            <MapComponent postalCode={"04102-010"} number={"248"} />
+                            <MapComponent postalCode={postalCode} number={number} />
                             </div>
                             <p><strong>FUNCIONAMENTO:</strong>  {`${openAt} - ${closeAt}`}</p>
-                            <p><strong>CONTATO:</strong>{phone}</p>
+                            <p><strong>CONTATO: </strong>{phone}</p>
                         </div>
-                        <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
-                        <div className={styles.divisor2}>__________</div>
-                        <div className={styles.flexContainer2}>
-                            <div className={styles.secoes}>HISTÓRIA</div>
-                        </div>
-                        <div className={styles.historia}>Somos um bar criado para inovar, com atualizações diárias e cervejas artesanais inspirando e transformando vidas e pessoas.</div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>
                         <div className={styles.flexContainer2}>
                             <div className={styles.secoes}>MENU</div>
                         </div>
                         <div className={styles.galleryContainer}>
-                            {imageUrls.map((url, index) => (
+                            {imageUrlsMenu.map((url, index) => (
                                 <div key={index} className={styles.imageWrapper}>
                                     <ModalImage
                                         small={url}
@@ -471,7 +494,7 @@ function EstabelecimentoUsuario() {
                             <div className={styles.secoes}>GALERIA</div>
                         </div>
                         <div className={styles.galleryContainer}>
-                            {imageUrls.map((url, index) => (
+                            {imageUrlsGallery.map((url, index) => (
                                 <div key={index} className={styles.imageWrapper}>
                                     <ModalImage
                                         small={url}

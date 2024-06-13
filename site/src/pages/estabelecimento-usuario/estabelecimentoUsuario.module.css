@@ -147,7 +147,7 @@ html {
     margin-top: 50px; /* Adicionado para espaço abaixo do header */
 }
 .locationDistance {
-    margin-left: -54.5%;
+    margin-left: -55%;
     font-size: 16px;
     color: #000; /* Ajuste a cor conforme necessário */
     margin-top: -5px; /* Espaço entre o breadcrumbs e a localização */
@@ -179,6 +179,7 @@ html {
     margin-right: 20%;
     font-size: 16px;
     color: #000; /* Ajuste a cor conforme necessário */
+    z-index: 5;
 }
 .divisor{
     text-align: left;
