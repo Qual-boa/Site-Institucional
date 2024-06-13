@@ -3,6 +3,7 @@ import LogoFooter from '../../assets/footerIcon.svg'
 import {FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import LogoFooter2024 from "../../assets/footer2024.svg"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Footer() {
     const navigate = useNavigate();
@@ -48,10 +49,11 @@ function Footer() {
             <div className={styles.menuContainer}>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('vantagens')}>VANTAGENS</a>
-                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('destaque')}>BAR DESTAQUE DO MÊS</a>
-                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('dica')}>DICA DO CHOPPER</a>                    
-                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => quemSomosSection('quem-somos')}>QUEM SOMOS</a>
+                    <Link to={"/quem-somos"}>QUAL A BOA?</Link>
+                    <Link to={"/quem-somos"}>MELHORES DO MÊS</Link>
+                    <Link to={"/quem-somos"}>QUAL A SUA BOA?</Link>
+                    <Link to={"/quem-somos"}>CONTATOS</Link>                    
+                    <Link to={"/quem-somos"}>QUEM SOMOS</Link>
                 </div>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>ENDEREÇO</h3>
