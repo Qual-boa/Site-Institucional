@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import "../../global.css";
 import api from "../../api";
 import apiBlob from "../../api-blob";
 import styles from "./ResultadoBusca.module.css";
 import Multiselect from 'multiselect-react-dropdown';
-import axios from 'axios';
-
 
 function ResultadoBusca() {
 
-  const [name, setName] = useState("");
-  const [sortOrder, setSortOrder] = useState(""); // Estado para armazenar a ordem de classificação
-
   const [resultados, setResultados] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); // Estado para armazenar o valor do input de busca
-  const [suggestions, setSuggestions] = useState([]); // Estado para armazenar sugestões
-
   const [selectedDrinks, setSelectedDrinks] = useState([]);
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [selectedMusics, setSelectedMusics] = useState([]);
@@ -58,15 +51,6 @@ function ResultadoBusca() {
 
   const handleSubmit = (evento) => {
     evento.preventDefault(); // Previne o comportamento padrão do formulário
-    buscarDados(); // Faz a busca com o termo atualizado
-  };
-
-  const setarValoresInput = (e, setter) => {
-    setter(e.target.value);
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    setSearchTerm(suggestion);
     buscarDados(); // Faz a busca com o termo atualizado
   };
 

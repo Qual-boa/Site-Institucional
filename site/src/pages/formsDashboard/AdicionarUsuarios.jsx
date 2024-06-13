@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 function AdicionarUsuarios ({ closeModal }) {
 
     const navigate = useNavigate();
-    const [nome,setNome] = useState("");
-    const [email,setEmail] = useState("");
-    const [senha,setSenha] = useState("");
-    const [senhaConfirmacao,setSenhaConfirmacao] = useState("");
+    const [nome] = useState("");
+    const [email] = useState("");
+    const [senha] = useState("");
+    const [senhaConfirmacao] = useState("");
     
     const salvarUsuario =()=>{
 
@@ -30,11 +30,6 @@ function AdicionarUsuarios ({ closeModal }) {
             navigate("/login");
         }).catch(()=>{toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.")})
     }
-
-    const setarValoresInput=(evento, setState)=>{
-        setState(evento.target.value)
-    }
-    
     
     return (
         <div className={styles.form}>

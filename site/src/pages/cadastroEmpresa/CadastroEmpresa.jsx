@@ -4,7 +4,6 @@ import NavbarEmpresa from "../../components/navbarEmpresa/NavbarEmpresa";
 import logo from "../../assets/QualABoa.svg";
 import { CardLoginEmpresa } from "../../components/cardCadastroEmpresa/CardCadastroEmpresa";
 import FooterEmpresa from "../../components/footerEmpresa/FooterEmpresa";
-import axios from "axios";
 
 function LoginEmpresa(){
     

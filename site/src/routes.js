@@ -9,7 +9,6 @@ import QuemSomos from  "./pages/quemSomos/quemSomos"
 import CadastroEmpresa from "./pages/cadastroEmpresa/CadastroEmpresa"
 import NotFound from "./pages/notfound/notfound";
 import EstabelecimentoUsuario from "./pages/estabelecimento-usuario/estabelecimentoUsuario";
-import Listagem from "./pages/listagemEstabelecimento/Listagem";
 import UsuarioFinal from "./pages/usuario-final/UsuarioFinal"
 import Dashboard from "./pages/dashboard/Dashboard"
 import AdicionarUsuarios from './pages/formsDashboard/AdicionarUsuarios';

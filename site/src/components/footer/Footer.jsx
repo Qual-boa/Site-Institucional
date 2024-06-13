@@ -2,38 +2,9 @@ import styles from "./Footer.module.css";
 import LogoFooter from '../../assets/footerIcon.svg'
 import {FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import LogoFooter2024 from "../../assets/footer2024.svg"
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Footer() {
-
-    const navigate = useNavigate();
-
-    const quemSomosSection = (sectionId) => {
-        // Navega para a página inicial (ou para a página onde está a seção desejada)
-        navigate('/quem-somos');
-
-        // Espera um pequeno intervalo de tempo antes de rolar para a seção
-        setTimeout(() => {
-            var secao = document.getElementById(sectionId);
-            if (secao) {
-                secao.scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 100); // ajuste o tempo conforme necessário
-    };
-
-    const scrollToSection = (sectionId) => {
-        // Navega para a página inicial (ou para a página onde está a seção desejada)
-        navigate('/home');
-
-        // Espera um pequeno intervalo de tempo antes de rolar para a seção
-        setTimeout(() => {
-            var secao = document.getElementById(sectionId);
-            if (secao) {
-                secao.scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 100); // ajuste o tempo conforme necessário
-    };
 
     return (
         <footer className={styles.footer}>

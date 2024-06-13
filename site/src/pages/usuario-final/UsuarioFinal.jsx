@@ -16,9 +16,7 @@ import Drinks from "../../assets/drinks.svg"
 import TonsCerveja from "../../assets/TonsCerveja.svg"
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
-import Modal from '../../components/modal/Modal'
-import Listagem from "../listagemEstabelecimento/Listagem"
-import { useHistory } from 'react-router-dom';
+import Modal from '../../components/modal/Modal';
 
 function Usuario() {
     
@@ -73,11 +71,6 @@ function Usuario() {
                 secao.scrollIntoView({ behavior: 'smooth' });
             }
         }, 100); // ajuste o tempo conforme necessário
-    };
-    const jsonData = {
-      nome: "João",
-      idade: 25,
-      cidade: "São Paulo"
     };
   
     // Função para redirecionar para Tela2
