@@ -8,7 +8,7 @@
     max-height: 8vh;
     min-height: 6vh;
     padding: 0.6rem;
-    align-items: center;
+    align-items: center;    
     justify-content: space-between;
     background-color: transparent;
     position: fixed;
@@ -21,24 +21,23 @@
 }
 
 .navbar span {
-    font-size: 14px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
     color: inherit;
-    padding: 0.5rem 0.5rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar span:hover {
     background-color: #000;
     color: white;
     border-radius: 30px;
+    padding: 0.5rem 1rem; 
 }
 
 .navbar input {
     height: 4vh;
-    width: 20vw;
+    width: 30vw;
     border: none;
     border-radius: 20px;
     text-indent: 10px;
@@ -47,8 +46,23 @@
 }
 
 .perfil-user {
-    margin-right: 1vw;
+    margin-right: 5px;
     cursor: pointer;
+}
+
+.links {
+    display: flex;
+    gap: 1rem;
+    transition: max-height 0.3s ease;
+}
+
+.burger {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
 }
 
 .dropdown-menu {
@@ -60,11 +74,6 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    display: none; /* Oculto por padrão */
-}
-
-.perfil-container:hover .dropdown-menu {
-    display: block; /* Mostra o menu ao passar o mouse */
 }
 
 .dropdown-menu ul {
@@ -82,6 +91,7 @@
     background-color: #f0f0f0;
 }
 
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: row;
@@ -95,8 +105,18 @@
         margin-top: 0.5rem;
     }
 
+    .links {
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
     .navbar span:hover {
         width: auto;
+    }
+
+    .burger {
+        display: block;
     }
 }
 
@@ -109,6 +129,12 @@
     .navbar input {
         width: 100%;
         margin-top: 0.5rem;
+    }
+
+    .links {
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
     }
 
     .navbar span {

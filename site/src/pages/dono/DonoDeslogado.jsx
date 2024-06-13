@@ -51,14 +51,6 @@ function Dono() {
                             <button className={styles["botao-principal"]} type="cadastrar">CADASTRAR</button>
                         </div>
                     </div>
-                    <div className={styles["display-logos"]}>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                        <div className={styles["logos"]}></div>
-                    </div>
                 </section>
                 <section className={styles["sessao"]} id="vantagens">
                     <div className={styles["vantagens"]} id="vantagens">
@@ -115,7 +107,7 @@ function Dono() {
                         <h1>DICA DO CHOPPER</h1>
                         <div className={styles["dica-containers"]}>
                             <span className={styles["primeira-dica"]}>SE CADASTRE E SE TORNE TAMBÉM UM DESTAQUE,
-                                 AUMENTANDO A <br></br> VISIBILIDADE DO SEU ESTABELCIEMENTO RECEBENDO AINDA MAIS CLIENTES
+                                 AUMENTANDO A <br></br> VISIBILIDADE DO SEU ESTABELECIMENTO RECEBENDO AINDA MAIS CLIENTES
                             </span>
                             <span className={styles["segunda-dica"]}>
                                 Não fique fora dessa, venha fazer parte do<img src={logo}/>

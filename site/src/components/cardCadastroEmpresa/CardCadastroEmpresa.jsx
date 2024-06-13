@@ -1,6 +1,6 @@
 import styles from "./CardCadastroEmpresa.module.css";
 import "../../global.css";
-import icone from "../../assets/icon-user.svg"
+import icone from "../../assets/icon-user.svg";
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -24,35 +24,33 @@ export function CardLoginEmpresa() {
         navigate("/cadastro-usuario");
     }
 
-    return (
-        <div className={styles["card"]}>
-            <img src={icone}alt="icone do usuário" className={styles["icon-user"]} />
-            <div className={styles["card-body"]}>
-                <h1 className={styles["card-title"]}><b>CADASTRE-SE</b></h1>
-                <form>
-                <div className={styles["form-group"]}>
-                        <label htmlFor="text">CNPJ</label>
-                        <input type="text" className={styles["form-control"]} id="cnpj" placeholder="CNPJ" onChange={e => handleChangeInput(e, setCnpj)} value={cnpjMask(cnpj)}/>
-                    </div>
-                    <div className={styles["form-group"]}>
-                        <label htmlFor="text">Nome Fantasia</label>
-                        <input type="text" className={styles["form-control"]} id="nome" aria-describedby="name" placeholder="Nome fantasia" onChange={e => handleChangeInput(e, setName)}/>
-                    </div>
-                    <div className={styles["form-group"]}>
-                        <label htmlFor="valorMedio">Valor médio</label>
-                        <input type="number" className={styles["form-control"]} id="valorMedio" aria-describedby="valorMedioHelp" placeholder="Valor médio (ex: 50,0)" onChange={e => handleChangeInput(e, setAvgValue)}/>
-                    </div>
-                    
-                    <button type="button" className={styles["botao-entrar-usuario"]} onClick={create}><b>CADASTRAR</b></button>
-                    <div className={styles["loginExistente"]}>
-                            Já possui Login?<Link to="/loginEmpresa" className={styles.entrar}>Entrar</Link>
+    return (    
+            <div className={styles["card"]}>
+                <img src={icone} alt="icone do usuário" className={styles["avatar"]}/>
+                <div className={styles["card-body"]}>
+                    <h1 className={styles["card-title"]}><b>CADASTRE-SE</b></h1>
+                    <form>
+                        <div className={styles["form-group"]}>
+                            <label htmlFor="cnpj">CNPJ</label>
+                            <input type="text" className={styles["form-control"]} id="cnpj" placeholder="CNPJ" onChange={e => handleChangeInput(e, setCnpj)} value={cnpjMask(cnpj)}/>
                         </div>
-                </form>
+                        <div className={styles["form-group"]}>
+                            <label htmlFor="nome">Nome Fantasia</label>
+                            <input type="text" className={styles["form-control"]} id="nome" placeholder="Nome fantasia" onChange={e => handleChangeInput(e, setName)}/>
+                        </div>
+                        <div className={styles["form-group"]}>
+                            <label htmlFor="valorMedio">Valor médio</label>
+                            <input type="number" className={styles["form-control"]} id="valorMedio" placeholder="Valor médio (ex: 50,0)" onChange={e => handleChangeInput(e, setAvgValue)}/>
+                        </div>
+                        <button type="button" className={styles["botao-entrar-usuario"]} onClick={create}><b>CADASTRAR</b></button>
+                        <div className={styles["loginExistente"]}>
+                            Já possui Login?<Link to="/loginEmpresa" className={styles["entrar"]}>Entrar</Link>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
     );
 }
-
 
 const handleChangeInput = (e, setStateFunction) => {
     setStateFunction(e.target.value);

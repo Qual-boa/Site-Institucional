@@ -1,6 +1,6 @@
 import styles from "./CardCadastro.module.css";
 import "../../global.css";
-import avatar from "../../assets/asset-cadastro-usuario/avatar.svg"; // Importe o seu arquivo de imagem SVG
+import avatar from "../../assets/asset-cadastro-usuario/avatar.svg"; 
 import { Link } from 'react-router-dom';
 import api from "../../api";
 import { useState } from "react";
@@ -23,10 +23,9 @@ function CardCadastro() {
 
         api.post("/users/register",{
             name: nome,
-            email,
+            email:email,
             password: senha,
-            userTypeEnum: "EMPLOYEE",
-            roleEnum: "ADMIN"
+            roleEnum: "USER"
         }).then(()=>{toast.success("Novo Usuário cadastrado com sucesso!");
             navigate("/login");
         }).catch(()=>{toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.")})
@@ -39,7 +38,7 @@ function CardCadastro() {
     
 
     return (
-        <div className={styles["containerCadastroUsuario"]}> {/* Adicione esta div */}        
+        <div className={styles["containerCadastroUsuario"]}>       
             <div className={styles["card"]}>            
             <img src={avatar} alt="Avatar" className={styles["avatar"]}/>
                 <div className={styles["card-body"]}>

@@ -1,51 +1,65 @@
-import React, { useCallback } from 'react';
+import React, { useState } from 'react';
 import styles from './NavBar.module.css';
 import perfil from '../../assets/perfilUser.svg';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import SearchBar from '../searchBar/SearchBar'; // Importe o componente SearchBar
+import SearchBar from '../searchBar/SearchBar';
+import Modal from '../modalGenerico/ModalGenerico';
+import EditarUsuarios from '../../pages/formsDashboard/EditarUsuarios'; 
+import EditarFinal from '../editarFinal/EditarFinal';
 
 const NavBar = ({ logoInicio }) => {
     const navigate = useNavigate();
 
-    const quemSomosSection = (sectionId) => {
-        // Navega para a página inicial (ou para a página onde está a seção desejada)
-        navigate('/quem-somos');
-
-        // Espera um pequeno intervalo de tempo antes de rolar para a seção
-        setTimeout(() => {
-            var secao = document.getElementById(sectionId);
-            if (secao) {
-                secao.scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 100); // ajuste o tempo conforme necessário
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+ 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
     };
 
-    const scrollToSection = (sectionId) => {
-        // Navega para a página inicial (ou para a página onde está a seção desejada)
-        navigate('/home');
-
-        // Espera um pequeno intervalo de tempo antes de rolar para a seção
-        setTimeout(() => {
-            var secao = document.getElementById(sectionId);
-            if (secao) {
-                secao.scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 100); // ajuste o tempo conforme necessário
+    const openModal = () => {
+        setModalOpen(true);
+        setMenuOpen(false);
     };
-    
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    const navigateAndCloseMenu = (sectionId) => {
+        navigate(`/${sectionId}`);
+        setMenuOpen(false);
+    };
+
     return (
         <nav className={styles["navbar"]}>
-            <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" to="outra-pagina" smooth={true} onClick={() => scrollToSection('inicio')} />
-            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('cidades')}><b>CIDADES MAIS PROCURADAS</b></span>
-            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('bares')}><b>BARES MAIS VISTOS</b></span>
-            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('sugestoes')}><b>SUGESTÔES DO MÊS</b></span>
-            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('boa')}><b>QUAL A SUA BOA?</b></span>
-            <span to="outra-pagina" smooth={true} onClick={() => quemSomosSection('quem-somos')}><b>QUEM SOMOS</b></span>
-            <SearchBar /> {/* Use o componente SearchBar */}
-            <img src={perfil} className={styles["perfil-user"]} alt="Usuário" />
-        </nav>        
+            <img
+                src={logoInicio}
+                className={styles["logo-inicio"]}
+                alt="Logo Início"
+                onClick={() => navigate("/")}
+            />
+            <span onClick={() => navigateAndCloseMenu('cidades')}><b>CIDADES MAIS PROCURADAS</b></span>
+            <span onClick={() => navigateAndCloseMenu('bares')}><b>BARES MAIS VISTOS</b></span>
+            <span onClick={() => navigateAndCloseMenu('sugestoes')}><b>SUGESTÕES DO MÊS</b></span>
+            <span onClick={() => navigateAndCloseMenu('boa')}><b>QUAL A SUA BOA?</b></span>
+            <span onClick={() => navigateAndCloseMenu('quem-somos')}><b>QUEM SOMOS</b></span>
+            <SearchBar /> 
+            <div className={styles["perfil-container"]} onClick={toggleMenu}>
+                <img src={perfil} className={styles["perfil-user"]} alt="Usuário" />
+                {menuOpen && (
+                    <div className={styles["dropdown-menu"]}>
+                        <ul>
+                            <li onClick={openModal}>Configurações</li>
+                            <li onClick={() => navigate("/login")}>Logout</li>
+                        </ul>
+                    </div>
+                )}
+            </div>
+            <Modal isOpen={modalOpen} onClose={closeModal}>
+                <EditarFinal closeModal={closeModal} />
+            </Modal>
+        </nav>
     );
 };
 
