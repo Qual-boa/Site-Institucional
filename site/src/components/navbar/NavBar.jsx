@@ -4,6 +4,7 @@ import perfil from '../../assets/perfilUser.svg';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../searchBar/SearchBar';
 import Modal from '../modalGenerico/ModalGenerico';
+import EditarUsuarios from '../../pages/formsDashboard/EditarUsuarios'; 
 import EditarFinal from '../editarFinal/EditarFinal';
 
 const NavBar = ({ logoInicio }) => {
@@ -25,24 +26,41 @@ const NavBar = ({ logoInicio }) => {
         setModalOpen(false);
     };
 
-    const navigateAndCloseMenu = (sectionId) => {
-        navigate(`/${sectionId}`);
-        setMenuOpen(false);
+
+    const scrollToSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/home');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+
+    const quemSomosSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/quem-somos');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
     };
 
     return (
         <nav className={styles["navbar"]}>
-            <img
-                src={logoInicio}
-                className={styles["logo-inicio"]}
-                alt="Logo Início"
-                onClick={() => navigate("/")}
-            />
-            <span onClick={() => navigateAndCloseMenu('cidades')}><b>CIDADES MAIS PROCURADAS</b></span>
-            <span onClick={() => navigateAndCloseMenu('bares')}><b>BARES MAIS VISTOS</b></span>
-            <span onClick={() => navigateAndCloseMenu('sugestoes')}><b>SUGESTÕES DO MÊS</b></span>
-            <span onClick={() => navigateAndCloseMenu('boa')}><b>QUAL A SUA BOA?</b></span>
-            <span onClick={() => navigateAndCloseMenu('quem-somos')}><b>QUEM SOMOS</b></span>
+            <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" to="outra-pagina" smooth={true} onClick={() => scrollToSection('inicio')} />
+            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('cidades')}><b>CIDADES MAIS PROCURADAS</b></span>
+            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('bares')}><b>BARES MAIS VISTOS</b></span>
+            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('sugestoes')}><b>SUGESTÕES DO MÊS</b></span>
+            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('boa')}><b>QUAL A SUA BOA?</b></span>
+            <span onClick={() => quemSomosSection('quem-somos')}><b>QUEM SOMOS</b></span>
             <SearchBar /> 
             <div className={styles["perfil-container"]} onClick={toggleMenu}>
                 <img src={perfil} className={styles["perfil-user"]} alt="Usuário" />

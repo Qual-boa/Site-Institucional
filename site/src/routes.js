@@ -13,26 +13,27 @@ import UsuarioFinal from "./pages/usuario-final/UsuarioFinal"
 import Dashboard from "./pages/dashboard/Dashboard"
 import AdicionarUsuarios from './pages/formsDashboard/AdicionarUsuarios';
 import EditarUsuarios from './pages/formsDashboard/EditarUsuarios';
+import Listagem from './pages/listagemEstabelecimento/Listagem'
 
 function Rotas() {
     return (
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/estabelecimento" element={<Estabelecimento />} />
-                    <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
-                    <Route path="/dono" element={<Dono />} />
-                    <Route path="/home-estabelecimento" element={<Dono />} />
+                    <Route path="/estabelecimento" element={<Estabelecimento />} />{/*remover*/}
+                    <Route path="/cadastro-usuario" element={<CadastroUsuario />} />{/*cadastro user*/}
+                    <Route path="/home-estabelecimento" element={<Dono />} />{/*home do estabelecimento*/}
                     <Route path="/login" element={<LoginUsuario/>}/>
                     <Route path="/loginEmpresa" element={<LoginEmpresa/>}/>
                     <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
                     <Route path="*" element={<NotFound />} />                    
                     <Route path="/home" element={<UsuarioFinal/>}/>
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
-                    <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>
+                    <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>{/*erro no fetch*/}
                     <Route path="/dashboard" element={<Dashboard/>}/>
-                    <Route path="/usuarios/adicionarUsuarios" element={<AdicionarUsuarios />} />
-                    <Route path="/usuarios/editarUsuarios" element={<EditarUsuarios />} />
+                    <Route path="/usuarios/adicionarUsuarios" element={<AdicionarUsuarios />} />{/*finalizada?*/}
+                    <Route path="/usuarios/editarUsuarios" element={<EditarUsuarios />} />{/*finalizada?*/}
+                    <Route path="/listagem" element={<Listagem />} />{/*listagem*/}
                 </Routes>
             </BrowserRouter>
         </>

@@ -2,9 +2,40 @@ import styles from "./FooterEmpresa.module.css";
 import LogoFooter from '../../assets/footerIcon.svg'
 import {FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import LogoFooter2024 from "../../assets/footer2024.svg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Footer() {
+
+    const navigate = useNavigate();
+
+    {/*const quemSomosSection = () =>{
+        navigate('/quemSomos');
+    }*/}
+    const quemSomosSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/quem-somos');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+
+    const scrollToSection = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/home-estabelecimento');
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
+
     return (
         <section id="footerEmpresa">
         <footer className={styles.footer}>
@@ -18,13 +49,12 @@ function Footer() {
 
             </div>
             <div className={styles.menuContainer}>
-                <div className={styles.menu}>
+            <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <Link to={"/quem-somos"}>QUAL A BOA?</Link>
-                    <Link to={"/quem-somos"}>MELHORES DO MÊS</Link>
-                    <Link to={"/quem-somos"}>QUAL A SUA BOA?</Link>
-                    <Link to={"/quem-somos"}>CONTATOS</Link>                    
-                    <Link to={"/quem-somos"}>QUEM SOMOS</Link>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('vantagens')}>VANTAGENS</a>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('destaque')}>BAR DESTAQUE DO MÊS</a>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('dica')}>DICA DO CHOPPER</a>                    
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => quemSomosSection('quem-somos')}>QUEM SOMOS</a>
                 </div>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>ENDEREÇO</h3>
