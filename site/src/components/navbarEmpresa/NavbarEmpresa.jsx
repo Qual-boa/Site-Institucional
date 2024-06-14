@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './NavbarEmpresa.module.css';
-import perfil from '../../assets/perfilUser.svg';
+import perfil from '../../assets/perfilBranco.svg';
 import { useNavigate } from 'react-router-dom';
+import SearchBar from '../searchBar/SearchBar';
 
 const NavBar = ({ logoInicio }) => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -55,7 +56,7 @@ const NavBar = ({ logoInicio }) => {
             <span onClick={() => scrollToSection('destaque')}><b>BAR DESTAQUE DO MÊS</b></span>
             <span onClick={() => scrollToSection('dica')}><b>DICA DO CHOPPER</b></span>
             <span onClick={() => quemSomosSection('quem-somos')}><b>QUEM SOMOS</b></span>
-            <input type="text" placeholder="Escreva aqui"/>
+            <SearchBar /> 
             <div ref={menuRef} className={styles["perfil-container"]}>
                 <img src={perfil} className={styles["perfil-user"]} alt="Usuário" onClick={() => setMenuOpen(!menuOpen)}/>
                 {menuOpen && (

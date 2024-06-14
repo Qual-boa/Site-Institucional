@@ -44,7 +44,7 @@ export function CardLoginEmpresa() {
                         </div>
                         <button type="button" className={styles["botao-entrar-usuario"]} onClick={create}><b>CADASTRAR</b></button>
                         <div className={styles["loginExistente"]}>
-                            Já possui Login?<Link to="/loginEmpresa" className={styles["entrar"]}>Entrar</Link>
+                            Já possui Login?<Link to="/edicao-empresa" className={styles["entrar"]}>Entrar</Link>
                         </div>
                     </form>
                 </div>

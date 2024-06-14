@@ -39,11 +39,6 @@ const Sidebar = () => {
                             <option value="editar">Editar</option>
                         </select>
                     </li>
-                    <li>
-                        <Link to="/relatorios" className={location.pathname === '/relatorios' ? styles.active : ''}>
-                            Relatórios
-                        </Link>
-                    </li>
                 </ul>
             </nav>
 

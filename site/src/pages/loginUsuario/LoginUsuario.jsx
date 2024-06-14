@@ -2,7 +2,7 @@ import styles from "./LoginUsuario.module.css";
 import "../../global.css";
 import { CardLogin } from "../../components/cardLogin/CardLogin";
 import NavBar from "../../components/navbar/NavBar";
-import logo from "../../assets/QualABoa.svg";
+import logo from "../../assets/logoBranca.svg";
 import Footer from "../../components/footer/Footer";
 
 function LoginUsuario(){
