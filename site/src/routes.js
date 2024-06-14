@@ -14,8 +14,8 @@ import Dashboard from "./pages/dashboard/Dashboard"
 import AdicionarUsuarios from './pages/formsDashboard/AdicionarUsuarios';
 import EditarUsuarios from './pages/formsDashboard/EditarUsuarios';
 import Listagem from './pages/listagemEstabelecimento/Listagem'
+import CadastrarInformacoesEmpresa from "./pages/edicaoEmpresa/edicaoEmpresa";
 
-import EdicaoEmpresa from "./pages/edicaoEmpresa/edicaoEmpresa";
 function Rotas() {
     return (
         <>
@@ -28,14 +28,15 @@ function Rotas() {
                     <Route path="/loginEmpresa" element={<LoginEmpresa/>}/>
                     <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
                     <Route path="*" element={<NotFound />} />                    
-                    <Route path="/home" element={<UsuarioFinal/>}/>
+                    <Route path="/" element={<UsuarioFinal/>}/>
                     <Route path="/quem-somos" element={<QuemSomos/>}/>
-                    <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>{/*erro no fetch*/}
+                    <Route path="/estabelecimento-usuario/:id" element={<EstabelecimentoUsuario/>}/>{/*erro no fetch*/}
                     <Route path="/dashboard" element={<Dashboard/>}/>
                     <Route path="/usuarios/adicionarUsuarios" element={<AdicionarUsuarios />} />{/*finalizada?*/}
                     <Route path="/usuarios/editarUsuarios" element={<EditarUsuarios />} />{/*finalizada?*/}
-                    <Route path="/edicao-empresa" element={<EdicaoEmpresa/>}/>
-                    <Route path="/listagemEstabelecimento" element={<Listagem />} />
+                    <Route path="/listagem" element={<Listagem />} />{/*listagem*/}
+                    <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>
+                    <Route path="/cadastrar-info-empresa/:id" element={<CadastrarInformacoesEmpresa />}/>
                 </Routes>
             </BrowserRouter>
         </>

@@ -5,13 +5,13 @@ import api from "../../api";
 import apiBlob from "../../api-blob";
 import styles from "./ResultadoBusca.module.css";
 import Multiselect from 'multiselect-react-dropdown';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
 function ResultadoBusca() {
 
   const [resultados, setResultados] = useState([]);
   const [searchParams] = useSearchParams();
-  const [searchTerm, setSearchTerm] = useState(''); // Estado para armazenar o valor do input de busca
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedDrinks, setSelectedDrinks] = useState([]);
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [selectedMusics, setSelectedMusics] = useState([]);
@@ -32,15 +32,21 @@ function ResultadoBusca() {
         let completeResults; 
         const establishments = response.data;
         const imageRequests = establishments.map(establishment =>
-          apiBlob.get(`/establishments/${establishment.id}`).then((response) => {
-            const { data } = response;
-            const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
-            
-            return {
-              ...establishment,
-              imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
-            };
-          })
+          apiBlob.get(`/establishments/${establishment.id}`)
+            .then((response) => {
+              const { data } = response;
+              const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
+              return {
+                ...establishment,
+                imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
+              };
+            })
+            .catch(() => {
+              return {
+                ...establishment,
+                imageUrl: 'defaultLogoImage.jpg'
+              };
+            })
         );
 
         Promise.all(imageRequests)
@@ -49,7 +55,7 @@ function ResultadoBusca() {
             toast.success("Dados carregados com sucesso!");
           })
           .catch(() => {
-            toast.error("Ocorreu um erro ao carregar as imagens, por favor, tente novamente.");
+            toast.error("Ocorreu um erro ao carregar algumas imagens, mas os dados foram carregados.");
           });
       })
       .catch(() => {
@@ -58,8 +64,8 @@ function ResultadoBusca() {
   };
 
   const handleSubmit = (evento) => {
-    evento.preventDefault(); // Previne o comportamento padrão do formulário
-    buscarDados(); // Faz a busca com o termo atualizado
+    evento.preventDefault();
+    buscarDados();
   };
 
   const setarValoresInput = (e, setter) => {
@@ -81,15 +87,15 @@ function ResultadoBusca() {
       <div className={styles["search-bar"]}>
         <h3>PROCURE SEU ROLÊ</h3>
         <div className={styles["container-inpu-filtro"]}>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setarValoresInput(e, setSearchTerm)}
-          placeholder="Pesquise sua boa"
-          className={styles["search-input"]}
-        />
-        <button onClick={handleSubmit} className={styles["search-button"]}>Pesquisar</button>
-         </div>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setarValoresInput(e, setSearchTerm)}
+            placeholder="Pesquise sua boa"
+            className={styles["search-input"]}
+          />
+          <button onClick={handleSubmit} className={styles["search-button"]}>Pesquisar</button>
+        </div>
       </div>
 
       <div className={styles["option-container"]}>
@@ -133,27 +139,28 @@ function ResultadoBusca() {
       <div className={styles.containerJsons}>
         {resultados.length > 0 ? (
           resultados.map((resultado, index) => (
-            <div key={index} className={styles.card}>
+            <Link to={`/establishment/${resultado.id}`} key={index} className={styles.card}>
               <div className={styles.imageContainer}>
                 <img src={resultado.imageUrl} alt={resultado.name} className={styles.image} />
               </div>
-              <div className={styles.details}> 
+              <div className={styles.details}>
                 <div className={styles.header}>
                   <h2 className={styles.name}>{resultado.fantasyName}</h2>
                   <div className={styles.location}>{resultado.location}</div>
                 </div>
                 <div className={styles.description}>{resultado.description}</div>
                 <div className={styles.additionalInfo}>
-                {resultado.information.hasParking && <span>Estacionamento </span>}
-                  {resultado.information.hasAccessibility && <span>Acessibilidade </span>}
-                  {resultado.information.hasTv && <span>TV </span>}
-                  {resultado.information.hasWifi && <span>Wi-Fi </span>} </div>
-                <button className={styles.visitButton}>VISITAR</button>
+                  {resultado.information?.hasParking && <span>Estacionamento </span>}
+                  {resultado.information?.hasAccessibility && <span>Acessibilidade </span>}
+                  {resultado.information?.hasTv && <span>TV </span>}
+                  {resultado.information?.hasWifi && <span>Wi-Fi </span>}
+                </div>
+                <Link to={"/estabelecimento-usuario"} establishmentId={resultado.id} className={styles.visitButton}>VISITAR</Link>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
-          <p></p>
+          <p>Nenhum resultado encontrado.</p>
         )}
       </div>
     </div>
