@@ -48,11 +48,11 @@ function Footer() {
             <div className={styles.menuContainer}>
             <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <a className={styles.options} href="#" smooth={true} onClick={() => scrollToSection('cidades')}>CIDADES MAIS PROCURADAS</a>
-                    <a className={styles.options} href="#" smooth={true} onClick={() => scrollToSection('bares')}>BARES MAIS VISTOS</a>
-                    <a className={styles.options} href="#" smooth={true} onClick={() => scrollToSection('sugestoes')}>SUGESTÔES DO MÊS</a>
-                    <a className={styles.options} href="#" smooth={true} onClick={() => scrollToSection('boa')}>QUAL A SUA BOA?</a>                    
-                    <a className={styles.options} href="#" smooth={true} onClick={() => quemSomosSection('quem-somos')}>QUEM SOMOS</a>
+                    <a className={styles.options} href="#outra" smooth={true} onClick={() => scrollToSection('cidades')}>CIDADES MAIS PROCURADAS</a>
+                    <a className={styles.options} href="#outra" smooth={true} onClick={() => scrollToSection('bares')}>BARES MAIS VISTOS</a>
+                    <a className={styles.options} href="#outra" smooth={true} onClick={() => scrollToSection('sugestoes')}>SUGESTÔES DO MÊS</a>
+                    <a className={styles.options} href="#outra" smooth={true} onClick={() => scrollToSection('boa')}>QUAL A SUA BOA?</a>                    
+                    <a className={styles.options} href="#outra" smooth={true} onClick={() => quemSomosSection('quem-somos')}>QUEM SOMOS</a>
                 </div>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>ENDEREÇO</h3>
