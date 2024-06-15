@@ -363,9 +363,6 @@ function EstabelecimentoUsuario() {
                         <div className={styles.locationDistance}>
                             <p>{neighborhood}, {city}</p>
                         </div>
-                        <div className={styles.description}>
-                            <p>{description}</p>
-                        </div>
                         <div className={styles.flexContainer}>
                             <div className={styles.favoritar}>
                                 <div className="rating gap-1">
@@ -376,6 +373,12 @@ function EstabelecimentoUsuario() {
                             {renderFacilities()}
                             </div>
                         </div>
+                        <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
+                        <div className={styles.divisor2}>__________</div>
+                        <div className={styles.flexContainer2}>
+                            <div className={styles.secoes}>SOBRE NÓS</div>
+                        </div>
+                        <div className={styles.description}>{description}</div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>
                         <div className={styles.flexContainer2}>

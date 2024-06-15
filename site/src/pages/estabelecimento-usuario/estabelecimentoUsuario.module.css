@@ -39,8 +39,9 @@ html {
 }
 
 .description {
-    margin-left: -30.5%;
+    margin-left: -3%;
     margin-top: 10px;
+    width: 65%;
 }
 
 .responsiveImage {
@@ -290,7 +291,7 @@ html {
 
 .imageWrapper {
     width: 193.97px;/* ajusta o tamanho das imagens na galeria */
-    height: 177.22px;
+    height: auto;
     margin-bottom: 30px;
 }
 
@@ -300,7 +301,7 @@ html {
     justify-content: space-between;
     width: 845px;
     margin-left: -5%;
-    height: 250px;
+    height: auto;
 }
 .navigationButtons {
     display: flex;
@@ -323,3 +324,4 @@ html {
     background-color: black; /* Cor de fundo dos botões desabilitados */
     cursor: not-allowed; /* Cursor não permitido */
 }
+ 
