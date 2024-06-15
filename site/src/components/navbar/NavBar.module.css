@@ -13,6 +13,9 @@
     background-color: transparent;
     position: fixed;
     transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: #000;
+    border-radius: 20px;
+    color:white;
 }
 
 .navbar.scrolled {

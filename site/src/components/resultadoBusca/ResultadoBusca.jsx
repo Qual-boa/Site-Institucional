@@ -89,7 +89,7 @@ function ResultadoBusca() {
     <div className={styles["containerBusca"]}>
       <div className={styles["search-container"]}>
         <div className={styles["search-bar"]}>
-          <h3>PROCURE SEU ROLÊ</h3>
+          <h3 className={styles["title"]}>PROCURE SEU ROLÊ</h3>
           <div className={styles["container-inpu-filtro"]}>
             <input
               type="text"

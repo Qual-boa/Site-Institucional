@@ -87,7 +87,7 @@ function Usuario() {
                             <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
                         </div>
                         <div className={styles["container-input"]}>
-                            <input className={styles["input-principal"]} type="text" placeholder="Escreva o seu endereço"/>
+                            <input className={styles["input-principal"]} type="text" placeholder="Pesquise sua boa"/>
                             <button type="button" onClick={goToTela2} className={styles["botao-principal"]}>PESQUISAR</button>
                         </div>
                     </div>

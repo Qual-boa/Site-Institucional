@@ -32,7 +32,7 @@ const SearchBar = () => {
             left: '40px', // Posição do ícone à esquerda
             top: '50%', // Alinhar verticalmente
             transform: 'translateY(-50%)',
-            color: '#000000',
+            color: '#000',
             cursor: 'pointer'
           }}
         />

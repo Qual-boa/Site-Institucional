@@ -6,7 +6,11 @@ Estilos para card .card {
   background-color: #f9f9f9;
   text-align: center;
 }
-
+.title {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #000;
+}
 /* Estilos para a imagem dentro do card */
 .card img {
   max-width: 100%;

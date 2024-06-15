@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "../../global.css";
 import styles from "./estabelecimentoDono.module.css";
-import NavBarQS from "../quemSomos/NavBarQS/navBarQS";
+import NavBar from "../../components/navbar/NavBar";
 import logoQS from "../../assets/logoBranca.svg";
 import Footer from "../../components/footer/Footer";
 import { Helmet } from 'react-helmet';
@@ -221,7 +221,7 @@ function EstabelecimentoDono() {
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modak&display=swap" />
             </Helmet>
             <div className={styles.container}>
-                <NavBarQS logoQS={logoQS} />
+                <NavBar logoInicio={logoQS} />
                 <div className={styles['background-image']}>
                 <img src={backgroundImage} alt={`Foto do estabelecimento`} className={styles.responsiveImage} />
                 </div>                
