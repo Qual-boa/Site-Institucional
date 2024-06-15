@@ -16,6 +16,7 @@ import apiBlob from "../../api-blob";
 import GoogleMapReact from "google-map-react";
 import { toast } from 'react-toastify';
 import { decodeToken } from '../../utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 function MapComponent({ postalCode, number }) {
@@ -379,6 +380,7 @@ function EstabelecimentoUsuario() {
                                 <a href={instagramUrl} target='_blank' rel='noreferrer' external><FaInstagram className={styles.midias} /></a>
                             </div>
                             <div className="rating">
+                                <FontAwesomeIcon icon="fa-solid fa-star" />
                                 <input type="radio" name="rating-9" className="rating-hidden" />
                                 <input type="radio" name="rating-9" className="mask mask-star-2" />
                                 <input type="radio" name="rating-9" className="mask mask-star-2" />

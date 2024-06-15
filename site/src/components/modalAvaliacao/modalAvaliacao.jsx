@@ -30,6 +30,7 @@ const Modal = ({ rating, comment, onClose, onCommentChange, onSubmit, setSelecte
             placeholder="Deixe seu comentário"
             rows="4"
             cols="50"
+            className={styles.textarea}
           />
           <button onClick={onSubmit} className={styles.enviar}>Enviar</button>
         </div>

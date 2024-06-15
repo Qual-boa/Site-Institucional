@@ -251,6 +251,7 @@ Estilos para card .card {
   cursor: pointer;
   justify-content: center;
   align-items: center; 
+  background-color: white;
 }
 
 .botao-secundario{
