@@ -10,14 +10,8 @@ import { useSearchParams, Link } from 'react-router-dom';
 
 function ResultadoBusca() {
 
-  const [tamanhoDiv, setTamanhoDiv] = useState(0);
   const divRef = useRef(null);
 
-  useEffect(() => {
-      if (divRef.current) {
-          setTamanhoDiv(divRef.current.offsetHeight);
-      }
-  }, []);
 
   const [resultados, setResultados] = useState([]);
   const [searchParams] = useSearchParams();
