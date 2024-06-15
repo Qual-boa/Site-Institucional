@@ -1,14 +1,14 @@
 .navbar {
-    top: 0;
-    left: 0;
-    height: 6vh;
-    width: 100vw;
+    top:10px;
+    left: 10px;
+    height: 4vh;
+    width: 96vw;
     z-index: 999;
     display: flex;
     max-height: 8vh;
-    min-height: 6vh;
+    min-height: 3vh;
     padding: 0.6rem;
-    align-items: center;
+    align-items: center;    
     justify-content: space-between;
     background-color: transparent;
     position: fixed;
@@ -17,54 +17,21 @@
 
 .navbar.scrolled {
     background-color: black;
-    color: white;
-}
-
-.navbar span {
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: inherit;
-    padding: 0.5rem 0.5rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.navbar span:hover {
-    background-color: #000;
+    position: fixed;
     color: white;
     border-radius: 30px;
-}
-
-.navbar input {
-    height: 4vh;
-    width: 20vw;
-    border: none;
-    border-radius: 20px;
-    text-indent: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-.perfil-user {
-    margin-right: 1vw;
-    cursor: pointer;
 }
 
 .dropdown-menu {
     position: absolute;
     top: calc(100% + 5px);
     background-color: white;
+    color: black;
     border: 1px solid #ccc;
     right: 40px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    display: none; /* Oculto por padrão */
-}
-
-.perfil-container:hover .dropdown-menu {
-    display: block; /* Mostra o menu ao passar o mouse */
 }
 
 .dropdown-menu ul {
@@ -82,36 +49,29 @@
     background-color: #f0f0f0;
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-        padding: 0.5rem;
-    }
-
-    .navbar input {
-        width: 50%;
-        margin-top: 0.5rem;
-    }
-
-    .navbar span:hover {
-        width: auto;
-    }
+.navbar span {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
-@media (max-width: 480px) {
-    .navbar {
-        flex-direction: row;
-        padding: 0.5rem;
-    }
+.navbar input {
+    height: 4vh;
+    width: 30vw;
+    border: none;
+    border-radius: 30px;
+    text-indent: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: white;
+}
 
-    .navbar input {
-        width: 100%;
-        margin-top: 0.5rem;
-    }
+.perfil-user{
+    margin-right: 5px;
+    cursor: pointer;
+}
 
-    .navbar span {
-        font-size: 8px;
-    }
+.logo-inicio{
+    cursor: pointer;
 }
