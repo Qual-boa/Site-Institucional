@@ -1,5 +1,4 @@
 import api from "../../api";
-import apiBlob from "../../api-blob";
 import { toast } from 'react-toastify';
 import styles from "./form.module.css";
 import { useNavigate } from "react-router-dom";
@@ -10,19 +9,14 @@ import axios from "axios";
 const musics = ['Rock', 'Sertanejo', 'Indie', 'Rap', 'Funk', 'Metal'];
 const foods = ['Brasileira', 'Boteco', 'Japonesa', 'Mexicana', 'Churrasco', 'Hamburguer'];
 const drinks = ['Cerveja', 'Vinho', 'Chopp', 'Whisky', 'Gim', 'Caipirinha', 'Drinks'];
-
-function Cadastrar({idEmpresa}) {
+let addressId = "";
+function Editar({idEmpresa}) {
     const navigate = useNavigate();
     const id = idEmpresa;
-    const [selectedProfileFile, setSelectedProfileFile] = useState(null);
-    const [selectedBackgroundFile, setSelectedBackgroundFile] = useState(null);
-    const [selectedMenuFile, setSelectedMenuFile] = useState(null);
-    const [selectedGalleryFiles, setSelectedGalleryFiles] = useState([]);
-    const [uploading, setUploading] = useState(false);
     const [phone, setPhone] = useState("");
     const [facebookUrl, setFacebookUrl] = useState("");
     const [instagramUrl, setInstagramUrl] = useState("");
-    const [setTelegramUrl, setsetTelegramUrl] = useState("");
+    const [telegramUrl, setTelegramUrl] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [street, setStreet] = useState("");
     const [number, setNumber] = useState("");
@@ -45,49 +39,46 @@ function Cadastrar({idEmpresa}) {
     const [selectedDrinks, setSelectedDrinks] = useState([]);
 
     useEffect(() => {
-        api.get(`establishments/${id}`).then((response) => {
+        let comidas = [];
+        let bebidas = [];
+        let musicas = [];
+        api.get(`/establishments/${id}`).then((response) => {
             const { data } = response;
-            const {
-                description,
-                phone,
-                facebookUrl,
-                instagramUrl,
-                setTelegramUrl,
-                postalCode,
-                street,
-                number,
-                neighborhood,
-                complement,
-                city,
-                state,
-                tv,
-                wifi,
-                acessibilidade,
-                estacionamento,
-                openAt,
-                closeAt
-            } = data;
-            setPhone(phone);
-            setFacebookUrl(facebookUrl);
-            setInstagramUrl(instagramUrl);
-            setsetTelegramUrl(setTelegramUrl);
-            setPostalCode(postalCode);
-            setStreet(street);
-            setNumber(number);
-            setNeighborhood(neighborhood);
-            setComplement(complement);
-            setCity(city);
-            setState(state);
-            setOpenAt(openAt);
-            setCloseAt(closeAt);
-            setTv(tv);
-            setWifi(wifi);
-            setAcessibilidade(acessibilidade);
-            setEstacionamento(estacionamento);
-            setDescription(description);
+            setPhone(data.information.phone);
+            setDescription(data.information.description);
+            setOpenAt({ hour: data.information.openAt[0], minute: 0});
+            setCloseAt({ hour: data.information.closeAt[0], minute: 0})
+            setFacebookUrl(data.information.facebookUrl);
+            setInstagramUrl(data.information.instagramUrl);
+            setTelegramUrl(data.information.telegramUrl);
+            setAcessibilidade(data.information.hasAccessibility);
+            setEstacionamento(data.information.hasParking);
+            setTv(data.information.hasTv);
+            setWifi(data.information.hasWifi);
+            data.categories.forEach(cat => {
+                if(cat.categoryType === 3){
+                    bebidas.push(cat);
+                } else if(cat.categoryType === 2) {
+                    comidas.push(cat);
+                } else {
+                    musicas.push(cat);
+                }
+            })
         })
         .catch((error) => {
             console.log("Erro ao buscar os detalhes do estabelecimento:", error);
+        })
+
+        api.get(`/address/establishment/${id}`).then(res => {
+            const data  = res.data[0];
+            addressId = data.id;
+            setPostalCode(data.postalCode);
+            setStreet(data.street);
+            setNumber(data.number);
+            setNeighborhood(data.neighborhood);
+            setComplement(data.complement);
+            setCity(data.city);
+            setState(data.state);
         })
     }, [id]);
 
@@ -138,47 +129,6 @@ function Cadastrar({idEmpresa}) {
         }
     };
 
-    const handleProfileFileChange = (event) => {
-        setSelectedProfileFile(event.target.files[0]);
-    };
-
-    const handleBackgroundFileChange = (event) => {
-        setSelectedBackgroundFile(event.target.files[0]);
-    };
-
-    const handleGalleryFilesChange = (event) => {
-        setSelectedGalleryFiles(event.target.files[0]);
-    };
-
-    const handleMenuFilesChange = (event) => {
-        setSelectedMenuFile(event.target.files[0]);
-    };
-
-    const handleUpload = async (categoria, file) => {
-        if (!file) {
-            toast.warn('Por favor, selecione um arquivo antes de fazer o upload.');
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('category', categoria);
-
-        try {
-            setUploading(true);
-            await apiBlob.post(`/establishments/${id}/upload`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            toast.success('Imagem carregada com sucesso!');
-        } catch (error) {
-            toast.error('Erro ao carregar a imagem. Por favor, tente novamente.');
-        } finally {
-            setUploading(false);
-        }
-    };
-
     const handleSave = async () => {
         const categories = [
             ...selectedDrinks.map((item, index) => ({ categoryType: 3, category: index + 1 })),
@@ -186,7 +136,7 @@ function Cadastrar({idEmpresa}) {
             ...selectedMusics.map((item, index) => ({ categoryType: 1, category: index + 1 }))
         ];
         try {
-            await api.post(`/address/establishment/${id}`, {
+            await api.put(`/address/${addressId}`, {
                 street,
                 number,
                 postalCode,
@@ -200,17 +150,23 @@ function Cadastrar({idEmpresa}) {
         }
 
         try {
-            await api.post('/informations/establishment/' + id, {
+            await api.put('/informations/establishment', {
                 hasParking: estacionamento,
                 hasAccessibility: acessibilidade,
                 hasTv: tv,
                 hasWifi: wifi,
-                openAt: openAtTime,
-                closeAt: closeAtTime,
+                openAt: {
+                    hour: openAtTime.hour,
+                    minute: 0
+                },
+                closeAt: {
+                    hour: closeAtTime.hour,
+                    minute: 0
+                },
                 phone,
                 facebookUrl,
                 instagramUrl,
-                setTelegramUrl,
+                telegramUrl,
                 establishmentId: id,
                 description
             });
@@ -239,25 +195,7 @@ function Cadastrar({idEmpresa}) {
                 <div>
                     <div className={styles["secao-direita-editar"]}>
                         <form>
-                            <span className={styles["titulo"]}>Cadastrar suas informações:</span>
-                            <div>
-                                <h3>Insira a logo do seu estabelecimento</h3>
-                                <div className={styles.uploadContainer}>
-                                    <input type="file" className={styles.arquivo} onChange={handleProfileFileChange} required />
-                                    <button type="button" className={styles.upload} onClick={() => handleUpload("PROFILE", selectedProfileFile)} disabled={uploading}>
-                                        {uploading ? 'Carregando...' : 'Upload'}
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <h3>Insira uma imagem de fundo do seu estabelecimento</h3>
-                                <div className={styles.uploadContainer}>
-                                    <input type="file" className={styles.arquivo} onChange={handleBackgroundFileChange} required />
-                                    <button type="button" className={styles.upload} onClick={() => handleUpload("BACKGROUND", selectedBackgroundFile)} disabled={uploading}>
-                                        {uploading ? 'Carregando...' : 'Upload'}
-                                    </button>
-                                </div>
-                            </div>
+                            <span className={styles["titulo"]}>Editar suas informações:</span>
                             <input
                                 type="text"
                                 value={description}
@@ -324,18 +262,18 @@ function Cadastrar({idEmpresa}) {
                             <div className={styles.timeContainer}>
                                 <label>
                                     Abre às:
-                                    <InputMask
-                                        mask="99"
-                                        placeholder="HH"
+                                    <input
+                                        type="number"
+                                        value={openAtTime.hour}
                                         onChange={(e) => handleTimeChange(e, "openAt")}
                                         required
                                     />
                                 </label>
                                 <label>
                                     Fecha às:
-                                    <InputMask
-                                        mask="99"
-                                        placeholder="HH"
+                                    <input
+                                        type="number"
+                                        value={closeAtTime.hour}
                                         onChange={(e) => handleTimeChange(e, "closeAt")}
                                         required
                                     />
@@ -357,9 +295,9 @@ function Cadastrar({idEmpresa}) {
                             />
                             <input
                                 type="text"
-                                value={setTelegramUrl}
+                                value={telegramUrl}
                                 placeholder="Site Oficial"
-                                onChange={(e) => handleInputChange(e, setsetTelegramUrl)}
+                                onChange={(e) => handleInputChange(e, setTelegramUrl)}
                                 required
                             />
                             <h3>Informações adicionais</h3>
@@ -451,24 +389,6 @@ function Cadastrar({idEmpresa}) {
                                     ))}
                                 </div>
                             </div>
-                            <div>
-                                <h3>Insira as imagens do menu do seu estabelecimento</h3>
-                                <div className={styles.uploadContainer}>
-                                    <input type="file" className={styles.arquivo} onChange={handleMenuFilesChange} />
-                                    <button type="button" className={styles.upload} onClick={() => handleUpload("MENU", selectedMenuFile)} disabled={uploading}>
-                                        {uploading ? 'Carregando...' : 'Upload'}
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <h3>Insira as imagens da galeria do seu estabelecimento</h3>
-                                <div className={styles.uploadContainer}>
-                                    <input type="file" className={styles.arquivo} onChange={handleGalleryFilesChange} />
-                                    <button type="button" className={styles.upload} onClick={() => handleUpload("GALLERY", selectedGalleryFiles)} disabled={uploading}>
-                                        {uploading ? 'Carregando...' : 'Upload'}
-                                    </button>
-                                </div>
-                            </div>
                             <div className={styles["buttons-container-editar"]}>
                                 <button type="button" onClick={handleSave}>
                                     Salvar
@@ -485,4 +405,4 @@ function Cadastrar({idEmpresa}) {
     );
 }
 
-export default Cadastrar;
+export default Editar;

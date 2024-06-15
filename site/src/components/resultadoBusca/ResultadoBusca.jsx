@@ -138,7 +138,7 @@ function ResultadoBusca() {
       <div className={styles.containerJsons}>
         {resultados.length > 0 ? (
           resultados.map((resultado, index) => (
-            <Link to={`/establishment/${resultado.id}`} key={index} className={styles.card}>
+            <Link to={`/estabelecimento-usuario/${resultado.id}`} key={index} className={styles.card}>
               <div className={styles.imageContainer}>
                 <img src={resultado.imageUrl} alt={resultado.name} className={styles.image} />
               </div>
@@ -147,14 +147,15 @@ function ResultadoBusca() {
                   <h2 className={styles.name}>{resultado.fantasyName}</h2>
                   <div className={styles.location}>{resultado.location}</div>
                 </div>
-                <div className={styles.description}>{resultado.description}</div>
+                <div className={styles.description}>{resultado.information?.description}</div>
+                <div className={styles.description}>R${resultado.averageOrderValue},00</div>
                 <div className={styles.additionalInfo}>
                   {resultado.information?.hasParking && <span>Estacionamento </span>}
                   {resultado.information?.hasAccessibility && <span>Acessibilidade </span>}
                   {resultado.information?.hasTv && <span>TV </span>}
                   {resultado.information?.hasWifi && <span>Wi-Fi </span>}
                 </div>
-                <Link to={"/estabelecimento-usuario"} establishmentId={resultado.id} className={styles.visitButton}>VISITAR</Link>
+                <Link to={"/estabelecimento-usuario/" + resultado.id} className={styles.visitButton}>VISITAR</Link>
               </div>
             </Link>
           ))

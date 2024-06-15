@@ -21,7 +21,7 @@ export function CardLogin() {
         }).then((response) => {
             sessionStorage.setItem('qabToken', response.data.token)
             toast.success("Usuário logado com sucesso!");
-            navigate("/quem-somos");
+            navigate("/listagem");
         }).catch(() => { toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.") })
     }
 

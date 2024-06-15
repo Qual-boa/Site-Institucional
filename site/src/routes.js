@@ -15,6 +15,8 @@ import AdicionarUsuarios from './pages/formsDashboard/AdicionarUsuarios';
 import EditarUsuarios from './pages/formsDashboard/EditarUsuarios';
 import Listagem from './pages/listagemEstabelecimento/Listagem'
 import CadastrarInformacoesEmpresa from "./pages/cadastrarInfoEmpresa/cadastrarInfoEmpresa";
+import EstabelecimentoDono from "./pages/estabelecimento-dono/estabelecimentoDono";
+import EditarEstabelecimento from "./pages/editarEstabelecimento/editarEstabelecimento";
 
 function Rotas() {
     return (
@@ -37,6 +39,8 @@ function Rotas() {
                     <Route path="/listagem" element={<Listagem />} />{/*listagem*/}
                     <Route path="/estabelecimento-usuario" element={<EstabelecimentoUsuario/>}/>
                     <Route path="/cadastrar-info-empresa/:id" element={<CadastrarInformacoesEmpresa />}/>
+                    <Route path="/estabelecimento-dono/:id" element={<EstabelecimentoDono />}/>
+                    <Route path="/editar-estabelecimento/:id" element={<EditarEstabelecimento />}/>
                 </Routes>
             </BrowserRouter>
         </>

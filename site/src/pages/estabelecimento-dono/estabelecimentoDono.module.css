@@ -1,0 +1,357 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #fff;
+}
+.buttonEditar {
+    font-weight: bold;
+    padding: 10px;
+    background-color: #FFA500;
+    color:#000;
+    text-align: center;
+    color:white;
+    border-radius: 10px;
+}
+
+.buttonVer {
+    font-weight: bold;
+    padding: 10px;
+    background-color: blue;
+    color:#000;
+    text-align: center;
+    color:white;
+    border-radius: 10px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.buttonEditar:hover, .buttonVer:hover {
+    opacity: 50%;
+    transition: 0.5s;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    /* height: 100%; */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.background-imageEstab {
+    background-image: url("../../assets/fundoGrande.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top left;
+    width: 100%; /* Largura fixa */
+    display: flex;
+    min-height: 100vh; /* Altura mínima de 100vh */
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.background-image {
+    position: relative;
+    width: 100%;
+    height: 430px; /* Altura fixa */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Garante que a imagem cortada não ultrapasse os limites do contêiner */
+}
+
+.description {
+    margin-left: -3%;
+    margin-top: 10px;
+    width: 65%;
+}
+
+.responsiveImage {
+    width: 100%;
+    height: auto; /* Altura automática para manter a proporção */
+    object-fit: cover; /* Garante que a imagem preencha o contêiner e seja cortada conforme necessário */
+    object-position: center;
+}
+
+.logoContainer {
+    position: absolute;
+    top: 175px; /* Move o círculo 50% para baixo */
+    left: 25%; /* Centraliza horizontalmente */
+    transform: translate(-50%, 50%); /* Centraliza horizontalmente */
+    width: 260px;
+    height: 260px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.clientLogo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o contêiner e seja cortada conforme necessário */
+    object-position: center;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-left: 75%;
+}
+
+.nomeEstab {
+    font-size: 44px;
+    font-weight: bold;
+    color: black;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.midias {
+    font-size: 1.7rem;
+    margin-left: 20px;
+    cursor: pointer;
+    color: black;
+    
+}
+
+.avaliacao{
+    color: black;
+    margin-left: 16%;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    
+}
+
+
+.container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.container2 {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 70px; /* Ajuste da margem para posicionar abaixo do "BEER4U" */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.breadcrumbs {
+    margin-left: 200%;
+    font-size: 14px;
+    color: #000; /* Ajuste a cor conforme necessário */
+    z-index: 2; /* Certifique-se de que esteja acima do fundo */
+}
+.main-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 32%;
+    padding: 20px;
+    margin-top: 50px; /* Adicionado para espaço abaixo do header */
+}
+.locationDistance {
+    margin-left: -55%;
+    font-size: 16px;
+    color: #000; /* Ajuste a cor conforme necessário */
+    margin-top: -5px; /* Espaço entre o breadcrumbs e a localização */
+    z-index: 2; /* Certifique-se de que esteja acima do fundo */
+}
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    padding: 0 20px; /* Ajuste o preenchimento conforme necessário */
+    top: 250px; /* Ajuste a distância conforme necessário */
+    transform: translateY(0);
+}
+
+.favoritar {
+    display: flex; 
+    align-items: center;
+    margin-left: 16%;
+    font-size: 16px;
+    color: #000; /* Ajuste a cor conforme necessário */
+    margin-top: 20px; /* Espaço entre a localização e o botão de favoritar */
+    z-index: 2; /* Certifique-se de que esteja acima do fundo */
+}
+.facilidades {
+    display: flex; 
+    align-items: center;
+    text-align: right;
+    margin-right: 20%;
+    font-size: 16px;
+    color: #000; /* Ajuste a cor conforme necessário */
+    z-index: 5;
+}
+.divisor{
+    text-align: left;
+    width: 846px;
+    margin-left: -5%;
+    color: #000;
+}
+.divisor2{
+    text-align: left;
+    font-weight: bolder;
+    width: 846px;
+    font-size: x-large;
+    margin-left: -5%;
+    color: black;
+}
+.secoes{
+    text-align: left;
+    font-weight: bold;
+    font-size: 34px;
+    margin-left: 16%;
+    color: black;
+}
+.secoes2{
+    text-align: left;
+    font-weight: bold;
+    font-size: 34px;
+    margin-left: 0%;
+    color: black;
+}
+.flexContainer2 {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    top: 250px; /* Ajuste a distância conforme necessário */
+    gap: 0px 32%;
+    font-size: 20px;
+    font-weight: bold;
+}
+.cardContainer {
+    width: 845px;
+    display: flex;
+    margin-left: 0%;
+    margin-top: 10px;
+  }
+  .cardContainer2 {
+    width: 845px;
+    display: flex;
+    margin-left: -5%;
+    margin-top: 10px;
+  }
+  
+  .cardContainer::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .cardContainer::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+  
+  .cardContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .historia{
+    width: 845px;
+    margin-left: -5%;
+    text-align: justify;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+  }
+  .saibaMais {
+    margin-top: 20px;
+    width: 845px;
+    margin-left: -5%;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+  }
+  
+  .saibaMais p {
+    margin: 10px 0;
+    font-weight: bold;
+  }
+  
+  .saibaMais a {
+    color: #FFA500;
+    text-decoration: none;
+  }
+  
+  .saibaMais .mapa img {
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+  }
+  .roundedImage {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.imageWrapper {
+    width: 193.97px;/* ajusta o tamanho das imagens na galeria */
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.galleryContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 845px;
+    margin-left: -5%;
+    height: auto;
+}
+.navigationButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.navigationButtons button {
+    background-color: black; /* Cor de fundo dos botões */
+    color: white; /* Cor do texto dos botões */
+    border: none; /* Remover borda */
+    padding: 5px 10px; /* Espaçamento interno dos botões */
+    margin: 0 10px; /* Espaçamento entre os botões */
+    cursor: pointer; /* Cursor de ponteiro */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+.navigationButtons button:disabled {
+    background-color: black; /* Cor de fundo dos botões desabilitados */
+    cursor: not-allowed; /* Cursor não permitido */
+}
+ 

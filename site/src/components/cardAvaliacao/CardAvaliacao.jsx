@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './CardAvaliacao.module.css';
+import api from '../../api';
 
-function CardAvaliacao ({ nome, foto, comentario, data, rating }) {
+function CardAvaliacao ({ comentario, rating, userId }) {
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  api.get("/users/" + userId).then(res => {
+    setNomeUsuario(res.data.name);
+  })
   return (
     <div className={styles.avaliacaoCard}>
         <div className={styles.details}>
-        <h3>{nome}</h3>
-        <p>{comentario}</p>
-        <span className={styles.date}>{data}</span>
-      </div>
+          <p>{nomeUsuario}</p>
+          <p>{comentario}</p>
+        </div>
       <div className="rating">
         {[1, 2, 3, 4, 5].map((star) => (
           <span

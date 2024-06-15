@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "../../global.css";
-import styles from "./estabelecimentoUsuario.module.css";
+import styles from "./estabelecimentoDono.module.css";
 import NavBarQS from "../quemSomos/NavBarQS/navBarQS";
 import logoQS from "../../assets/logoBranca.svg";
 import Footer from "../../components/footer/Footer";
 import { Helmet } from 'react-helmet';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
-import CardAvaliacao from '../../components/cardAvaliacao/CardAvaliacao';
 import ModalImage from "react-modal-image";
-import Modal from '../../components/modalAvaliacao/modalAvaliacao'; 
 import api from "../../api";
 import apiBlob from "../../api-blob";
 import GoogleMapReact from "google-map-react";
-import { toast } from 'react-toastify';
-import { decodeToken } from '../../utils';
-
 
 function MapComponent({ postalCode, number }) {
     const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
@@ -90,12 +85,13 @@ function MapComponent({ postalCode, number }) {
       </div>
     );
 }
-function EstabelecimentoUsuario() {
-    const token = sessionStorage.getItem("qabToken");
+
+function EstabelecimentoDono() {
     const { id } = useParams();
     const [fantasyName, setFantasyName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");
+    const [averageOrderValue, setAverageOrderValue] = useState("");
     const [phone, setPhone] = useState("");
     const [facebookUrl, setFacebookUrl] = useState("");
     const [instagramUrl, setInstagramUrl] = useState("");
@@ -109,7 +105,6 @@ function EstabelecimentoUsuario() {
     const [openAt, setOpenAt] = useState("");
     const [closeAt, setCloseAt] = useState("");
     const [description, setDescription] = useState("");
-    // Novos estados para informações adicionais
     const [tv, setTv] = useState(false);
     const [wifi, setWifi] = useState(false);
     const [acessibilidade, setAcessibilidade] = useState(false);
@@ -133,6 +128,7 @@ function EstabelecimentoUsuario() {
             setAcessibilidade(data.information.hasAccessibility);
             setDescription(data.information.description);
             setEstacionamento(data.information.hasParking);
+            setAverageOrderValue(data.averageOrderValue);
             if(data.information.openAt[0] < 10) {
                 setOpenAt("0" + data.information.openAt[0] + ":" + data.information.openAt[1] + "0");
             } else {
@@ -219,144 +215,6 @@ function EstabelecimentoUsuario() {
         }
       };
 
-    const Avaliacao = () => {
-        const { id } = useParams();
-        const [isModalOpen, setIsModalOpen] = useState(false);
-        const [selectedRating, setSelectedRating] = useState(0);
-        const [comment, setComment] = useState('');
-        const [avaliacoes, setAvaliacoes] = useState([
-        ]);
-        const [currentIndex, setCurrentIndex] = useState(0);
-        useEffect(() => {
-            api.get("/establishments/" + id).then(res => {
-                setAvaliacoes(res.data.relationships);
-            })
-        }, [id]);
-
-        const validarToken = () => {
-            if(token === undefined || token === "" || token === null) {
-                toast.error("Para avaliar precisa autenticar-se.");
-                return false;
-            }
-            return true;
-        }
-
-        const handleStarClick = (rating) => {
-            setSelectedRating(rating);
-            setIsModalOpen(true);
-        };
-
-        const handleModalClose = () => {
-            setIsModalOpen(false);
-        };
-
-        const handleCommentChange = (e) => {
-            setComment(e.target.value);
-        };
-
-        const handleSubmit = async () => {
-            const payloadToken = decodeToken(token);
-            const reqBody = {
-                establishmentId: id,
-                userId: payloadToken.userId,
-                interactionType: "COMMENT",
-                message: comment,
-                rate: selectedRating
-            }
-    
-            setIsModalOpen(false);
-            let isValid = true;
-            api.get("/establishments/" + id).then(async (res) => {
-                const relationships = res.data.relationships;
-                
-                if(relationships === null) {
-                    const response = await api.put("/establishments/relationship", reqBody);
-                    if(response.status === 200) {
-                        toast.success("Avaliado com sucesso!")
-                    }
-                } else {
-                    relationships.forEach(rl => {
-                        if(rl.userId === reqBody.userId && rl.establishmentId === id && rl.interactionType === "COMMENT") {
-                            isValid = false;
-                            return;
-                        }
-                    });
-                    if(isValid) {
-                        const response = await api.put("/establishments/relationship", reqBody);
-                        if(response.status === 200) {
-                            toast.success("Avaliado com sucesso!")
-                        }
-                    } else {
-                        toast.warn("Você já avaliou o estabelecimento");
-                    }
-                }
-            })
-            
-        };
-        
-        const handlePrev = () => {
-            if (currentIndex > 0) {
-                setCurrentIndex(currentIndex - 1);
-            }
-        };
-
-        const handleNext = () => {
-            if (currentIndex < avaliacoes.length - 3) {
-                setCurrentIndex(currentIndex + 1);
-            }
-        };
-        const HandleRelationships = () => {
-            if(avaliacoes != null) {
-                return avaliacoes.slice(currentIndex, currentIndex + 3).map((avaliacao, index) => (
-                    <CardAvaliacao
-                        userId={avaliacao.userId}
-                        comentario={avaliacao.message}
-                        rating={avaliacao.rate}
-                    />
-                ));
-            } else {
-                return <p>Sem avaliações</p>
-            }
-        };
-        return (
-            <div className={styles.avaliacao}>
-                <div className={styles.secoes2}>AVALIAÇÕES</div>
-                <div className="rating">Avaliar:
-                    {[1, 2, 3, 4, 5].map((star) => (
-                        <React.Fragment key={star}>
-                            <input
-                                type="radio"
-                                id={`star${star}`}
-                                name="rating"
-                                value={star}
-                                className="mask mask-star-2"
-                                onClick={() => handleStarClick(star)}
-                            />
-                            <label htmlFor={`star${star}`} title={`${star} estrelas`}></label>
-                        </React.Fragment>
-                    ))}
-                </div>
-                <div className={styles.cardContainer}>
-                    <HandleRelationships />
-                </div>
-                <div className={styles.navigationButtons}>
-                    <button onClick={handlePrev} disabled={currentIndex === 0}>&lt;</button>
-                    <button onClick={handleNext} disabled={avaliacoes != null && currentIndex >= avaliacoes.length - 3}>&gt;</button>
-                </div>
-                {isModalOpen && validarToken() && (
-                    <Modal
-                        rating={selectedRating}
-                        comment={comment}
-                        onClose={handleModalClose}
-                        onCommentChange={handleCommentChange}
-                        onSubmit={handleSubmit}
-                        setSelectedRating={setSelectedRating} // Passando a função setSelectedRating para o Modal
-                    />
-                )}
-            </div>
-        );
-    };
-
     return (
         <>
             <Helmet>
@@ -389,13 +247,17 @@ function EstabelecimentoUsuario() {
                         </div>
                         <div className={styles["main-content"]}>
                         </div>
+                        <div className={styles.buttons}>
+                            <Link to={"/editar-estabelecimento/" + id} className={styles.buttonEditar}>Editar</Link>
+                            <Link to={"/listagem"} className={styles.buttonVer}>Ver seu estabelecimento</Link>
+                        </div>
                         <div className={styles.locationDistance}>
                             <p>{neighborhood}, {city}</p>
                         </div>
                         <div className={styles.flexContainer}>
                             <div className={styles.favoritar}>
                                 <div className="rating gap-1">
-                                    Favoritar<input type="radio" name="rating-3" className="mask mask-heart bg-red-400" checked />
+                                    Valor médio por pessoa: R${averageOrderValue},00
                                 </div>
                             </div>
                             <div className={styles.facilidades}>
@@ -408,11 +270,6 @@ function EstabelecimentoUsuario() {
                             <div className={styles.secoes}>SOBRE NÓS</div>
                         </div>
                         <div className={styles.description}>{description}</div>
-                        <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
-                        <div className={styles.divisor2}>__________</div>
-                        <div className={styles.flexContainer2}>
-                            <Avaliacao />
-                        </div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>
                         <div className={styles.flexContainer2}>
@@ -468,4 +325,4 @@ function EstabelecimentoUsuario() {
     );
 }
 
-export default EstabelecimentoUsuario;
+export default EstabelecimentoDono;
