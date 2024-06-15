@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import "../../global.css";
 import api from "../../api";
@@ -7,7 +7,17 @@ import styles from "./ResultadoBusca.module.css";
 import Multiselect from 'multiselect-react-dropdown';
 import { useSearchParams, Link } from 'react-router-dom';
 
+
 function ResultadoBusca() {
+
+  const [tamanhoDiv, setTamanhoDiv] = useState(0);
+  const divRef = useRef(null);
+
+  useEffect(() => {
+      if (divRef.current) {
+          setTamanhoDiv(divRef.current.offsetHeight);
+      }
+  }, []);
 
   const [resultados, setResultados] = useState([]);
   const [searchParams] = useSearchParams();
@@ -83,43 +93,44 @@ function ResultadoBusca() {
 
   return (
     <div className={styles["containerBusca"]}>
-      <div className={styles["search-bar"]}>
-        <h3>PROCURE SEU ROLÊ</h3>
-        <div className={styles["container-inpu-filtro"]}>
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setarValoresInput(e, setSearchTerm)}
-            placeholder="Pesquise sua boa"
-            className={styles["search-input"]}
-          />
-          <button onClick={handleSubmit} className={styles["search-button"]}>Pesquisar</button>
-        </div>
-      </div>
-
-      <div className={styles["option-container"]}>
-        <div className={styles["option-box"]}>
-          <Multiselect
-            isObject={false}
-            onRemove={(selectedList, removedItem) => setSelectedDrinks(selectedList)}
-            onSelect={(selectedList, selectedItem) => setSelectedDrinks(selectedList)}
-            options={drinks}
-            selectedValues={selectedDrinks}
-            className={styles["multiselect-container"]}
-            placeholder="Escolha suas bebidas"
-          />
+      <div className={styles["search-container"]}>
+        <div className={styles["search-bar"]}>
+          <h3>PROCURE SEU ROLÊ</h3>
+          <div className={styles["container-inpu-filtro"]}>
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setarValoresInput(e, setSearchTerm)}
+              placeholder="Pesquise sua boa"
+              className={styles["input-secundaria"]}
+              />
+            <button onClick={handleSubmit} className={styles["botao-secundario"]}>Pesquisar</button>
+          </div>
         </div>
 
-        <div className={styles["option-box"]}>
-          <Multiselect
-            isObject={false}
-            onRemove={(selectedList, removedItem) => setSelectedFoods(selectedList)}
-            onSelect={(selectedList, selectedItem) => setSelectedFoods(selectedList)}
-            options={foods}
-            selectedValues={selectedFoods}
-            className={styles["multiselect-container"]}
-            placeholder="Escolha suas comidas"
-          />
+        <div className={styles["option-container"]}>
+          <div className={styles["option-box"]}>
+            <Multiselect
+              isObject={false}
+              onRemove={(selectedList, removedItem) => setSelectedDrinks(selectedList)}
+              onSelect={(selectedList, selectedItem) => setSelectedDrinks(selectedList)}
+              options={drinks}
+              selectedValues={selectedDrinks}
+              className={styles["multiselect-container"]}
+              placeholder="Escolha suas bebidas"
+              />
+          </div>
+
+          <div className={styles["option-box"]}>
+           <Multiselect
+              isObject={false}
+              onRemove={(selectedList, removedItem) => setSelectedFoods(selectedList)}
+              onSelect={(selectedList, selectedItem) => setSelectedFoods(selectedList)}
+              options={foods}
+              selectedValues={selectedFoods}
+              className={styles["multiselect-container"]}
+              placeholder="Escolha suas comidas"
+            />
         </div>
 
         <div className={styles["option-box"]}>
@@ -131,11 +142,12 @@ function ResultadoBusca() {
             selectedValues={selectedMusics}
             className={styles["multiselect-container"]}
             placeholder="Escolha suas músicas"
-          />
+            />
         </div>
       </div>
+     </div>
 
-      <div className={styles.containerJsons}>
+      <div className={styles.containerJsons} ref={divRef}>
         {resultados.length > 0 ? (
           resultados.map((resultado, index) => (
             <Link to={`/establishment/${resultado.id}`} key={index} className={styles.card}>

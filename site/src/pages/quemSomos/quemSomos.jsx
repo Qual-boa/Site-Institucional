@@ -1,7 +1,7 @@
 import styles from "./quemSomos.module.css";
 import "../../global.css";
-import NavBarQS from "./NavBarQS/navBarQS";
-import logoQS from "../../assets/logoBranca.svg";
+import NavBarQS from "../../components/navbar/NavBar";
+import logo from "../../assets/logoBranca.svg";
 import Footer from "../../components/footer/Footer";
 import { Helmet } from 'react-helmet';
 import Carlos from "../../assets/Carlinhos.svg"
@@ -10,6 +10,7 @@ import Nicolas from "../../assets/Nicolas.svg"
 import Pedro from "../../assets/Pedro.svg"
 import Samuel from "../../assets/Samuca.svg"
 import Vinicius from "../../assets/Vinicius.svg"
+
 function QuemSomos(){
     const images = {
         "CARLOS BENECKE": Carlos,
@@ -39,7 +40,7 @@ function QuemSomos(){
             <Helmet>
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modak&display=swap" />
             </Helmet>
-            <NavBarQS logoQS={logoQS} />
+            <NavBarQS logoInicio={logo} />
             <div className={styles["container"]}>
                 <div className={styles["background-imageQuemSomos"]}>
                     <div className={styles["containerQS"]}>

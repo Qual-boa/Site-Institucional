@@ -83,15 +83,15 @@ Estilos para card .card {
 }
 
 .containerJsons {
-  max-height: calc(900px - 600px);/* Ajuste o valor de 250px conforme necessário */
-  overflow-y: auto;
+  height: 100vh; /* Ajusta a altura para ocupar a tela inteira */
   display: flex;
   flex-direction: column;
-  align-items: left;
-  width: 1200px;
+  align-items: center;
+  width: 100%;
   padding-bottom: 100px;
-  
+  margin-top: 17vw;
 }
+
 .containerJsons::-webkit-scrollbar {
   width: 12px; /* Largura do scrollbar */
 }
@@ -186,7 +186,7 @@ Estilos para card .card {
   justify-content: space-between; /* Alinha os itens com espaço igual entre eles */
   gap: 10px;
   position: absolute;
-  top: 38%; 
+  top: 32%; 
 }
 
 .option-box {
@@ -228,8 +228,8 @@ Estilos para card .card {
 .container-inpu-filtro{
   display: inline-block;
   position: absolute;
-  right: 38%;
-  top: 28%;
+  right: 22%;
+  top: 22%;
 }
 
 .input-secundaria{
@@ -271,7 +271,18 @@ Estilos para card .card {
 .search-bar h3{
   font-size: 1.7vw;
   position: absolute;
-  top: 14%;
+  top: 10%;
+}
+
+.search-container{
+  height: 40vw;
+  width: 37vw;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0%;
+  align-items: center;
 }
 
 @media (max-width: 768px) {

@@ -45,12 +45,12 @@ function Footer() {
 
             </div>
             <div className={styles.menuContainer}>
-            <div className={styles.menu}>
+                <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <a className={styles.options} href="#outra-pagina" smooth={true} onClick={() => scrollToSection('vantagens')}>VANTAGENS</a>
-                    <a className={styles.options} href="#outra-pagina" smooth={true} onClick={() => scrollToSection('destaque')}>BAR DESTAQUE DO MÊS</a>
-                    <a className={styles.options} href="#outra-pagina" smooth={true} onClick={() => scrollToSection('dica')}>DICA DO CHOPPER</a>                    
-                    <a className={styles.options} href="/quem-somos" smooth={true} onClick={() => quemSomosSection('quem-somos')}>QUEM SOMOS</a>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('vantagens')}>VANTAGENS</a>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('destaque')}>BAR DESTAQUE DO MÊS</a>
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => scrollToSection('dica')}>DICA DO CHOPPER</a>                    
+                    <a className={styles.options} to="outra-pagina" smooth={true} onClick={() => quemSomosSection('quem-somos')}>QUEM SOMOS</a>
                 </div>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>ENDEREÇO</h3>
