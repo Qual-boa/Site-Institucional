@@ -40,7 +40,7 @@ export function CardLoginEmpresa() {
                         </div>
                         <div className={styles["form-group"]}>
                             <label htmlFor="valorMedio">Valor médio</label>
-                            <input type="number" className={styles["form-control"]} id="valorMedio" placeholder="Valor médio (ex: 50,0)" onChange={e => handleChangeInput(e, setAvgValue)}/>
+                            <input type="number" className={styles["form-control"]} id="valorMedio" placeholder="Valor médio (ex: 50)" onChange={e => handleChangeInput(e, setAvgValue)}/>
                         </div>
                         <button type="button" className={styles["botao-entrar-usuario"]} onClick={create}><b>CADASTRAR</b></button>
                         <div className={styles["loginExistente"]}>

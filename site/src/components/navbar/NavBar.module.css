@@ -12,7 +12,7 @@
     justify-content: space-between;
     background-color: transparent;
     position: fixed;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .navbar.scrolled {

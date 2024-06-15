@@ -26,6 +26,10 @@ function Dono() {
             }
         }, 100); // ajuste o tempo conforme necessário
     };
+    
+    const goToTela = (caminho) => {
+        navigate(caminho);
+    }
 
     return (
         <>
@@ -42,8 +46,8 @@ function Dono() {
                             <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
                         </div>
                         <div className={styles["container-input"]}>
-                            <input className={styles["input-principal"]} type="text" placeholder="Insira o e-mail da sua empresa"/>
-                            <button className={styles["botao-principal"]} type="cadastrar">CADASTRAR</button>
+                            <input className={styles["input-principal"]} type="text" placeholder="Clique em cadastrar"/>
+                            <button type="button" onClick={() => goToTela("/cadastroEmpresa")} className={styles["botao-principal"]}>CADASTRAR</button>
                         </div>
                     </div>
                 </section>
@@ -90,7 +94,7 @@ function Dono() {
                                         É especialista em cervejas artesanais e possui uma novidade diária.
                                         Ideal para você que gosta de degustar e apreciar novos sabpres. 
                                     </span>
-                                    <button className={styles["botao-visita"]} type="cadastrar">VISITAR</button>
+                                    <button className={styles["botao-visita"]} onClick={() => goToTela("/listagem")} type="button">VISITAR</button>
                                 </div>
                             </div>
                         </div>

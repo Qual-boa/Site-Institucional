@@ -3,32 +3,19 @@ import styles from './NavBar.module.css';
 import perfil from '../../assets/perfilUser.svg';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../searchBar/SearchBar';
-import Modal from '../modalGenerico/ModalGenerico';
-import EditarFinal from '../editarFinal/EditarFinal';
 
 const NavBar = ({ logoInicio }) => {
     const navigate = useNavigate();
 
     const [menuOpen, setMenuOpen] = useState(false);
-    const [modalOpen, setModalOpen] = useState(false);
  
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
 
-    const openModal = () => {
-        setModalOpen(true);
-        setMenuOpen(false);
-    };
-
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
-
     const scrollToSection = (sectionId) => {
         // Navega para a página inicial (ou para a página onde está a seção desejada)
-        navigate('/home');
+        navigate('/');
 
         // Espera um pequeno intervalo de tempo antes de rolar para a seção
         setTimeout(() => {
@@ -54,11 +41,11 @@ const NavBar = ({ logoInicio }) => {
 
     return (
         <nav className={styles["navbar"]}>
-            <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" to="outra-pagina" smooth={true} onClick={() => scrollToSection('inicio')} />
-            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('cidades')}><b>CIDADES MAIS PROCURADAS</b></span>
-            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('bares')}><b>BARES MAIS VISTOS</b></span>
-            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('sugestoes')}><b>SUGESTÕES DO MÊS</b></span>
-            <span to="outra-pagina" smooth={true} onClick={() => scrollToSection('boa')}><b>QUAL A SUA BOA?</b></span>
+            <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" onClick={() => scrollToSection('inicio')} />
+            <span onClick={() => scrollToSection('cidades')}><b>CIDADES MAIS PROCURADAS</b></span>
+            <span onClick={() => scrollToSection('bares')}><b>BARES MAIS VISTOS</b></span>
+            <span onClick={() => scrollToSection('sugestoes')}><b>SUGESTÕES DO MÊS</b></span>
+            <span onClick={() => scrollToSection('boa')}><b>QUAL A SUA BOA?</b></span>
             <span onClick={() => quemSomosSection('quem-somos')}><b>QUEM SOMOS</b></span>
             <SearchBar /> 
             <div className={styles["perfil-container"]} onClick={toggleMenu}>
@@ -66,15 +53,11 @@ const NavBar = ({ logoInicio }) => {
                 {menuOpen && (
                     <div className={styles["dropdown-menu"]}>
                         <ul>
-                            <li onClick={openModal}>Configurações</li>
                             <li onClick={() => navigate("/login")}>Logout</li>
                         </ul>
                     </div>
                 )}
             </div>
-            <Modal isOpen={modalOpen} onClose={closeModal}>
-                <EditarFinal closeModal={closeModal} />
-            </Modal>
         </nav>
     );
 };

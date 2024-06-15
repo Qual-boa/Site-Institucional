@@ -30,6 +30,7 @@ function Cadastrar({idEmpresa}) {
     const [complement, setComplement] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
+    const [description, setDescription] = useState("");
     const [openAtTime, setOpenAt] = useState({ hour: 0, minute: 0 });
     const [closeAtTime, setCloseAt] = useState({ hour: 0, minute: 0 });
     
@@ -47,6 +48,7 @@ function Cadastrar({idEmpresa}) {
         api.get(`establishments/${id}`).then((response) => {
             const { data } = response;
             const {
+                description,
                 phone,
                 facebookUrl,
                 instagramUrl,
@@ -82,6 +84,7 @@ function Cadastrar({idEmpresa}) {
             setWifi(wifi);
             setAcessibilidade(acessibilidade);
             setEstacionamento(estacionamento);
+            setDescription(description);
         })
         .catch((error) => {
             console.log("Erro ao buscar os detalhes do estabelecimento:", error);
@@ -208,7 +211,8 @@ function Cadastrar({idEmpresa}) {
                 facebookUrl,
                 instagramUrl,
                 setTelegramUrl,
-                establishmentId: id
+                establishmentId: id,
+                description
             });
 
             // Update categories
@@ -231,243 +235,252 @@ function Cadastrar({idEmpresa}) {
 
     return (
         <>
-            <div className={styles.container}>
-                <div className={styles["secao-direita-editar"]}>
-                    <form>
-                        <span className={styles["titulo"]}>Cadastrar suas informações:</span>
-                        <div>
-                            <h3>Insira a logo do seu estabelecimento</h3>
-                            <div className={styles.uploadContainer}>
-                                <input type="file" className={styles.arquivo} onChange={handleProfileFileChange} required />
-                                <button type="button" className={styles.upload} onClick={() => handleUpload("PROFILE", selectedProfileFile)} disabled={uploading}>
-                                    {uploading ? 'Carregando...' : 'Upload'}
-                                </button>
+            <form action="post" className={styles.container}>
+                <div>
+                    <div className={styles["secao-direita-editar"]}>
+                        <form>
+                            <span className={styles["titulo"]}>Cadastrar suas informações:</span>
+                            <div>
+                                <h3>Insira a logo do seu estabelecimento</h3>
+                                <div className={styles.uploadContainer}>
+                                    <input type="file" className={styles.arquivo} onChange={handleProfileFileChange} required />
+                                    <button type="button" className={styles.upload} onClick={() => handleUpload("PROFILE", selectedProfileFile)} disabled={uploading}>
+                                        {uploading ? 'Carregando...' : 'Upload'}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <h3>Insira uma imagem de fundo do seu estabelecimento</h3>
-                            <div className={styles.uploadContainer}>
-                                <input type="file" className={styles.arquivo} onChange={handleBackgroundFileChange} required />
-                                <button type="button" className={styles.upload} onClick={() => handleUpload("BACKGROUND", selectedBackgroundFile)} disabled={uploading}>
-                                    {uploading ? 'Carregando...' : 'Upload'}
-                                </button>
+                            <div>
+                                <h3>Insira uma imagem de fundo do seu estabelecimento</h3>
+                                <div className={styles.uploadContainer}>
+                                    <input type="file" className={styles.arquivo} onChange={handleBackgroundFileChange} required />
+                                    <button type="button" className={styles.upload} onClick={() => handleUpload("BACKGROUND", selectedBackgroundFile)} disabled={uploading}>
+                                        {uploading ? 'Carregando...' : 'Upload'}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <InputMask
-                            mask="(99) 99999-9999"
-                            value={phone}
-                            placeholder="Telefone"
-                            onChange={(e) => handleInputChange(e, setPhone)}
-                            required
-                        />
-                        <InputMask
-                            mask="99999-999"
-                            value={postalCode}
-                            placeholder="CEP"
-                            onChange={handlePostalCodeChange}
-                            required
-                        />
-                        <input
-                            type="text"
-                            value={street}
-                            placeholder="Rua"
-                            onChange={(e) => handleInputChange(e, setStreet)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            value={number}
-                            placeholder="Número"
-                            onChange={(e) => handleInputChange(e, setNumber)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            value={neighborhood}
-                            placeholder="Bairro"
-                            onChange={(e) => handleInputChange(e, setNeighborhood)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            value={complement}
-                            placeholder="Complemento"
-                            onChange={(e) => handleInputChange(e, setComplement)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            value={city}
-                            placeholder="Cidade"
-                            onChange={(e) => handleInputChange(e, setCity)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            value={state}
-                            placeholder="Estado"
-                            onChange={(e) => handleInputChange(e, setState)}
-                            required
-                        />
-                        <div className={styles.timeContainer}>
-                            <label>
-                                Abre às:
-                                <InputMask
-                                    mask="99"
-                                    placeholder="HH"
-                                    onChange={(e) => handleTimeChange(e, "openAt")}
-                                    required
-                                />
-                            </label>
-                            <label>
-                                Fecha às:
-                                <InputMask
-                                    mask="99"
-                                    placeholder="HH"
-                                    onChange={(e) => handleTimeChange(e, "closeAt")}
-                                    required
-                                />
-                            </label>
-                        </div>
-                        <input
-                            type="text"
-                            value={facebookUrl}
-                            placeholder="Facebook"
-                            onChange={(e) => handleInputChange(e, setFacebookUrl)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            value={instagramUrl}
-                            placeholder="Instagram URL"
-                            onChange={(e) => handleInputChange(e, setInstagramUrl)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            value={setTelegramUrl}
-                            placeholder="Site Oficial"
-                            onChange={(e) => handleInputChange(e, setsetTelegramUrl)}
-                            required={true}
-                        />
-                        <h3>Informações adicionais</h3>
-                        <div className={styles.checkboxContainer}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={tv}
-                                    onChange={(e) => handleCheckboxChange(e, setTv)}
-                                />
-                                TV
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={wifi}
-                                    onChange={(e) => handleCheckboxChange(e, setWifi)}
-                                />
-                                WiFi
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={acessibilidade}
-                                    onChange={(e) => handleCheckboxChange(e, setAcessibilidade)}
-                                />
-                                Acessibilidade
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={estacionamento}
-                                    onChange={(e) => handleCheckboxChange(e, setEstacionamento)}
-                                />
-                                Estacionamento
-                            </label>
-                        </div>
-                        <div>
-                            <h3>Selecione as categorias de Música</h3>
+                            <input
+                                type="text"
+                                value={description}
+                                placeholder="Descrição"
+                                onChange={(e) => handleInputChange(e, setDescription)}
+                                required
+                            />
+                            <InputMask
+                                mask="(99) 99999-9999"
+                                value={phone}
+                                placeholder="Telefone"
+                                onChange={(e) => handleInputChange(e, setPhone)}
+                                required
+                            />
+                            <InputMask
+                                mask="99999-999"
+                                value={postalCode}
+                                placeholder="CEP"
+                                onChange={handlePostalCodeChange}
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={street}
+                                placeholder="Rua"
+                                onChange={(e) => handleInputChange(e, setStreet)}
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={number}
+                                placeholder="Número"
+                                onChange={(e) => handleInputChange(e, setNumber)}
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={neighborhood}
+                                placeholder="Bairro"
+                                onChange={(e) => handleInputChange(e, setNeighborhood)}
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={complement}
+                                placeholder="Complemento"
+                                onChange={(e) => handleInputChange(e, setComplement)}
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={city}
+                                placeholder="Cidade"
+                                onChange={(e) => handleInputChange(e, setCity)}
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={state}
+                                placeholder="Estado"
+                                onChange={(e) => handleInputChange(e, setState)}
+                                required
+                            />
+                            <div className={styles.timeContainer}>
+                                <label>
+                                    Abre às:
+                                    <InputMask
+                                        mask="99"
+                                        placeholder="HH"
+                                        onChange={(e) => handleTimeChange(e, "openAt")}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    Fecha às:
+                                    <InputMask
+                                        mask="99"
+                                        placeholder="HH"
+                                        onChange={(e) => handleTimeChange(e, "closeAt")}
+                                        required
+                                    />
+                                </label>
+                            </div>
+                            <input
+                                type="text"
+                                value={facebookUrl}
+                                placeholder="Facebook"
+                                onChange={(e) => handleInputChange(e, setFacebookUrl)}
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={instagramUrl}
+                                placeholder="Instagram URL"
+                                onChange={(e) => handleInputChange(e, setInstagramUrl)}
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={setTelegramUrl}
+                                placeholder="Site Oficial"
+                                onChange={(e) => handleInputChange(e, setsetTelegramUrl)}
+                                required={true}
+                            />
+                            <h3>Informações adicionais</h3>
                             <div className={styles.checkboxContainer}>
-                                {musics.map((music) => (
-                                    <div key={music}>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value={music}
-                                                checked={selectedMusics.includes(music)}
-                                                onChange={(event) => handleCategoryChange(event, setSelectedMusics, selectedMusics)}
-                                            />
-                                            {music}
-                                        </label>
-                                    </div>
-                                ))}
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        checked={tv}
+                                        onChange={(e) => handleCheckboxChange(e, setTv)}
+                                    />
+                                    TV
+                                </label>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        checked={wifi}
+                                        onChange={(e) => handleCheckboxChange(e, setWifi)}
+                                    />
+                                    WiFi
+                                </label>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        checked={acessibilidade}
+                                        onChange={(e) => handleCheckboxChange(e, setAcessibilidade)}
+                                    />
+                                    Acessibilidade
+                                </label>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        checked={estacionamento}
+                                        onChange={(e) => handleCheckboxChange(e, setEstacionamento)}
+                                    />
+                                    Estacionamento
+                                </label>
                             </div>
-                        </div>
-                        <div>
-                            <h3>Selecione as categorias de Comida</h3>
-                            <div className={styles.checkboxContainer}>
-                                {foods.map((food) => (
-                                    <div key={food}>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value={food}
-                                                checked={selectedFoods.includes(food)}
-                                                onChange={(event) => handleCategoryChange(event, setSelectedFoods, selectedFoods)}
-                                            />
-                                            {food}
-                                        </label>
-                                    </div>
-                                ))}
+                            <div>
+                                <h3>Selecione as categorias de Música</h3>
+                                <div className={styles.checkboxContainer}>
+                                    {musics.map((music) => (
+                                        <div key={music}>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value={music}
+                                                    checked={selectedMusics.includes(music)}
+                                                    onChange={(event) => handleCategoryChange(event, setSelectedMusics, selectedMusics)}
+                                                />
+                                                {music}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <h3>Selecione as categorias de Bebida</h3>
-                            <div className={styles.checkboxContainer}>
-                                {drinks.map((drink) => (
-                                    <div key={drink}>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value={drink}
-                                                checked={selectedDrinks.includes(drink)}
-                                                onChange={(event) => handleCategoryChange(event, setSelectedDrinks, selectedDrinks)}
-                                            />
-                                            {drink}
-                                        </label>
-                                    </div>
-                                ))}
+                            <div>
+                                <h3>Selecione as categorias de Comida</h3>
+                                <div className={styles.checkboxContainer}>
+                                    {foods.map((food) => (
+                                        <div key={food}>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value={food}
+                                                    checked={selectedFoods.includes(food)}
+                                                    onChange={(event) => handleCategoryChange(event, setSelectedFoods, selectedFoods)}
+                                                />
+                                                {food}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <h3>Insira as imagens do menu do seu estabelecimento</h3>
-                            <div className={styles.uploadContainer}>
-                                <input type="file" className={styles.arquivo} onChange={handleMenuFilesChange} />
-                                <button type="button" className={styles.upload} onClick={() => handleUpload("MENU", selectedMenuFile)} disabled={uploading}>
-                                    {uploading ? 'Carregando...' : 'Upload'}
+                            <div>
+                                <h3>Selecione as categorias de Bebida</h3>
+                                <div className={styles.checkboxContainer}>
+                                    {drinks.map((drink) => (
+                                        <div key={drink}>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value={drink}
+                                                    checked={selectedDrinks.includes(drink)}
+                                                    onChange={(event) => handleCategoryChange(event, setSelectedDrinks, selectedDrinks)}
+                                                />
+                                                {drink}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div>
+                                <h3>Insira as imagens do menu do seu estabelecimento</h3>
+                                <div className={styles.uploadContainer}>
+                                    <input type="file" className={styles.arquivo} onChange={handleMenuFilesChange} />
+                                    <button type="button" className={styles.upload} onClick={() => handleUpload("MENU", selectedMenuFile)} disabled={uploading}>
+                                        {uploading ? 'Carregando...' : 'Upload'}
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <h3>Insira as imagens da galeria do seu estabelecimento</h3>
+                                <div className={styles.uploadContainer}>
+                                    <input type="file" className={styles.arquivo} onChange={handleGalleryFilesChange} />
+                                    <button type="button" className={styles.upload} onClick={() => handleUpload("GALLERY", selectedGalleryFiles)} disabled={uploading}>
+                                        {uploading ? 'Carregando...' : 'Upload'}
+                                    </button>
+                                </div>
+                            </div>
+                            <div className={styles["buttons-container-editar"]}>
+                                <button type="button" onClick={handleSave}>
+                                    Salvar
+                                </button>
+                                <button type="button" onClick={handleCancel}>
+                                    Cancelar
                                 </button>
                             </div>
-                        </div>
-                        <div>
-                            <h3>Insira as imagens da galeria do seu estabelecimento</h3>
-                            <div className={styles.uploadContainer}>
-                                <input type="file" className={styles.arquivo} onChange={handleGalleryFilesChange} />
-                                <button type="button" className={styles.upload} onClick={() => handleUpload("GALLERY", selectedGalleryFiles)} disabled={uploading}>
-                                    {uploading ? 'Carregando...' : 'Upload'}
-                                </button>
-                            </div>
-                        </div>
-                        <div className={styles["buttons-container-editar"]}>
-                            <button type="button" onClick={handleSave}>
-                                Salvar
-                            </button>
-                            <button type="button" onClick={handleCancel}>
-                                Cancelar
-                            </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </>
     );
 }

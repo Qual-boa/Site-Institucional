@@ -1,17 +1,15 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
+  const navigate = useNavigate();
+  const goTo = (caminho) => {
+    navigate(caminho);
+  }
   return (
     <div style={{ position: 'relative', width: 'fit-content' }}>
-      <input
-        type="text"
-        placeholder="Escreva aqui"
-        style={{
-          paddingLeft: '30px', // Espaço para o ícone à esquerda
-        }}
-      />
       <FontAwesomeIcon
         icon={faSearch}
         style={{
@@ -22,6 +20,7 @@ const SearchBar = () => {
           color: '#000000',
           cursor: 'pointer'
         }}
+        onClick={() => goTo("/listagem")}
       />
     </div>
   );

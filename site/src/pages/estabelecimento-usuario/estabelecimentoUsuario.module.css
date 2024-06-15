@@ -38,6 +38,11 @@ html {
     overflow: hidden; /* Garante que a imagem cortada não ultrapasse os limites do contêiner */
 }
 
+.description {
+    margin-left: -30.5%;
+    margin-top: 10px;
+}
+
 .responsiveImage {
     width: 100%;
     height: auto; /* Altura automática para manter a proporção */

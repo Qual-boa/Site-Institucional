@@ -97,7 +97,7 @@ function EstabelecimentoUsuario() {
     const [state, setState] = useState("");
     const [openAt, setOpenAt] = useState("");
     const [closeAt, setCloseAt] = useState("");
-    
+    const [description, setDescription] = useState("");
     // Novos estados para informações adicionais
     const [tv, setTv] = useState(false);
     const [wifi, setWifi] = useState(false);
@@ -120,6 +120,7 @@ function EstabelecimentoUsuario() {
             setTv(data.information.hasTv);
             setWifi(data.information.hasWifi);
             setAcessibilidade(data.information.hasAccessibility);
+            setDescription(data.information.description);
             setEstacionamento(data.information.hasParking);
             if(data.information.openAt[0] < 10) {
                 setOpenAt("0" + data.information.openAt[0] + ":" + data.information.openAt[1] + "0");
@@ -358,15 +359,12 @@ function EstabelecimentoUsuario() {
                             </div>
                         </div>
                         <div className={styles["main-content"]}>
-                            {/* <div className="breadcrumbs">
-                                <ul>
-                                    <li><a>HOME</a></li>
-                                    <li><a>ESTABELECIMENTO</a></li>
-                                </ul>
-                            </div> */}
                         </div>
                         <div className={styles.locationDistance}>
-                            <p>{neighborhood}, {city}</p> {/* Ajuste a localização e distância conforme necessário */}
+                            <p>{neighborhood}, {city}</p>
+                        </div>
+                        <div className={styles.description}>
+                            <p>{description}</p>
                         </div>
                         <div className={styles.flexContainer}>
                             <div className={styles.favoritar}>

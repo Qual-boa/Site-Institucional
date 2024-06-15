@@ -14,7 +14,7 @@ import Dashboard from "./pages/dashboard/Dashboard"
 import AdicionarUsuarios from './pages/formsDashboard/AdicionarUsuarios';
 import EditarUsuarios from './pages/formsDashboard/EditarUsuarios';
 import Listagem from './pages/listagemEstabelecimento/Listagem'
-import CadastrarInformacoesEmpresa from "./pages/edicaoEmpresa/edicaoEmpresa";
+import CadastrarInformacoesEmpresa from "./pages/cadastrarInfoEmpresa/cadastrarInfoEmpresa";
 
 function Rotas() {
     return (
