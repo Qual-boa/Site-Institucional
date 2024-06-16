@@ -1,3 +1,39 @@
+.option_box {
+    flex: 1; /* Ajusta o tamanho das caixas de opções para serem iguais */
+    position: relative; /* Necessário para posicionar a seta */
+}
+  
+  .multiselect-container {
+    width: 100%; /* Garante que o multiselect ocupe toda a largura do .option-box */
+    background-color: white; /* Fundo branco */
+    border: 1px solid #ccc; /* Borda para dar um aspecto de caixa */
+    padding: 10px; /* Espaçamento interno para estética */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    border-radius: 15px; 
+    position: relative;
+  }
+  
+  .multiselect-container input[type="text"],
+  .multiselect-container input[type="search"] {
+    border: none !important; /* Remove a borda do input de texto */
+    box-shadow: none !important; /* Remove qualquer sombra do input de texto */
+    outline: none !important; /* Remove a borda ao focar no input */
+  }
+  
+  .multiselect-container::after {
+    content: ''; 
+    position: absolute;
+    right: 10px; /* Ajusta a posição horizontal da seta */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajusta para centralizar */
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #000; /* Cor da seta */
+    pointer-events: none; /* A seta não interfere nos cliques */
+  }
+
 .container {
     display: flex;
     height: auto;

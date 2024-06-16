@@ -41,6 +41,7 @@
     border-image-slice: 1;
     outline: none;
     padding: 6px 0;
+    background-color: white;
 }
 
 .botao-entrar-usuario {

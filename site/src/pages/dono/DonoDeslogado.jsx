@@ -56,7 +56,7 @@ function Dono() {
                             <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
                         </div>
                         <div className={styles["container-input"]}>
-                            <button type="button" scrollToSection={'inicio'} className={styles["botao-principal"]}>PESQUISAR</button>
+                            <button type="button" onClick={() => navigate("/cadastroEmpresa")} className={styles["botao-principal"]}>CADASTRAR</button>
                         </div>
                     </div>
                 </section>

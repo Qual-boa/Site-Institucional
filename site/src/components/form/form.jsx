@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import InputMask from 'react-input-mask';
 import axios from "axios";
+import Multiselect from "multiselect-react-dropdown";
 
 const musics = ['Rock', 'Sertanejo', 'Indie', 'Rap', 'Funk', 'Metal'];
 const foods = ['Brasileira', 'Boteco', 'Japonesa', 'Mexicana', 'Churrasco', 'Hamburguer'];
@@ -181,52 +182,54 @@ function Cadastrar({idEmpresa}) {
 
     const handleSave = async () => {
         const categories = [
-            ...selectedDrinks.map((item, index) => ({ categoryType: 3, category: index + 1 })),
-            ...selectedFoods.map((item, index) => ({ categoryType: 2, category: index + 1 })),
-            ...selectedMusics.map((item, index) => ({ categoryType: 1, category: index + 1 }))
+            ...selectedDrinks.map((index) => ({ categoryType: 3, category: index + 1 })),
+            ...selectedFoods.map((index) => ({ categoryType: 2, category: index + 1 })),
+            ...selectedMusics.map((index) => ({ categoryType: 1, category: index + 1 }))
         ];
-        try {
-            await api.post(`/address/establishment/${id}`, {
-                street,
-                number,
-                postalCode,
-                neighborhood,
-                complement,
-                state,
-                city
-            });
-        } catch (error) {
-            console.error('Erro ao atualizar endereço:', error);
-        }
+        
+       console.log(categories);
+        // try {
+        //     await api.post(`/address/establishment/${id}`, {
+        //         street,
+        //         number,
+        //         postalCode,
+        //         neighborhood,
+        //         complement,
+        //         state,
+        //         city
+        //     });
+        // } catch (error) {
+        //     console.error('Erro ao atualizar endereço:', error);
+        // }
 
-        try {
-            await api.post('/informations/establishment/' + id, {
-                hasParking: estacionamento,
-                hasAccessibility: acessibilidade,
-                hasTv: tv,
-                hasWifi: wifi,
-                openAt: openAtTime,
-                closeAt: closeAtTime,
-                phone,
-                facebookUrl,
-                instagramUrl,
-                setTelegramUrl,
-                establishmentId: id,
-                description
-            });
+        // try {
+        //     await api.post('/informations/establishment/' + id, {
+        //         hasParking: estacionamento,
+        //         hasAccessibility: acessibilidade,
+        //         hasTv: tv,
+        //         hasWifi: wifi,
+        //         openAt: openAtTime,
+        //         closeAt: closeAtTime,
+        //         phone,
+        //         facebookUrl,
+        //         instagramUrl,
+        //         setTelegramUrl,
+        //         establishmentId: id,
+        //         description
+        //     });
 
-            // Update categories
-            await api.put('/establishments/categories', {
-                establishmentId: id,
-                categories
-            });
+        //     // Update categories
+        //     await api.put('/establishments/categories', {
+        //         establishmentId: id,
+        //         categories
+        //     });
 
-            toast.success('Dados editados com sucesso!');
-            navigate("/estabelecimento-dono/" + id);
-        } catch (error) {
-            toast.error('Erro ao salvar as informações. Por favor, tente novamente.');
-            console.error('Erro ao salvar as informações:', error);
-        }
+        //     toast.success('Dados editados com sucesso!');
+        //     navigate("/estabelecimento-dono/" + id);
+        // } catch (error) {
+        //     toast.error('Erro ao salvar as informações. Por favor, tente novamente.');
+        //     console.error('Erro ao salvar as informações:', error);
+        // }
     };
 
     const handleCancel = () => {
@@ -235,7 +238,7 @@ function Cadastrar({idEmpresa}) {
 
     return (
         <>
-            <form action="post" className={styles.container}>
+            <div className={styles.container}>
                 <div>
                     <div className={styles["secao-direita-editar"]}>
                         <form>
@@ -362,6 +365,7 @@ function Cadastrar({idEmpresa}) {
                                 onChange={(e) => handleInputChange(e, setsetTelegramUrl)}
                                 required
                             />
+                            
                             <h3>Informações adicionais</h3>
                             <div className={styles.checkboxContainer}>
                                 <label>
@@ -398,57 +402,29 @@ function Cadastrar({idEmpresa}) {
                                 </label>
                             </div>
                             <div>
-                                <h3>Selecione as categorias de Música</h3>
-                                <div className={styles.checkboxContainer}>
-                                    {musics.map((music) => (
-                                        <div key={music}>
-                                            <label>
-                                                <input
-                                                    type="checkbox"
-                                                    value={music}
-                                                    checked={selectedMusics.includes(music)}
-                                                    onChange={(event) => handleCategoryChange(event, setSelectedMusics, selectedMusics)}
-                                                />
-                                                {music}
-                                            </label>
-                                        </div>
-                                    ))}
+                                <h3>Selecione as categorias de Músicas</h3>
+                                <div>
+                                    <Multiselect
+                                        isObject={false}
+                                        onRemove={(selectedList, removedItem) => setSelectedMusics(selectedList)}
+                                        onSelect={(selectedList, selectedItem) => setSelectedMusics(selectedList)}
+                                        options={musics}
+                                        selectedValues={selectedMusics}
+                                        className={styles["multiselect-container"]}
+                                        placeholder="Escolha suas músicas"
+                                    />
                                 </div>
                             </div>
                             <div>
                                 <h3>Selecione as categorias de Comida</h3>
                                 <div className={styles.checkboxContainer}>
-                                    {foods.map((food) => (
-                                        <div key={food}>
-                                            <label>
-                                                <input
-                                                    type="checkbox"
-                                                    value={food}
-                                                    checked={selectedFoods.includes(food)}
-                                                    onChange={(event) => handleCategoryChange(event, setSelectedFoods, selectedFoods)}
-                                                />
-                                                {food}
-                                            </label>
-                                        </div>
-                                    ))}
+                                    
                                 </div>
                             </div>
                             <div>
                                 <h3>Selecione as categorias de Bebida</h3>
                                 <div className={styles.checkboxContainer}>
-                                    {drinks.map((drink) => (
-                                        <div key={drink}>
-                                            <label>
-                                                <input
-                                                    type="checkbox"
-                                                    value={drink}
-                                                    checked={selectedDrinks.includes(drink)}
-                                                    onChange={(event) => handleCategoryChange(event, setSelectedDrinks, selectedDrinks)}
-                                                />
-                                                {drink}
-                                            </label>
-                                        </div>
-                                    ))}
+                                    
                                 </div>
                             </div>
                             <div>
@@ -470,7 +446,7 @@ function Cadastrar({idEmpresa}) {
                                 </div>
                             </div>
                             <div className={styles["buttons-container-editar"]}>
-                                <button type="button" onClick={handleSave}>
+                                <button type="submit" onClick={handleSave}>
                                     Salvar
                                 </button>
                                 <button type="button" onClick={handleCancel}>
@@ -480,7 +456,7 @@ function Cadastrar({idEmpresa}) {
                         </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </>
     );
 }

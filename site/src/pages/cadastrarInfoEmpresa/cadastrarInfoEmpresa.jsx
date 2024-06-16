@@ -1,6 +1,6 @@
 import "../../global.css";
 import styles from "./edicaoEmpresa.module.css";
-import NavBarQS from "../quemSomos/NavBarQS/navBarQS";
+import NavBar from "../../components/navbar/NavBar";
 import logoQS from "../../assets/logoBranca.svg";
 import Footer from "../../components/footer/Footer";
 import { useParams } from "react-router";
@@ -11,7 +11,7 @@ function CadastrarInformacoesEmpresa(){
     return(
       <>
        <div className={styles.container}>
-                <NavBarQS logoQS={logoQS} />
+                <NavBar logoInicio={logoQS} />
                     <div className={styles["background-image"]}>
                         <Cadastrar idEmpresa={id} />                    
                     </div>
