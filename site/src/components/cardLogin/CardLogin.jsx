@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import "../../global.css";
 import icone from "../../assets/icon-user.svg"
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 
 export function CardLogin() {
@@ -20,8 +21,16 @@ export function CardLogin() {
             password: senha,
         }).then((response) => {
             sessionStorage.setItem('qabToken', response.data.token)
+            axios.get(`${api.defaults.baseURL}/users/byEmail`, { params: { email } })
+            .then(response => {
+                sessionStorage.setItem('userId', response.data.userId)
+                if(response.data.establishmentId){
+                    sessionStorage.setItem('establishmentId', response.data.establishmentId)
+                }
+        })
+            .catch(error => console.log(error));
             toast.success("Usuário logado com sucesso!");
-            navigate("/listagem");
+            navigate("/");
         }).catch(() => { toast.error("Ocorreu um erro ao salvar os dados, por favor, tente novamente.") })
     }
 

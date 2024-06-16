@@ -53,6 +53,8 @@ const NavBar = ({ logoInicio }) => {
                 {menuOpen && (
                     <div className={styles["dropdown-menu"]}>
                         <ul>
+                            <li onClick={() => navigate("/dashboard")}>Dashboard</li>
+                            <li>Configurações</li>
                             <li onClick={() => navigate("/login")}>Logout</li>
                         </ul>
                     </div>

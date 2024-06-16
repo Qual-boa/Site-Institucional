@@ -1,11 +1,11 @@
 import React from 'react';
 import Navbar from '../../components/navbar/NavBar';
-import Overview from '../../components/overview/Overview';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Charts from '../../components/charts/Charts';
 import styles from './Dashboard.module.css';
 import Footer from "../../components/footerEmpresa/FooterEmpresa";
 import logo from "../../assets/logoBranca.svg";
+import { formatarData } from '../../utils';
 const Dashboard = () => {
     return (
         <>
@@ -15,9 +15,8 @@ const Dashboard = () => {
                     <Sidebar />
                     <div className={styles.main}>
                         <header className={styles.header}>
-                            <span>10 de junho de 2024</span>
+                            <span>{formatarData(new Date())}</span>
                         </header>
-                        <Overview />
                         <Charts/>
                     </div>
                 </div>

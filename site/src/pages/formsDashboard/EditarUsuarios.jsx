@@ -11,17 +11,15 @@ function EditarUsuarios({ closeModal }) {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [senhaConfirmacao, setSenhaConfirmacao] = useState("");
-    const [cargo, setCargo] = useState("");
 
     useEffect(() => {
         const fetchUsuario = async () => {
             try {
-                const response = await api.get("/user/me");
+                const response = await api.get(`/users/${sessionStorage.getItem('userId')}`);
                 const usuarioData = response.data;
                 setUsuario(usuarioData);
-                setNome(usuarioData.nome || "");
+                setNome(usuarioData.name || "");
                 setEmail(usuarioData.email || "");
-                setCargo(usuarioData.cargo || "");
             } catch (error) {
                 console.error("Erro ao buscar informações do usuário:", error);
             }
@@ -38,12 +36,9 @@ function EditarUsuarios({ closeModal }) {
         }
 
         api.put(`/users/${usuario.id}`, {
-            nome,
+            name:nome,
             email,
-            password: senha,
-            userTypeEnum: "EMPLOYEE",
-            roleEnum: "ADMIN",
-            cargo
+            password: senha
         }).then(() => {
             toast.success("Usuário atualizado com sucesso!");
             navigate("/dashboard");
@@ -81,17 +76,6 @@ function EditarUsuarios({ closeModal }) {
                     value={email}
                     onChange={(e) => setarValoresInput(e, setEmail)}
                 />
-                <label htmlFor="role">CARGO:</label>
-                <select
-                    id="role"
-                    name="role"
-                    aria-required="true"
-                    value={cargo}
-                    onChange={(e) => setarValoresInput(e, setCargo)}
-                >
-                    <option value="admin">Admin</option>
-                    <option value="funcionario">Funcionário</option>
-                </select>
                 <label htmlFor="password">SENHA:</label>
                 <input
                     type="password"
