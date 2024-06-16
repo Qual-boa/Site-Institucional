@@ -3,7 +3,7 @@ import apiBlob from "../../api-blob";
 import { toast } from 'react-toastify';
 import styles from "./form.module.css";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InputMask from 'react-input-mask';
 import axios from "axios";
 import Multiselect from "multiselect-react-dropdown";
@@ -34,7 +34,7 @@ function Cadastrar({idEmpresa}) {
     const [description, setDescription] = useState("");
     const [openAtTime, setOpenAt] = useState({ hour: 0, minute: 0 });
     const [closeAtTime, setCloseAt] = useState({ hour: 0, minute: 0 });
-    
+
     // Novos estados para informações adicionais
     const [tv, setTv] = useState(false);
     const [wifi, setWifi] = useState(false);
@@ -44,53 +44,6 @@ function Cadastrar({idEmpresa}) {
     const [selectedMusics, setSelectedMusics] = useState([]);
     const [selectedFoods, setSelectedFoods] = useState([]);
     const [selectedDrinks, setSelectedDrinks] = useState([]);
-
-    useEffect(() => {
-        api.get(`establishments/${id}`).then((response) => {
-            const { data } = response;
-            const {
-                description,
-                phone,
-                facebookUrl,
-                instagramUrl,
-                setTelegramUrl,
-                postalCode,
-                street,
-                number,
-                neighborhood,
-                complement,
-                city,
-                state,
-                tv,
-                wifi,
-                acessibilidade,
-                estacionamento,
-                openAt,
-                closeAt
-            } = data;
-            setPhone(phone);
-            setFacebookUrl(facebookUrl);
-            setInstagramUrl(instagramUrl);
-            setsetTelegramUrl(setTelegramUrl);
-            setPostalCode(postalCode);
-            setStreet(street);
-            setNumber(number);
-            setNeighborhood(neighborhood);
-            setComplement(complement);
-            setCity(city);
-            setState(state);
-            setOpenAt(openAt);
-            setCloseAt(closeAt);
-            setTv(tv);
-            setWifi(wifi);
-            setAcessibilidade(acessibilidade);
-            setEstacionamento(estacionamento);
-            setDescription(description);
-        })
-        .catch((error) => {
-            console.log("Erro ao buscar os detalhes do estabelecimento:", error);
-        })
-    }, [id]);
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
@@ -128,15 +81,6 @@ function Cadastrar({idEmpresa}) {
 
     const handleCheckboxChange = (event, setStateFunction) => {
         setStateFunction(event.target.checked);
-    };
-
-    const handleCategoryChange = (event, setStateFunction, currentSelection) => {
-        const { value, checked } = event.target;
-        if (checked) {
-            setStateFunction([...currentSelection, value]);
-        } else {
-            setStateFunction(currentSelection.filter(item => item !== value));
-        }
     };
 
     const handleProfileFileChange = (event) => {
@@ -182,54 +126,53 @@ function Cadastrar({idEmpresa}) {
 
     const handleSave = async () => {
         const categories = [
-            ...selectedDrinks.map((index) => ({ categoryType: 3, category: index + 1 })),
-            ...selectedFoods.map((index) => ({ categoryType: 2, category: index + 1 })),
-            ...selectedMusics.map((index) => ({ categoryType: 1, category: index + 1 }))
+            ...selectedDrinks.map((item) => ({ categoryType: 3, category: drinks.indexOf(item) + 1 })),
+            ...selectedFoods.map((item) => ({ categoryType: 2, category: foods.indexOf(item) + 1 })),
+            ...selectedMusics.map((item) => ({ categoryType: 1, category: musics.indexOf(item) + 1 }))
         ];
         
-       console.log(categories);
-        // try {
-        //     await api.post(`/address/establishment/${id}`, {
-        //         street,
-        //         number,
-        //         postalCode,
-        //         neighborhood,
-        //         complement,
-        //         state,
-        //         city
-        //     });
-        // } catch (error) {
-        //     console.error('Erro ao atualizar endereço:', error);
-        // }
+        try {
+            await api.post(`/address/establishment/${id}`, {
+                street,
+                number,
+                postalCode,
+                neighborhood,
+                complement,
+                state,
+                city
+            });
+        } catch (error) {
+            console.error('Erro ao atualizar endereço:', error);
+        }
 
-        // try {
-        //     await api.post('/informations/establishment/' + id, {
-        //         hasParking: estacionamento,
-        //         hasAccessibility: acessibilidade,
-        //         hasTv: tv,
-        //         hasWifi: wifi,
-        //         openAt: openAtTime,
-        //         closeAt: closeAtTime,
-        //         phone,
-        //         facebookUrl,
-        //         instagramUrl,
-        //         setTelegramUrl,
-        //         establishmentId: id,
-        //         description
-        //     });
+        try {
+            await api.post('/informations/establishment/' + id, {
+                hasParking: estacionamento,
+                hasAccessibility: acessibilidade,
+                hasTv: tv,
+                hasWifi: wifi,
+                openAt: openAtTime,
+                closeAt: closeAtTime,
+                phone,
+                facebookUrl,
+                instagramUrl,
+                setTelegramUrl,
+                establishmentId: id,
+                description
+            });
 
-        //     // Update categories
-        //     await api.put('/establishments/categories', {
-        //         establishmentId: id,
-        //         categories
-        //     });
+            // Update categories
+            await api.put('/establishments/categories', {
+                establishmentId: id,
+                categories
+            });
 
-        //     toast.success('Dados editados com sucesso!');
-        //     navigate("/estabelecimento-dono/" + id);
-        // } catch (error) {
-        //     toast.error('Erro ao salvar as informações. Por favor, tente novamente.');
-        //     console.error('Erro ao salvar as informações:', error);
-        // }
+            toast.success('Dados editados com sucesso!');
+            navigate("/estabelecimento-dono/" + id);
+        } catch (error) {
+            toast.error('Erro ao salvar as informações. Por favor, tente novamente.');
+            console.error('Erro ao salvar as informações:', error);
+        }
     };
 
     const handleCancel = () => {
@@ -403,7 +346,7 @@ function Cadastrar({idEmpresa}) {
                             </div>
                             <div>
                                 <h3>Selecione as categorias de Músicas</h3>
-                                <div>
+                                <div className={styles.option_box}>
                                     <Multiselect
                                         isObject={false}
                                         onRemove={(selectedList, removedItem) => setSelectedMusics(selectedList)}
@@ -417,14 +360,30 @@ function Cadastrar({idEmpresa}) {
                             </div>
                             <div>
                                 <h3>Selecione as categorias de Comida</h3>
-                                <div className={styles.checkboxContainer}>
-                                    
+                                <div className={styles.option_box}>
+                                    <Multiselect
+                                        isObject={false}
+                                        onRemove={(selectedList, removedItem) => setSelectedFoods(selectedList)}
+                                        onSelect={(selectedList, selectedItem) => setSelectedFoods(selectedList)}
+                                        options={foods}
+                                        selectedValues={selectedFoods}
+                                        className={styles["multiselect-container"]}
+                                        placeholder="Escolha suas comidas"
+                                    />
                                 </div>
                             </div>
                             <div>
                                 <h3>Selecione as categorias de Bebida</h3>
-                                <div className={styles.checkboxContainer}>
-                                    
+                                <div  className={styles.option_box}>
+                                    <Multiselect
+                                        isObject={false}
+                                        onRemove={(selectedList, removedItem) => setSelectedDrinks(selectedList)}
+                                        onSelect={(selectedList, selectedItem) => setSelectedDrinks(selectedList)}
+                                        options={drinks}
+                                        selectedValues={selectedDrinks}
+                                        className={styles["multiselect-container"]}
+                                        placeholder="Escolha suas bebidas"
+                                    />
                                 </div>
                             </div>
                             <div>

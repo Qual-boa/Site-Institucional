@@ -1,43 +1,74 @@
 .option_box {
     flex: 1; /* Ajusta o tamanho das caixas de opções para serem iguais */
     position: relative; /* Necessário para posicionar a seta */
+    width: 400px;
+    padding: 20px;
 }
   
-  .multiselect-container {
-    width: 100%; /* Garante que o multiselect ocupe toda a largura do .option-box */
-    background-color: white; /* Fundo branco */
-    border: 1px solid #ccc; /* Borda para dar um aspecto de caixa */
-    padding: 10px; /* Espaçamento interno para estética */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    border-radius: 15px; 
+.multiselect-container {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
     position: relative;
-  }
-  
-  .multiselect-container input[type="text"],
-  .multiselect-container input[type="search"] {
-    border: none !important; /* Remove a borda do input de texto */
-    box-shadow: none !important; /* Remove qualquer sombra do input de texto */
-    outline: none !important; /* Remove a borda ao focar no input */
-  }
-  
-  .multiselect-container::after {
-    content: ''; 
+}
+
+.multiselect-container input[type="text"],
+.multiselect-container input[type="search"] {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.multiselect-container::after {
+    content: '';
     position: absolute;
-    right: 10px; /* Ajusta a posição horizontal da seta */
-    top: 50%; /* Centraliza verticalmente */
-    transform: translateY(-50%); /* Ajusta para centralizar */
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid #000; /* Cor da seta */
-    pointer-events: none; /* A seta não interfere nos cliques */
-  }
+    border-top: 6px solid #000;
+    pointer-events: none;
+}
+
+/* Style for the remove "X" button */
+.multiselect-container .chip .close {
+    font-size: 14px;
+    line-height: 14px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #f00;
+}
+
+/* Ensure the chips are properly styled */
+.multiselect-container .chip {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    margin: 5px;
+}
+
+/* Responsive design */
+@media screen and (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .secao-direita-editar form {
+        width: 100%;
+    }
+}
 
 .container {
     display: flex;
     height: auto;
-    width: 50%;
+    width: fit-content;
     background-color: #f1f1f1;
     border-radius: 30px;
     margin-top: 10%;
@@ -46,7 +77,7 @@
 }
 
 .container img {
-    width: 70%;
+    width: 1vw;
     height: auto;
     max-width: 90%;
     border-radius: 10px;

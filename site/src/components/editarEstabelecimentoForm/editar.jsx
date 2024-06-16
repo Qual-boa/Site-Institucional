@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import InputMask from 'react-input-mask';
 import axios from "axios";
+import Multiselect from "multiselect-react-dropdown";
 
 const musics = ['Rock', 'Sertanejo', 'Indie', 'Rap', 'Funk', 'Metal'];
 const foods = ['Brasileira', 'Boteco', 'Japonesa', 'Mexicana', 'Churrasco', 'Hamburguer'];
@@ -39,9 +40,6 @@ function Editar({idEmpresa}) {
     const [selectedDrinks, setSelectedDrinks] = useState([]);
 
     useEffect(() => {
-        let comidas = [];
-        let bebidas = [];
-        let musicas = [];
         api.get(`/establishments/${id}`).then((response) => {
             const { data } = response;
             setPhone(data.information.phone);
@@ -55,15 +53,6 @@ function Editar({idEmpresa}) {
             setEstacionamento(data.information.hasParking);
             setTv(data.information.hasTv);
             setWifi(data.information.hasWifi);
-            data.categories.forEach(cat => {
-                if(cat.categoryType === 3){
-                    bebidas.push(cat);
-                } else if(cat.categoryType === 2) {
-                    comidas.push(cat);
-                } else {
-                    musicas.push(cat);
-                }
-            })
         })
         .catch((error) => {
             console.log("Erro ao buscar os detalhes do estabelecimento:", error);
@@ -120,20 +109,11 @@ function Editar({idEmpresa}) {
         setStateFunction(event.target.checked);
     };
 
-    const handleCategoryChange = (event, setStateFunction, currentSelection) => {
-        const { value, checked } = event.target;
-        if (checked) {
-            setStateFunction([...currentSelection, value]);
-        } else {
-            setStateFunction(currentSelection.filter(item => item !== value));
-        }
-    };
-
     const handleSave = async () => {
         const categories = [
-            ...selectedDrinks.map((item, index) => ({ categoryType: 3, category: index + 1 })),
-            ...selectedFoods.map((item, index) => ({ categoryType: 2, category: index + 1 })),
-            ...selectedMusics.map((item, index) => ({ categoryType: 1, category: index + 1 }))
+            ...selectedDrinks.map((item) => ({ categoryType: 3, category: drinks.indexOf(item) + 1 })),
+            ...selectedFoods.map((item) => ({ categoryType: 2, category: foods.indexOf(item) + 1 })),
+            ...selectedMusics.map((item) => ({ categoryType: 1, category: musics.indexOf(item) + 1 }))
         ];
         try {
             await api.put(`/address/${addressId}`, {
@@ -336,57 +316,45 @@ function Editar({idEmpresa}) {
                                 </label>
                             </div>
                             <div>
-                                <h3>Selecione as categorias de Música</h3>
-                                <div className={styles.checkboxContainer}>
-                                    {musics.map((music) => (
-                                        <div key={music}>
-                                            <label>
-                                                <input
-                                                    type="checkbox"
-                                                    value={music}
-                                                    checked={selectedMusics.includes(music)}
-                                                    onChange={(event) => handleCategoryChange(event, setSelectedMusics, selectedMusics)}
-                                                />
-                                                {music}
-                                            </label>
-                                        </div>
-                                    ))}
+                                <h3>Selecione as categorias de Músicas</h3>
+                                <div className={styles.option_box}>
+                                    <Multiselect
+                                        isObject={false}
+                                        onRemove={(selectedList, removedItem) => setSelectedMusics(selectedList)}
+                                        onSelect={(selectedList, selectedItem) => setSelectedMusics(selectedList)}
+                                        options={musics}
+                                        selectedValues={selectedMusics}
+                                        className={styles["multiselect-container"]}
+                                        placeholder="Escolha suas músicas"
+                                    />
                                 </div>
                             </div>
                             <div>
                                 <h3>Selecione as categorias de Comida</h3>
-                                <div className={styles.checkboxContainer}>
-                                    {foods.map((food) => (
-                                        <div key={food}>
-                                            <label>
-                                                <input
-                                                    type="checkbox"
-                                                    value={food}
-                                                    checked={selectedFoods.includes(food)}
-                                                    onChange={(event) => handleCategoryChange(event, setSelectedFoods, selectedFoods)}
-                                                />
-                                                {food}
-                                            </label>
-                                        </div>
-                                    ))}
+                                <div className={styles.option_box}>
+                                    <Multiselect
+                                        isObject={false}
+                                        onRemove={(selectedList, removedItem) => setSelectedFoods(selectedList)}
+                                        onSelect={(selectedList, selectedItem) => setSelectedFoods(selectedList)}
+                                        options={foods}
+                                        selectedValues={selectedFoods}
+                                        className={styles["multiselect-container"]}
+                                        placeholder="Escolha suas comidas"
+                                    />
                                 </div>
                             </div>
                             <div>
                                 <h3>Selecione as categorias de Bebida</h3>
-                                <div className={styles.checkboxContainer}>
-                                    {drinks.map((drink) => (
-                                        <div key={drink}>
-                                            <label>
-                                                <input
-                                                    type="checkbox"
-                                                    value={drink}
-                                                    checked={selectedDrinks.includes(drink)}
-                                                    onChange={(event) => handleCategoryChange(event, setSelectedDrinks, selectedDrinks)}
-                                                />
-                                                {drink}
-                                            </label>
-                                        </div>
-                                    ))}
+                                <div  className={styles.option_box}>
+                                    <Multiselect
+                                        isObject={false}
+                                        onRemove={(selectedList, removedItem) => setSelectedDrinks(selectedList)}
+                                        onSelect={(selectedList, selectedItem) => setSelectedDrinks(selectedList)}
+                                        options={drinks}
+                                        selectedValues={selectedDrinks}
+                                        className={styles["multiselect-container"]}
+                                        placeholder="Escolha suas bebidas"
+                                    />
                                 </div>
                             </div>
                             <div className={styles["buttons-container-editar"]}>
