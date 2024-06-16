@@ -20,6 +20,16 @@
     height: 300px !important;
 }
 
+.chart-resposta{
+    font-weight: 700;
+    font-size: 1.4vw;
+}
+
+.chart-titulo{
+    font-weight: 340;
+    font-size: 1.1vw; 
+}
+
 @media (max-width: 768px) {
     .charts {
         flex-direction: column;

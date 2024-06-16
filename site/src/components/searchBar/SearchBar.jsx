@@ -29,7 +29,7 @@ const SearchBar = () => {
           icon={faSearch}
           style={{
             position: 'absolute',
-            left: '40px', // Posição do ícone à esquerda
+            left: '10px', // Posição do ícone à esquerda
             top: '50%', // Alinhar verticalmente
             transform: 'translateY(-50%)',
             color: '#000',

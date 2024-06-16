@@ -29,6 +29,8 @@ html {
     height: 100vh;
     position: relative;
     justify-content: center;
+    align-items: center;
+    margin-top: 4vw;
 }
 
 .pesquisa {
@@ -73,13 +75,14 @@ html {
 }
 
 .subtitulo {
-    font-weight: 700;
+    font-weight: 520;
     position: absolute;
     padding-bottom: 55vh;
     font-size: 20pt;
     display: flex;
-    margin-top: 82vh;
-    margin-right: 35vw;
+    margin-top: 42vw;
+    margin-right: 27vw;
+    width: 31vw;
 }
 
 .pesquisa-configure{
@@ -113,8 +116,8 @@ html {
 .container-input{
     display: inline-block;
     position: absolute;
-    margin-top: 68vh;
-    margin-right: 18vw;
+    top: 25vw;
+    left: 56vw;
 }
 
 .input-principal{
@@ -188,6 +191,8 @@ html {
 
 .vantagens h1{
     margin-left: 20vh;
+    font-weight: 700;
+    font-size: 1.4vw;
 }
 
 .linha{
@@ -204,6 +209,8 @@ html {
 
 .destaques h1{
     margin-left: 20vh;
+    font-weight: 700;
+    font-size: 1.4vw;
 }
 
 .destaques-box{
@@ -224,6 +231,7 @@ html {
     font-size: 5vh;
     margin-left: 6vw;
     margin-top: 10vh;
+    font-weight: 700;
 }
 
 .destaques-txt span{
@@ -283,6 +291,8 @@ html {
 .dica h1{
     margin-left: 20vh;
     margin-bottom: 2vh;
+    font-weight: 700;
+    font-size: 1.4vw;
 }
 
 .dica-box{
@@ -357,6 +367,8 @@ html {
 
 .vantagens-box h3{
     margin-top: 20vh;
+    font-weight: 700;
+    font-size: 1.4vw;
 }
 
 .vantagens-box img{

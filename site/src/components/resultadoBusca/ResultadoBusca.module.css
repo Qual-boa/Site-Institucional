@@ -91,7 +91,7 @@ Estilos para card .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 110%;
   padding-bottom: 100px;
   margin-top: 17vw;
 }
@@ -117,16 +117,14 @@ Estilos para card .card {
 
 .card {
   width: 100%;
-  /* Ajustado para ocupar a largura total do contêiner */
   display: flex;
   align-items: left;
   padding: 15px;
-  /* background-color: white; */
-  border: 3px solid #ccc;
-  border-radius: 8px;
+  border-radius: 30px;
   margin: 10px;
   width: 80%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #FFFDF2;
 }
 
 .imageContainer {
@@ -286,7 +284,7 @@ Estilos para card .card {
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 0%;
+  top: 2%;
   align-items: center;
 }
 

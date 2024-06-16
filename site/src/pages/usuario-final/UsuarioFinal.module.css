@@ -30,6 +30,8 @@ html {
     height: 100vh;
     position: relative;
     justify-content: center;
+    align-items: center;
+    margin-top: 4vw;
 }
 
 .pesquisa {
@@ -74,13 +76,13 @@ html {
 }
 
 .subtitulo {
-    font-weight: 700;
+    font-weight: 520;
     position: absolute;
     padding-bottom: 55vh;
     font-size: 20pt;
     display: flex;
-    margin-top: 82vh;
-    margin-right: 35vw;
+    margin-top: 42vw;
+    margin-right: 27vw;
     width: 31vw;
 }
 
@@ -115,8 +117,8 @@ html {
 .container-input{
     display: inline-block;
     position: absolute;
-    margin-top: 68vh;
-    margin-right: 18vw;
+    top: 25vw;
+    left: 52vw;
 }
 
 .input-principal{
@@ -206,6 +208,8 @@ html {
 
 .cidades-procuradas h1{
     margin-left: 20vh;
+    font-weight: 700;
+    font-size: 1.4vw;
 }
 
 .linha{
@@ -222,6 +226,8 @@ html {
 
 .destaques h1{
     margin-left: 20vh;
+    font-weight: 700;
+    font-size: 1.4vw;
 }
 
 .destaques-box{
@@ -299,6 +305,8 @@ html {
 
 .dica h1{
     margin-left: 20vh;
+    font-weight: 700;
+    font-size: 1.4vw;
     margin-bottom: 2vh;
 }
 
@@ -407,6 +415,7 @@ html {
 
 .cidades-box h3{
     margin-top: 20vh;
+    font-weight: 650;
 }
 
 
@@ -509,6 +518,8 @@ html {
 
 .bares h1{
     margin-left: 20vh;
+    font-weight: 700;
+    font-size: 1.4vw;
 }
 
 .bares-box{
@@ -545,6 +556,7 @@ html {
 
 .bares-info h3{
     margin-left: 1vw;
+    font-weight: 650;
 }
 
 .bares-info span{
@@ -571,6 +583,8 @@ html {
 
 .boa h1{
     margin-left: 20vh;
+    font-weight: 700;
+    font-size: 1.4vw;
 }
 
 .boa-box{
@@ -659,6 +673,11 @@ html {
 
 .sugestoes-info-txt{
     height: 60%;
+    margin-top: 3vw;
+}
+
+.sugestoes-info-txt h3{
+    font-weight: 650;
 }
 
 .sugestoes-info-txt span{
@@ -666,7 +685,7 @@ html {
 }
 
 .sugestoes-info-btn{
-    height: 40%;
+    height: 65%;
 }
 
 .botao-visitar{
@@ -690,7 +709,12 @@ html {
     display: flex;
     flex-direction: column;
     width: 49vw;
-    bottom: 12%;
+    bottom: 14%;
+}
+
+.boa-txt1 h3, .boa-txt2 h3{
+    font-weight: 700;
+    font-size: 1.5vw;
 }
 
 .boa-txt2{
@@ -698,7 +722,7 @@ html {
     display: flex;
     flex-direction: column;
     width: 49vw;
-    bottom: 2%;
+    bottom: 3%;
 }
 
 .sessao{

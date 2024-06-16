@@ -87,20 +87,10 @@ function Usuario() {
                             <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
                         </div>
                         <div className={styles["container-input"]}>
-                            <input className={styles["input-principal"]} type="text" placeholder="Pesquise sua boa"/>
                             <button type="button" onClick={goToTela2} className={styles["botao-principal"]}>PESQUISAR</button>
                         </div>
                     </div>
                 </section>
-                <div className={styles["container-button"]}>
-                    <button className={styles["button-filter"]}>+SERTANEJO</button>
-                    <button className={styles["button-filter"]}>+CASEIRO</button>
-                    <button className={styles["button-filter"]}>+BOTECO</button>
-                    <button className={styles["button-filter"]}>+GOURMET</button>
-                    <button className={styles["button-filter"]}>+ROCK</button>
-                    <button className={styles["button-filter"]}>+AO VIVO</button>
-                    <button className={styles["button-filter"]}>+BALADA</button>
-                </div>
                <section className={styles["sessao"]} id="cidades"> 
                 <div className={styles["cidades-procuradas"]}>
                     <div className={styles["linha"]}></div>

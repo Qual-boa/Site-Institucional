@@ -26,10 +26,20 @@ function Dono() {
             }
         }, 100); // ajuste o tempo conforme necessário
     };
+
+    const listagemScroll = (sectionId) => {
+        // Navega para a página inicial (ou para a página onde está a seção desejada)
+        navigate('/listagem');
+
+        // Espera um pequeno intervalo de tempo antes de rolar para a seção
+        setTimeout(() => {
+            var secao = document.getElementById(sectionId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100); // ajuste o tempo conforme necessário
+    };
     
-    const goToTela = (caminho) => {
-        navigate(caminho);
-    }
 
     return (
         <>
@@ -46,8 +56,7 @@ function Dono() {
                             <img src={cervejinha} alt="Cervejinha" className={styles["cervejinha"]} />
                         </div>
                         <div className={styles["container-input"]}>
-                            <input className={styles["input-principal"]} type="text" placeholder="Clique em cadastrar"/>
-                            <button type="button" onClick={() => goToTela("/cadastroEmpresa")} className={styles["botao-principal"]}>CADASTRAR</button>
+                            <button type="button" scrollToSection={'inicio'} className={styles["botao-principal"]}>PESQUISAR</button>
                         </div>
                     </div>
                 </section>
@@ -94,7 +103,7 @@ function Dono() {
                                         É especialista em cervejas artesanais e possui uma novidade diária.
                                         Ideal para você que gosta de degustar e apreciar novos sabpres. 
                                     </span>
-                                    <button className={styles["botao-visita"]} onClick={() => goToTela("/listagem")} type="button">VISITAR</button>
+                                    <button className={styles["botao-visita"]} onClick={() => listagemScroll("inicio")} type="button">VISITAR</button>
                                 </div>
                             </div>
                         </div>

@@ -142,27 +142,27 @@ const Charts = () => {
             <span className={styles.nameOverview}><b>Bem Vindo, {decodeToken(sessionStorage.getItem('qabToken')).name}!</b></span>
             <div className={styles.overview}>
                 <div className={styles.metric1}>
-                    <span><b>Média de Clicks por Mês</b></span><br />
-                    <span><b>{metrics.averageClicksPerMonth}</b></span>
+                    <span className={styles["chart-titulo"]}><b>Média de Clicks por Mês</b></span><br />
+                    <span className={styles["chart-resposta"]}><b>{metrics.averageClicksPerMonth}</b></span>
                 </div>
                 <div className={styles.metric2}>
-                    <span><b>Média Nota</b></span><br />
+                    <span className={styles["chart-titulo"]}><b>Média Nota</b></span><br />
                     <span></span><br />
-                    <span><b>{metrics.rate}</b></span>
+                    <span><b className={styles["chart-resposta"]}>{metrics.rate}</b></span>
                 </div>
                 <div className={styles.metric3}>
-                    <span><b>Dia com mais Clicks</b></span><br />
+                    <span className={styles["chart-titulo"]}><b>Dia com mais Clicks</b></span><br />
                     <span></span><br />
-                    <span><b>{metrics.dayOfWeekWithMostClicks}</b></span>
+                    <span><b className={styles["chart-resposta"]}>{metrics.dayOfWeekWithMostClicks}</b></span>
                 </div>
                 <div className={styles.metric4}>
-                    <span><b>Horário com mais Clicks</b></span><br />
-                    <span><b>{metrics.findHourWithMostClicks}</b></span>
+                    <span className={styles["chart-titulo"]}><b>Horário com mais Clicks</b></span><br />
+                    <span><b className={styles["chart-resposta"]}>{metrics.findHourWithMostClicks}</b></span>
                 </div>
                 <div className={styles.metric5}>
-                    <span><b>Favoritado</b></span><br />
+                    <span className={styles["chart-titulo"]}><b>Favoritado</b></span><br />
                     <span></span><br />
-                    <span><b>{metrics.favoriteCount}</b></span>
+                    <span><b className={styles["chart-resposta"]}>{metrics.favoriteCount}</b></span>
                 </div>
             </div>
             <div className={styles.charts}>

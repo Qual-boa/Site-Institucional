@@ -11,8 +11,9 @@
 .botao-lupa{
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 4vh;
-    width: 6vw;
+    width: 2.1vw;
     border: none;
     border-radius: 20px;
     text-indent: 10px;
