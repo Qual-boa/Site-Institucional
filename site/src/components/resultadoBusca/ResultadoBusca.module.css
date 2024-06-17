@@ -1,22 +1,26 @@
-Estilos para card .card {
-  border: 1px solid #ccc;
+/* Estilos para card */
+
+.card {
+  width: 100%;
+  display: flex;
+  align-items: left;
+  padding: 15px;
   border-radius: 8px;
-  padding: 16px;
+  border-radius: 30px;
+  margin: 10px;
+  width: 80%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
-  text-align: center;
+  background-color: #FFFDF2;
 }
 .title {
   margin-top: 10px;
   font-weight: bold;
   color: #000;
 }
-/* Estilos para a imagem dentro do card */
 .card img {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
-  margin-bottom: 12px;
 }
 
 /* Estilos para o título */
@@ -35,12 +39,18 @@ Estilos para card .card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 15px;
+  margin-top: 100px;
+  width: 100%;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
 }
 
 .search-input {
@@ -70,13 +80,24 @@ Estilos para card .card {
   transition: ease-in-out 0.3s;
 }
 
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 5px;
+  /* Ajusta o espaço entre as linhas de botões */
+
+}
+
 .containerJsons {
+  height: 100vh; /* Ajusta a altura para ocupar a tela inteira */
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 110%;
+  width: 100%;
   padding-bottom: 100px;
-  margin-top: 17vw;
+  margin-top: 15vw;
 }
 
 .containerJsons::-webkit-scrollbar {
@@ -95,19 +116,6 @@ Estilos para card .card {
 
 .containerJsons::-webkit-scrollbar-thumb:hover {
   background: #555; /* Cor do "polegar" quando hover */
-}
-
-
-.card {
-  width: 100%;
-  display: flex;
-  align-items: left;
-  padding: 15px;
-  border-radius: 30px;
-  margin: 10px;
-  width: 80%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #FFFDF2;
 }
 
 .imageContainer {
@@ -176,24 +184,22 @@ Estilos para card .card {
 
 .option-box {
   flex: 1; /* Ajusta o tamanho das caixas de opções para serem iguais */
-  position: relative; /* Necessário para posicionar a seta */
 }
 
 .multiselect-container {
-  width: 100%; /* Garante que o multiselect ocupe toda a largura do .option-box */
-  background-color: white; /* Fundo branco */
-  border: 1px solid #ccc; /* Borda para dar um aspecto de caixa */
-  padding: 10px; /* Espaçamento interno para estética */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  border-radius: 15px; 
-  position: relative;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
 }
 
 .multiselect-container input[type="text"],
 .multiselect-container input[type="search"] {
-  border: none !important; /* Remove a borda do input de texto */
-  box-shadow: none !important; /* Remove qualquer sombra do input de texto */
-  outline: none !important; /* Remove a borda ao focar no input */
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .multiselect-container::after {
@@ -230,8 +236,6 @@ Estilos para card .card {
   text-indent: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  justify-content: center;
-  align-items: center; 
   background-color: white;
 }
 
@@ -241,17 +245,15 @@ Estilos para card .card {
   color: #fff;
   font-weight: bold;
   border:none;
-  float:right;
-  padding: 5px 10px;
-  margin-right: 20px;
   position: absolute;
   left: 96%;
+  padding: 5px 10px;
   border-radius: 30px;
   height: 6.4vh;
   width: 13vw;
-  padding-left: 10px;
   font-size: 15px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .search-bar h3{
@@ -261,13 +263,14 @@ Estilos para card .card {
 }
 
 .search-container{
-  height: 100%;
+  height: 40vw;
   width: 37vw;
+  flex-direction: column;
   display: flex;
   justify-content: center;
-  align-items: center;
   position: absolute;
-  top: 2%;
+  top: 0%;
+  align-items: center;
 }
 
 @media (max-width: 768px) {

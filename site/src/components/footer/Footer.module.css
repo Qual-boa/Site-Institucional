@@ -1,14 +1,18 @@
 .footer {
-    background-color: black;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #333;
     color: #fff;
-    height: 60vh;
-    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    flex-shrink: 0;
 }
 
 .logoContainer {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .logoContainer img {
@@ -34,9 +38,43 @@
 }
 
 .logo {
-    margin-left: 64px;
-    cursor: pointer;
+    margin: 0 10px;
 }
+
+.menuContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.menuTitulo {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.options {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.optionsEndereco {
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.midias {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 24px;
+}
+
+.copyright {
+    font-size: 14px;
+}
+
 
 .options {
     text-decoration: none;
