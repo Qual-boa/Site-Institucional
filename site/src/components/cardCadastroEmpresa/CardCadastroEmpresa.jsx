@@ -42,6 +42,10 @@ export function CardLoginEmpresa() {
                             <label htmlFor="valorMedio">Valor médio</label>
                             <input type="number" className={styles["form-control"]} id="valorMedio" placeholder="Valor médio (ex: 50)" onChange={e => handleChangeInput(e, setAvgValue)}/>
                         </div>
+                        <div className={styles["form-group"]}>
+                            <label htmlFor="email">E-mail</label>
+                            <input type="email" className={styles["form-control"]} id="email" placeholder="example@example.com"/>
+                        </div>
                         <button type="button" className={styles["botao-entrar-usuario"]} onClick={create}><b>CADASTRAR</b></button>
                         <div className={styles["loginExistente"]}>
                             Já possui Login?<Link to="/loginEmpresa" className={styles["entrar"]}>Entrar</Link>

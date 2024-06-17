@@ -4,6 +4,7 @@ html {
     padding: 0;
     height: 100%;
     background-color: #fff;
+    overflow-x: hidden;
 }
 .buttonEditar {
     font-weight: bold;
@@ -18,20 +19,23 @@ html {
 .buttonVer {
     font-weight: bold;
     padding: 10px;
-    background-color: blue;
     color:#000;
-    text-align: center;
-    color:white;
+    text-align: center; 
     border-radius: 10px;
 }
-
+.buttonVer:hover {
+    opacity: 50%;
+    transition: 0.5s;
+    background-color: black;
+    color: white;
+}
 .buttons {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-.buttonEditar:hover, .buttonVer:hover {
+.buttonEditar:hover {
     opacity: 50%;
     transition: 0.5s;
 }

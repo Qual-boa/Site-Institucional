@@ -53,6 +53,13 @@ function Editar({idEmpresa}) {
             setEstacionamento(data.information.hasParking);
             setTv(data.information.hasTv);
             setWifi(data.information.hasWifi);
+            
+            const musicCategories = data.categories.filter(cat => cat.categoryType === 1).map(cat => cat.name);
+            const foodCategories = data.categories.filter(cat => cat.categoryType === 2).map(cat => cat.name);
+            const drinkCategories = data.categories.filter(cat => cat.categoryType === 3).map(cat => cat.name);
+            setSelectedMusics(musicCategories);
+            setSelectedFoods(foodCategories);
+            setSelectedDrinks(drinkCategories);
         })
         .catch((error) => {
             console.log("Erro ao buscar os detalhes do estabelecimento:", error);

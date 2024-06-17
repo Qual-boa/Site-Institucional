@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
     "chart.js": "^4.4.3",
+    "file-saver": "^2.0.5",
     "google-map-react": "^2.2.1",
     "jwt-decode": "^4.0.0",
     "multiselect-react-dropdown": "^2.0.25",

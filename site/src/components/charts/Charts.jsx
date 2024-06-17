@@ -148,7 +148,7 @@ const Charts = () => {
                 <div className={styles.metric2}>
                     <span className={styles["chart-titulo"]}><b>Média Nota</b></span><br />
                     <span></span><br />
-                    <span><b className={styles["chart-resposta"]}>{metrics.rate}</b></span>
+                    <span><b className={styles["chart-resposta"]}>{metrics.rate.toFixed(2)}</b></span>
                 </div>
                 <div className={styles.metric3}>
                     <span className={styles["chart-titulo"]}><b>Dia com mais Clicks</b></span><br />

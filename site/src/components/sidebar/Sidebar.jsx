@@ -3,6 +3,8 @@ import { useLocation, Link } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import AdicionarUsuarios from '../../pages/formsDashboard/AdicionarUsuarios';
 import EditarUsuarios from '../../pages/formsDashboard/EditarUsuarios';
+import api from '../../api';
+import { saveAs } from 'file-saver';
 
 const Sidebar = () => {
     const location = useLocation();
@@ -19,48 +21,18 @@ const Sidebar = () => {
         setModalContent(null);
     };
 
-    async function downloadRelatorio() {
-        // const url = '/establishments/file';
-        // const requestData = {
-        //   name: "",
-        //   categories: [
-        //     {
-        //       categoryType: 1,
-        //       category: 1
-        //     }
-        //   ],
-        //   sortOrder: "ASCENDING"
-        // };
-      
-        // try {
-        //   const response = await fetch(url, {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(requestData)
-        //   });
-      
-        //   if (!response.ok) {
-        //     throw new Error('Ocorreu um erro ao baixar o relatório.');
-        //   }
-      
-        //   const blob = await response.blob();
-      
-        //   // Cria um link temporário para download do arquivo
-        //   const url = window.URL.createObjectURL(blob);
-        //   const a = document.createElement('a');
-        //   a.style.display = 'none';
-        //   a.href = url;
-        //   a.download = 'relatorio.csv';
-        //   document.body.appendChild(a);
-        //   a.click();
-        //   window.URL.revokeObjectURL(url);
-        //   document.body.removeChild(a);
-          
-        // } catch (error) {
-        //   console.error('Erro ao baixar o relatório:', error);
-        // }
+    function downloadRelatorio() {
+        const establishmentId = sessionStorage.getItem("establishmentId");
+        api.get(`/access/file/${establishmentId}`, {
+            responseType: 'blob', // Importante para obter o blob do arquivo
+        })
+        .then(response => {
+            const blob = new Blob([response.data], { type: 'text/csv' });
+            saveAs(blob, 'relatorio.csv');
+        })
+        .catch(error => {
+            console.error('Erro ao baixar o relatório:', error);
+        });
     }
 
     return (
@@ -84,7 +56,7 @@ const Sidebar = () => {
                         </select>
                     </li>
                     <li>
-                        <button onClick={downloadRelatorio()} className={styles.relatorioButton}>
+                        <button onClick={() => downloadRelatorio()} className={styles.relatorioButton}>
                             Baixar Relatório
                         </button>
                     </li>
