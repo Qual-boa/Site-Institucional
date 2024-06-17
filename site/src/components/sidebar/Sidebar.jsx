@@ -19,6 +19,50 @@ const Sidebar = () => {
         setModalContent(null);
     };
 
+    async function downloadRelatorio() {
+        // const url = '/establishments/file';
+        // const requestData = {
+        //   name: "",
+        //   categories: [
+        //     {
+        //       categoryType: 1,
+        //       category: 1
+        //     }
+        //   ],
+        //   sortOrder: "ASCENDING"
+        // };
+      
+        // try {
+        //   const response = await fetch(url, {
+        //     method: 'POST',
+        //     headers: {
+        //       'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(requestData)
+        //   });
+      
+        //   if (!response.ok) {
+        //     throw new Error('Ocorreu um erro ao baixar o relatório.');
+        //   }
+      
+        //   const blob = await response.blob();
+      
+        //   // Cria um link temporário para download do arquivo
+        //   const url = window.URL.createObjectURL(blob);
+        //   const a = document.createElement('a');
+        //   a.style.display = 'none';
+        //   a.href = url;
+        //   a.download = 'relatorio.csv';
+        //   document.body.appendChild(a);
+        //   a.click();
+        //   window.URL.revokeObjectURL(url);
+        //   document.body.removeChild(a);
+          
+        // } catch (error) {
+        //   console.error('Erro ao baixar o relatório:', error);
+        // }
+    }
+
     return (
         <div className={styles.sidebar}>
             <nav>
@@ -40,9 +84,9 @@ const Sidebar = () => {
                         </select>
                     </li>
                     <li>
-                        <Link to="/relatorios" className={location.pathname === '/relatorios' ? styles.active : ''}>
-                            Relatórios
-                        </Link>
+                        <button onClick={downloadRelatorio()} className={styles.relatorioButton}>
+                            Baixar Relatório
+                        </button>
                     </li>
                 </ul>
             </nav>

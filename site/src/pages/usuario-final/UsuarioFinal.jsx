@@ -3,10 +3,6 @@ import styles from "./UsuarioFinal.module.css";
 import cervejinha from "../../assets/breja-removebg-preview.png";
 import logo from "../../assets/logoBranca.svg";
 import Footer from "../../components/footer/Footer";
-import SaoPaulo from "../../assets/SaoPaulo.svg";
-import RioJaneiro from "../../assets/RioJaneiro.svg";
-import XiqueXique from "../../assets/XiqueXique.svg";
-import Recife from "../../assets/Recife.svg";
 import Beer4U from "../../assets/beer4u.svg";
 import BarRock from "../../assets/barRock.svg";
 import Divine from "../../assets/divine.svg"
@@ -92,60 +88,6 @@ function Usuario() {
                     </div>
                 </section>
                <section className={styles["sessao"]} id="cidades"> 
-                <div className={styles["cidades-procuradas"]}>
-                    <div className={styles["linha"]}></div>
-                    <h1>CIDADES MAIS PROCURADAS</h1>
-                    <div className={styles["cidades-containers"]}>
-                        <div className={styles["cidades-box"]}>
-                            <div className={styles["cidades-infos"]}>
-                                <h3>SÃO PAULO</h3>
-                                <span>
-                                    Conhecida por sua gastronomia contemporanea metropolitana etc etc etc 
-                                </span>
-                                <button onClick={() => openModal('São Paulo é conhecida por sua vibrante vida noturna, com uma grande variedade de bares, restaurantes, casas de show e baladas')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                            </div>
-                            <div className={styles["cidades-img"]}>
-                                <img src={SaoPaulo} alt="Imagem da cidade" />
-                            </div>
-                        </div>
-                        <div className={styles["cidades-box"]}>
-                        <div className={styles["cidades-infos"]}>
-                                <h3>XIQUE-XIQUE</h3>
-                                <span>
-                                    Conhecida por sua gastronomia contemporanea metropolitana etc etc etc 
-                                </span>
-                                <button onClick={() => openModal('É uma cidade localizada no interior da Bahia, conhecida por sua hospitalidade e cultura tradicional')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                            </div>
-                            <div className={styles["cidades-img"]}>
-                                <img src={XiqueXique} alt="Imagem da cidade" />
-                            </div>
-                        </div>
-                        <div className={styles["cidades-box"]}>
-                        <div className={styles["cidades-infos"]}>
-                                <h3>RIO DE JANEIRO</h3>
-                                <span>
-                                    Conheça o calor da cidade mais fervorosa do Brasil etc etc etc
-                                </span>
-                                <button onClick={() => openModal("É famoso por suas belas praias, paisagens deslumbrantes e uma atmosfera descontraída")} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                            </div>
-                            <div className={styles["cidades-img"]}>
-                                <img src={RioJaneiro} alt="Imagem da cidade" />
-                            </div> 
-                        </div>
-                        <div className={styles["cidades-box"]}>
-                        <div className={styles["cidades-infos"]}>
-                                <h3>RECIFE</h3>
-                                <span>
-                                    Conheça o calor da cidade mais fervorosa do Brasil etc etc etc
-                                </span>
-                                <button onClick={() => openModal('Capital de Pernambuco, é uma cidade conhecida por sua rica herança cultural, manifestada em sua música, dança, arte e gastronomia')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                            </div>
-                            <div className={styles["cidades-img"]}>
-                                <img src={Recife} alt="Imagem da cidade" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </section>
                 <section className={styles["sessao"]} id="bares">
                     <div className={styles["bares"]}>

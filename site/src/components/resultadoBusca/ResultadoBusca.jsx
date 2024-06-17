@@ -50,9 +50,9 @@ function ResultadoBusca() {
                 imageUrl: 'defaultLogoImage.jpg'
               };
             })
-        );
+          );
 
-        Promise.all(imageRequests)
+          Promise.all(imageRequests)
           .then(completeResults => { 
             setResultados(completeResults);
             toast.success("Dados carregados com sucesso!");
@@ -60,7 +60,7 @@ function ResultadoBusca() {
           .catch(() => {
             toast.error("Ocorreu um erro ao carregar algumas imagens, mas os dados foram carregados.");
           });
-      })
+        })
       .catch(() => {
         toast.error("Ocorreu um erro ao carregar os dados, por favor, tente novamente.");
       });
@@ -161,7 +161,7 @@ function ResultadoBusca() {
                   {resultado.information?.hasTv && <span>TV </span>}
                   {resultado.information?.hasWifi && <span>Wi-Fi </span>}
                 </div>
-                <Link to={"/estabelecimento-usuario/" + resultado.id} className={styles.visitButton}>VISITAR</Link>
+                <Link to={`/estabelecimento-usuario/${resultado.id}`} key={index} className={styles.visitButton}>VISITAR</Link>
               </div>
             </Link>
           ))

@@ -44,4 +44,12 @@ const formatarData = (data) => {
     return `${dia} de ${mes} de ${ano}`;
 };
 
-export { validateCNPJ, cnpjMask, removeCnpjMask, decodeToken, formatarData };
+function summarizeDescription(description) {
+    const maxLength = 100;
+    if (description.length <= maxLength) {
+        return description;
+    }
+    return description.slice(0, maxLength) + "...";
+}
+
+export { validateCNPJ, cnpjMask, removeCnpjMask, decodeToken, formatarData, summarizeDescription };

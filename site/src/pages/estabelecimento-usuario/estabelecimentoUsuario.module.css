@@ -4,8 +4,21 @@ html {
     padding: 0;
     height: 100%;
     background-color: #fff;
+    overflow-x: hidden;
+}
+.buttonFav{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    border-radius: 10px;
 }
 
+.buttonFav:hover{
+    background-color: #FFA500;
+    transition: .5s;
+}
 .container {
     position: relative;
     width: 100%;
@@ -117,7 +130,7 @@ html {
 .rating {
     display: flex;
     align-items: center;
-    
+    padding: 10px;
 }
 
 

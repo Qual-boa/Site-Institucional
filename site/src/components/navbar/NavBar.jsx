@@ -38,11 +38,37 @@ const NavBar = ({ logoInicio }) => {
             }
         }, 100); // ajuste o tempo conforme necessário
     };
+    const ShowLoginOrLogout = () => {
+        if(sessionStorage.getItem("qabToken") === null || sessionStorage.getItem("qabToken") === undefined || sessionStorage.getItem("qabToken") === ""){
+            return <li onClick={() => navigate("/login")}>Login</li>
+        } else {
+            return <li onClick={() => {
+                sessionStorage.removeItem("qabToken");
+                sessionStorage.removeItem("establishmentId")
+                navigate("/");
+            }}>Logout</li>
+        }
+    }
+
+    const ShowDashboard = () => {
+        if(sessionStorage.getItem("establishmentId") !== null){
+            return <li onClick={() => {
+                navigate("/dashboard");
+            }}>Dashboard</li>
+        }
+    }
+
+    const ShowFavoritos = () => {
+        if(sessionStorage.getItem("qabToken") !== null){
+            return <li onClick={() => {
+                navigate("/favoritos");
+            }}>Favoritos</li>
+        } 
+    }
 
     return (
         <nav className={styles["navbar"]}>
             <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" onClick={() => scrollToSection('inicio')} />
-            <span onClick={() => scrollToSection('cidades')}><b>CIDADES MAIS PROCURADAS</b></span>
             <span onClick={() => scrollToSection('bares')}><b>BARES MAIS VISTOS</b></span>
             <span onClick={() => scrollToSection('sugestoes')}><b>SUGESTÕES DO MÊS</b></span>
             <span onClick={() => scrollToSection('boa')}><b>QUAL A SUA BOA?</b></span>
@@ -53,9 +79,9 @@ const NavBar = ({ logoInicio }) => {
                 {menuOpen && (
                     <div className={styles["dropdown-menu"]}>
                         <ul>
-                            <li onClick={() => navigate("/dashboard")}>Dashboard</li>
-                            <li>Configurações</li>
-                            <li onClick={() => navigate("/login")}>Logout</li>
+                            <ShowFavoritos />
+                            <ShowDashboard />
+                            <ShowLoginOrLogout />
                         </ul>
                     </div>
                 )}

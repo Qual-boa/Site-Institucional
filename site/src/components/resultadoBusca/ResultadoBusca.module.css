@@ -35,18 +35,12 @@ Estilos para card .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
-  margin-top: 100px;
-  width: 800px;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
-  max-width: 600px;
-  margin-bottom: 20px;
 }
 
 .search-input {
@@ -76,18 +70,7 @@ Estilos para card .card {
   transition: ease-in-out 0.3s;
 }
 
-.suggestions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 5px;
-  /* Ajusta o espaço entre as linhas de botões */
-
-}
-
 .containerJsons {
-  height: 100vh; /* Ajusta a altura para ocupar a tela inteira */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -278,14 +261,13 @@ Estilos para card .card {
 }
 
 .search-container{
-  height: 40vw;
+  height: 100%;
   width: 37vw;
-  flex-direction: column;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: absolute;
   top: 2%;
-  align-items: center;
 }
 
 @media (max-width: 768px) {

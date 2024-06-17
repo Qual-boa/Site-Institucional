@@ -17,6 +17,7 @@ import GoogleMapReact from "google-map-react";
 import { toast } from 'react-toastify';
 import { decodeToken } from '../../utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 
 function MapComponent({ postalCode, number }) {
@@ -117,6 +118,7 @@ function EstabelecimentoUsuario() {
     const [estacionamento, setEstacionamento] = useState(false);
     const [imageUrlsMenu, setImageUrlsMenu] = useState([]);
     const [imageUrlsGallery, setImageUrlsGallery] = useState([]);
+    const [mediaAvaliacoes, setMediaAvaliacoes] = useState(0);
 
     useEffect(()=>{
         
@@ -218,7 +220,56 @@ function EstabelecimentoUsuario() {
         } else {
           return phone; // Retorna o número original se não tiver 10 ou 11 dígitos
         }
-      };
+    };
+    const favoritar = () => {
+        if(!validarToken()) {
+            toast.error("Para avaliar precisa autenticar-se.");
+        } else {
+            const payloadToken = decodeToken(token);
+            const reqBody = {
+                establishmentId: id,
+                userId: payloadToken.userId,
+                interactionType: "FAVORITE",
+                message: "",
+                rate: 0
+            }
+            let isValid = true;
+            api.get("/establishments/" + id).then(async (res) => {
+                const relationships = res.data.relationships;
+                
+                if(relationships === null) {
+                    const response = await api.put("/establishments/relationship", reqBody);
+                    if(response.status === 200) {
+                        toast.success("Avaliado com sucesso!")
+                    }
+                } else {
+                    relationships.forEach(rl => {
+                        if(rl.interactionType === "FAVORITE" && rl.userId === reqBody.userId && rl.establishmentId === id) {
+                            console.log(rl);
+                            isValid = false;
+                            return;
+                        }
+                    });
+                    if(isValid) {
+                        const response = await api.put("/establishments/relationship", reqBody);
+                        if(response.status === 200) {
+                            toast.success("Favoritado com sucesso!")
+                        }
+                    } else {
+                        toast.warn("Você já favoritou o estabelecimento");
+                    }
+                }
+            });
+        }
+    }
+
+    const validarToken = () => {
+        if(token === undefined || token === "" || token === null) {
+            toast.error("Para avaliar precisa autenticar-se.");
+            return false;
+        }
+        return true;
+    }
 
     const Avaliacao = () => {
         const { id } = useParams();
@@ -229,19 +280,21 @@ function EstabelecimentoUsuario() {
         ]);
         const [currentIndex, setCurrentIndex] = useState(0);
         useEffect(() => {
+            let avali = []
             api.get("/establishments/" + id).then(res => {
-                setAvaliacoes(res.data.relationships);
+                let soma = 0.0;
+                for(let i = 0; i < res.data.relationships.length; i++) {
+                    const rl = res.data.relationships[i];
+                    if(rl.interactionType === "COMMENT"){
+                        avali.push(rl)
+                        soma += rl.rate;
+                    }
+                }
+                setAvaliacoes(avali);
+                setMediaAvaliacoes(soma / avali.length);
             })
         }, [id]);
-
-        const validarToken = () => {
-            if(token === undefined || token === "" || token === null) {
-                toast.error("Para avaliar precisa autenticar-se.");
-                return false;
-            }
-            return true;
-        }
-
+        console.log(mediaAvaliacoes);
         const handleStarClick = (rating) => {
             setSelectedRating(rating);
             setIsModalOpen(true);
@@ -357,7 +410,13 @@ function EstabelecimentoUsuario() {
             </div>
         );
     };
-
+    const ShowStarsAvaliacoes = () => {
+        const stars = [];
+        for(let i = 0; i < mediaAvaliacoes.toFixed(0); i++) {
+            stars.push(<FontAwesomeIcon icon={faStar} />);  
+        }
+        return stars;
+    }
     return (
         <>
             <Helmet>
@@ -379,14 +438,8 @@ function EstabelecimentoUsuario() {
                                 <a href={facebookUrl} target='_blank' rel='noreferrer' external><FaFacebook className={styles.midias} /></a>
                                 <a href={instagramUrl} target='_blank' rel='noreferrer' external><FaInstagram className={styles.midias} /></a>
                             </div>
-                            <div className="rating">
-                                <FontAwesomeIcon icon="fa-solid fa-star" />
-                                <input type="radio" name="rating-9" className="rating-hidden" />
-                                <input type="radio" name="rating-9" className="mask mask-star-2" />
-                                <input type="radio" name="rating-9" className="mask mask-star-2" />
-                                <input type="radio" name="rating-9" className="mask mask-star-2" />
-                                <input type="radio" name="rating-9" className="mask mask-star-2" />
-                                <input type="radio" name="rating-9" className="mask mask-star-2" checked/>
+                            <div className={styles["rating"]}>
+                                <ShowStarsAvaliacoes /> ({mediaAvaliacoes.toFixed(2)})
                             </div>
                         </div>
                         <div className={styles["main-content"]}>
@@ -396,8 +449,10 @@ function EstabelecimentoUsuario() {
                         </div>
                         <div className={styles.flexContainer}>
                             <div className={styles.favoritar}>
-                                <div className="rating gap-1">
-                                    Favoritar<input type="radio" name="rating-3" className="mask mask-heart bg-red-400" checked />
+                                <div>
+                                    <button type="button" className={styles.buttonFav} onClick={favoritar}>
+                                        Favoritar
+                                    </button>
                                 </div>
                             </div>
                             <div className={styles.facilidades}>
