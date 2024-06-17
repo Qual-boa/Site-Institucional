@@ -119,6 +119,7 @@ function EstabelecimentoUsuario() {
     const [imageUrlsMenu, setImageUrlsMenu] = useState([]);
     const [imageUrlsGallery, setImageUrlsGallery] = useState([]);
     const [mediaAvaliacoes, setMediaAvaliacoes] = useState(0);
+    const [categorias, setCategorias] = useState([]);
 
     useEffect(()=>{
         
@@ -136,6 +137,7 @@ function EstabelecimentoUsuario() {
             setAcessibilidade(data.information.hasAccessibility);
             setDescription(data.information.description);
             setEstacionamento(data.information.hasParking);
+            setCategorias(data.categories);
             if(data.information.openAt[0] < 10) {
                 setOpenAt("0" + data.information.openAt[0] + ":" + data.information.openAt[1] + "0");
             } else {
@@ -271,6 +273,35 @@ function EstabelecimentoUsuario() {
         return true;
     }
 
+    const Categorias = () => {
+        const musics = categorias.filter(cat => cat.categoryType === 1).map(cat => cat.name);
+        const foods = categorias.filter(cat => cat.categoryType === 2).map(cat => cat.name);
+        const drinks = categorias.filter(cat => cat.categoryType === 3).map(cat => cat.name);
+      
+        return (
+          <div className={styles["category-cards"]}>
+            <div className={styles["card"]}>
+                <h2 style={{fontWeight: "bold", textAlign: "left"}}>Músicas 🎵</h2>
+              {musics.map(name => (
+                <p className={styles.description} key={name}>{name}</p>
+              ))}
+            </div>
+            <div className={styles["card"]}>
+                <h2 style={{fontWeight: "bold", textAlign: "left"}}>Comidas 😋</h2>
+              {foods.map(name => (
+                <p className={styles.description} key={name}>{name}</p>
+              ))}
+            </div>
+            <div className={styles["card"]}>
+                <h2 style={{fontWeight: "bold", textAlign: "left"}}>Bebidas 🍷</h2>
+              {drinks.map(name => (
+                <p className={styles.description} key={name}>{name}</p>
+              ))}
+            </div>
+          </div>
+        );
+      };
+
     const Avaliacao = () => {
         const { id } = useParams();
         const [isModalOpen, setIsModalOpen] = useState(false);
@@ -294,7 +325,6 @@ function EstabelecimentoUsuario() {
                 setMediaAvaliacoes(soma / avali.length);
             })
         }, [id]);
-        console.log(mediaAvaliacoes);
         const handleStarClick = (rating) => {
             setSelectedRating(rating);
             setIsModalOpen(true);
@@ -372,6 +402,7 @@ function EstabelecimentoUsuario() {
                 return <p>Sem avaliações</p>
             }
         };
+
         return (
             <div className={styles.avaliacao}>
                 <div className={styles.secoes2}>AVALIAÇÕES</div>
@@ -465,6 +496,12 @@ function EstabelecimentoUsuario() {
                             <div className={styles.secoes}>SOBRE NÓS</div>
                         </div>
                         <div className={styles.description}>{description}</div>
+                        <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
+                        <div className={styles.divisor2}>__________</div>
+                        <div className={styles.flexContainer3}>
+                            <div className={styles.secoes}>O QUE TEMOS? 🤔</div>
+                            <Categorias />
+                        </div>
                         <div className={styles.divisor}>____________________________________________________________________________________________________________</div>
                         <div className={styles.divisor2}>__________</div>
                         <div className={styles.flexContainer2}>

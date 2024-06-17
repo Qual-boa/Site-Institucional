@@ -238,6 +238,33 @@ html {
     font-size: 20px;
     font-weight: bold;
 }
+
+.flexContainer3 {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    width: 100%;
+    top: 250px; 
+    gap: 0px 32%;
+}
+
+.category-cards {
+    display: flex;
+    gap: 50px;
+}
+
+.cards-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.category-cards .card {
+    background-color: white;
+    padding: 40px;
+    text-align: left;
+    border-radius: 20px;
+}
+
 .cardContainer {
     width: 845px;
     display: flex;
