@@ -34,34 +34,38 @@ function ResultadoBusca() {
     })
       .then((response) => {
         const establishments = response.data;
-        const imageRequests = establishments.map(establishment =>
-          apiBlob.get(`/establishments/${establishment.id}`)
-            .then((response) => {
-              const { data } = response;
-              const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
-              return {
-                ...establishment,
-                imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
-              };
+        if(response.status === 204) {
+          toast.warn("Nenhum resultado encontrado, por favor, tente novamente.");
+        } else {
+          const imageRequests = establishments.map(establishment =>
+            apiBlob.get(`/establishments/${establishment.id}`)
+              .then((response) => {
+                const { data } = response;
+                const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
+                return {
+                  ...establishment,
+                  imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
+                };
+              })
+              .catch(() => {
+                return {
+                  ...establishment,
+                  imageUrl: 'defaultLogoImage.jpg'
+                };
+              })
+            );
+  
+            Promise.all(imageRequests)
+            .then(completeResults => { 
+              setResultados(completeResults);
+              toast.success("Dados carregados com sucesso!");
             })
             .catch(() => {
-              return {
-                ...establishment,
-                imageUrl: 'defaultLogoImage.jpg'
-              };
-            })
-          );
-
-          Promise.all(imageRequests)
-          .then(completeResults => { 
-            setResultados(completeResults);
-            toast.success("Dados carregados com sucesso!");
-          })
-          .catch(() => {
-            toast.error("Ocorreu um erro ao carregar algumas imagens, mas os dados foram carregados.");
-          });
+              toast.error("Ocorreu um erro ao carregar algumas imagens, mas os dados foram carregados.");
+            });
+        }
         })
-      .catch(() => {
+      .catch(err => {
         toast.error("Ocorreu um erro ao carregar os dados, por favor, tente novamente.");
       });
   };

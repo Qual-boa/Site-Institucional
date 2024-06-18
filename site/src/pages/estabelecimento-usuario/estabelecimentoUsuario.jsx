@@ -313,16 +313,21 @@ function EstabelecimentoUsuario() {
         useEffect(() => {
             let avali = []
             api.get("/establishments/" + id).then(res => {
-                let soma = 0.0;
-                for(let i = 0; i < res.data.relationships.length; i++) {
-                    const rl = res.data.relationships[i];
-                    if(rl.interactionType === "COMMENT"){
-                        avali.push(rl)
-                        soma += rl.rate;
+                if(res.data.relationships !== null) {
+                    let soma = 0.0;
+                    for(let i = 0; i < res.data.relationships.length; i++) {
+                        const rl = res.data.relationships[i];
+                        if(rl.interactionType === "COMMENT"){
+                            avali.push(rl)
+                            soma += rl.rate;
+                        }
                     }
+                    setAvaliacoes(avali);
+                    setMediaAvaliacoes(soma / avali.length);
+                } else {
+                    setAvaliacoes(null);
+                    setMediaAvaliacoes(0.0);
                 }
-                setAvaliacoes(avali);
-                setMediaAvaliacoes(soma / avali.length);
             })
         }, [id]);
         const handleStarClick = (rating) => {
