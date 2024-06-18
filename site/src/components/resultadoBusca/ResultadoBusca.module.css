@@ -40,12 +40,10 @@
   flex-direction: column;
   align-items: center;
   padding: 15px;
-  margin-top: 100px;
   width: 100%;
 }
 
 .search-bar {
-  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -97,7 +95,7 @@
   align-items: center;
   width: 100%;
   padding-bottom: 100px;
-  margin-top: 15vw;
+  margin-top: 50px;
 }
 
 .containerJsons::-webkit-scrollbar {
@@ -178,7 +176,6 @@
   display: flex;
   justify-content: space-between; /* Alinha os itens com espaço igual entre eles */
   gap: 10px;
-  position: absolute;
   top: 32%; 
 }
 
@@ -217,10 +214,7 @@
 }
 
 .container-inpu-filtro{
-  display: inline-block;
-  position: absolute;
-  right: 22%;
-  top: 22%;
+  display: flex;
 }
 
 .input-secundaria{
@@ -245,7 +239,6 @@
   color: #fff;
   font-weight: bold;
   border:none;
-  position: absolute;
   left: 96%;
   padding: 5px 10px;
   border-radius: 30px;
@@ -253,22 +246,20 @@
   width: 13vw;
   font-size: 15px;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: -20px;
 }
 
 .search-bar h3{
   font-size: 1.7vw;
-  position: absolute;
   top: 10%;
 }
 
 .search-container{
-  height: 40vw;
-  width: 37vw;
+  height: fit-content;
+  width: 100%;
   flex-direction: column;
   display: flex;
   justify-content: center;
-  position: absolute;
   top: 0%;
   align-items: center;
 }

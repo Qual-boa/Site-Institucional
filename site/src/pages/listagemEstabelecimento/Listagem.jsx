@@ -4,6 +4,8 @@ import "../../global.css";
 import logo from "../../assets/logoBranca.svg";
 import ResultadoBusca from "../../components/resultadoBusca/ResultadoBusca";
 import Navbar from '../../components/navbar/NavBar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 function Listagem() {
     const [tamanhoDivExterno, setTamanhoDivExterno] = useState(0);
@@ -22,8 +24,16 @@ function Listagem() {
                 <div style={{ height: `calc(100vh - ${tamanhoDivExterno}px)` }}>
                     <div className={styles["containerBusca"]} ref={divRef}>
                         <ResultadoBusca />
+                        <a className={styles["botao-voltar"]} href="#inicio">
+                            <FontAwesomeIcon icon={faArrowUp} style={{
+                                color: '#FFF',
+                                cursor: 'pointer'
+                            }} />
+                        </a>
                     </div>
+                    
                 </div>
+                
             </section>
         </>
     );

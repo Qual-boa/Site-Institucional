@@ -134,3 +134,19 @@ body {
   display: flex;
   flex-direction: column
 }
+
+.botao-voltar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  background-color: #000;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.botao-voltar:hover {
+  opacity: 60%;
+  transition: .3s;
+}
