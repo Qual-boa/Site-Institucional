@@ -6,19 +6,59 @@ import Footer from "../../components/footer/Footer";
 import Beer4U from "../../assets/beer4u.svg";
 import BarRock from "../../assets/barRock.svg";
 import Divine from "../../assets/divine.svg"
-import Entradas from "../../assets/entradas.svg";
-import Bolinho from "../../assets/bolinho.svg";
-import Drinks from "../../assets/drinks.svg"
-import TonsCerveja from "../../assets/TonsCerveja.svg"
 import { useNavigate } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Modal from '../../components/modal/Modal';
+import { toast } from "react-toastify";
+import api from "../../api";
+import apiBlob from "../../api-blob";
 
 function Usuario() {
     
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalText, setModalText] = useState('');
+    const [resultados, setResultados] = useState([]);
 
+    const buscarDados = useCallback(() => {
+        api.get("/relationship/establishments/top-3")
+            .then((response) => {
+                const establishments = response.data;
+                const imageRequests = establishments.map(establishment =>
+                    apiBlob.get(`/establishments/${establishment[0]}`)
+                        .then((response) => {
+                            const { data } = response;
+                            const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
+                            return {
+                                ...establishment,
+                                imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
+                            };
+                        })
+                        .catch(() => {
+                            return {
+                                ...establishment,
+                                imageUrl: 'defaultLogoImage.jpg'
+                            };
+                        })
+                    );
+        
+                    Promise.all(imageRequests)
+                        .then(completeResults => { 
+                            setResultados(completeResults);
+                        })
+                        .catch(() => {
+                            toast.error("Ocorreu um erro ao carregar algumas imagens, mas os dados foram carregados.");
+                        });
+            })
+            .catch(() => {
+                toast.error("Ocorreu um erro ao carregar os dados, por favor, tente novamente.");
+            });
+    }, []);
+
+    useEffect(() => {
+        buscarDados();
+    }, [buscarDados]);
+
+    console.log(resultados)
     const openModal = (text) => {
         setModalText(text);
         setModalIsOpen(true);
@@ -92,7 +132,7 @@ function Usuario() {
                 <section className={styles["sessao"]} id="bares">
                     <div className={styles["bares"]}>
                         <div className={styles["linha"]}></div>
-                        <h1>BARES MAIS VISTOS</h1>
+                        <h1>BARES MAIS BEM AVALIADOS</h1>
                         <div className={styles["bares-containers"]}>
                             <div className={styles["bares-box"]}>
                                 <div className={styles["bares-img"]}>
@@ -139,9 +179,7 @@ function Usuario() {
                         <h1>SUGESTÕES DO MÊS</h1>
                         <div className={styles["sugestoes-containers"]}>
                             <div className={styles["sugestoes-box"]}>
-                                <div className={styles["sugestoes-img"]}>
-                                    <img src={Entradas} alt="" />
-                                </div>
+                                <div className={styles["sugestoes-img-entradas"]}></div>
                                 <div className={styles["sugestoes-info"]}>
                                     <div className={styles["sugestoes-info-txt"]}>
                                         <h3>ENTRADINHAS</h3>
@@ -153,9 +191,7 @@ function Usuario() {
                                 </div>
                             </div>
                             <div className={styles["sugestoes-box"]}>
-                                <div className={styles["sugestoes-img"]}>
-                                    <img src={Bolinho} alt="" />
-                                </div>
+                                <div className={styles["sugestoes-img-bolinhos"]}></div>
                                 <div className={styles["sugestoes-info"]}>
                                     <div className={styles["sugestoes-info-txt"]}>
                                         <h3>BOLINHO DE FEIJOADA</h3>
@@ -167,9 +203,7 @@ function Usuario() {
                                 </div>
                             </div>
                             <div className={styles["sugestoes-box"]}>
-                                <div className={styles["sugestoes-img"]}>
-                                    <img src={Drinks} alt="" />
-                                </div>
+                                <div className={styles["sugestoes-img-drinks"]}></div>
                                 <div className={styles["sugestoes-info"]}>
                                     <div className={styles["sugestoes-info-txt"]}>
                                         <h3>DRINKS SAZONAIS</h3>
@@ -181,9 +215,7 @@ function Usuario() {
                                 </div>
                             </div>
                             <div className={styles["sugestoes-box"]}>
-                                <div className={styles["sugestoes-img"]}>
-                                    <img src={TonsCerveja} alt="" />
-                                </div>
+                                <div className={styles["sugestoes-img-cerveja"]}></div>
                                 <div className={styles["sugestoes-info"]}>
                                     <div className={styles["sugestoes-info-txt"]}>
                                         <h3>4 TONS DE CERVEJA</h3>
