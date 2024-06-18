@@ -1,3 +1,14 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -10,6 +21,11 @@ jobs:
           submodules: true
           lfs: false
           path: Site-Institucional # Define o diretório onde o repositório será clonado
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
       - name: Install Dependencies
         run: cd Site-Institucional/site && npm install
@@ -28,7 +44,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "./site"
-          output_location: "public"
+          output_location: "site/public"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
