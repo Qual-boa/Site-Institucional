@@ -29,7 +29,7 @@
       "rewrite": "/index.html"
     },
     {
-      "route": "/estabelecimento-usuario/:id",
+      "route": "/estabelecimento-usuario/*.",
       "rewrite": "/index.html"
     },
     {
@@ -53,15 +53,15 @@
       "rewrite": "/index.html"
     },
     {
-      "route": "/cadastrar-info-empresa/:id",
+      "route": "/cadastrar-info-empresa/*.",
       "rewrite": "/index.html"
     },
     {
-      "route": "/estabelecimento-dono/:id",
+      "route": "/estabelecimento-dono/*.",
       "rewrite": "/index.html"
     },
     {
-      "route": "/editar-estabelecimento/:id",
+      "route": "/editar-estabelecimento/*.",
       "rewrite": "/index.html"
     },
     {
