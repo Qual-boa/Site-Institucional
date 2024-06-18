@@ -1,7 +1,9 @@
 import NavBar from "../../components/navbarEmpresa/NavbarEmpresa";
 import styles from "./DonoDeslogado.module.css";
 import cervejinha from "../../assets/breja-removebg-preview.png";
-import logo from "../../assets/logoBranca.svg";
+import logo from "../../assets/QualABoa.svg";
+import logoBranca from "../../assets/logoBranca.svg";
+
 import Footer from "../../components/footerEmpresa/FooterEmpresa";
 import FacilidadeImg from "../../assets/facilidadeImg.svg"
 import IdadentidadeIMG from "../../assets/identidadeImg.svg"
@@ -43,7 +45,7 @@ function Dono() {
 
     return (
         <>
-            <NavBar logoInicio={logo}/>
+            <NavBar logoInicio={logoBranca}/>
             <div className={styles["container-fullpage"]}>
                 <section className={styles["sessao"]} id="inicio">
                     <div className={styles["container"]}>
