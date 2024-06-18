@@ -69,11 +69,11 @@
       "rewrite": "/index.html"
     },
     {
-      "route": "/usuarios/adicionarUsuarios/*",
+      "route": "/usuarios/adicionarUsuarios/*.",
       "rewrite": "/index.html"
     },
     {
-      "route": "/{*}",
+      "route": "/{*.}",
       "rewrite": "/index.html"
     }
   ]
