@@ -34,7 +34,7 @@ jobs:
         run: cd Site-Institucional/site && npm run build
 
       - name: Move staticwebapp.config.json to public directory
-        run: mv Site-Institucional/site/staticwebapp.config.json Site-Institucional/site/public/
+        run: mv /Site-Institucional/site/staticwebapp.config.json /Site-Institucional/site/public/
 
       - name: Deploy to Azure Static Web Apps
         id: deploy
