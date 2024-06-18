@@ -41,7 +41,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "./Site-Institucional/site"
-          output_location: "./Site-Institucional/site/public"
+          output_location: "./Site-Institucional/site"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
