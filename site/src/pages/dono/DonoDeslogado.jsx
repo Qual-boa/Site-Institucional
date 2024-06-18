@@ -29,19 +29,10 @@ function Dono() {
         }, 100); // ajuste o tempo conforme necessário
     };
 
-    const listagemScroll = (sectionId) => {
-        // Navega para a página inicial (ou para a página onde está a seção desejada)
-        navigate('/listagem');
-
-        // Espera um pequeno intervalo de tempo antes de rolar para a seção
-        setTimeout(() => {
-            var secao = document.getElementById(sectionId);
-            if (secao) {
-                secao.scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 100); // ajuste o tempo conforme necessário
-    };
     
+    const goTo = (establishmentId) => {
+        navigate(`/estabelecimento-usuario/${establishmentId}`);
+    }
 
     return (
         <>
@@ -105,7 +96,7 @@ function Dono() {
                                         É especialista em cervejas artesanais e possui uma novidade diária.
                                         Ideal para você que gosta de degustar e apreciar novos sabpres. 
                                     </span>
-                                    <button className={styles["botao-visita"]} onClick={() => listagemScroll("inicio")} type="button">VISITAR</button>
+                                    <button className={styles["botao-visita"]} onClick={() => goTo("0c9a498e-4def-40ff-96e5-788942ab0a28")} type="button">VISITAR</button>
                                 </div>
                             </div>
                         </div>
