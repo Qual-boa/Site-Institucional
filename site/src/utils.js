@@ -44,8 +44,8 @@ const formatarData = (data) => {
     return `${dia} de ${mes} de ${ano}`;
 };
 
-function summarizeDescription(description) {
-    const maxLength = 100;
+function summarizeDescription(description, max) {
+    const maxLength = max;
     if (description.length <= maxLength) {
         return description;
     }

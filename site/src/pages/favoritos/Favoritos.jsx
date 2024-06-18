@@ -91,7 +91,7 @@ const Favoritos = () => {
                         
                     </div>
                     <div className={styles["informations-description"]}>
-                        <p>{summarizeDescription(resultado.information.description)}</p>
+                        <p>{summarizeDescription(resultado.information.description, 100)}</p>
                     </div>
                 </div>
             </div>

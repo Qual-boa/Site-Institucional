@@ -3,15 +3,13 @@ import styles from "./UsuarioFinal.module.css";
 import cervejinha from "../../assets/breja-removebg-preview.png";
 import logo from "../../assets/logoBranca.svg";
 import Footer from "../../components/footer/Footer";
-import Beer4U from "../../assets/beer4u.svg";
-import BarRock from "../../assets/barRock.svg";
-import Divine from "../../assets/divine.svg"
 import { useNavigate } from "react-router-dom";
 import React, { useCallback, useEffect, useState } from 'react';
 import Modal from '../../components/modal/Modal';
 import { toast } from "react-toastify";
 import api from "../../api";
 import apiBlob from "../../api-blob";
+import { summarizeDescription } from "../../utils";
 
 function Usuario() {
     
@@ -23,8 +21,12 @@ function Usuario() {
         api.get("/relationship/establishments/top-3")
             .then((response) => {
                 const establishments = response.data;
-                const imageRequests = establishments.map(establishment =>
-                    apiBlob.get(`/establishments/${establishment[0]}`)
+    
+                const completeRequests = establishments.map(establishment => {
+                    const id = establishment[0];
+    
+                    // Fetch profile image
+                    const imageRequest = apiBlob.get(`/establishments/${id}`)
                         .then((response) => {
                             const { data } = response;
                             const profileImage = data.find(image => image.establishmentCategory === 'PROFILE');
@@ -33,32 +35,53 @@ function Usuario() {
                                 imageUrl: profileImage ? profileImage.imgUrl : 'defaultLogoImage.jpg'
                             };
                         })
-                        .catch(() => {
+                        .catch(() => ({
+                            ...establishment,
+                            imageUrl: 'defaultLogoImage.jpg'
+                        }));
+    
+                    // Fetch description and fantasy name
+                    const infoRequest = api.get(`/establishments/${id}`)
+                        .then((response) => {
+                            const { information, fantasyName } = response.data;
                             return {
-                                ...establishment,
-                                imageUrl: 'defaultLogoImage.jpg'
+                                id,
+                                description: information.description || '',
+                                fantasyName: fantasyName || '',
                             };
                         })
-                    );
-        
-                    Promise.all(imageRequests)
-                        .then(completeResults => { 
-                            setResultados(completeResults);
-                        })
-                        .catch(() => {
-                            toast.error("Ocorreu um erro ao carregar algumas imagens, mas os dados foram carregados.");
-                        });
+                        .catch(() => ({
+                            id,
+                            description: '',
+                            fantasyName: '',
+                        }));
+    
+                    // Combine results
+                    return Promise.all([imageRequest, infoRequest])
+                        .then(([imageData, infoData]) => ({
+                            ...imageData,
+                            description: infoData.description,
+                            fantasyName: infoData.fantasyName,
+                        }));
+                });
+    
+                Promise.all(completeRequests)
+                    .then(completeResults => {
+                        setResultados(completeResults);
+                    })
+                    .catch(() => {
+                        toast.error("Ocorreu um erro ao carregar algumas informações, mas os dados foram carregados.");
+                    });
             })
             .catch(() => {
                 toast.error("Ocorreu um erro ao carregar os dados, por favor, tente novamente.");
             });
     }, []);
-
+    
     useEffect(() => {
         buscarDados();
     }, [buscarDados]);
 
-    console.log(resultados)
     const openModal = (text) => {
         setModalText(text);
         setModalIsOpen(true);
@@ -71,16 +94,14 @@ function Usuario() {
     const navigate = useNavigate();
 
     const scrollToSection = (sectionId) => {
-        // Navega para a página inicial (ou para a página onde está a seção desejada)
         navigate('/home-estabelecimento');
 
-        // Espera um pequeno intervalo de tempo antes de rolar para a seção
         setTimeout(() => {
             var secao = document.getElementById(sectionId);
             if (secao) {
                 secao.scrollIntoView({ behavior: 'smooth' });
             }
-        }, 100); // ajuste o tempo conforme necessário
+        }, 100);
     };
 
     const scrollBack = (sectionId) => {
@@ -107,6 +128,35 @@ function Usuario() {
     const goToTela2 = () => {
       scrollListagem('/listagem');
     };
+
+    const Bares = () => {
+        const sendTo = (establishmentId) => {
+            navigate(`/estabelecimento-usuario/${establishmentId}`);
+        }
+        return (
+            <>
+                {resultados.map((bar, index) => (
+                    <div className={styles["bares-box"]} key={index}>
+                        <div style={{
+                                backgroundImage: `url(${bar.imageUrl})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                width: "100%",
+                                height: "100%",
+                                borderRadius: "30px 30px 0px 0px"
+                        }}></div>
+                        <div className={styles["bares-info"]}>
+                            <h3>{bar.fantasyName}</h3>
+                            <span>{summarizeDescription(bar.description, 50)}</span>
+                            <button onClick={() => sendTo(bar[0])} className={styles["botao-vermais"]} type="button">VER MAIS</button>
+                        </div>
+                    </div>
+                ))}
+            </>
+        );
+    }
+
     return (
         <>
             <Modal isOpen={modalIsOpen} onClose={closeModal} modalText={modalText}/>
@@ -134,42 +184,7 @@ function Usuario() {
                         <div className={styles["linha"]}></div>
                         <h1>BARES MAIS BEM AVALIADOS</h1>
                         <div className={styles["bares-containers"]}>
-                            <div className={styles["bares-box"]}>
-                                <div className={styles["bares-img"]}>
-                                    <img src={Beer4U} alt="Imagem do estabelecimento" />
-                                </div>
-
-                                <div className={styles["bares-info"]}>
-                                    <h3>BEER4U</h3>
-                                    <span>
-                                        Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button onClick={() => openModal('Um bar de tap house de cerveja artesanal é um estabelecimento que se concentra na oferta de cervejas produzidas localmente ou regionalmente, muitas vezes em pequenos lotes e com métodos tradicionais')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                                </div>
-                            </div>
-                            <div className={styles["bares-box"]}>
-                                <div className={styles["bares-img"]}>
-                                    <img src={BarRock} alt="Imagem do estabelecimento" />
-                                </div>
-
-                                <div className={styles["bares-info"]}>
-                                    <h3>BAR DE ROCK</h3>
-                                    <span>
-                                        Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button onClick={() => openModal('É um local que celebra a cultura e a música do rock n roll, oferecendo uma atmosfera energética e uma seleção de músicas de bandas de rock famosas')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                                </div>
-                            </div>
-                            <div className={styles["bares-box"]}>
-                                <div className={styles["bares-img"]}>
-                                    <img src={Divine} alt="Imagem do estabelecimento" />
-                                </div>
-
-                                <div className={styles["bares-info"]}>
-                                    <h3>DIVINE</h3>
-                                    <span>
-                                        Bar em todo Brasil com atualizações diárias do cardápio         </span>
-                                    <button onClick={() => openModal('Um estabelecimento que oferece uma experiência gastronômica sofisticada e de alta qualidade, com ênfase na culinária refinada e na apresentação cuidadosa dos pratos')} className={styles["botao-vermais"]} type="cadastrar">VER MAIS</button>
-                                </div>
-                            </div>
+                            <Bares />
                         </div>
                     </div>
                 </section>

@@ -69,7 +69,7 @@ const NavBar = ({ logoInicio }) => {
     return (
         <nav className={styles["navbar"]}>
             <img src={logoInicio} className={styles["logo-inicio"]} alt="Logo Início" onClick={() => scrollToSection('inicio')} />
-            <span onClick={() => scrollToSection('bares')}><b>BARES MAIS VISTOS</b></span>
+            <span onClick={() => scrollToSection('bares')}><b>BARES BEM AVALIADOS</b></span>
             <span onClick={() => scrollToSection('sugestoes')}><b>SUGESTÕES DO MÊS</b></span>
             <span onClick={() => scrollToSection('boa')}><b>QUAL A SUA BOA?</b></span>
             <span onClick={() => quemSomosSection('quem-somos')}><b>QUEM SOMOS</b></span>

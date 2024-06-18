@@ -443,7 +443,7 @@ function EstabelecimentoUsuario() {
     };
     const ShowStarsAvaliacoes = () => {
         const stars = [];
-        for(let i = 0; i < mediaAvaliacoes.toFixed(0); i++) {
+        for(let i = 0; i < Math.floor(mediaAvaliacoes); i++) {
             stars.push(<FontAwesomeIcon icon={faStar} />);  
         }
         return stars;
