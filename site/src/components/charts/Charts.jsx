@@ -157,7 +157,7 @@ const Charts = () => {
                 </div>
                 <div className={styles.metric4}>
                     <span className={styles["chart-titulo"]}><b>Horário com mais Clicks</b></span><br />
-                    <span><b className={styles["chart-resposta"]}>{metrics.findHourWithMostClicks}</b></span>
+                    <span><b className={styles["chart-resposta"]}>{metrics.findHourWithMostClicks}h</b></span>
                 </div>
                 <div className={styles.metric5}>
                     <span className={styles["chart-titulo"]}><b>Favoritado</b></span><br />

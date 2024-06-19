@@ -21,7 +21,7 @@ const Sidebar = () => {
 
     function downloadRelatorio() {
         const establishmentId = sessionStorage.getItem("establishmentId");
-        fetch(`http://localhost:8080/access/file/${establishmentId}`)
+        fetch(`https://api-qualaboa.azurewebsites.net/access/file/${establishmentId}`)
             .then(response => response.text())
             .then(data => {
                 const blob = new Blob([data], { type: 'text/csv' });
