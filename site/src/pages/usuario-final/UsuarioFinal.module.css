@@ -540,7 +540,8 @@ html {
 .bares-info{
     display: flex;
     flex-direction: column;
-    margin-bottom: 2vh;
+    margin-bottom: 0vh;
+    padding-top: 2vh;
     height: 60%;
 }
 
@@ -737,7 +738,7 @@ html {
     display: flex;
     flex-direction: column;
     width: 49vw;
-    bottom: 14%;
+    bottom: 16%;
 }
 
 .boa-txt1 h3, .boa-txt2 h3{
