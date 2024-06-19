@@ -21,19 +21,17 @@ const Sidebar = () => {
 
     function downloadRelatorio() {
         const establishmentId = sessionStorage.getItem("establishmentId");
-        fetch(`https://api-qualaboa.azurewebsites.net/access/file/${establishmentId}`)
+        fetch(`https://api-qualaboa.azurewebsites.net/access/file/${establishmentId}/string`)
             .then(response => response.text())
             .then(data => {
+                const fileName = 'relatorio.csv';
                 const blob = new Blob([data], { type: 'text/csv' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = 'relatorio.csv';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
+                const link = document.createElement('a');
+                link.download = fileName;
+                link.href = window.URL.createObjectURL(blob);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             })
             .catch(error => console.error('Error:', error));
     }
