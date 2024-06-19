@@ -1,18 +1,14 @@
 .footer {
-    width: 100%;
-    padding: 10px 0;
-    background-color: #333;
+    background-color: black;
     color: #fff;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    flex-shrink: 0;
+    height: 60vh;
+    padding: 20px;
 }
 
 .logoContainer {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .logoContainer img {
@@ -38,7 +34,8 @@
 }
 
 .logo {
-    margin: 0 10px;
+    margin-left: 64px;
+    cursor: pointer;
 }
 
 .menuContainer {
@@ -66,23 +63,19 @@
 }
 
 .midias {
-    color: #fff;
-    margin: 0 10px;
-    font-size: 24px;
-}
-
-.copyright {
-    font-size: 14px;
-}
-
-
-.options {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
+    font-size: 2.5rem;
+    padding-top: 4vh;
+    padding-left: 1.3vw;
     cursor: pointer;
-    list-style: none;
-    padding-top: 0.5vh;
+}
+
+
+.copyright{
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 6rem;
+    flex-wrap: wrap; 
 }
 
 .optionsEndereco {
