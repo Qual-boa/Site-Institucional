@@ -12,12 +12,10 @@ function Footer() {
                 <img src={LogoFooter} alt="logo" className={styles.logo} />
                 <img src={LogoFooter} alt="logo" className={styles.logo} />
                 <img src={LogoFooter} alt="logo" className={styles.logo} />
-                <img src={LogoFooter} alt="logo" className={styles.logo} />
             </div>
             <div className={styles.menuContainer}>
                 <div className={styles.menu}>
                     <h3 className={styles.menuTitulo}>MENU</h3>
-                    <a className={styles.options} href="#outra">CIDADES MAIS PROCURADAS</a>
                     <a className={styles.options} href="#outra">BARES MAIS VISTOS</a>
                     <a className={styles.options} href="#outra">SUGESTÕES DO MÊS</a>
                     <a className={styles.options} href="#outra">QUAL A SUA BOA?</a>
