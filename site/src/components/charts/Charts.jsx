@@ -143,7 +143,7 @@ const Charts = () => {
             <div className={styles.overview}>
                 <div className={styles.metric1}>
                     <span className={styles["chart-titulo"]}><b>Média de Clicks por Mês</b></span><br />
-                    <span className={styles["chart-resposta"]}><b>{metrics.averageClicksPerMonth}</b></span>
+                    <span className={styles["chart-resposta"]}><b>{(metrics.averageClicksPerMonth - 5.0)}</b></span>
                 </div>
                 <div className={styles.metric2}>
                     <span className={styles["chart-titulo"]}><b>Média Nota</b></span><br />
