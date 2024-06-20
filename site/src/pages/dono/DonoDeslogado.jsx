@@ -1,4 +1,4 @@
-import NavBar from "../../components/navbarEmpresa/NavbarEmpresa";
+import NavBar from "../../components/navbar/NavBar";
 import styles from "./DonoDeslogado.module.css";
 import cervejinha from "../../assets/breja-removebg-preview.png";
 import logo from "../../assets/QualABoa.svg";
