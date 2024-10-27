@@ -19,9 +19,11 @@ jobs:
         node-version: '20' 
 
     - name: Install dependencies
+      working-directory: ./site
       run: npm install
 
     - name: Build the application
+      working-directory: ./site
       run: npm run build 
 
     - name: Deploy to Elastic Beanstalk
