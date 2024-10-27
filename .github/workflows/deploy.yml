@@ -39,5 +39,5 @@ jobs:
             cd Site-Institucional/site
             npm install
             npm run build
-            sudo cp -r site/build/* /var/www/html
+            sudo cp -r /home/ubuntu/Site-Institucional/site/build/* /var/www/html
             sudo systemctl restart apache2
