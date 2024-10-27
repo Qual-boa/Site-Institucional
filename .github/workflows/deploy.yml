@@ -31,17 +31,13 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo yum -y update
-            sudo yum install -y httpd
-            sudo systemctl start httpd
-            sudo systemctl enable httpd
-            cd /home
-            ls
-            cd ec2-user
-            sudo yum install nodejs npm -y
+            sudo apt-get update -y
+            sudo apt-get install -y apache2
+            sudo systemctl start apache2
+            sudo systemctl enable apache2
+            cd /home/ubuntu
+            sudo apt-get install -y nodejs npm
             npm install
-            sudo npm run build
-            cd build
-            sudo mv * /var/www/html
-            sudo systemctl restart httpd
-            
+            npm run build
+            sudo cp -r build/* /var/www/html
+            sudo systemctl restart apache2
