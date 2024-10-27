@@ -19,7 +19,7 @@ jobs:
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          SOURCE: "./site"
+          SOURCE: "./Site-Institucional/site"
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
@@ -36,7 +36,7 @@ jobs:
             sudo systemctl start apache2
             sudo systemctl enable apache2
             cd /home/ubuntu
-            sudo apt-get install -y nodejs npm
+            cd Site-Institucional/site
             npm install
             npm run build
             sudo cp -r build/* /var/www/html
