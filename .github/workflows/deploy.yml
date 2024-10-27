@@ -1,0 +1,36 @@
+name: Deploy to Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20' 
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the application
+      run: npm run build 
+
+    - name: Deploy to Elastic Beanstalk
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'us-east-1' 
+      run: |
+        zip -r deploy.zip .  # Compacta o projeto
+        eb init ${{ secrets.EB_APP_NAME }} --region ${{ secrets.AWS_REGION }}
+        eb use ${{ secrets.EB_ENV_NAME }}
+        eb deploy  # Deploy na AWS Elastic Beanstalk
