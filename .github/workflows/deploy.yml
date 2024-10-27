@@ -1,5 +1,6 @@
-name: Deploy to Elastic Beanstalk
+name: Push-to-EC2 instance
 
+# Trigger deployment only on push to main branch 
 on:
   push:
     branches:
@@ -7,34 +8,40 @@ on:
 
 jobs:
   deploy:
+    name: Push to EC2
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Checkout the code
+        uses: actions/checkout@v1
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20' 
+      - name: Deploy to my EC2 instance
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SOURCE: "./site"
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
 
-    - name: Install dependencies
-      working-directory: ./site
-      run: npm install
-
-    - name: Build the application
-      working-directory: ./site
-      run: npm run build 
-
-    # Deploy no Elastic Beanstalk
-    - name: Deploy to Elastic Beanstalk
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1'  # Altere para a região do seu ambiente EBS
-      working-directory: ./site
-      run: |
-        zip -r deploy.zip .
-        eb init ${{ secrets.EB_APP_NAME }} --region ${{ secrets.AWS_REGION }}
-        eb use ${{ secrets.EB_ENV_NAME }}
-        eb deploy
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo yum -y update
+            sudo yum install -y httpd
+            sudo systemctl start httpd
+            sudo systemctl enable httpd
+            cd /home
+            ls
+            cd ec2-user
+            sudo yum install nodejs npm -y
+            npm install
+            sudo npm run build
+            cd build
+            sudo mv * /var/www/html
+            sudo systemctl restart httpd
+            
