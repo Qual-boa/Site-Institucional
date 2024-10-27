@@ -26,13 +26,15 @@ jobs:
       working-directory: ./site
       run: npm run build 
 
+    # Deploy no Elastic Beanstalk
     - name: Deploy to Elastic Beanstalk
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1' 
+        AWS_REGION: 'us-east-1'  # Altere para a região do seu ambiente EBS
+      working-directory: ./site
       run: |
-        zip -r deploy.zip .  # Compacta o projeto
+        zip -r deploy.zip .
         eb init ${{ secrets.EB_APP_NAME }} --region ${{ secrets.AWS_REGION }}
         eb use ${{ secrets.EB_ENV_NAME }}
-        eb deploy  # Deploy na AWS Elastic Beanstalk
+        eb deploy
